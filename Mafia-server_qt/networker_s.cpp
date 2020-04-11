@@ -15,6 +15,7 @@ namespace Mafia {
         if(err){
             return err;
         }
+        //std::cout << (int)(getMyIP()[0]) << std::endl;
         return 0;
 
     }
@@ -35,16 +36,40 @@ namespace Mafia {
         return(&myAddr);
     }
 
+    char* NetWorker::getMyIP(){
+        char buf[BUF_SIZE];
+        std::cout << "q";
+        gethostname(buf, sizeof(buf));
+        std::cout << "w";
+        struct hostent *host = gethostbyname(buf);
+        std::cout << "e";
+        if(host == NULL)
+        {
+            return NULL;
+        }
+        unsigned char result[4];
+        //zeroMemSys(result, 4);
+        //Obtain the computer's IP
+        result[0] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b1;
+        result[1] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b2;
+        result[2] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b3;
+        result[3] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b4;
+        std::cout << result << std::endl;
+        return (char*)result;
+
+    }
+
     //recommended to run in another thread
     int NetWorker::receiveMessage(){
         //buffer to write there received message
         char buffer[BUF_SIZE];
         zeroMemSys(buffer, BUF_SIZE);
         sockaddr_in currentClient;
+        std::cout << this->sock << " " << this->roomId << " " << this->roomOpen << std::endl;
         int cCSize = sizeof(currentClient);
+        //std::lock_guard<std::mutex>guard(lock);
         //receive message
-        int bytesReceived = recvfrom(sock,buffer,BUF_SIZE,0,(sockaddr *)&currentClient,&cCSize);
-
+        int bytesReceived = recvfrom(this->sock,buffer,BUF_SIZE,0,(sockaddr *)&currentClient,&cCSize);
         //check if message is OK
         if (bytesReceived > 0) {
             char mes[BUF_SIZE];
@@ -64,13 +89,18 @@ namespace Mafia {
                 return(sendMessage(currentClient, RESEND_MESSAGE_ID, resendMes, 2));
 
             }
-            return(_processMessage(mes, bytesReceived-7, mId));
+            return(_processMessage(currentClient, mes, bytesReceived-7, mId));
         }
         else  {
             closesocket(sock);
             WSACleanup();
             return RECEIVING_ERROR;
         }
+    }
+
+    void NetWorker::closeRoom(){
+        //std::lock_guard<std::mutex>guard(lock);
+        roomOpen = false;
     }
 
     //sends message with length mesLen and id messageId to client. Returns 0 if succes, error id if error
@@ -103,8 +133,39 @@ namespace Mafia {
     }
 
     //There will be process method, but it's the next step
-    int NetWorker::_processMessage(char* message, int size, short messageId){
-        std::cout << "Message received: " << message << std::endl << "Message ID: " << messageId << std::endl;
+    int NetWorker::_processMessage(sockaddr_in client, char* message, int size, short messageId){
+        switch(messageId){
+        case 1:
+            std::cout << "Message received: " << message << std::endl << "Message ID: " << messageId << std::endl;
+            break;
+        case 2:
+            std::cout << "Message received: " << message << std::endl << "Message ID: " << messageId << std::endl;
+            break;
+        case 3:
+            if(!roomOpen){
+                int err = CLOSED_ROOM_REQUEST_ERROR;
+                sendMessage(client, ERROR_MESSAGE_ID, (char*)&err, 4);
+                return err;
+            }
+            if(maxClientIndex < CLIENTS_MAX_COUNT){
+                for(int i = 0; i < maxClientIndex; i++){
+                    if(clients[i].clientAddr.sin_addr.S_un.S_addr == client.sin_addr.S_un.S_addr){
+                        return REPEATATIVE_REQUEST_ERROR;
+                    }
+                }
+                clients[maxClientIndex].name = message;
+                clients[maxClientIndex].lastMes = Message();
+                clients[maxClientIndex].clientAddr = client;
+                maxClientIndex++;
+                std::cout << clients[maxClientIndex-1].name << std::endl;
+            } else{
+                return CLIENTS_LIMIT_ERROR;
+            }
+            break;
+        default:
+            return UNKNOWN_MES_ID_ERROR;
+            break;
+        }
         return(0);
     }
 

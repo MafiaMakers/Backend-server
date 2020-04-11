@@ -12,6 +12,7 @@ SOURCES += \
         systemfunctions_s.cpp
 
 HEADERS += \
+    Client.h \
     defines_s.h \
     include_s.h \
     networker_s.h \
