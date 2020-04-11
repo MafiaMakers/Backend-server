@@ -11,12 +11,13 @@ namespace Mafia {
     //Initializes server at IP servIP, returns 0 if success, errorId if error (errorId from defines.h)
     int NetWorker::initServer(){
         roomId = (char)(rand() % 256);
-        std::cout << "Room index - " << (int)roomId << std::endl;
+        std::cout << "Room index - " << roomId << std::endl;
         //Get errorId from binding
         int err = _tryBind();
         if(err){
             return err;
         }
+        //std::cout << (int)(getMyIP()[0]) << std::endl;
         return 0;
 
     }
@@ -40,13 +41,17 @@ namespace Mafia {
     //this function doesn't work yet :((
     char* NetWorker::getMyIP(){
         char buf[BUF_SIZE];
+        std::cout << "q";
         gethostname(buf, sizeof(buf));
+        std::cout << "w";
         struct hostent *host = gethostbyname(buf);
+        std::cout << "e";
         if(host == NULL)
         {
             return NULL;
         }
         unsigned char result[4];
+        //zeroMemSys(result, 4);
         //Obtain the computer's IP
         result[0] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b1;
         result[1] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b2;

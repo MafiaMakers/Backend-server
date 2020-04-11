@@ -3,6 +3,7 @@
 #include "networker_s.h"
 #include <unistd.h>
 #include <errno.h>
+#include <chrono>
 
 
 
@@ -14,7 +15,7 @@ int main()
     NetWorker myNetWorker = NetWorker();
 
     std::cout << myNetWorker.initServer() << std::endl;
-    std::thread receiveTh(&NetWorker::receiveMessage, &myNetWorker);
+    std::thread receiveTh(&NetWorker::processMessages, &myNetWorker);
     receiveTh.detach();
     //std::cout << receiveTh.joinable() << std::endl;
 
@@ -25,6 +26,16 @@ int main()
         std::cout << "closing" << std::endl;
         myNetWorker.closeRoom();
     }
+
+    do{
+        zeroMemSys(ans, BUF_SIZE);
+        std::cin >> ans;
+        if(ans[0] == 'f'){
+            std::cout << "finishing" << std::endl;
+            myNetWorker.closeRoom();
+        }
+
+    }while(ans[0] != 'f');
 
     if(receiveTh.joinable()){
         receiveTh.join();

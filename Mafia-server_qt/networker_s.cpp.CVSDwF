@@ -11,12 +11,12 @@ namespace Mafia {
     //Initializes server at IP servIP, returns 0 if success, errorId if error (errorId from defines.h)
     int NetWorker::initServer(){
         roomId = (char)(rand() % 256);
-        std::cout << "Room index - " << (int)roomId << std::endl;
         //Get errorId from binding
         int err = _tryBind();
         if(err){
             return err;
         }
+        //std::cout << (int)(getMyIP()[0]) << std::endl;
         return 0;
 
     }
@@ -40,13 +40,17 @@ namespace Mafia {
     //this function doesn't work yet :((
     char* NetWorker::getMyIP(){
         char buf[BUF_SIZE];
+        std::cout << "q";
         gethostname(buf, sizeof(buf));
+        std::cout << "w";
         struct hostent *host = gethostbyname(buf);
+        std::cout << "e";
         if(host == NULL)
         {
             return NULL;
         }
         unsigned char result[4];
+        //zeroMemSys(result, 4);
         //Obtain the computer's IP
         result[0] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b1;
         result[1] = ((struct in_addr *)(host->h_addr))->S_un.S_un_b.s_b2;
@@ -63,7 +67,9 @@ namespace Mafia {
         char buffer[BUF_SIZE];
         zeroMemSys(buffer, BUF_SIZE);
         sockaddr_in currentClient;
+        //std::cout << this->sock << " " << this->roomId << " " << this->roomOpen << std::endl;
         int cCSize = sizeof(currentClient);
+        //std::lock_guard<std::mutex>guard(lock);
         //receive message
         int bytesReceived = recvfrom(this->sock,buffer,BUF_SIZE,0,(sockaddr *)&currentClient,&cCSize);
         //check if message is OK
@@ -100,7 +106,6 @@ namespace Mafia {
         }
     }
 
-    //a method to continuosly look for new messages [RUN IN ANOTHER THREAD!]
     int NetWorker::processMessages(){
         while(true){
             int err = receiveMessage();
@@ -111,8 +116,8 @@ namespace Mafia {
         }
     }
 
-    //method to close room
     void NetWorker::closeRoom(){
+        //std::lock_guard<std::mutex>guard(lock);
         roomOpen = false;
     }
 
@@ -191,20 +196,14 @@ namespace Mafia {
                     clients[maxClientIndex].name = message;
                     clients[maxClientIndex].lastMes = Message();
                     clients[maxClientIndex].clientAddr = client;
+                    std::cout << sendMessage(client, SUCCESS_MESSAGE_ID, (char*)&roomId, 4) << " - mes" << std::endl;;
                     maxClientIndex++;
-                    sendMessage(client, SUCCESS_MESSAGE_ID, (char*)&roomId, 4);
                     std::cout << clients[maxClientIndex-1].name << " joined room" << std::endl;
                 } else{
                     return CLIENTS_LIMIT_ERROR;
                 }
                 break;
             }
-            case SUCCESS_MESSAGE_ID:{
-                std::cout << "Message received: " << message << std::endl
-                        << "Message ID: " << messageId << std::endl;
-                break;
-            }
-
             default:{
                 return UNKNOWN_MES_ID_ERROR;
                 break;
@@ -275,6 +274,8 @@ namespace Mafia {
     void NetWorker::_setAddr(){
         myAddr.sin_family = IP_PROTO;
         myAddr.sin_addr.S_un.S_addr = 0;
+        //myAddr.sin6_addr.u.Byte = //INADDR_ANY;//inet_addr(ipServer.c_str());
+        //std::cout << inet_ntoa(myAddr.sin_addr) << std::endl;
         myAddr.sin_port=htons(CASUAL_PORT);
     }
 
