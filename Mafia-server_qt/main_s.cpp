@@ -10,7 +10,7 @@ using namespace Mafia;
 
 int main()
 {
-    std::cout << "Hello server!" << std::endl;
+    std::cout << "Hello I'm server!" << std::endl;
     NetWorker myNetWorker = NetWorker();
 
     std::cout << myNetWorker.initServer() << std::endl;

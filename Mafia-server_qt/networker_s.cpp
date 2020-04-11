@@ -65,7 +65,7 @@ namespace Mafia {
         char buffer[BUF_SIZE];
         zeroMemSys(buffer, BUF_SIZE);
         sockaddr_in currentClient;
-        std::cout << this->sock << " " << this->roomId << " " << this->roomOpen << std::endl;
+        //std::cout << this->sock << " " << this->roomId << " " << this->roomOpen << std::endl;
         int cCSize = sizeof(currentClient);
         //std::lock_guard<std::mutex>guard(lock);
         //receive message
