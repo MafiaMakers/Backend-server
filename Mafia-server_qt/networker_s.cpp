@@ -1,15 +1,15 @@
-#include "include.h"
-#include "networker.h"
-#include "systemfunctions.h"
+#include "include_s.h"
+#include "networker_s.h"
+#include "systemfunctions_s.h"
 
 namespace Mafia {
-
-    //Initializes server at IP servIP, returns 0 if success, errorId if error (errorId from defines.h)
-    int NetWorker::initServer(std::string servIp){
+    NetWorker::NetWorker(){
         _initSocket();
-        ipServer = servIp;
         // Setup the TCP listening socket
         _setAddr();
+    }
+    //Initializes server at IP servIP, returns 0 if success, errorId if error (errorId from defines.h)
+    int NetWorker::initServer(){
         //Get errorId from binding
         int err = _tryBind();
         if(err){
@@ -29,6 +29,10 @@ namespace Mafia {
 
     sockaddr* NetWorker::getAddr(){
         return((sockaddr*)&myAddr);
+    }
+
+    sockaddr_in* NetWorker::getAddrIn(){
+        return(&myAddr);
     }
 
     //recommended to run in another thread
@@ -100,13 +104,16 @@ namespace Mafia {
 
     //There will be process method, but it's the next step
     int NetWorker::_processMessage(char* message, int size, short messageId){
+        std::cout << "Message received: " << message << std::endl << "Message ID: " << messageId << std::endl;
         return(0);
     }
 
 
-    /*decodes message recieved from client using our message proto. Returns 0 if success, return error id (from defines.h) if error
-    **bytes is received message, size is size of message, result is INITIALIZED array with size BUF_SIZE of char to put there decoded message,
-    ** getMessageId is ref to short variable to write there the id of this message*/
+    /*
+    **  decodes message recieved from client using our message proto. Returns 0 if success, return error id (from defines.h) if error
+    **  bytes is received message, size is size of message, result is INITIALIZED array with size BUF_SIZE of char to put there decoded message,
+    **  getMessageId is ref to short variable to write there the id of this message
+    */
     int NetWorker::_decodeMessage(char* bytes, int size, char* result, short* getMessageId){
         //check if message is too short
         if(size < 8){
@@ -158,20 +165,33 @@ namespace Mafia {
     }
 
     void NetWorker::_setAddr(){
-        myAddr.sin_family=IP_PROTO;
-        myAddr.sin_addr.s_addr=inet_addr(ipServer.c_str());
+        myAddr.sin_family = IP_PROTO;
+        myAddr.sin_addr.S_un.S_addr = 0;
+        //myAddr.sin6_addr.u.Byte = //INADDR_ANY;//inet_addr(ipServer.c_str());
+        //std::cout << inet_ntoa(myAddr.sin_addr) << std::endl;
         myAddr.sin_port=htons(CASUAL_PORT);
+    }
+
+    void NetWorker::finish(){
+        closesocket(sock);
+        WSACleanup();
     }
 
     int NetWorker::_tryBind(){
         int err;
-        err = bind(sock, (sockaddr *) &myAddr, sizeof(myAddr));
+        err = bind(sock, (sockaddr *) &myAddr, sizeof(*(sockaddr*)&myAddr));
+        std::cout << "Err - " << err << std::endl;
         if (err == SOCKET_ERROR) {
+            std::cout << WSAGetLastError() << std::endl;
             closesocket(sock);
             WSACleanup();
             return SERVER_INITIALIZATION_ERROR;
         }
         return(0);
+    }
+
+    NetWorker::~NetWorker(){
+        finish();
     }
 
 }

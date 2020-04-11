@@ -5,16 +5,17 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -lws2_32
 QMAKE_CXXFLAGS += -Wall
 LIBS += -lws2_32
-SOURCES += \
-        main.cpp \
-        networker.cpp \
-        systemfunctions.cpp
 
-DISTFILES += \
-    MessageProto.txt
+SOURCES += \
+        main_s.cpp \
+        networker_s.cpp \
+        systemfunctions_s.cpp
 
 HEADERS += \
-    defines.h \
-    include.h \
-    networker.h \
-    systemfunctions.h
+    defines_s.h \
+    include_s.h \
+    networker_s.h \
+    systemfunctions_s.h
+
+DISTFILES += \
+    MessageProto

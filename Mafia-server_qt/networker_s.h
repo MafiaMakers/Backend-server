@@ -1,4 +1,4 @@
-#include "include.h"
+#include "include_s.h"
 
 #ifndef NETWORKER_H
 #define NETWORKER_H
@@ -8,20 +8,26 @@ namespace Mafia {
 //the main networker class
     class NetWorker{
     public:
-
+        NetWorker();
         //Initializes server at IP servIP, returns 0 if success, errorId if error (errorId from defines.h)
-        int initServer(std::string servIp);
+        int initServer();
 
         SOCKET getSock();
 
         char* getIP();
+
         sockaddr* getAddr();
+
+        sockaddr_in* getAddrIn();
 
         //recommended to run in another thread
         int receiveMessage();
         //sends message with length mesLen and id messageId to client. Returns 0 if succes, error id if error
         int sendMessage(sockaddr_in client, short messageId, char* message, int mesLen);
+        void finish();
 
+
+        ~NetWorker();
     protected:
         int _wrapMessage(char* message, int mesLen, short messageId, char* result);
         //There will be process method, but it's the next step
@@ -43,6 +49,7 @@ namespace Mafia {
         std::string ipServer;
         //Current address
         sockaddr_in myAddr;
+
 
     };
 

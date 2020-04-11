@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
-#include "defines.h"
+#include "defines_s.h"
 #include <thread>
 
 #endif // INCLUDE_H
