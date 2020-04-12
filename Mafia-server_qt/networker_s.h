@@ -54,7 +54,6 @@ namespace Mafia {
         sockaddr_in myAddr;
         //Clients
         Client clients[CLIENTS_MAX_COUNT];
-
         int maxClientIndex = 0;
 
         bool roomOpen = true;

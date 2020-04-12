@@ -120,13 +120,6 @@ namespace Mafia {
     int NetWorker::sendMessage(sockaddr_in client, short messageId, char* message, int mesLen){
         char resMes[BUF_SIZE];
         zeroMemSys(resMes, BUF_SIZE);
-        int Idx = _clientIndex(client);
-        if(Idx != -1){
-            clients[Idx].lastMes.id = messageId;
-            clients[Idx].lastMes.length = mesLen;
-            clients[Idx].lastMes.message = message;
-
-        }
         int err = _wrapMessage(message, mesLen, messageId, resMes);
         if(err != 0){
             return(err);
@@ -200,9 +193,7 @@ namespace Mafia {
                     }
                 }
                 clients[maxClientIndex] = Client();
-                clients[maxClientIndex].name = new char[size];
-                strcpy(clients[maxClientIndex].name, message);
-                //clients[maxClientIndex].name = message;
+                clients[maxClientIndex].name = message;
                 clients[maxClientIndex].lastMes = Message();
                 clients[maxClientIndex].clientAddr = client;
                 clients[maxClientIndex].connected = true;
@@ -235,9 +226,7 @@ namespace Mafia {
                 return PRIVACY_ERROR;
             }
             std::cout << clients[idx].name << " changed name to " << message << std::endl;
-            //clients[idx].name = message;
-            clients[idx].name = new char[size];
-            strcpy(clients[idx].name, message);
+            clients[idx].name = message;
             break;
         }
             default:{
@@ -265,7 +254,7 @@ namespace Mafia {
         ((char*)&messageId)[0] = bytes[1];
         ((char*)&messageId)[1] = bytes[2];
 
-        if(messageId != CONNECT_MESSAGE_ID && messageId != RESEND_MESSAGE_ID){
+        if(messageId != CONNECT_MESSAGE_ID){
             //check if roomId is ok
             char room = bytes[0];
             if(room != roomId){

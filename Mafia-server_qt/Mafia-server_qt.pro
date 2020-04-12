@@ -7,6 +7,7 @@ QMAKE_CXXFLAGS += -Wall
 LIBS += -lws2_32
 
 SOURCES += \
+        Client.cpp \
         main_s.cpp \
         networker_s.cpp \
         systemfunctions_s.cpp

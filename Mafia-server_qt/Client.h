@@ -14,9 +14,11 @@ namespace Mafia {
 
     struct Client{
     public:
+        Client();
         sockaddr_in clientAddr;
         char * name;
         Message lastMes;
+        bool connected;
     };
 }
 
