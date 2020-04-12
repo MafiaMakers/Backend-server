@@ -25,5 +25,18 @@
 #define SUCCESS_MESSAGE_ID 5
 #define EXIT_ROOM_MESSAGE_ID 6
 #define CHANGE_NAME_MESSAGE_ID 7
+#define ROLE_MESSAGE_ID 8
+
+#define WAITING_STAGE 0
+#define SPEAKING_STAGE 1
+#define NIGHT_STAGE 2
+#define ARGUMENT_STAGE 3
+#define DEATH_STAGE 4
+
+#define CIVILLIAN_ROLE 0
+#define MAFIA_ROLE 1
+#define MAX_ROLE_ID 2
+
+
 
 #endif // DEFINES_H

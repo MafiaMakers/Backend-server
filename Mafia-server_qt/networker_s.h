@@ -23,6 +23,7 @@ namespace Mafia {
 
         char* getMyIP();
 
+        int initGame();
         //recommended to run in another thread
         int receiveMessage();
         //sends message with length mesLen and id messageId to client. Returns 0 if succes, error id if error
@@ -45,6 +46,8 @@ namespace Mafia {
         void _setAddr();
         int _tryBind();
 
+        void reorganizeClients();
+
         char roomId = 0;
         //Current server socket
         SOCKET sock;
@@ -57,6 +60,8 @@ namespace Mafia {
         int maxClientIndex = 0;
 
         bool roomOpen = true;
+
+        int gameStage = WAITING_STAGE;
 
     };
 

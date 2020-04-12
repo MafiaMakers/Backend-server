@@ -17,14 +17,13 @@ int main()
     std::cout << myNetWorker.initServer() << std::endl;
     std::thread receiveTh(&NetWorker::processMessages, &myNetWorker);
     receiveTh.detach();
-    //std::cout << receiveTh.joinable() << std::endl;
 
     char * ans = new char[BUF_SIZE];
     zeroMemSys(ans, BUF_SIZE);
     std::cin >> ans;
     if(ans[0] == 'c'){
-        std::cout << "closing" << std::endl;
-        myNetWorker.closeRoom();
+        std::cout << "initializing game" << std::endl;
+        myNetWorker.initGame();
     }
 
     do{

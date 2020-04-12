@@ -1,5 +1,5 @@
 #include "include_s.h"
-
+#include "IRole.h"
 #ifndef SYSTEMFUNCTIONS_H
 #define SYSTEMFUNCTIONS_H
 
@@ -24,5 +24,14 @@ namespace Mafia {
     #endif
 
     void zeroMemSys(char* arr, int size);
+
+    char* rIdToN(int roleId);
+
+    //fills arr with rolesCount
+    int setRolesCount(int playersCount, int* arr);
+
+    void shuffle(int* arr, int size);
+
+    IRole* idToRole(int id);
 }
 #endif // SYSTEMFUNCTIONS_H

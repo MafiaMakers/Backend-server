@@ -37,6 +37,31 @@ namespace Mafia {
         return(&myAddr);
     }
 
+    int NetWorker::initGame(){
+        closeRoom();
+        reorganizeClients();
+        int* rolesCounts = new int[MAX_ROLE_ID];
+        setRolesCount(maxClientIndex, rolesCounts);
+        int* roles = new int[maxClientIndex];
+        int curIdx = 0;
+        for(int i = 0; i < MAX_ROLE_ID; i++){
+            for(int j = 0; j < rolesCounts[i]; j++){
+                roles[curIdx] = i;
+                curIdx++;
+            }
+        }
+
+        shuffle(roles, maxClientIndex);
+
+        for(int i = 0; i < maxClientIndex; i++){
+            clients[i].myRole = idToRole(roles[i]);
+            sendMessage(clients[i].clientAddr, ROLE_MESSAGE_ID, (char*)&roles[i], 4);
+        }
+
+        gameStage = SPEAKING_STAGE;
+
+    }
+
     //this function doesn't work yet :((
     char* NetWorker::getMyIP(){
         char buf[BUF_SIZE];
@@ -132,6 +157,17 @@ namespace Mafia {
             return(err);
         }
         return(sendto(sock, resMes, mesLen + 7, 0, (sockaddr *)&client, sizeof(client)));
+    }
+
+    void NetWorker::reorganizeClients(){
+        for(int i = 0; i < maxClientIndex; i++){
+            if(clients[i].connected == false){
+                for(int j = i+1; j < maxClientIndex; j++){
+                    clients[j-1] = clients[j];
+                }
+                maxClientIndex--;
+            }
+        }
     }
 
     int NetWorker::_wrapMessage(char* message, int mesLen, short messageId, char* result){

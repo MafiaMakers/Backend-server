@@ -1,5 +1,5 @@
 #include "include_s.h"
-
+#include "IRole.h"
 #ifndef CLIENT_H
 #define CLIENT_H
 
@@ -19,6 +19,7 @@ namespace Mafia {
         char * name;
         Message lastMes;
         bool connected;
+        IRole* myRole;
     };
 }
 
