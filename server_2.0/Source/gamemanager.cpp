@@ -102,7 +102,6 @@ void GameManager::_setRoles(int *roles)
         switch(roles[i]){
         case CIVILLIAN_ROLE:{
             players[i] = new Civillian();
-            netWorkerSingleton->sendMessage(i, ROLE_MESSAGE_ID, (char*)&roles[i], 4);
             break;
         }
         case MAFIA_ROLE:{
@@ -114,6 +113,7 @@ void GameManager::_setRoles(int *roles)
             players[i] = new NoneRole();
         }
         }
+		netWorkerSingleton->sendMessage(i, ROLE_MESSAGE_ID, (char*)& roles[i], 4);
     }
 }
 

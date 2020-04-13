@@ -65,7 +65,7 @@ namespace Mafia {
 					std::cout << i << "th client disconnected" << std::endl;
 				}
 				answered[i] = false;
-				std::cout << sendMessage(clients[i].clientAddr, CHECK_CONNECTION_MESAGE_ID, (char*)"check", 6) << std::endl;
+				sendMessage(clients[i].clientAddr, CHECK_CONNECTION_MESAGE_ID, (char*)"check", 6);
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(TIME_PAUSE));
 		}
@@ -98,7 +98,7 @@ namespace Mafia {
         //receive message
         int bytesReceived = recvfrom(this->sock,buffer,BUF_SIZE,0,(sockaddr *)&currentClient,&cCSize);
         //check if message is OK
-        if (bytesReceived > 0) {
+        if (bytesReceived > 0){
             char mes[BUF_SIZE];
             zeroMemSys(mes, BUF_SIZE);
             short mId = 0;
@@ -125,8 +125,9 @@ namespace Mafia {
             return(0);
         }
         else  {
-            closesocket(sock);
-            WSACleanup();
+			//std::cout << WSAGetLastError() << std::endl;
+            //closesocket(sock);
+            //WSACleanup();
             return RECEIVING_ERROR;
         }
     }
@@ -134,11 +135,7 @@ namespace Mafia {
     //a method to continuosly look for new messages [RUN IN ANOTHER THREAD!]
     int NetWorker::processMessages(){
         while(true){
-            int err = receiveMessage();
-            if(err != 0){
-                std::cout << err << " - ERROR!" << std::endl;
-                //return err;
-            }
+			receiveMessage();
         }
     }
 
@@ -368,7 +365,7 @@ namespace Mafia {
 
     void NetWorker::_setAddr(){
         myAddr.sin_family = IP_PROTO;
-        myAddr.sin_addr.S_un.S_addr = 0;
+        myAddr.sin_addr.S_un.S_addr = INADDR_ANY;
         myAddr.sin_port=htons(CASUAL_PORT);
     }
 
