@@ -296,10 +296,26 @@ namespace Mafia {
 			}
 			break;
 		}
-            default:{
-                return UNKNOWN_MES_ID_ERROR;
-                break;
-            }
+		case VOTE_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx == -1) {
+				return PRIVACY_ERROR;
+			}
+			if (size < 4) {
+				return SHORT_MESSAGE_ERROR;
+			}
+			int index = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				((char*)& index)[i] = message[i];
+			}
+			_vote(idx, index);
+			break;
+		}
+        default:{
+            return UNKNOWN_MES_ID_ERROR;
+            break;
+        }
         }
         return(0);
     }

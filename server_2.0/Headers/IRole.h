@@ -1,31 +1,48 @@
 #ifndef IROLE_H
 #define IROLE_H
+#include "defines_s.h"
 
 namespace Mafia{
     class IRole{
     public:
-        //all the nighwork
-        virtual void nightWork() = 0;
-        //in the end of the game checks if this player won
-        virtual bool checkWin(IRole* players, int size) = 0;
-        //returns name of this role
-        //virtual char* getName();
+		IRole();
+
+		IRole(int roleIdx);
+
+		int lastPlayerVotedIndex();
+
+		void setLastPlayerVotedIndex(int val);
+
+		void setMyIdx(int idx);
+
+		void die();
+
+		void hill();
 
         //returns is role red or black
-        virtual bool isRed() = 0;
+        bool isRed();
 
-        virtual bool alive() = 0;
+        bool alive();
 
-        virtual int roleIdx() = 0;
+        int roleIdx();
 
-		virtual bool canSpeakNow() = 0;
+		bool canSpeakNow();
 
-		virtual bool canListenNow() = 0;
+		bool canListenNow();
 
-		virtual void setCanSpeakNow(bool val) = 0;
+		void setCanSpeakNow(bool val);
 
-		virtual void setCanListenNow(bool val) = 0;
+		void setCanListenNow(bool val);
         //then I maybe will make more functions
+
+	private:
+		int myIdx = -1;
+		int lpvi = -1;
+		bool canSpeak = true;
+		bool canListen = true;
+		int roleId = 0;
+		bool red = true;
+		bool isAlive = true;
     };
 }
 

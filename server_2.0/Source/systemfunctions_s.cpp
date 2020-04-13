@@ -1,7 +1,6 @@
 #include "include_s.h"
 #include "systemfunctions_s.h"
 #include "IRole.h"
-#include "RolesInclude.h"
 
 namespace Mafia {
     void zeroMemSys(char* arr, int size) {
@@ -23,12 +22,4 @@ namespace Mafia {
         default: return (char*)"None";
         }
     }
-
-    IRole* idToRole(int id){
-        switch (id) {
-        case CIVILLIAN_ROLE: return new Civillian();
-        default: return new NoneRole();
-        }
-    }
-
 }

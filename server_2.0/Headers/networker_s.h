@@ -58,6 +58,8 @@ namespace Mafia {
         void _setAddr();
         int _tryBind();
 
+		void _vote(int voterIdx, int playerIdx);
+
         char roomId = 0;
         //Current server socket
         SOCKET sock;

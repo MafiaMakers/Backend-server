@@ -1,6 +1,5 @@
 #include "gamemanager.h"
 #include "include_s.h"
-#include "RolesInclude.h"
 #include "systemfunctions_s.h"
 #include "singletonGM.h"
 #include "networker_s.h"
@@ -21,6 +20,22 @@ NetWorker::NetWorker() {
 	}
 
 }
+
+void NetWorker::_vote(int voterIdx, int playerIdx) {
+	std::cout << voterIdx << " votes for " << playerIdx << std::endl;
+	gameManagerSingleton->vote(voterIdx, playerIdx);
+}
+
+void IRole::die() {
+	isAlive = false;
+	netWorkerSingleton->sendMessage(myIdx, DIE_HILL_MESSAGE_ID, (char*)& isAlive, 1);
+}
+
+void IRole::hill() {
+	isAlive = true;
+	netWorkerSingleton->sendMessage(myIdx, DIE_HILL_MESSAGE_ID, (char*)& isAlive, 1);
+}
+
 
 GameManager::GameManager(){
     if(gameManagerSingleton == 0){
@@ -52,6 +67,77 @@ void GameManager::initGame(){
     netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)&currentState, 4);
 }
 
+void GameManager::argumentingStage() {
+	currentState++;
+	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+}
+
+void GameManager::deathStage(){
+	currentState++;
+	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+}
+
+void GameManager::nightStage(){
+	int fatherIdx = _getFather();
+	for (int i = 1; i < MAX_ROLE_ID; i++) {
+		for (int j = 0; j < playersCount; j++) {
+			if (players[j].roleIdx() == i) {
+				players[j].setCanSpeakNow(true);
+				players[j].setCanListenNow(true);
+				switch (i) {
+				case CIVILLIAN_ROLE: {
+					break;
+				}
+				case MAFIA_ROLE: {
+					if (j == fatherIdx) {
+						players[j].setLastPlayerVotedIndex(-1);
+						netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"kill", 5);
+					}
+					break;
+				}
+				default:
+					break;
+				}
+				
+			}
+			else {
+				players[j].setCanSpeakNow(false);
+				players[j].setCanListenNow(false);
+			}
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
+		int victim = players[fatherIdx].lastPlayerVotedIndex();
+		if (victim != -1) {
+			players[victim].die();
+		}
+	}
+}
+
+void GameManager::speakingStage(){
+	currentState++;
+	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+}
+
+void GameManager::resultsStage(){
+	finish();
+}
+
+bool GameManager::checkFinish() { return true; }
+
+bool GameManager::gameCycle() {
+	speakingStage();
+	nightStage();
+	argumentingStage();
+	deathStage();
+	return(checkFinish());
+}
+
+void GameManager::fullGame() {
+	initGame();
+	do {} while (!gameCycle());
+	resultsStage();
+}
+
 void GameManager::_joinThreads() {
 	if (checkConThread.joinable()) {
 		checkConThread.join();
@@ -64,7 +150,7 @@ void GameManager::_joinThreads() {
 
 void GameManager::finish()
 {
-
+	netWorkerSingleton->sendToAll(EXIT_ROOM_MESSAGE_ID, (char*)"closing", 8);
 	std::thread fin(&GameManager::_joinThreads, this);
 	fin.detach();
 	std::this_thread::sleep_for(std::chrono::milliseconds(TIME_PAUSE));
@@ -85,7 +171,7 @@ int* GameManager::_shuffleRoles(int* arr){
             curIdx++;
         }
     }
-    for(int i = 0; i < playersCount; i++){
+    for(int i = 0; i < playersCount*2; i++){
         int f_ind = (unsigned int)rand() % playersCount;
         int s_ind = (unsigned int)rand() % playersCount;
 
@@ -99,27 +185,15 @@ int* GameManager::_shuffleRoles(int* arr){
 void GameManager::_setRoles(int *roles)
 {
     for(int i = 0; i < playersCount; i++){
-        switch(roles[i]){
-        case CIVILLIAN_ROLE:{
-            players[i] = new Civillian();
-            break;
-        }
-        case MAFIA_ROLE:{
-            players[i] = new MafiaR();
-            break;
-        }
-        default:{
-            break;
-            players[i] = new NoneRole();
-        }
-        }
+		players[i] = IRole(roles[i]);
+		players[i].setMyIdx(i);
 		netWorkerSingleton->sendMessage(i, ROLE_MESSAGE_ID, (char*)& roles[i], 4);
     }
 }
 
 int GameManager::_getFather(){
     for(int i = 0; i < playersCount; i++){
-        if(players[i]->roleIdx() == MAFIA_ROLE && players[i]->alive()){
+        if(players[i].roleIdx() == MAFIA_ROLE && players[i].alive()){
             return i;
         }
     }
@@ -131,7 +205,7 @@ int GameManager::_setRolesCount(int* arr){
         return -1;
     }
     if(playersCount < 4){
-        arr[CIVILLIAN_ROLE] = playersCount;
+        arr[MAFIA_ROLE] = playersCount;
         for(int i = 1; i < MAX_ROLE_ID; i++){
             arr[i] = 0;
         }
@@ -148,3 +222,6 @@ int GameManager::_setRolesCount(int* arr){
 	return -1;
 }
 
+void GameManager::vote(int voterIdx, int playerIdx) {
+	players[voterIdx].setLastPlayerVotedIndex(playerIdx);
+}
