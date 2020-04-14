@@ -6,6 +6,12 @@ IRole::IRole(){}
 
 IRole::IRole(int rIdx) {
 	roleId = rIdx;
+	if (rIdx == MAFIA_ROLE) {
+		red = false;
+	}
+	else {
+		red = true;
+	}
 }
 
 bool IRole::alive() {

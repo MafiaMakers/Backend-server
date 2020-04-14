@@ -13,20 +13,21 @@ namespace Mafia{
     {
     public:
         GameManager();
-        bool gameCycle();
+        int gameCycle();
         void initGame();
         void speakingStage();
         void nightStage();
         void argumentingStage();
         void deathStage();
         void resultsStage();
-        bool checkFinish();
         void finish();
 		void fullGame();
 		void vote(int voterIdx, int playerIdx);
+		void sendToAllAlive(short messageId, char* message, int mesLen);
         ~GameManager();
 		//static bool objectInitialized = 0;
     private:
+		int _checkWin();
         //fills arr with rolesCount
         int _setRolesCount(int* arr);
         int _getFather();
@@ -38,6 +39,7 @@ namespace Mafia{
         std::thread mesReceivingThread;
 		std::thread checkConThread;
         int playersCount = 0;
+		int roundIndex = 0;
     };
 }
 

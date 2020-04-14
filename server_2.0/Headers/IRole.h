@@ -34,7 +34,8 @@ namespace Mafia{
 
 		void setCanListenNow(bool val);
         //then I maybe will make more functions
-
+		bool isCandidate = false;
+		int votes = 0;
 	private:
 		int myIdx = -1;
 		int lpvi = -1;
