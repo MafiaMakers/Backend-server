@@ -4,7 +4,6 @@
 #include "singletonGM.h"
 #include "networker_s.h"
 #include "singletonNW.h"
-
 using namespace Mafia;
 
 NetWorker::NetWorker() {
@@ -195,6 +194,8 @@ void GameManager::deathStage(){
 
 void GameManager::nightStage(){
 	int fatherIdx = _getFather();
+	int shereifIdx = -1;
+	int doctorIdx = -1;
 	for (int i = 1; i < MAX_ROLE_ID; i++) {
 		for (int j = 0; j < playersCount; j++) {
 			if (players[j].roleIdx() == i && players[j].alive()) {
@@ -211,6 +212,18 @@ void GameManager::nightStage(){
 					}
 					break;
 				}
+				case SHERIEF_ROLE: {
+					shereifIdx = j;
+					players[j].setLastPlayerVotedIndex(-1);
+					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"check", 6);
+					break;
+				}
+				case DOCTOR_ROLE: {
+					doctorIdx = j;
+					players[j].setLastPlayerVotedIndex(-1);
+					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"hill", 5);
+					break;
+				}
 				default:
 					break;
 				}
@@ -221,12 +234,33 @@ void GameManager::nightStage(){
 				players[j].setCanListenNow(false);
 			}
 		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
-		int victim = players[fatherIdx].lastPlayerVotedIndex();
-		if (victim != -1 && victim < playersCount) {
-			players[victim].die();
+
+	}
+	std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
+	int resHilled = -1;
+	if (doctorIdx != -1) {
+		int hilled = players[doctorIdx].lastPlayerVotedIndex();
+		if (hilled != -1 && hilled < playersCount) {
+			resHilled = hilled;
 		}
 	}
+
+	int victim = players[fatherIdx].lastPlayerVotedIndex();
+	if (victim != -1 && victim < playersCount) {
+		if (victim != resHilled) {
+			players[victim].die();
+		}
+
+	}
+
+	if (shereifIdx != -1) {
+		int checkedIdx = players[shereifIdx].lastPlayerVotedIndex();
+		if (checkedIdx != -1 && checkedIdx < playersCount) {
+			bool isDark = !players[checkedIdx].isRed();
+			netWorkerSingleton->sendMessage(shereifIdx, SHEREIF_MESSAGE_ID, (char*) & (isDark), 1);
+		}
+	}
+
 }
 
 void GameManager::speakingStage(){
@@ -253,6 +287,12 @@ void GameManager::fullGame() {
 	do {
 		res = gameCycle();
 	} while (res == 0);
+	if (res == -1) {
+		netWorkerSingleton->sendToAll(TEXT_MESSAGE_ID, (char*)"Mafia wins", 11);
+	}
+	else {
+		netWorkerSingleton->sendToAll(TEXT_MESSAGE_ID, (char*)"Civilians win", 14);
+	}
 	resultsStage();
 }
 
@@ -302,6 +342,7 @@ GameManager::~GameManager()
 }
 
 int* GameManager::_shuffleRoles(int* arr){
+
     int* rolesArr = new int[playersCount];
     int curIdx = 0;
     for(int i = 0; i < MAX_ROLE_ID; i++){
@@ -311,9 +352,8 @@ int* GameManager::_shuffleRoles(int* arr){
         }
     }
     for(int i = 0; i < playersCount*2; i++){
-        int f_ind = (unsigned int)rand() % playersCount;
-        int s_ind = (unsigned int)rand() % playersCount;
-
+        int f_ind = random() % playersCount;
+        int s_ind = random() % playersCount;
         int tmp = rolesArr[f_ind];
         rolesArr[f_ind] = rolesArr[s_ind];
         rolesArr[s_ind] = tmp;
@@ -350,6 +390,13 @@ int GameManager::_setRolesCount(int* arr){
         }
         return 0;
     }
+	if (playersCount == 4) {
+		arr[CIVILLIAN_ROLE] = 1;
+		arr[MAFIA_ROLE] = 1;
+		arr[SHERIEF_ROLE] = 1;
+		arr[DOCTOR_ROLE] = 1;
+		return 0;
+	}
     if(playersCount < 7){
         arr[CIVILLIAN_ROLE] = playersCount-1;
         arr[MAFIA_ROLE] = 1;

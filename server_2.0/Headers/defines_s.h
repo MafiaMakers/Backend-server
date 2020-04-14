@@ -35,6 +35,7 @@
 #define DIE_HILL_MESSAGE_ID 12
 #define MADE_VOTE_MESSAGE 13
 #define INDEX_MESSAGE_ID 14
+#define SHEREIF_MESSAGE_ID 15
 
 #define WAITING_STAGE 0
 #define SPEAKING_STAGE 1
@@ -45,7 +46,9 @@
 
 #define CIVILLIAN_ROLE 0
 #define MAFIA_ROLE 1
-#define MAX_ROLE_ID 2
+#define SHERIEF_ROLE 2
+#define DOCTOR_ROLE 3
+#define MAX_ROLE_ID 4
 
 
 

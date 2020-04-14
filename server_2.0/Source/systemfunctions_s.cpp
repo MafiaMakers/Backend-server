@@ -1,6 +1,8 @@
 #include "include_s.h"
 #include "systemfunctions_s.h"
 #include "IRole.h"
+#include <ctime>
+
 
 namespace Mafia {
     void zeroMemSys(char* arr, int size) {
@@ -22,4 +24,9 @@ namespace Mafia {
         default: return (char*)"None";
         }
     }
+
+	int random() {
+		return((int)time(NULL) * 179 % rand());
+
+	}
 }

@@ -2,6 +2,7 @@
 #include "networker_s.h"
 #include "systemfunctions_s.h"
 
+
 #pragma warning(disable:4996)
 namespace Mafia {
 
