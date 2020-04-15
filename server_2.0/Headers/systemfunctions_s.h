@@ -26,8 +26,6 @@ namespace Mafia {
 
     char* rIdToN(int roleId);
 
-    IRole* idToRole(int id);
-
 	int random();
 }
 #endif // SYSTEMFUNCTIONS_H

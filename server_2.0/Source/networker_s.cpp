@@ -163,6 +163,10 @@ namespace Mafia {
         return(sendto(sock, resMes, mesLen + 7, 0, (sockaddr *)&client, sizeof(client)));
     }
 
+	int NetWorker::sendToAdmin(short messageId, char* message, int mesLen) {
+		sendMessage(adminIdx, messageId, message, mesLen);
+	}
+
     int NetWorker::sendMessage(int clientIdx, short messageId, char *message, int mesLen)
     {
         return sendMessage(clients[clientIdx].clientAddr, messageId, message, mesLen);
@@ -205,6 +209,17 @@ namespace Mafia {
         }
         return -1;
     }
+
+	int NetWorker::_activeClientsCount() {
+		int res = 0;
+		for (int i = 0; i < maxClientIndex; i++)
+		{
+			if (clients[i].connected) {
+				res++;
+			}
+		}
+		return res;
+	}
 
     //There will be process method, but it's the next step
     int NetWorker::_processMessage(sockaddr_in client, char* message, int size, short messageId){
@@ -251,9 +266,15 @@ namespace Mafia {
                 clients[maxClientIndex].lastMes = Message();
                 clients[maxClientIndex].clientAddr = client;
                 clients[maxClientIndex].connected = true;
-                maxClientIndex++;
+                
                 sendMessage(client, SUCCESS_MESSAGE_ID, (char*)&roomId, 4);
-
+				int clientsCount = _activeClientsCount();
+				sendMessage(client, CLIENTS_COUNT_MESSAGE_ID, (char*)&clientsCount, 4);
+				if (maxClientIndex == 0) {
+					sendMessage(client, SET_ADMIN_MESSAGE_ID, (char*)& maxClientIndex, 4);
+				}
+				maxClientIndex++;
+				sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
                 std::cout << clients[maxClientIndex-1].name << " joined room" << std::endl;
 				answered[maxClientIndex - 1] = true;
             } else{
@@ -311,6 +332,48 @@ namespace Mafia {
 				((char*)& index)[i] = message[i];
 			}
 			_vote(idx, index);
+			break;
+		}
+		case NEXT_STAGE_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx != adminIdx) {
+				return PRIVACY_ERROR;
+			}
+			_nextStageMessageProcessor(message, size);
+			break;
+		}
+		case SET_ADMIN_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx != adminIdx) {
+				return PRIVACY_ERROR;
+			}
+			if (size < 4) {
+				return SHORT_MESSAGE_ERROR;
+			}
+			int newIdx = *(int*)message;
+			if (newIdx < maxClientIndex && newIdx >= 0) {
+				if (clients[newIdx].connected) {
+					adminIdx = newIdx;
+					sendToAll(SET_ADMIN_MESSAGE_ID, message, size);
+				}
+				else {
+					return CLIENT_INDEX_ERROR;
+				}
+			}
+			else {
+				return CLIENT_INDEX_ERROR;
+			}
+			break;
+		}
+		case SETUP_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx != adminIdx) {
+				return PRIVACY_ERROR;
+			}
+			if (size != MAX_ROLE_ID) {
+				return SHORT_MESSAGE_ERROR;
+			}
+			_setupMessageProcessor(message);
 			break;
 		}
         default:{

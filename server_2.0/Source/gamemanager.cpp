@@ -20,6 +20,19 @@ NetWorker::NetWorker() {
 
 }
 
+void NetWorker::_setupMessageProcessor(char* message) {
+	int* result = new int[MAX_ROLE_ID];
+	for (int i = 0; i < MAX_ROLE_ID; i++)
+	{
+		result[i] = (int)message[i];
+	}
+
+}
+
+void NetWorker::_nextStageMessageProcessor(char* message, int size) {
+
+}
+
 void NetWorker::_vote(int voterIdx, int playerIdx) {
 	std::cout << voterIdx << " votes for " << playerIdx << std::endl;
 	gameManagerSingleton->vote(voterIdx, playerIdx);
@@ -63,17 +76,20 @@ GameManager::GameManager(){
     }
 }
 
+void GameManager::setupRoles(int* roles) {
+	_setRoles(_shuffleRoles(roles));
+	gonext = true;
+}
+
 void GameManager::initGame(){
     netWorkerSingleton->closeRoom();
     netWorkerSingleton->reorganizeClients();
-
+	gonext = false;
     playersCount = netWorkerSingleton->getClientsCount();
 
-    int* rolesCounts = new int[MAX_ROLE_ID];
-    _setRolesCount(rolesCounts);
-    int* roles = _shuffleRoles(rolesCounts);
-
-    _setRoles(roles);
+	while (!gonext) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
 	currentState = currentState+1;
 
 	for (int i = 0; i < playersCount; i++)
@@ -264,6 +280,10 @@ void GameManager::nightStage(){
 }
 
 void GameManager::speakingStage(){
+	gonext = false;
+	while (!gonext) {
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+	}
 	currentState++;
 	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
 }
@@ -279,6 +299,14 @@ int GameManager::gameCycle() {
 	deathStage();
 	currentState = SPEAKING_STAGE;
 	return(_checkWin());
+}
+
+bool GameManager::canListen(int index) {
+	return(players[index].canListenNow());
+}
+
+bool GameManager::canSpeak(int index) {
+	return(players[index].canSpeakNow());
 }
 
 void GameManager::fullGame() {

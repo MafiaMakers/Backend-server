@@ -25,6 +25,11 @@ namespace Mafia{
 		void vote(int voterIdx, int playerIdx);
 		void sendToAllAlive(short messageId, char* message, int mesLen);
         ~GameManager();
+		bool canSpeak(int index);
+		bool canListen(int index);
+
+		void setupRoles(int* rolesCount);
+
 		//static bool objectInitialized = 0;
     private:
 		int _checkWin();
@@ -40,6 +45,7 @@ namespace Mafia{
 		std::thread checkConThread;
         int playersCount = 0;
 		int roundIndex = 0;
+		bool gonext = false;
     };
 }
 

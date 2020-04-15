@@ -34,6 +34,8 @@ namespace Mafia {
 
         int sendMessage(int clientIdx, short messageId, char* message, int mesLen);
 
+		int sendToAdmin(short messageId, char* message, int mesLen);
+
         void finish();
         void closeRoom();
         int processMessages();
@@ -44,6 +46,7 @@ namespace Mafia {
 
         ~NetWorker();
     protected:
+		int _activeClientsCount();
         //static bool objectInitialized;
         int _wrapMessage(char* message, int mesLen, short messageId, char* result);
         //There will be process method, but it's the next step
@@ -57,6 +60,9 @@ namespace Mafia {
 
         void _setAddr();
         int _tryBind();
+		void _nextStageMessageProcessor(char* message, int size);
+		void _setupMessageProcessor(char* message);
+
 
 		void _vote(int voterIdx, int playerIdx);
 
@@ -74,6 +80,8 @@ namespace Mafia {
 		bool answered[CLIENTS_MAX_COUNT];
 
         bool roomOpen = true;
+
+		int adminIdx = 0;
 
 
     };
