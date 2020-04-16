@@ -30,13 +30,23 @@ void NetWorker::_setupMessageProcessor(char* message) {
 }
 
 void NetWorker::_nextStageMessageProcessor(char* message, int size) {
-
+	gameManagerSingleton->nextStage();
 }
 
 void NetWorker::_vote(int voterIdx, int playerIdx) {
 	std::cout << voterIdx << " votes for " << playerIdx << std::endl;
 	gameManagerSingleton->vote(voterIdx, playerIdx);
 }
+
+void NetWorker::_answerPlayer(int index) {
+	gameManagerSingleton->answer(index);
+}
+
+void IRole::setCanSpeakNow(bool val) {
+	canSpeak = val;
+	netWorkerSingleton->sendMessage(myIdx, CAN_SPEAK_MESSAGE_ID, (char*)& canSpeak, 1);
+}
+
 
 void IRole::die() {
 	isAlive = false;
@@ -60,6 +70,9 @@ void IRole::hill() {
 	netWorkerSingleton->sendToAll(DIE_HILL_MESSAGE_ID, res, 5);
 }
 
+void GameManager::answer(int index) {
+	players[index].answered = true;
+}
 
 GameManager::GameManager(){
     if(gameManagerSingleton == 0){
@@ -76,6 +89,12 @@ GameManager::GameManager(){
     }
 }
 
+void GameManager::nextStage() {
+	if (currentState == SPEAKING_STAGE) {
+		gonext = true;
+	}
+}
+
 void GameManager::setupRoles(int* roles) {
 	_setRoles(_shuffleRoles(roles));
 	gonext = true;
@@ -88,7 +107,7 @@ void GameManager::initGame(){
     playersCount = netWorkerSingleton->getClientsCount();
 
 	while (!gonext) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
 	currentState = currentState+1;
 
@@ -108,12 +127,21 @@ void GameManager::argumentingStage() {
 
 	for (int i = 0; i < playersCount; i++)
 	{
-		if (players[i].alive()) {
+		if (players[(i + roundIndex) % playersCount].alive()) {
 			players[(i + roundIndex) % playersCount].setCanSpeakNow(true);
 			players[(i + roundIndex) % playersCount].setLastPlayerVotedIndex(-1);
 			netWorkerSingleton->sendMessage((i + roundIndex) % playersCount, VOTE_MESSAGE_ID, (char*)"move for voting", 16);
-			std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
-			int votedFor = players[(i + roundIndex) % playersCount].lastPlayerVotedIndex();
+			int votedFor = -1;
+			players[(i + roundIndex) % playersCount].answered = false;
+			for (int i = 0; i < TALK_TIME / DELTA_TIME; i++)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+				if (players[(i + roundIndex) % playersCount].answered) {
+					break;
+				}
+			}
+			
+			votedFor = players[(i + roundIndex) % playersCount].lastPlayerVotedIndex();
 			if (votedFor != -1 && votedFor < playersCount) {
 				players[votedFor].isCandidate = true;
 				char* result = new char[8];
@@ -154,8 +182,16 @@ void GameManager::deathStage(){
 	{
 		if (players[i].alive()) {
 			if (players[i].isCandidate) {
-				players[(i + roundIndex) % playersCount].setCanSpeakNow(true);
-				std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
+				players[i].answered = false;
+				players[i].setCanSpeakNow(true);
+				for (int i = 0; i < TALK_TIME / DELTA_TIME; i++)
+				{
+					std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+					if (players[i].answered) {
+						break;
+					}
+				}
+
 				players[i].setCanSpeakNow(false);
 				players[i].votes = 0;
 			}
@@ -165,7 +201,24 @@ void GameManager::deathStage(){
 	}
 
 	sendToAllAlive(VOTE_MESSAGE_ID, (char*)"string up", 10);
-	std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
+	for (int i = 0; i < VOTE_TIME / DELTA_TIME; i++)
+	{
+		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+		bool allAnswered = true;
+		for (int i = 0; i < playersCount; i++)
+		{
+			if (players[i].alive()) {
+				if (players[i].lastPlayerVotedIndex() == -1) {
+					allAnswered = false;
+					break;
+				}
+			}
+		}
+		if (allAnswered) {
+			break;
+		}
+	}
+
 	for (int i = 0; i < playersCount; i++)
 	{
 		if (players[i].alive()) {
@@ -213,6 +266,7 @@ void GameManager::nightStage(){
 	int shereifIdx = -1;
 	int doctorIdx = -1;
 	for (int i = 1; i < MAX_ROLE_ID; i++) {
+		bool foundRole = false;
 		for (int j = 0; j < playersCount; j++) {
 			if (players[j].roleIdx() == i && players[j].alive()) {
 				players[j].setCanSpeakNow(true);
@@ -222,6 +276,7 @@ void GameManager::nightStage(){
 					break;
 				}
 				case MAFIA_ROLE: {
+					foundRole = true;
 					if (j == fatherIdx) {
 						players[j].setLastPlayerVotedIndex(-1);
 						netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"kill", 5);
@@ -229,12 +284,14 @@ void GameManager::nightStage(){
 					break;
 				}
 				case SHERIEF_ROLE: {
+					foundRole = true;
 					shereifIdx = j;
 					players[j].setLastPlayerVotedIndex(-1);
 					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"check", 6);
 					break;
 				}
 				case DOCTOR_ROLE: {
+					foundRole = true;
 					doctorIdx = j;
 					players[j].setLastPlayerVotedIndex(-1);
 					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"hill", 5);
@@ -250,9 +307,41 @@ void GameManager::nightStage(){
 				players[j].setCanListenNow(false);
 			}
 		}
+		if (foundRole) {
+			for (int i = 0; i < THINK_TIME / DELTA_TIME; i++)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+				bool answered = false;
+				int idx = -1;
+				switch (i) {
+				case MAFIA_ROLE: {
+					idx = fatherIdx;
+					break;
+				}
+				case SHERIEF_ROLE: {
+					idx = shereifIdx;
+					break;
+				}
+				case DOCTOR_ROLE: {
+					idx = doctorIdx;
+					break;
+				}
+				default: {
+					break;
+				}
+				}
 
+				if (idx != -1) {
+					if (players[idx].lastPlayerVotedIndex() != -1) {
+						answered = true;
+					}
+				}
+
+			}
+		}
+		
 	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(THINK_TIME));
+
 	int resHilled = -1;
 	if (doctorIdx != -1) {
 		int hilled = players[doctorIdx].lastPlayerVotedIndex();
@@ -282,7 +371,7 @@ void GameManager::nightStage(){
 void GameManager::speakingStage(){
 	gonext = false;
 	while (!gonext) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
 	currentState++;
 	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);

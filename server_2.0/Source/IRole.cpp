@@ -33,9 +33,6 @@ bool IRole::canSpeakNow() {
 	return canSpeak;
 }
 
-void IRole::setCanSpeakNow(bool val) {
-	canSpeak = val;
-}
 
 void IRole::setCanListenNow(bool val) {
 	canListen = val;

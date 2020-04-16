@@ -30,6 +30,10 @@ namespace Mafia{
 
 		void setupRoles(int* rolesCount);
 
+		void nextStage();
+
+		void answer(int index);
+
 		//static bool objectInitialized = 0;
     private:
 		int _checkWin();

@@ -376,6 +376,13 @@ namespace Mafia {
 			_setupMessageProcessor(message);
 			break;
 		}
+		case STOP_SPEAK_MESSAGE_ID: {
+			int index = _clientIndex(client);
+			if (index < maxClientIndex && index > -1) {
+				_answerPlayer(index);
+			}
+			break;
+		}
         default:{
             return UNKNOWN_MES_ID_ERROR;
             break;

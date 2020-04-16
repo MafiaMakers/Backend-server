@@ -36,6 +36,7 @@ namespace Mafia{
         //then I maybe will make more functions
 		bool isCandidate = false;
 		int votes = 0;
+		bool answered = false;
 	private:
 		int myIdx = -1;
 		int lpvi = -1;

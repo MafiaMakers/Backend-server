@@ -63,6 +63,7 @@ namespace Mafia {
 		void _nextStageMessageProcessor(char* message, int size);
 		void _setupMessageProcessor(char* message);
 
+		void _answerPlayer(int index);
 
 		void _vote(int voterIdx, int playerIdx);
 
