@@ -20,7 +20,7 @@ namespace Mafia {
 
     char * rIdToN(int roleId){
         switch(roleId){
-        case CIVILLIAN_ROLE: return (char*)"Civillian";
+        case CIVILIAN_ROLE: return (char*)"Civillian";
         default: return (char*)"None";
         }
     }

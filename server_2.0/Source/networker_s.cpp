@@ -335,8 +335,10 @@ namespace Mafia {
 			break;
 		}
 		case NEXT_STAGE_MESSAGE_ID: {
+			std::cout << "Next stage message id!" << std::endl;
 			int idx = _clientIndex(client);
 			if (idx != adminIdx) {
+				std::cout << adminIdx << " " << idx << " - admin error!" << std::endl;
 				return PRIVACY_ERROR;
 			}
 			_nextStageMessageProcessor(message, size);
@@ -366,6 +368,7 @@ namespace Mafia {
 			break;
 		}
 		case SETUP_MESSAGE_ID: {
+			std::cout << "Setup mesage id" << std::endl;
 			int idx = _clientIndex(client);
 			if (idx != adminIdx) {
 				return PRIVACY_ERROR;
@@ -377,6 +380,7 @@ namespace Mafia {
 			break;
 		}
 		case STOP_SPEAK_MESSAGE_ID: {
+			std::cout << "STOP!" << std::endl;
 			int index = _clientIndex(client);
 			if (index < maxClientIndex && index > -1) {
 				_answerPlayer(index);

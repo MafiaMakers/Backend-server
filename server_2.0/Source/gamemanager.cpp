@@ -26,11 +26,12 @@ void NetWorker::_setupMessageProcessor(char* message) {
 	{
 		result[i] = (int)message[i];
 	}
-
+	gameManagerSingleton->setupRoles(result);
 }
 
 void NetWorker::_nextStageMessageProcessor(char* message, int size) {
-	gameManagerSingleton->nextStage();
+	std::thread nextStageThread(&GameManager::nextStage, gameManagerSingleton);
+	nextStageThread.detach();
 }
 
 void NetWorker::_vote(int voterIdx, int playerIdx) {
@@ -56,7 +57,7 @@ void IRole::die() {
 	{
 		res[i + 1] = ((char*)& myIdx)[i];
 	}
-	netWorkerSingleton->sendToAll(DIE_HILL_MESSAGE_ID, res, 5);
+	netWorkerSingleton->sendToAll(DIE_HEAL_MESSAGE_ID, res, 5);
 }
 
 void IRole::hill() {
@@ -67,7 +68,7 @@ void IRole::hill() {
 	{
 		res[i + 1] = ((char*)& myIdx)[i];
 	}
-	netWorkerSingleton->sendToAll(DIE_HILL_MESSAGE_ID, res, 5);
+	netWorkerSingleton->sendToAll(DIE_HEAL_MESSAGE_ID, res, 5);
 }
 
 void GameManager::answer(int index) {
@@ -93,9 +94,13 @@ void GameManager::nextStage() {
 	if (currentState == SPEAKING_STAGE) {
 		gonext = true;
 	}
+	if (currentState == WAITING_STAGE) {
+		initGame();
+	}
 }
 
 void GameManager::setupRoles(int* roles) {
+	std::cout << "setting roles up" << std::endl;
 	_setRoles(_shuffleRoles(roles));
 	gonext = true;
 }
@@ -110,13 +115,16 @@ void GameManager::initGame(){
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
 	currentState = currentState+1;
-
+	//std::cout << "success!!!" << std::endl;
 	for (int i = 0; i < playersCount; i++)
 	{
 		netWorkerSingleton->sendMessage(i, INDEX_MESSAGE_ID, (char*)& i, 4);
 	}
 
     netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)&currentState, 4);
+	//std::cout << "finished!!!" << std::endl;
+	std::thread fullGameThread(&GameManager::fullGame, this);
+	fullGameThread.detach();
 }
 
 void GameManager::argumentingStage() {
@@ -263,7 +271,7 @@ void GameManager::deathStage(){
 
 void GameManager::nightStage(){
 	int fatherIdx = _getFather();
-	int shereifIdx = -1;
+	int sheriffIdx = -1;
 	int doctorIdx = -1;
 	for (int i = 1; i < MAX_ROLE_ID; i++) {
 		bool foundRole = false;
@@ -272,7 +280,7 @@ void GameManager::nightStage(){
 				players[j].setCanSpeakNow(true);
 				players[j].setCanListenNow(true);
 				switch (i) {
-				case CIVILLIAN_ROLE: {
+				case CIVILIAN_ROLE: {
 					break;
 				}
 				case MAFIA_ROLE: {
@@ -283,9 +291,9 @@ void GameManager::nightStage(){
 					}
 					break;
 				}
-				case SHERIEF_ROLE: {
+				case SHERIFF_ROLE: {
 					foundRole = true;
-					shereifIdx = j;
+					sheriffIdx = j;
 					players[j].setLastPlayerVotedIndex(-1);
 					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"check", 6);
 					break;
@@ -308,35 +316,40 @@ void GameManager::nightStage(){
 			}
 		}
 		if (foundRole) {
+			int idx = -1;
+			switch (i) {
+			case MAFIA_ROLE: {
+				idx = fatherIdx;
+				break;
+			}
+			case SHERIFF_ROLE: {
+				idx = sheriffIdx;
+				break;
+			}
+			case DOCTOR_ROLE: {
+				idx = doctorIdx;
+				break;
+			}
+			default: {
+				break;
+			}
+			}
 			for (int i = 0; i < THINK_TIME / DELTA_TIME; i++)
 			{
 				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 				bool answered = false;
-				int idx = -1;
-				switch (i) {
-				case MAFIA_ROLE: {
-					idx = fatherIdx;
-					break;
-				}
-				case SHERIEF_ROLE: {
-					idx = shereifIdx;
-					break;
-				}
-				case DOCTOR_ROLE: {
-					idx = doctorIdx;
-					break;
-				}
-				default: {
-					break;
-				}
-				}
-
+				
+				//std::cout << idx << std::endl;
 				if (idx != -1) {
 					if (players[idx].lastPlayerVotedIndex() != -1) {
+						//std::cout << "answered" << std::endl;
 						answered = true;
 					}
 				}
-
+				if (answered) {
+					//std::cout << "breaking" << std::endl;
+					break;
+				}
 			}
 		}
 		
@@ -358,18 +371,21 @@ void GameManager::nightStage(){
 
 	}
 
-	if (shereifIdx != -1) {
-		int checkedIdx = players[shereifIdx].lastPlayerVotedIndex();
+	if (sheriffIdx != -1) {
+		int checkedIdx = players[sheriffIdx].lastPlayerVotedIndex();
 		if (checkedIdx != -1 && checkedIdx < playersCount) {
 			bool isDark = !players[checkedIdx].isRed();
-			netWorkerSingleton->sendMessage(shereifIdx, SHEREIF_MESSAGE_ID, (char*) & (isDark), 1);
+			netWorkerSingleton->sendMessage(sheriffIdx, SHERIFF_MESSAGE_ID, (char*) & (isDark), 1);
 		}
 	}
 
+	currentState++;
+	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
 }
 
 void GameManager::speakingStage(){
 	gonext = false;
+	//std::cout << "speaking stage started!" << std::endl;
 	while (!gonext) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
@@ -399,7 +415,6 @@ bool GameManager::canSpeak(int index) {
 }
 
 void GameManager::fullGame() {
-	initGame();
 	int res = 0;
 	do {
 		res = gameCycle();
@@ -459,6 +474,7 @@ GameManager::~GameManager()
 }
 
 int* GameManager::_shuffleRoles(int* arr){
+	//std::cout << "Shuffling" << std::endl;
 
     int* rolesArr = new int[playersCount];
     int curIdx = 0;
@@ -475,11 +491,13 @@ int* GameManager::_shuffleRoles(int* arr){
         rolesArr[f_ind] = rolesArr[s_ind];
         rolesArr[s_ind] = tmp;
     }
+	//std::cout << "Shuffling finished" << std::endl;
     return rolesArr;
 }
 
 void GameManager::_setRoles(int *roles)
 {
+	//std::cout << "sending roles" << std::endl;
     for(int i = 0; i < playersCount; i++){
 		players[i] = IRole(roles[i]);
 		players[i].setMyIdx(i);
@@ -508,14 +526,14 @@ int GameManager::_setRolesCount(int* arr){
         return 0;
     }
 	if (playersCount == 4) {
-		arr[CIVILLIAN_ROLE] = 1;
+		arr[CIVILIAN_ROLE] = 1;
 		arr[MAFIA_ROLE] = 1;
-		arr[SHERIEF_ROLE] = 1;
+		arr[SHERIFF_ROLE] = 1;
 		arr[DOCTOR_ROLE] = 1;
 		return 0;
 	}
     if(playersCount < 7){
-        arr[CIVILLIAN_ROLE] = playersCount-1;
+        arr[CIVILIAN_ROLE] = playersCount-1;
         arr[MAFIA_ROLE] = 1;
         for(int i = 2; i < MAX_ROLE_ID; i++){
             arr[i] = 0;
