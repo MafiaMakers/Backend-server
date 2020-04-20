@@ -15,9 +15,11 @@ namespace Mafia{
 
 		void setMyIdx(int idx);
 
-		void die();
+		char* die();
 
-		void hill();
+		char* hill();
+
+		void setRoomId(int id);
 
         //returns is role red or black
         bool isRed();
@@ -33,6 +35,7 @@ namespace Mafia{
 		void setCanSpeakNow(bool val);
 
 		void setCanListenNow(bool val);
+
         //then I maybe will make more functions
 		bool isCandidate = false;
 		int votes = 0;
@@ -45,6 +48,7 @@ namespace Mafia{
 		int roleId = 0;
 		bool red = true;
 		bool isAlive = true;
+		int myRoomId = 0;
     };
 }
 

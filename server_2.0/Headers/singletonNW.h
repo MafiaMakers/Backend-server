@@ -4,7 +4,7 @@
 #include "networker_s.h"
 
 namespace Mafia {
-	NetWorker* netWorkerSingleton = 0;
+	//NetWorker* netWorkerSingleton = 0;
 }
 
 

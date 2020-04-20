@@ -1,8 +1,30 @@
 #include "IRole.h"
-
 using namespace Mafia;
 
 IRole::IRole(){}
+
+
+char* IRole::die() {
+	isAlive = false;
+	char* res = new char[5];
+	res[0] = (char)isAlive;
+	for (int i = 0; i < 4; i++)
+	{
+		res[i + 1] = ((char*)& myIdx)[i];
+	}
+	return res;
+}
+
+char* IRole::hill() {
+	isAlive = true;
+	char* res = new char[5];
+	res[0] = (char)isAlive;
+	for (int i = 0; i < 4; i++)
+	{
+		res[i + 1] = ((char*)& myIdx)[i];
+	}
+	return res;
+}
 
 IRole::IRole(int rIdx) {
 	roleId = rIdx;
@@ -16,6 +38,10 @@ IRole::IRole(int rIdx) {
 
 bool IRole::alive() {
 	return isAlive;
+}
+
+void IRole::setRoomId(int id) {
+	myRoomId = id;
 }
 
 int IRole::roleIdx() { return roleId; }

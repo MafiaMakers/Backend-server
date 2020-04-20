@@ -1,94 +1,25 @@
 #include "gamemanager.h"
-#include "include_s.h"
-#include "systemfunctions_s.h"
-#include "singletonGM.h"
-#include "networker_s.h"
 #include "singletonNW.h"
 using namespace Mafia;
 
-NetWorker::NetWorker() {
-	if (netWorkerSingleton == 0) {
-		_initSocket();
-		// Setup the TCP listening socket
-		_setAddr();
-		//objectInitialized = true;
-		netWorkerSingleton = this;
-	}
-	else {
-		throw std::exception();
-	}
-
-}
-
-void NetWorker::_setupMessageProcessor(char* message) {
-	int* result = new int[MAX_ROLE_ID];
-	for (int i = 0; i < MAX_ROLE_ID; i++)
-	{
-		result[i] = (int)message[i];
-	}
-	gameManagerSingleton->setupRoles(result);
-}
-
-void NetWorker::_nextStageMessageProcessor(char* message, int size) {
-	std::thread nextStageThread(&GameManager::nextStage, gameManagerSingleton);
-	nextStageThread.detach();
-}
-
-void NetWorker::_vote(int voterIdx, int playerIdx) {
-	std::cout << voterIdx << " votes for " << playerIdx << std::endl;
-	gameManagerSingleton->vote(voterIdx, playerIdx);
-}
-
-void NetWorker::_answerPlayer(int index) {
-	gameManagerSingleton->answer(index);
-}
 
 void IRole::setCanSpeakNow(bool val) {
 	canSpeak = val;
-	netWorkerSingleton->sendMessage(myIdx, CAN_SPEAK_MESSAGE_ID, (char*)& canSpeak, 1);
-}
-
-
-void IRole::die() {
-	isAlive = false;
-	char* res = new char[5];
-	res[0] = (char)isAlive;
-	for (int i = 0; i < 4; i++)
-	{
-		res[i + 1] = ((char*)& myIdx)[i];
-	}
-	netWorkerSingleton->sendToAll(DIE_HEAL_MESSAGE_ID, res, 5);
-}
-
-void IRole::hill() {
-	isAlive = true;
-	char* res = new char[5];
-	res[0] = (char)isAlive;
-	for (int i = 0; i < 4; i++)
-	{
-		res[i + 1] = ((char*)& myIdx)[i];
-	}
-	netWorkerSingleton->sendToAll(DIE_HEAL_MESSAGE_ID, res, 5);
+	netWorkerSingleton->sendMessage(myIdx, CAN_SPEAK_MESSAGE_ID, (char*)& canSpeak, 1, myRoomId);
 }
 
 void GameManager::answer(int index) {
-	players[index].answered = true;
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			players[i].answered = true;
+			break;
+		}
+	}
+
 }
 
-GameManager::GameManager(){
-    if(gameManagerSingleton == 0){
-		netWorkerSingleton = new NetWorker();
-        netWorkerSingleton->initServer();
-        mesReceivingThread = std::thread(&NetWorker::processMessages, netWorkerSingleton);
-        mesReceivingThread.detach();
-		checkConThread = std::thread(&NetWorker::checkConnections, netWorkerSingleton);
-		checkConThread.detach();
-        //objectInitialized = true;
-		gameManagerSingleton = this;
-    } else{
-        throw std::exception();
-    }
-}
+GameManager::GameManager(){}
 
 void GameManager::nextStage() {
 	if (currentState == SPEAKING_STAGE) {
@@ -105,12 +36,21 @@ void GameManager::setupRoles(int* roles) {
 	gonext = true;
 }
 
-void GameManager::initGame(){
-    netWorkerSingleton->closeRoom();
-    netWorkerSingleton->reorganizeClients();
-	gonext = false;
-    playersCount = netWorkerSingleton->getClientsCount();
+int GameManager::addPlayer(int index) {
+	if (playersCount < PLAYERS_MAX_COUNT) {
+		playersIndexes[playersCount] = index;
+		playersCount++;
+		//std::cout << playersCount << std::endl;
+		return 0;
+	}
+	else {
+		return CLIENTS_LIMIT_ERROR;
+	}
+}
 
+void GameManager::initGame(){
+	roomOpened = true;
+	gonext = false;
 	while (!gonext) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
@@ -118,10 +58,10 @@ void GameManager::initGame(){
 	//std::cout << "success!!!" << std::endl;
 	for (int i = 0; i < playersCount; i++)
 	{
-		netWorkerSingleton->sendMessage(i, INDEX_MESSAGE_ID, (char*)& i, 4);
+		netWorkerSingleton->sendMessage(playersIndexes[i], INDEX_MESSAGE_ID, (char*)& i, 4, myRoomId);
 	}
 
-    netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)&currentState, 4);
+    sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
 	//std::cout << "finished!!!" << std::endl;
 	std::thread fullGameThread(&GameManager::fullGame, this);
 	fullGameThread.detach();
@@ -138,7 +78,7 @@ void GameManager::argumentingStage() {
 		if (players[(i + roundIndex) % playersCount].alive()) {
 			players[(i + roundIndex) % playersCount].setCanSpeakNow(true);
 			players[(i + roundIndex) % playersCount].setLastPlayerVotedIndex(-1);
-			netWorkerSingleton->sendMessage((i + roundIndex) % playersCount, VOTE_MESSAGE_ID, (char*)"move for voting", 16);
+			netWorkerSingleton->sendMessage(playersIndexes[(i + roundIndex) % playersCount], VOTE_MESSAGE_ID, (char*)"move for voting", 16, myRoomId);
 			int votedFor = -1;
 			players[(i + roundIndex) % playersCount].answered = false;
 			for (int i = 0; i < TALK_TIME / DELTA_TIME; i++)
@@ -161,7 +101,7 @@ void GameManager::argumentingStage() {
 				{
 					result[j + 4] = ((char*)& votedFor)[j];
 				}
-				netWorkerSingleton->sendToAll(MADE_VOTE_MESSAGE, result, 8);
+				sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
 			}
 
 			players[i].setCanSpeakNow(false);
@@ -169,16 +109,59 @@ void GameManager::argumentingStage() {
 	}
 
 	currentState++;
-	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+}
+
+int GameManager::getAdminIdx() {
+	return adminIdx;
 }
 
 void GameManager::sendToAllAlive(short messageId, char* message, int mesLen) {
 	for (int i = 0; i < playersCount; i++)
 	{
 		if (players[i].alive()) {
-			netWorkerSingleton->sendMessage(i, messageId, message, mesLen);
+			netWorkerSingleton->sendMessage((i + roundIndex) % playersCount, messageId, message, mesLen, myRoomId);
 		}
 	}
+}
+
+int GameManager::getPlayerByIndex(int index) {
+	return(playersIndexes[index]);
+}
+
+int GameManager::getPlayersCount() {
+	return this->playersCount;
+}
+
+void GameManager::sendToAllInRoom(short messageId, char* message, int mesLen) {
+	for (int i = 0; i < playersCount; i++)
+	{
+		netWorkerSingleton->sendMessage(playersIndexes[i], messageId, message, mesLen, myRoomId);
+	}
+}
+
+void GameManager::setMyRoomId(int id) {
+	myRoomId = id;
+}
+
+char* GameManager::initRoom() {
+	roomCreated = true;
+	roomOpened = true;
+	for (int i = 0; i < KEY_SIZE; i++)
+	{
+		key[i] = 'A' + abs((char)random() % 26);
+	}
+	return key;
+}
+
+bool GameManager::isPlayerIn(int index) {
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			return true;
+		}
+	}
+	return false;
 }
 
 void GameManager::deathStage(){
@@ -243,7 +226,7 @@ void GameManager::deathStage(){
 					{
 						result[j + 4] = ((char*)& voteIdx)[j];
 					}
-					netWorkerSingleton->sendToAll(MADE_VOTE_MESSAGE, result, 8);
+					sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
 
 				}
 			}
@@ -262,11 +245,22 @@ void GameManager::deathStage(){
 		}
 	}
 	if (maxIdx != -1) {
-		players[maxIdx].die();
+		sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[maxIdx].die(), 5);
 	}
 	
 	currentState++;
-	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+}
+
+void GameManager::setAdmin(int index) {
+	/*for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			adminIdx = i;
+			break;
+		}
+	}*/
+	adminIdx = index;
 }
 
 void GameManager::nightStage(){
@@ -287,7 +281,7 @@ void GameManager::nightStage(){
 					foundRole = true;
 					if (j == fatherIdx) {
 						players[j].setLastPlayerVotedIndex(-1);
-						netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"kill", 5);
+						netWorkerSingleton->sendMessage(playersIndexes[j], VOTE_MESSAGE_ID, (char*)"kill", 5, myRoomId);
 					}
 					break;
 				}
@@ -295,14 +289,14 @@ void GameManager::nightStage(){
 					foundRole = true;
 					sheriffIdx = j;
 					players[j].setLastPlayerVotedIndex(-1);
-					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"check", 6);
+					netWorkerSingleton->sendMessage(playersIndexes[j], VOTE_MESSAGE_ID, (char*)"check", 6, myRoomId);
 					break;
 				}
 				case DOCTOR_ROLE: {
 					foundRole = true;
 					doctorIdx = j;
 					players[j].setLastPlayerVotedIndex(-1);
-					netWorkerSingleton->sendMessage(j, VOTE_MESSAGE_ID, (char*)"hill", 5);
+					netWorkerSingleton->sendMessage(playersIndexes[j], VOTE_MESSAGE_ID, (char*)"hill", 5, myRoomId);
 					break;
 				}
 				default:
@@ -366,7 +360,7 @@ void GameManager::nightStage(){
 	int victim = players[fatherIdx].lastPlayerVotedIndex();
 	if (victim != -1 && victim < playersCount) {
 		if (victim != resHilled) {
-			players[victim].die();
+			sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[victim].die(), 5);
 		}
 
 	}
@@ -375,12 +369,12 @@ void GameManager::nightStage(){
 		int checkedIdx = players[sheriffIdx].lastPlayerVotedIndex();
 		if (checkedIdx != -1 && checkedIdx < playersCount) {
 			bool isDark = !players[checkedIdx].isRed();
-			netWorkerSingleton->sendMessage(sheriffIdx, SHERIFF_MESSAGE_ID, (char*) & (isDark), 1);
+			netWorkerSingleton->sendMessage(playersIndexes[sheriffIdx], SHERIFF_MESSAGE_ID, (char*) & (isDark), 1, myRoomId);
 		}
 	}
 
 	currentState++;
-	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)& currentState, 4);
 }
 
 void GameManager::speakingStage(){
@@ -390,7 +384,7 @@ void GameManager::speakingStage(){
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
 	currentState++;
-	netWorkerSingleton->sendToAll(STAGE_MESSAGE_ID, (char*)& currentState, 4);
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)& currentState, 4);
 }
 
 void GameManager::resultsStage(){
@@ -420,10 +414,10 @@ void GameManager::fullGame() {
 		res = gameCycle();
 	} while (res == 0);
 	if (res == -1) {
-		netWorkerSingleton->sendToAll(TEXT_MESSAGE_ID, (char*)"Mafia wins", 11);
+		sendToAllInRoom(TEXT_MESSAGE_ID, (char*)"Mafia wins", 11);
 	}
 	else {
-		netWorkerSingleton->sendToAll(TEXT_MESSAGE_ID, (char*)"Civilians win", 14);
+		sendToAllInRoom(TEXT_MESSAGE_ID, (char*)"Civilians win", 14);
 	}
 	resultsStage();
 }
@@ -449,23 +443,20 @@ int GameManager::_checkWin() {
 	return 0;
 }
 
-void GameManager::_joinThreads() {
-	if (checkConThread.joinable()) {
-		checkConThread.join();
-	}
-	if (mesReceivingThread.joinable()) {
-		mesReceivingThread.join();
-	}
-}
-
-
 void GameManager::finish()
 {
-	netWorkerSingleton->sendToAll(EXIT_ROOM_MESSAGE_ID, (char*)"closing", 8);
-	std::thread fin(&GameManager::_joinThreads, this);
-	fin.detach();
-	std::this_thread::sleep_for(std::chrono::milliseconds(TIME_PAUSE));
-	netWorkerSingleton->finish();
+	sendToAllInRoom(EXIT_ROOM_MESSAGE_ID, (char*)"closing", 8);
+	currentState = WAITING_STAGE;
+	players = new IRole[CLIENTS_MAX_COUNT];
+	playersCount = 0;
+	roundIndex = 0;
+	gonext = false;
+	roomCreated = false;
+	roomOpened = false;
+	playersIndexes = new int[PLAYERS_MAX_COUNT];
+	adminIdx = 0;
+	myRoomId = 0;
+	key = new char[KEY_SIZE];
 }
 
 GameManager::~GameManager()
@@ -500,8 +491,9 @@ void GameManager::_setRoles(int *roles)
 	//std::cout << "sending roles" << std::endl;
     for(int i = 0; i < playersCount; i++){
 		players[i] = IRole(roles[i]);
-		players[i].setMyIdx(i);
-		netWorkerSingleton->sendMessage(i, ROLE_MESSAGE_ID, (char*)& roles[i], 4);
+		players[i].setMyIdx(playersIndexes[i]);
+		players[i].setRoomId(myRoomId);
+		netWorkerSingleton->sendMessage(playersIndexes[i], ROLE_MESSAGE_ID, (char*)& roles[i], 4, myRoomId);
     }
 }
 
@@ -544,5 +536,24 @@ int GameManager::_setRolesCount(int* arr){
 }
 
 void GameManager::vote(int voterIdx, int playerIdx) {
-	players[voterIdx].setLastPlayerVotedIndex(playerIdx);
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == voterIdx) {
+			players[i].setLastPlayerVotedIndex(playerIdx);
+			break;
+		}
+	}
+	
+}
+
+bool GameManager::isInitialized() {
+	return roomCreated;
+}
+
+bool GameManager::isOpened() {
+	return roomOpened;
+}
+
+char* GameManager::getKey() {
+	return key;
 }
