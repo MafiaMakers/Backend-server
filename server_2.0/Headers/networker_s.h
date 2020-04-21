@@ -44,11 +44,17 @@ namespace Mafia {
 
         void reorganizeClients();
 
+		void throwClient(int index);
+
         int getClientsCount();
+
+		bool isClientOnline(int index);
 
         ~NetWorker();
     protected:
 		int _activeClientsCount();
+
+		int _getFirstFreeIndex();
         //static bool objectInitialized;
         int _wrapMessage(char* message, int mesLen, short messageId, char* result, int roomId);
         //There will be process method, but it's the next step

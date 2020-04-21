@@ -18,6 +18,7 @@ namespace Mafia {
         char * name;
         Message lastMes;
         bool connected;
+		bool initialized;
     };
 }
 

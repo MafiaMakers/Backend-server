@@ -17,7 +17,7 @@ namespace Mafia{
         void speakingStage();
         void nightStage();
         void argumentingStage();
-        void deathStage();
+        void deathStage(int deathRound = 0);
         void resultsStage();
         void finish();
 		void fullGame();
@@ -26,6 +26,8 @@ namespace Mafia{
         ~GameManager();
 		bool canSpeak(int index);
 		bool canListen(int index);
+
+		bool checkEmpty();
 
 		void setMyRoomId(int id);
 
@@ -59,12 +61,16 @@ namespace Mafia{
 		int addPlayer(int index);
 		//static bool objectInitialized = 0;
     private:
+		void _findNewAdmin();
+		void _freePlayers();
 		int _checkWin();
         //fills arr with rolesCount
         int _setRolesCount(int* arr);
         int _getFather();
         int* _shuffleRoles(int* arr);
         void _setRoles(int* roles);
+		void _sendCandidates();
+
         int currentState = WAITING_STAGE;
         IRole* players = new IRole[CLIENTS_MAX_COUNT];
         int playersCount = 0;

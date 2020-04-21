@@ -7,6 +7,11 @@
 namespace Mafia {
 	NetWorker* netWorkerSingleton = 0;
 	NetWorker::NetWorker() {
+		for (int i = 0; i < CLIENTS_MAX_COUNT; i++)
+		{
+			clients[i] = Client();
+			clients[i].initialized = false;
+		}
 		if (netWorkerSingleton == 0) {
 			_initSocket();
 			// Setup the TCP listening socket
@@ -92,17 +97,36 @@ namespace Mafia {
     }
 	*/
 
+	bool NetWorker::isClientOnline(int index) {
+		if (index >= 0 && index < maxClientIndex) {
+			return clients[index].initialized && clients[index].connected;
+		}
+		return false;
+	}
+
 	//Run in another thread!
 	void NetWorker::checkConnections() {
 		while (true) {
 			for (int i = 0; i < maxClientIndex; i++) {
-				clients[i].connected = answered[i];
-				if (!answered[i]) {
-					std::cout << i << "th client disconnected" << std::endl;
+				if (clients[i].initialized) {
+					clients[i].connected = answered[i];
+					if (!answered[i]) {
+						std::cout << i << "th client disconnected" << std::endl;
+					}
+					answered[i] = false;
+					int clientRoom = getRoomIdByIndex(i);
+					sendMessage(clients[i].clientAddr, CHECK_CONNECTION_MESAGE_ID, (char*)"check", 6, clientRoom);
 				}
-				answered[i] = false;
-				int clientRoom = getRoomIdByIndex(i);
-				sendMessage(clients[i].clientAddr, CHECK_CONNECTION_MESAGE_ID, (char*)"check", 6, clientRoom);
+				
+			}
+
+			for (int i = 0; i < ROOMS_MAX_COUNT; i++)
+			{
+				if (rooms[i].isInitialized()) {
+					if (rooms[i].checkEmpty()) {
+						rooms[i].finish();
+					}
+				}
 			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(TIME_PAUSE));
 		}
@@ -263,11 +287,35 @@ namespace Mafia {
 		return -1;
 	}
 
+	void NetWorker::throwClient(int index) {
+		clients[index].initialized = false;
+		clients[index].connected = false;
+		clients[index].lastMes = Message();
+		clients[index].name = (char*)"";
+		clients[index].clientAddr = sockaddr_in();
+	}
+
+	int NetWorker::_getFirstFreeIndex() {
+		for (int i = 0; i < maxClientIndex; i++)
+		{
+			if (!clients[i].initialized) {
+				return i;
+			}
+		}
+		if (maxClientIndex >= CLIENTS_MAX_COUNT) {
+			return -1;
+		}
+		maxClientIndex++;
+		return maxClientIndex-1;
+
+	}
+
 	int NetWorker::_connectClient(sockaddr_in client, char roomId, char* key) {
-		if (maxClientIndex < CLIENTS_MAX_COUNT) {
+		int freeId = _getFirstFreeIndex();
+		if (freeId != -1) {
 
 			for (int i = 0; i < maxClientIndex; i++) {
-				if (clients[i].clientAddr.sin_addr.S_un.S_addr == client.sin_addr.S_un.S_addr && client.sin_port == clients[i].clientAddr.sin_port) {
+				if (clients[i].clientAddr.sin_addr.S_un.S_addr == client.sin_addr.S_un.S_addr && client.sin_port == clients[i].clientAddr.sin_port && clients[i].initialized) {
 					return REPEATATIVE_REQUEST_ERROR;
 				}
 			}
@@ -278,13 +326,14 @@ namespace Mafia {
 					return KEY_ERROR;
 				}
 			}
-			clients[maxClientIndex] = Client();
-			clients[maxClientIndex].name = (char*)"User";
+			clients[freeId] = Client();
+			clients[freeId].initialized = true;
+			clients[freeId].name = (char*)"User";
 			//strcpy(clients[maxClientIndex].name, message);
 			//clients[maxClientIndex].name = message;
-			clients[maxClientIndex].lastMes = Message();
-			clients[maxClientIndex].clientAddr = client;
-			clients[maxClientIndex].connected = true;
+			clients[freeId].lastMes = Message();
+			clients[freeId].clientAddr = client;
+			clients[freeId].connected = true;
 			char id = (char)roomId;
 			sendMessage(client, SUCCESS_MESSAGE_ID, &id, 1, roomId);
 			int clientsCount = rooms[roomId].getPlayersCount();
@@ -292,12 +341,12 @@ namespace Mafia {
 			if (clientsCount == 0) {
 				sendMessage(client, SET_ADMIN_MESSAGE_ID, (char*)& clientsCount, 4, roomId);
 			}
-			rooms[roomId].addPlayer(maxClientIndex);
-			maxClientIndex++;
+			rooms[roomId].addPlayer(freeId);
+			//maxClientIndex++;
 			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)"User", 5);
 			//sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
-			std::cout << clients[maxClientIndex - 1].name << " joined room " << roomId << std::endl;
-			answered[maxClientIndex - 1] = true;
+			std::cout << clients[freeId].name << " joined room " << roomId << std::endl;
+			answered[freeId] = true;
 			return 0;
 		}
 		else {
