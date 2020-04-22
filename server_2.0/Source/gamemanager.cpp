@@ -571,6 +571,61 @@ bool GameManager::checkEmpty() {
 	return true;
 }
 
+void GameManager::sendAudio(char* data, int size, int index) {
+	int trueIndex = -1;
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			trueIndex = i;
+			break;
+		}
+	}
+
+	if (trueIndex != -1 && (currentState == WAITING_STAGE || players[trueIndex].canSpeakNow())) {
+		char* message = new char[size + 1];
+		message[0] = (char)trueIndex;
+		for (int i = 0; i < size; i++)
+		{
+			message[i + 1] = data[i];
+		}
+
+		for (int i = 0; i < playersCount; i++)
+		{
+			if ((currentState == WAITING_STAGE || players[i].canListenNow()) && i != trueIndex) {
+				netWorkerSingleton->sendMessage(playersIndexes[i], AUDIO_MESSAGE_ID, message, size + 1, myRoomId);
+			}
+		}
+	}
+	
+}
+
+void GameManager::sendVideo(char* data, int size, int index) {
+	int trueIndex = -1;
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			trueIndex = i;
+			break;
+		}
+	}
+
+	if (trueIndex != -1) {
+		char* message = new char[size + 1];
+		message[0] = (char)trueIndex;
+		for (int i = 0; i < size; i++)
+		{
+			message[i + 1] = data[i];
+		}
+
+		for (int i = 0; i < playersCount; i++)
+		{
+			if ((currentState == WAITING_STAGE || players[i].canListenNow()) && i != trueIndex) {
+				netWorkerSingleton->sendMessage(playersIndexes[i], VIDEO_MESSAGE_ID, message, size + 1, myRoomId);
+			}
+		}
+	}
+}
+
 void GameManager::finish()
 {
 	sendToAllInRoom(EXIT_ROOM_MESSAGE_ID, (char*)"closing", 8);

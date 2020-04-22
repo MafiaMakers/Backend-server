@@ -365,6 +365,7 @@ namespace Mafia {
             }
             int cInd = _clientIndex(client);
             if(cInd == -1){
+				std::cout << "onresend" << std::endl;
                 return PRIVACY_ERROR;
             }
             short mId = 0;
@@ -522,6 +523,22 @@ namespace Mafia {
 				sendMessage(client, KEY_MESSAGE_ID, key, KEY_SIZE, i);
 				std::cout << "room created " << i << std::endl;
 			}
+			break;
+		}
+		case VIDEO_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx == -1) {
+				return PRIVACY_ERROR;
+			}
+			rooms[roomId].sendVideo(message, size, idx);
+			break;
+		}
+		case AUDIO_MESSAGE_ID: {
+			int idx = _clientIndex(client);
+			if (idx == -1) {
+				return PRIVACY_ERROR;
+			}
+			rooms[roomId].sendAudio(message, size, idx);
 			break;
 		}
         default:{

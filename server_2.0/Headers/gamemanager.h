@@ -29,6 +29,10 @@ namespace Mafia{
 
 		bool checkEmpty();
 
+		void sendVideo(char* data, int size, int index);
+
+		void sendAudio(char* data, int size, int index);
+
 		void setMyRoomId(int id);
 
 		void setupRoles(int* rolesCount);
