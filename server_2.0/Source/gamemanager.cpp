@@ -1,5 +1,6 @@
 #include "gamemanager.h"
 #include "singletonNW.h"
+#include <vector>
 using namespace Mafia;
 
 
@@ -21,7 +22,7 @@ void GameManager::answer(int index) {
 
 GameManager::GameManager(){}
 
-void GameManager::nextStage() {
+void GameManager::nextStage(char* message, int size) {
 	if (currentState == SPEAKING_STAGE) {
 		gonext = true;
 	}
@@ -67,10 +68,26 @@ void GameManager::_freePlayers() {
 		}
 	}
 	sendToAllInRoom(SET_ADMIN_MESSAGE_ID, (char*)& adminIdx, 4);
+	sendToAllInRoom(CLIENTS_COUNT_MESSAGE_ID, (char*)& playersCount, 4);
+	for (int i = 0; i < playersCount; i++)
+	{
+		netWorkerSingleton->sendMessage(playersIndexes[i], CLIENT_INDEX_MESSAGE_ID, (char*)& i, 4, myRoomId);
+	}
+}
+
+void GameManager::setNotPlayers(int* notPlayers, int size) {
+	for (int i = 0; i < size; i++)
+	{
+		players[notPlayers[i]] = IRole(CIVILIAN_ROLE);
+		players[notPlayers[i]].setMyIdx(playersIndexes[notPlayers[i]]);
+		players[notPlayers[i]].setRoomId(myRoomId);
+		players[notPlayers[i]].die();
+	}
 }
 
 void GameManager::initGame(){
-	roomOpened = true;
+	roomOpened = false;
+	
 	_findNewAdmin();
 	_freePlayers();
 	gonext = false;
@@ -85,7 +102,6 @@ void GameManager::initGame(){
 	}
 
     sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
-	//std::cout << "finished!!!" << std::endl;
 	std::thread fullGameThread(&GameManager::fullGame, this);
 	fullGameThread.detach();
 }
@@ -572,31 +588,43 @@ bool GameManager::checkEmpty() {
 }
 
 void GameManager::sendAudio(char* data, int size, int index) {
-	int trueIndex = -1;
-	for (int i = 0; i < playersCount; i++)
-	{
-		if (playersIndexes[i] == index) {
-			trueIndex = i;
-			break;
-		}
-	}
-
-	if (trueIndex != -1 && (currentState == WAITING_STAGE || players[trueIndex].canSpeakNow())) {
-		char* message = new char[size + 1];
-		message[0] = (char)trueIndex;
-		for (int i = 0; i < size; i++)
-		{
-			message[i + 1] = data[i];
-		}
-
+	//size == SOUND_SIZE)
+	//std::cout << "send" << std::endl;
+	if (true) {
+		int trueIndex = -1;
 		for (int i = 0; i < playersCount; i++)
 		{
-			if ((currentState == WAITING_STAGE || players[i].canListenNow()) && i != trueIndex) {
-				netWorkerSingleton->sendMessage(playersIndexes[i], AUDIO_MESSAGE_ID, message, size + 1, myRoomId);
+			if (playersIndexes[i] == index) {
+				trueIndex = i;
+				break;
 			}
 		}
+
+		if (trueIndex != -1 && (currentState == WAITING_STAGE || players[trueIndex].canSpeakNow())) {
+			//std::cout << "add sound for " << trueIndex << std::endl;
+			//players[trueIndex].addSound(data);
+			//std::cout << "send1" << std::endl;
+			char* newMes = new char[size + 1];
+			newMes[0] = (char)trueIndex;
+			for (int i = 0; i < size; i++)
+			{
+				newMes[i+1] = data[i];
+			}
+
+			for (int i = 0; i < playersCount; i++)
+			{
+				//currentSpeaker[i] == trueIndex
+				if (players[i].canListenNow() && i != trueIndex) {
+					//std::cout << "send2" << std::endl;
+					netWorkerSingleton->sendMessage(playersIndexes[i], AUDIO_MESSAGE_ID, newMes, size+1, myRoomId);
+				}
+			}
+			delete[] newMes;
+		}
 	}
-	
+	else {
+		std::cout << size << " - incorrect size" << std::endl;
+	}
 }
 
 void GameManager::sendVideo(char* data, int size, int index) {
@@ -623,6 +651,7 @@ void GameManager::sendVideo(char* data, int size, int index) {
 				netWorkerSingleton->sendMessage(playersIndexes[i], VIDEO_MESSAGE_ID, message, size + 1, myRoomId);
 			}
 		}
+		delete[] message;
 	}
 }
 
@@ -633,6 +662,9 @@ void GameManager::finish()
 	{
 		netWorkerSingleton->throwClient(playersIndexes[i]);
 	}
+	delete[] key;
+	delete[] players;
+	delete[] playersIndexes;
 	currentState = WAITING_STAGE;
 	players = new IRole[CLIENTS_MAX_COUNT];
 	playersCount = 0;
@@ -643,6 +675,7 @@ void GameManager::finish()
 	playersIndexes = new int[PLAYERS_MAX_COUNT];
 	adminIdx = 0;
 	myRoomId = 0;
+
 	key = new char[KEY_SIZE];
 }
 
@@ -676,11 +709,15 @@ int* GameManager::_shuffleRoles(int* arr){
 void GameManager::_setRoles(int *roles)
 {
 	//std::cout << "sending roles" << std::endl;
+	int curIdx = 0;
     for(int i = 0; i < playersCount; i++){
-		players[i] = IRole(roles[i]);
-		players[i].setMyIdx(playersIndexes[i]);
-		players[i].setRoomId(myRoomId);
-		netWorkerSingleton->sendMessage(playersIndexes[i], ROLE_MESSAGE_ID, (char*)& roles[i], 4, myRoomId);
+		if (players[i].isInitialized()) {
+			players[i] = IRole(roles[curIdx]);
+			players[i].setMyIdx(playersIndexes[i]);
+			players[i].setRoomId(myRoomId);
+			netWorkerSingleton->sendMessage(playersIndexes[i], ROLE_MESSAGE_ID, (char*)& roles[i], 4, myRoomId);
+			curIdx++;
+		}
     }
 
 	int fatherId = _getFather();

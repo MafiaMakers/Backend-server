@@ -37,7 +37,8 @@ namespace Mafia {
 	}
 
 	void NetWorker::_nextStageMessageProcessor(int rId, char* message, int size) {
-		std::thread nextStageThread(&GameManager::nextStage, &rooms[rId]);
+		std::cout << "nextStagethread" << std::endl;
+		std::thread nextStageThread(&GameManager::nextStage, &rooms[rId], message, size);
 		nextStageThread.detach();
 	}
 
@@ -153,41 +154,54 @@ namespace Mafia {
     //recommended to run in another thread
     int NetWorker::receiveMessage(){
         //buffer to write there received message
-        char buffer[BUF_SIZE];
-        zeroMemSys(buffer, BUF_SIZE);
+        char* buffer = new char[BUF_SIZE];
+        //zeroMemSys(buffer, BUF_SIZE);
         sockaddr_in currentClient;
         int cCSize = sizeof(currentClient);
         //receive message
         int bytesReceived = recvfrom(this->sock,buffer,BUF_SIZE,0,(sockaddr *)&currentClient,&cCSize);
         //check if message is OK
         if (bytesReceived > 0){
-            char mes[BUF_SIZE];
-            zeroMemSys(mes, BUF_SIZE);
+            char* mes = new char[BUF_SIZE];
+            //zeroMemSys(mes, BUF_SIZE);
             short mId = 0;
 			int room;
             int err = _decodeMessage(buffer, bytesReceived, mes, &mId, &room);
             if(err != 0){
                 //if message is wrong, throw it away
-                if(err != CONTROL_SUM_ERROR){
-                    sendMessage(currentClient, ERROR_MESSAGE_ID, (char*)&err, 4, room);
+                if(err != CONTROL_SUM_ERROR && err != SHORT_MESSAGE_ERROR){
+                    //sendMessage(currentClient, ERROR_MESSAGE_ID, (char*)&err, 4, room);
+					delete[] buffer;
+					delete[] mes;
                     return(err);
                 }
                 //if error was in control sum - it means that not all message received, then ask for resending
-                char resendMes[2];
-                zeroMemSys(resendMes, 2);
-                resendMes[0] = ((char*)&mId)[0];
-                resendMes[1] = ((char*)&mId)[1];
-                return(sendMessage(currentClient, RESEND_MESSAGE_ID, resendMes, 2, room));
-
+				if (mId != VIDEO_MESSAGE_ID && mId != AUDIO_MESSAGE_ID && mId > 0 && mId < MAX_MESSAGE_ID) {
+					char resendMes[2];
+					zeroMemSys(resendMes, 2);
+					resendMes[0] = ((char*)& mId)[0];
+					resendMes[1] = ((char*)& mId)[1];
+					delete[] buffer;
+					delete[] mes;
+					return(sendMessage(currentClient, RESEND_MESSAGE_ID, resendMes, 2, room));
+				}
+				delete[] buffer;
+				delete[] mes;
+				return err;
             }
             int error = _processMessage(currentClient, mes, bytesReceived - 7, mId, room);
             if(error != 0){
                 sendMessage(currentClient, ERROR_MESSAGE_ID, (char*)&error, 4, room);
+				delete[] buffer;
+				delete[] mes;
                 return error;
             }
+			delete[] buffer;
+			delete[] mes;
             return(0);
         }
         else  {
+			delete[] buffer;
             return RECEIVING_ERROR;
         }
     }
@@ -201,8 +215,8 @@ namespace Mafia {
 
     //sends message with length mesLen and id messageId to client. Returns 0 if succes, error id if error
     int NetWorker::sendMessage(sockaddr_in client, short messageId, char* message, int mesLen, int roomId){
-        char resMes[BUF_SIZE];
-        zeroMemSys(resMes, BUF_SIZE);
+        char* resMes = new char[mesLen + 7];
+        //zeroMemSys(resMes, BUF_SIZE);
         int Idx = _clientIndex(client);
         if(Idx != -1){
             clients[Idx].lastMes.id = messageId;
@@ -212,13 +226,17 @@ namespace Mafia {
         }
         int err = _wrapMessage(message, mesLen, messageId, resMes, roomId);
         if(err != 0){
+			delete[] resMes;
             return(err);
         }
-        return(sendto(sock, resMes, mesLen + 7, 0, (sockaddr *)&client, sizeof(client)));
+		//std::cout << roomId << " - rid " << messageId << " - mid "<< (int)message[0] << " " << resMes << " " << mesLen + 7 << std::endl;
+		int bytesSent = sendto(sock, resMes, mesLen + 7, 0, (sockaddr*)& client, sizeof(client));
+		delete[] resMes;
+        return(bytesSent);
     }
 
 	int NetWorker::sendToAdmin(short messageId, char* message, int mesLen, int roomId) {
-		sendMessage(rooms[roomId].getPlayerByIndex(rooms[roomId].getAdminIdx()), messageId, message, mesLen, roomId);
+		return sendMessage(rooms[roomId].getPlayerByIndex(rooms[roomId].getAdminIdx()), messageId, message, mesLen, roomId);
 	}
 
     int NetWorker::sendMessage(int clientIdx, short messageId, char *message, int mesLen, int roomId)
@@ -310,7 +328,7 @@ namespace Mafia {
 
 	}
 
-	int NetWorker::_connectClient(sockaddr_in client, char roomId, char* key) {
+	int NetWorker::_connectClient(sockaddr_in client, char roomId, char* key, char* name) {
 		int freeId = _getFirstFreeIndex();
 		if (freeId != -1) {
 
@@ -328,7 +346,7 @@ namespace Mafia {
 			}
 			clients[freeId] = Client();
 			clients[freeId].initialized = true;
-			clients[freeId].name = (char*)"User";
+			clients[freeId].name = name;
 			//strcpy(clients[maxClientIndex].name, message);
 			//clients[maxClientIndex].name = message;
 			clients[freeId].lastMes = Message();
@@ -343,7 +361,7 @@ namespace Mafia {
 			}
 			rooms[roomId].addPlayer(freeId);
 			//maxClientIndex++;
-			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)"User", 5);
+			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)clients[freeId].name.c_str(), clients[freeId].name.length());
 			//sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
 			std::cout << clients[freeId].name << " joined room " << roomId << std::endl;
 			answered[freeId] = true;
@@ -356,17 +374,19 @@ namespace Mafia {
 
     //There will be process method, but it's the next step
     int NetWorker::_processMessage(sockaddr_in client, char* message, int size, short messageId, int roomId){
+		int error = 0;
         switch(messageId){
         case RESEND_MESSAGE_ID:{
             std::cout << "Message received: " << message << std::endl
                       << "Message ID: " << messageId << std::endl;
             if(size != 2){
-                return MESSAGE_SIZE_ERROR;
+                error = MESSAGE_SIZE_ERROR;
+				break;
             }
             int cInd = _clientIndex(client);
             if(cInd == -1){
-				std::cout << "onresend" << std::endl;
-                return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
             }
             short mId = 0;
             mId = *((short*)(message));
@@ -377,7 +397,8 @@ namespace Mafia {
         case (short)TEXT_MESSAGE_ID:{
             int idx = _clientIndex(client);
             if(idx == -1){
-                return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
             }
             std::cout << "Message received: " << message << std::endl
                       << "Message ID: " << messageId << std::endl;
@@ -387,15 +408,19 @@ namespace Mafia {
 			char rId = message[0];
 			char* key = message + 1;
 			if (rId < 0 || rId >= ROOMS_MAX_COUNT) {
-				return ROOM_ID_ERROR;
+				error = ROOM_ID_ERROR;
+				break;
 			}
             if(!rooms[rId].isOpened()){
-                return CLOSED_ROOM_REQUEST_ERROR;
+				error = CLOSED_ROOM_REQUEST_ERROR;
+				break;
             }
-			if (size < KEY_SIZE + 1) {
-				return SHORT_MESSAGE_ERROR;
+			if (size <= KEY_SIZE + 1) {
+				error = SHORT_MESSAGE_ERROR;
+				break;
 			}
-			return _connectClient(client, rId, key);
+			char* name = message + KEY_SIZE + 1;
+			return _connectClient(client, rId, key, name);
             break;
         }
         case SUCCESS_MESSAGE_ID:{
@@ -406,7 +431,8 @@ namespace Mafia {
         case EXIT_ROOM_MESSAGE_ID:{
             int idx = _clientIndex(client);
             if(idx == -1){
-                return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
             }
             std::cout << clients[idx].name << " leaved room" << std::endl;
             clients[idx].connected = false;
@@ -415,32 +441,37 @@ namespace Mafia {
         case CHANGE_NAME_MESSAGE_ID:{
             int idx = _clientIndex(client);
             if(idx == -1){
-                return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
             }
             std::cout << clients[idx].name << " changed name to " << message << std::endl;
             //clients[idx].name = message;
             clients[idx].name = new char[size];
-            strcpy(clients[idx].name, message);
+            clients[idx].name = message;
             break;
         }
 		case CHECK_CONNECTION_MESAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx != -1) {
 				answered[idx] = true;
-				return 0;
+				error = 0;
+				break;
 			}
 			else {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			break;
 		}
 		case VOTE_MESSAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx == -1) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			if (size < 4) {
-				return SHORT_MESSAGE_ERROR;
+				error = SHORT_MESSAGE_ERROR;
+				break;
 			}
 			int index = 0;
 			for (int i = 0; i < 4; i++)
@@ -454,7 +485,8 @@ namespace Mafia {
 			std::cout << "Next stage message id!" << std::endl;
 			int idx = _clientIndex(client);
 			if (idx != rooms[roomId].getPlayerByIndex(rooms[roomId].getAdminIdx())) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			_nextStageMessageProcessor(roomId, message, size);
 			break;
@@ -462,10 +494,12 @@ namespace Mafia {
 		case SET_ADMIN_MESSAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx != rooms[roomId].getPlayerByIndex(rooms[roomId].getAdminIdx())) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			if (size < 4) {
-				return SHORT_MESSAGE_ERROR;
+				error = SHORT_MESSAGE_ERROR;
+				break;
 			}
 			int newIdx = *(int*)message;
 			if (newIdx < maxClientIndex && newIdx >= 0) {
@@ -474,11 +508,13 @@ namespace Mafia {
 					rooms[roomId].sendToAllInRoom(SET_ADMIN_MESSAGE_ID, message, size);
 				}
 				else {
-					return CLIENT_INDEX_ERROR;
+					error = CLIENT_INDEX_ERROR;
+					break;
 				}
 			}
 			else {
-				return CLIENT_INDEX_ERROR;
+				error = CLIENT_INDEX_ERROR;
+				break;
 			}
 			break;
 		}
@@ -486,10 +522,12 @@ namespace Mafia {
 			std::cout << "Setup mesage id" << std::endl;
 			int idx = _clientIndex(client);
 			if (idx != rooms[roomId].getPlayerByIndex(rooms[roomId].getAdminIdx())) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			if (size != MAX_ROLE_ID) {
-				return SHORT_MESSAGE_ERROR;
+				error = SHORT_MESSAGE_ERROR;
+				break;
 			}
 			_setupMessageProcessor(roomId, message);
 			break;
@@ -504,7 +542,8 @@ namespace Mafia {
 		case CREATE_ROOM_MESSAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx != -1) {
-				return REPEATATIVE_REQUEST_ERROR;
+				error = REPEATATIVE_REQUEST_ERROR;
+				break;
 			}
 			int i;
 			for (i = 0; i < ROOMS_MAX_COUNT; i++)
@@ -514,7 +553,8 @@ namespace Mafia {
 				}
 			}
 			char* key = rooms[i].initRoom();
-			int err = _connectClient(client, i, key);
+			rooms[i].setMyRoomId(i);
+			int err = _connectClient(client, i, key, message);
 			if (err != 0) {
 				std::cout << "error " << err << std::endl;
 			}
@@ -528,7 +568,8 @@ namespace Mafia {
 		case VIDEO_MESSAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx == -1) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			rooms[roomId].sendVideo(message, size, idx);
 			break;
@@ -536,17 +577,23 @@ namespace Mafia {
 		case AUDIO_MESSAGE_ID: {
 			int idx = _clientIndex(client);
 			if (idx == -1) {
-				return PRIVACY_ERROR;
+				error = PRIVACY_ERROR;
+				break;
 			}
 			rooms[roomId].sendAudio(message, size, idx);
 			break;
 		}
+		case DONT_PLAY_MESSAGE_ID: {
+			rooms[roomId].setNotPlayers((int*)message, size / 4);
+			break;
+		}
         default:{
-            return UNKNOWN_MES_ID_ERROR;
+			error = UNKNOWN_MES_ID_ERROR;
             break;
         }
         }
-        return(0);
+		//delete[] message;
+        return(error);
     }
 
 

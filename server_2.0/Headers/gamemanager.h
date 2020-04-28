@@ -5,6 +5,7 @@
 #include "include_s.h"
 #include "IRole.h"
 #include "systemfunctions_s.h"
+#include <vector>
 
 namespace Mafia{
     //Singleton
@@ -14,6 +15,7 @@ namespace Mafia{
         GameManager();
         int gameCycle();
         void initGame();
+		void setNotPlayers(int* notPlayers, int size);
         void speakingStage();
         void nightStage();
         void argumentingStage();
@@ -37,7 +39,7 @@ namespace Mafia{
 
 		void setupRoles(int* rolesCount);
 
-		void nextStage();
+		void nextStage(char* message, int size);
 
 		void answer(int index);
 
@@ -86,6 +88,9 @@ namespace Mafia{
 		int adminIdx = 0;
 		int myRoomId = 0;
 		char *key = new char[KEY_SIZE];
+		int* currentSpeaker = new int[CLIENTS_MAX_COUNT];
+
+
     };
 }
 

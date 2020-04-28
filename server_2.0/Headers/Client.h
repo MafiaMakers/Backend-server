@@ -15,7 +15,7 @@ namespace Mafia {
     public:
         Client();
         sockaddr_in clientAddr;
-        char * name;
+        std::string name;
         Message lastMes;
         bool connected;
 		bool initialized;

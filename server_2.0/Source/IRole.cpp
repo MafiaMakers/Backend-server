@@ -1,4 +1,6 @@
 #include "IRole.h"
+#include <iostream>
+#pragma warning(disable:4996)
 using namespace Mafia;
 
 IRole::IRole(){}
@@ -13,6 +15,31 @@ char* IRole::die() {
 		res[i + 1] = ((char*)& myIdx)[i];
 	}
 	return res;
+}
+
+bool IRole::getHasSound() {
+	return hasSound;
+}
+
+void IRole::addSound(char* sound) {
+	if (hasSound) {
+		delete[] mySound;
+	}
+	hasSound = true;
+	mySound = new char[SOUND_SIZE];
+	for (int i = 0; i < SOUND_SIZE; i++)
+	{
+		mySound[i] = sound[i];
+	}
+	//this->mySound = sound;
+}
+
+void IRole::clearSound() {
+	hasSound = false;
+}
+
+char* IRole::getSound() {
+	return mySound;
 }
 
 char* IRole::hill() {
@@ -34,6 +61,11 @@ IRole::IRole(int rIdx) {
 	else {
 		red = true;
 	}
+	initialized = true;
+}
+
+bool IRole::isInitialized() {
+	return initialized;
 }
 
 bool IRole::alive() {

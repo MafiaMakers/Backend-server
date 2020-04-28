@@ -40,7 +40,19 @@ namespace Mafia{
 		bool isCandidate = false;
 		int votes = 0;
 		bool answered = false;
+
+		bool getHasSound();
+
+		char* getSound();
+
+		void addSound(char* sound);
+
+		void clearSound();
+
+		bool isInitialized();
 	private:
+		char* mySound;
+		bool hasSound = false;
 		int myIdx = -1;
 		int lpvi = -1;
 		bool canSpeak = true;
@@ -49,6 +61,7 @@ namespace Mafia{
 		bool red = true;
 		bool isAlive = true;
 		int myRoomId = 0;
+		bool initialized = false;
     };
 }
 
