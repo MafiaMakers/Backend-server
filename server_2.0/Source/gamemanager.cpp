@@ -31,15 +31,34 @@ void GameManager::nextStage(char* message, int size) {
 	}
 }
 
+void GameManager::changeName(int index, std::string name) {
+	int trueIndex = -1;
+	for (int i = 0; i < playersCount; i++)
+	{
+		if (playersIndexes[i] == index) {
+			trueIndex = i;
+			break;
+		}
+	}
+	if (trueIndex > -1 && trueIndex < playersCount) {
+		players[trueIndex].setName(name);
+	}
+}
+
 void GameManager::setupRoles(int* roles) {
 	std::cout << "setting roles up" << std::endl;
+	for (int i = 0; i < MAX_ROLE_ID; i++)
+	{
+		std::cout << roles[i] << std::endl;;
+	}
 	_setRoles(_shuffleRoles(roles));
 	gonext = true;
 }
 
-int GameManager::addPlayer(int index) {
+int GameManager::addPlayer(int index, std::string name) {
 	if (playersCount < PLAYERS_MAX_COUNT) {
 		playersIndexes[playersCount] = index;
+		players[playersCount].setName(name);
 		playersCount++;
 		//std::cout << playersCount << std::endl;
 		return 0;
@@ -78,7 +97,7 @@ void GameManager::_freePlayers() {
 void GameManager::setNotPlayers(int* notPlayers, int size) {
 	for (int i = 0; i < size; i++)
 	{
-		players[notPlayers[i]] = IRole(CIVILIAN_ROLE);
+		players[notPlayers[i]] = IRole(NONE_ROLE);
 		players[notPlayers[i]].setMyIdx(playersIndexes[notPlayers[i]]);
 		players[notPlayers[i]].setRoomId(myRoomId);
 		players[notPlayers[i]].die();
@@ -90,6 +109,13 @@ void GameManager::initGame(){
 	
 	_findNewAdmin();
 	_freePlayers();
+	std::string message = "";
+	message += (char)playersCount;
+	for (int i = 0; i < playersCount; i++)
+	{
+		message += players[i].getName() + "\n";
+	}
+	sendToAllInRoom(CLIENTS_INFO_MESSAGE_ID, (char*)message.c_str(), message.length());
 	gonext = false;
 	while (!gonext) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
@@ -104,6 +130,14 @@ void GameManager::initGame(){
     sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
 	std::thread fullGameThread(&GameManager::fullGame, this);
 	fullGameThread.detach();
+	std::cout << "finished" << std::endl;
+	int* mes = new int[playersCount + 1];
+	mes[0] = -1;
+	for (int i = 0; i < playersCount; i++)
+	{
+		mes[i + 1] = players[i].roleIdx();
+	}
+	sendToAllInRoom(RESULTS_MESSAGE_ID, (char*)mes, (playersCount + 1) * 4);
 }
 
 void GameManager::argumentingStage() {
@@ -544,14 +578,20 @@ bool GameManager::canSpeak(int index) {
 
 void GameManager::fullGame() {
 	int res = 0;
+	int* roles = new int[playersCount+1];
+	for (int i = 0; i < playersCount; i++)
+	{
+		roles[i+1] = players[i].roleIdx();
+	}
 	do {
 		res = gameCycle();
 	} while (res == 0);
+	roles[0] = res;
 	if (res == -1) {
-		sendToAllInRoom(TEXT_MESSAGE_ID, (char*)"Mafia wins", 11);
+		sendToAllInRoom(RESULTS_MESSAGE_ID, (char*)&roles, (playersCount + 1) * 4);
 	}
 	else {
-		sendToAllInRoom(TEXT_MESSAGE_ID, (char*)"Civilians win", 14);
+		sendToAllInRoom(RESULTS_MESSAGE_ID, (char*)& roles, (playersCount + 1) * 4);
 	}
 	resultsStage();
 }
@@ -711,7 +751,8 @@ void GameManager::_setRoles(int *roles)
 	//std::cout << "sending roles" << std::endl;
 	int curIdx = 0;
     for(int i = 0; i < playersCount; i++){
-		if (players[i].isInitialized()) {
+		if (!players[i].isInitialized()) {
+			//std::cout << "set " << i << std::endl;
 			players[i] = IRole(roles[curIdx]);
 			players[i].setMyIdx(playersIndexes[i]);
 			players[i].setRoomId(myRoomId);

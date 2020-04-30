@@ -1,5 +1,6 @@
 #ifndef IROLE_H
 #define IROLE_H
+#include <iostream>
 #include "defines_s.h"
 
 namespace Mafia{
@@ -14,6 +15,10 @@ namespace Mafia{
 		void setLastPlayerVotedIndex(int val);
 
 		void setMyIdx(int idx);
+
+		void setName(std::string newName);
+
+		std::string getName();
 
 		char* die();
 
@@ -51,6 +56,7 @@ namespace Mafia{
 
 		bool isInitialized();
 	private:
+		std::string name = "User";
 		char* mySound;
 		bool hasSound = false;
 		int myIdx = -1;

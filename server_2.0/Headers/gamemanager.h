@@ -55,6 +55,7 @@ namespace Mafia{
 
 		char* initRoom();
 
+		void changeName(int index, std::string name);
 
 		int getPlayersCount();
 
@@ -64,7 +65,7 @@ namespace Mafia{
 
 		void setAdmin(int index);
 
-		int addPlayer(int index);
+		int addPlayer(int index, std::string name);
 		//static bool objectInitialized = 0;
     private:
 		void _findNewAdmin();

@@ -29,13 +29,13 @@ namespace Mafia {
 		int* result = new int[MAX_ROLE_ID];
 		for (int i = 0; i < MAX_ROLE_ID; i++)
 		{
-			result[i] = (int)message[i];
+			result[i] = *((int*)(message + i * 4));
 		}
 		if (rooms[rId].isInitialized()) {
 			rooms[rId].setupRoles(result);
 		}
 	}
-
+	
 	void NetWorker::_nextStageMessageProcessor(int rId, char* message, int size) {
 		std::cout << "nextStagethread" << std::endl;
 		std::thread nextStageThread(&GameManager::nextStage, &rooms[rId], message, size);
@@ -309,7 +309,7 @@ namespace Mafia {
 		clients[index].initialized = false;
 		clients[index].connected = false;
 		clients[index].lastMes = Message();
-		clients[index].name = (char*)"";
+		//clients[index].name = (char*)"";
 		clients[index].clientAddr = sockaddr_in();
 	}
 
@@ -346,7 +346,7 @@ namespace Mafia {
 			}
 			clients[freeId] = Client();
 			clients[freeId].initialized = true;
-			clients[freeId].name = name;
+			//clients[freeId].name = name;
 			//strcpy(clients[maxClientIndex].name, message);
 			//clients[maxClientIndex].name = message;
 			clients[freeId].lastMes = Message();
@@ -359,11 +359,11 @@ namespace Mafia {
 			if (clientsCount == 0) {
 				sendMessage(client, SET_ADMIN_MESSAGE_ID, (char*)& clientsCount, 4, roomId);
 			}
-			rooms[roomId].addPlayer(freeId);
+			rooms[roomId].addPlayer(freeId, std::string(name));
 			//maxClientIndex++;
-			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)clients[freeId].name.c_str(), clients[freeId].name.length());
+			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, name, strlen(name));
 			//sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
-			std::cout << clients[freeId].name << " joined room " << roomId << std::endl;
+			std::cout << name << " joined room " << roomId << std::endl;
 			answered[freeId] = true;
 			return 0;
 		}
@@ -434,7 +434,7 @@ namespace Mafia {
 				error = PRIVACY_ERROR;
 				break;
             }
-            std::cout << clients[idx].name << " leaved room" << std::endl;
+            //std::cout << clients[idx].name << " leaved room" << std::endl;
             clients[idx].connected = false;
             break;
         }
@@ -444,10 +444,11 @@ namespace Mafia {
 				error = PRIVACY_ERROR;
 				break;
             }
-            std::cout << clients[idx].name << " changed name to " << message << std::endl;
+            //std::cout << clients[idx].name << " changed name to " << message << std::endl;
             //clients[idx].name = message;
-            clients[idx].name = new char[size];
-            clients[idx].name = message;
+			rooms[roomId].changeName(idx, std::string(message));
+            //clients[idx].name = new char[size];
+           // clients[idx].name = message;
             break;
         }
 		case CHECK_CONNECTION_MESAGE_ID: {
@@ -525,7 +526,8 @@ namespace Mafia {
 				error = PRIVACY_ERROR;
 				break;
 			}
-			if (size != MAX_ROLE_ID) {
+			if (size != MAX_ROLE_ID * 4) {
+				std::cout << "there error " << size << std::endl;
 				error = SHORT_MESSAGE_ERROR;
 				break;
 			}

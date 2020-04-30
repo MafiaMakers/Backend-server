@@ -62,10 +62,19 @@ IRole::IRole(int rIdx) {
 		red = true;
 	}
 	initialized = true;
+	std::cout << "now initialized!" << std::endl;
 }
 
 bool IRole::isInitialized() {
 	return initialized;
+}
+
+void IRole::setName(std::string newName) {
+	this->name = newName;
+}
+
+std::string IRole::getName() {
+	return this->name;
 }
 
 bool IRole::alive() {
