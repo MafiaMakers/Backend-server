@@ -11,7 +11,7 @@
 #define THINK_TIME 45000
 #define DELTA_TIME 100
 #define VOTE_TIME 15000
-#define TALK_TIME 60000
+#define TALK_TIME 15000
 #define KEY_SIZE 20
 #define SOUND_SIZE 200
 #define SOUND_PING 10
