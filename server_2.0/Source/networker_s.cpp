@@ -565,8 +565,6 @@ namespace Mafia {
 				sendMessage(client, KEY_MESSAGE_ID, key, KEY_SIZE, i);
 				std::cout << "room created " << i << std::endl;
 			}
-			int res = 1;
-			//sendMessage(client, RESULTS_MESSAGE_ID, (char*)&res, 4, roomId);
 			break;
 		}
 		case VIDEO_MESSAGE_ID: {
