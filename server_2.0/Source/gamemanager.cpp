@@ -149,7 +149,10 @@ void GameManager::argumentingStage() {
 			for (int j = 0; j < TALK_TIME / DELTA_TIME; j++)
 			{
 				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
-				if (!roomCreated || players[(i + roundIndex) % playersCount].answered) {
+				if (!roomCreated) {
+					return;
+				}
+				if (players[(i + roundIndex) % playersCount].answered) {
 					break;
 				}
 			}
@@ -284,6 +287,9 @@ void GameManager::deathStage(int deathRound){
 				for (int j = 0; j < TALK_TIME / DELTA_TIME; j++)
 				{
 					std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+					if (!roomCreated) {
+						return;
+					}
 					if (players[i].answered) {
 						break;
 					}
@@ -301,6 +307,9 @@ void GameManager::deathStage(int deathRound){
 	for (int i = 0; i < VOTE_TIME / DELTA_TIME; i++)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+		if (!roomCreated) {
+			return;
+		}
 		bool allAnswered = true;
 		for (int j = 0; j < playersCount; j++)
 		{
@@ -485,7 +494,9 @@ void GameManager::nightStage(){
 			{
 				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 				bool answered = false;
-				
+				if (!roomCreated) {
+					return;
+				}
 				//std::cout << idx << std::endl;
 				if (idx != -1) {
 					if (players[idx].lastPlayerVotedIndex() != -1) {
@@ -550,6 +561,9 @@ void GameManager::speakingStage(){
 	gonext = false;
 	//std::cout << "speaking stage started!" << std::endl;
 	while (!gonext) {
+		if (!roomCreated) {
+			return;
+		}
 		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
 	}
 	if (roomCreated) {
@@ -566,10 +580,25 @@ void GameManager::resultsStage(){
 int GameManager::gameCycle() {
 	currentState = SPEAKING_STAGE;
 	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
+	if (!roomCreated) {
+		return CLOSED_ROOM_REQUEST_ERROR;
+	}
 	speakingStage();
+	if (!roomCreated) {
+		return CLOSED_ROOM_REQUEST_ERROR;
+	}
 	nightStage();
+	if (!roomCreated) {
+		return CLOSED_ROOM_REQUEST_ERROR;
+	}
 	argumentingStage();
+	if (!roomCreated) {
+		return CLOSED_ROOM_REQUEST_ERROR;
+	}
 	deathStage();
+	if (!roomCreated) {
+		return CLOSED_ROOM_REQUEST_ERROR;
+	}
 	return(_checkWin());
 }
 
@@ -592,6 +621,10 @@ void GameManager::fullGame() {
 	do {
 		res = gameCycle();
 	} while (res == 0 && roomCreated);
+	if (!roomCreated) {
+		std::cout << "room closed" << std::endl;
+		return;
+	}
 	roles[0] = res;
 	//std::cout << roles[1] << std::endl;
 	if (res == -1) {
