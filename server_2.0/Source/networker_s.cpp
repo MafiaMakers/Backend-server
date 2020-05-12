@@ -328,7 +328,7 @@ namespace Mafia {
 
 	}
 
-	int NetWorker::_connectClient(sockaddr_in client, char roomId, char* key, char* name) {
+	int NetWorker::_connectClient(sockaddr_in client, char roomId, char* key, std::string name) {
 		int freeId = _getFirstFreeIndex();
 		if (freeId != -1) {
 
@@ -361,7 +361,7 @@ namespace Mafia {
 			}
 			rooms[roomId].addPlayer(freeId, std::string(name));
 			//maxClientIndex++;
-			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, name, strlen(name));
+			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)name.c_str(), name.length());
 			//sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
 			std::cout << name << " joined room " << roomId << std::endl;
 			answered[freeId] = true;
@@ -408,19 +408,22 @@ namespace Mafia {
 			char rId = message[0];
 			char* key = message + 1;
 			if (rId < 0 || rId >= ROOMS_MAX_COUNT) {
+				std::cout << "connection error" << std::endl;
 				error = ROOM_ID_ERROR;
 				break;
 			}
             if(!rooms[rId].isOpened()){
+				std::cout << "connection error" << std::endl;
 				error = CLOSED_ROOM_REQUEST_ERROR;
 				break;
             }
 			if (size <= KEY_SIZE + 1) {
+				std::cout << "connection error" << std::endl;
 				error = SHORT_MESSAGE_ERROR;
 				break;
 			}
 			char* name = message + KEY_SIZE + 1;
-			return _connectClient(client, rId, key, name);
+			return _connectClient(client, rId, key, std::string(name, size - KEY_SIZE - 1));
             break;
         }
         case SUCCESS_MESSAGE_ID:{
@@ -444,9 +447,10 @@ namespace Mafia {
 				error = PRIVACY_ERROR;
 				break;
             }
+			std::cout << size << " - " << message << std::endl;
             //std::cout << clients[idx].name << " changed name to " << message << std::endl;
             //clients[idx].name = message;
-			rooms[roomId].changeName(idx, std::string(message));
+			rooms[roomId].changeName(idx, std::string(message, size));
             //clients[idx].name = new char[size];
            // clients[idx].name = message;
             break;
@@ -556,7 +560,7 @@ namespace Mafia {
 			}
 			char* key = rooms[i].initRoom();
 			rooms[i].setMyRoomId(i);
-			int err = _connectClient(client, i, key, message);
+			int err = _connectClient(client, i, key, std::string(message, size));
 			if (err != 0) {
 				std::cout << "error " << err << std::endl;
 			}

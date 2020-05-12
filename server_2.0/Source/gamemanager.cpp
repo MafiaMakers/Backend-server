@@ -42,6 +42,14 @@ void GameManager::changeName(int index, std::string name) {
 	}
 	if (trueIndex > -1 && trueIndex < playersCount) {
 		players[trueIndex].setName(name);
+		char* message = new char[name.length() + 1];
+		std::cout << name << std::endl;
+		message[0] = (char)index;
+		for (int i = 0; i < name.length(); i++)
+		{
+			message[i + 1] = name[i];
+		}
+		sendToAllInRoom(CHANGE_NAME_MESSAGE_ID, message, name.length() + 1);
 	}
 }
 
@@ -68,7 +76,7 @@ int GameManager::addPlayer(int index, std::string name) {
 	}
 }
 
-void GameManager::_freePlayers() {
+void GameManager::freePlayers() {
 	for (int i = playersCount - 1; i >= 0; i--)
 	{
 		if (!netWorkerSingleton->isClientOnline(playersIndexes[i])) {
@@ -101,6 +109,14 @@ void GameManager::setNotPlayers(int* notPlayers, int size) {
 		players[notPlayers[i]].setMyIdx(playersIndexes[notPlayers[i]]);
 		players[notPlayers[i]].setRoomId(myRoomId);
 		players[notPlayers[i]].die();
+		char* mes = new char[5];
+		mes[0] = (char)true;
+		for (int j = 0; j < 4; j++)
+		{
+			mes[j + 1] = ((char*)&notPlayers[i])[j];
+		}
+		sendToAllInRoom(DIE_HEAL_MESSAGE_ID, mes, 5);
+		delete[] mes;
 	}
 }
 
@@ -108,7 +124,7 @@ void GameManager::initGame(){
 	roomOpened = false;
 	
 	_findNewAdmin();
-	_freePlayers();
+	freePlayers();
 	std::string message = "";
 	message += (char)playersCount;
 	for (int i = 0; i < playersCount; i++)
@@ -303,27 +319,49 @@ void GameManager::deathStage(int deathRound){
 		
 	}
 
-	sendToAllAlive(VOTE_MESSAGE_ID, (char*)"string up", 10);
-	for (int i = 0; i < VOTE_TIME / DELTA_TIME; i++)
+	for (int i = 0; i < playersCount; i++)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
-		if (!roomCreated) {
-			return;
-		}
-		bool allAnswered = true;
-		for (int j = 0; j < playersCount; j++)
-		{
-			if (players[j].alive()) {
-				if (players[j].lastPlayerVotedIndex() == -1) {
-					allAnswered = false;
+		if (players[i].isCandidate) {
+			sendToAllAlive(VOTE_MESSAGE_ID, (char*)&i, 4);
+			for (int i = 0; i < VOTE_TIME / DELTA_TIME; i++)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(DELTA_TIME));
+				if (!roomCreated) {
+					return;
+				}
+				bool allAnswered = true;
+				for (int j = 0; j < playersCount; j++)
+				{
+					if (players[j].alive()) {
+						if (players[j].lastPlayerVotedIndex() == -1) {
+							allAnswered = false;
+							break;
+						}
+					}
+				}
+				if (allAnswered) {
 					break;
 				}
 			}
 		}
-		if (allAnswered) {
-			break;
+		for (int j = 0; j < playersCount; j++)
+		{
+			if (players[j].alive() && players[j].lastPlayerVotedIndex() == i) {
+				char* result = new char[8];
+				for (int k = 0; k < 4; k++)
+				{
+					result[k] = ((char*)&i)[k];
+				}
+				for (int k = 0; k < 4; k++)
+				{
+					result[k + 4] = ((char*)&i)[k];
+				}
+				sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
+			}
 		}
 	}
+
+	sendToAllInRoom(FINISH_VOTING_MESSAGE_ID, (char*)"a", 2);
 	int defaultIndex = 0;
 	for (int i = 0; i < playersCount; i++)
 	{
@@ -341,16 +379,7 @@ void GameManager::deathStage(int deathRound){
 			if (voteIdx != -1 && voteIdx < playersCount) {
 				if (players[voteIdx].isCandidate) {
 					players[voteIdx].votes++;
-					char* result = new char[8];
-					for (int j = 0; j < 4; j++)
-					{
-						result[j] = ((char*)& i)[j];
-					}
-					for (int j = 0; j < 4; j++)
-					{
-						result[j + 4] = ((char*)& voteIdx)[j];
-					}
-					sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
+					
 					fine = true;
 				}
 			}
@@ -584,6 +613,10 @@ int GameManager::gameCycle() {
 		return CLOSED_ROOM_REQUEST_ERROR;
 	}
 	speakingStage();
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanListenNow(true);
+	}
 	if (!roomCreated) {
 		return CLOSED_ROOM_REQUEST_ERROR;
 	}
@@ -591,13 +624,25 @@ int GameManager::gameCycle() {
 	if (!roomCreated) {
 		return CLOSED_ROOM_REQUEST_ERROR;
 	}
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanListenNow(true);
+	}
 	argumentingStage();
 	if (!roomCreated) {
 		return CLOSED_ROOM_REQUEST_ERROR;
 	}
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanListenNow(true);
+	}
 	deathStage();
 	if (!roomCreated) {
 		return CLOSED_ROOM_REQUEST_ERROR;
+	}
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanListenNow(true);
 	}
 	return(_checkWin());
 }

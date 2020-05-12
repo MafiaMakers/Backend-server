@@ -66,7 +66,7 @@ namespace Mafia {
         int _decodeMessage(char* bytes, int size, char* result, short* getMessageId, int* resultRoomId);
         void _initSocket();
 
-		int _connectClient(sockaddr_in client, char roomId, char* key, char* name);
+		int _connectClient(sockaddr_in client, char roomId, char* key, std::string name);
 
 		int getRoomIdByIndex(int index);
 

@@ -66,10 +66,10 @@ namespace Mafia{
 		void setAdmin(int index);
 
 		int addPlayer(int index, std::string name);
+		void freePlayers();
 		//static bool objectInitialized = 0;
     private:
 		void _findNewAdmin();
-		void _freePlayers();
 		int _checkWin();
         //fills arr with rolesCount
         int _setRolesCount(int* arr);
