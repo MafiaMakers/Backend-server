@@ -44,7 +44,7 @@ void GameManager::changeName(int index, std::string name) {
 		players[trueIndex].setName(name);
 		char* message = new char[name.length() + 1];
 		std::cout << name << std::endl;
-		message[0] = (char)index;
+		message[0] = (char)trueIndex;
 		for (int i = 0; i < name.length(); i++)
 		{
 			message[i + 1] = name[i];
@@ -64,9 +64,19 @@ void GameManager::setupRoles(int* roles) {
 }
 
 int GameManager::addPlayer(int index, std::string name) {
+	std::string message;
+	message += (char)playersCount;
+	for (int i = 0; i < playersCount; i++)
+	{
+		message += players[i].getName() + "\n";
+	}
 	if (playersCount < PLAYERS_MAX_COUNT) {
+		
+		netWorkerSingleton->sendMessage(index, CLIENTS_INFO_MESSAGE_ID, (char*)message.c_str(), message.length(), myRoomId);
 		playersIndexes[playersCount] = index;
 		players[playersCount].setName(name);
+		std::cout << players[playersCount].getName() << std::endl;
+		netWorkerSingleton->sendMessage(index, CLIENT_INDEX_MESSAGE_ID, (char*)&playersCount, 4, myRoomId);
 		playersCount++;
 		//std::cout << playersCount << std::endl;
 		return 0;
@@ -91,21 +101,50 @@ void GameManager::freePlayers() {
 			}
 
 			playersCount--;
+			
 			players[playersCount] = IRole();
 		}
 	}
-	sendToAllInRoom(SET_ADMIN_MESSAGE_ID, (char*)& adminIdx, 4);
-	sendToAllInRoom(CLIENTS_COUNT_MESSAGE_ID, (char*)& playersCount, 4);
+	/*for (int i = 0; i < playersCount; i++)
+	{
+		int fIdx = abs(random() % playersCount);
+		int sIdx = abs(random() % playersCount);
+
+		IRole cp = players[fIdx];
+		players[fIdx] = players[sIdx];
+		players[sIdx] = cp;
+
+		if (fIdx == adminIdx || sIdx == adminIdx) {
+			adminIdx = fIdx + sIdx - adminIdx;
+		}
+
+		int ci = playersIndexes[fIdx];
+		playersIndexes[fIdx] = playersIndexes[sIdx];
+		playersIndexes[sIdx] = ci;
+	}*/
+	std::string message = "";
+	message += (char)playersCount;
 	for (int i = 0; i < playersCount; i++)
 	{
-		netWorkerSingleton->sendMessage(playersIndexes[i], CLIENT_INDEX_MESSAGE_ID, (char*)& i, 4, myRoomId);
+		message += players[i].getName() + "\n";
 	}
+	sendToAllInRoom(CLIENTS_INFO_MESSAGE_ID, (char*)message.c_str(), message.length());
+
+	for (int i = 0; i < playersCount; i++)
+	{
+		netWorkerSingleton->sendMessage(playersIndexes[i], CLIENT_INDEX_MESSAGE_ID, (char*)&i, 4, myRoomId);
+	}
+	sendToAllInRoom(SET_ADMIN_MESSAGE_ID, (char*)&adminIdx, 4);
+	
 }
 
 void GameManager::setNotPlayers(int* notPlayers, int size) {
 	for (int i = 0; i < size; i++)
 	{
+		std::string name = players[notPlayers[i]].getName();
 		players[notPlayers[i]] = IRole(NONE_ROLE);
+		players[notPlayers[i]].setName(name);
+		std::cout << players[notPlayers[i]].getName() << std::endl;
 		players[notPlayers[i]].setMyIdx(playersIndexes[notPlayers[i]]);
 		players[notPlayers[i]].setRoomId(myRoomId);
 		players[notPlayers[i]].die();
@@ -125,6 +164,7 @@ void GameManager::initGame(){
 	
 	_findNewAdmin();
 	freePlayers();
+	netWorkerSingleton->sendMessage(playersIndexes[adminIdx], START_GAME_MESSAGE_ID, (char*)"A", 2, myRoomId);
 	std::string message = "";
 	message += (char)playersCount;
 	for (int i = 0; i < playersCount; i++)
@@ -318,6 +358,13 @@ void GameManager::deathStage(int deathRound){
 		}
 		
 	}
+	currentState++;
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanListenNow(true);
+		players[i].setCanSpeakNow(true);
+	}
 
 	for (int i = 0; i < playersCount; i++)
 	{
@@ -356,7 +403,7 @@ void GameManager::deathStage(int deathRound){
 				{
 					result[k + 4] = ((char*)&i)[k];
 				}
-				sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
+				//sendToAllInRoom(MADE_VOTE_MESSAGE, result, 8);
 			}
 		}
 	}
@@ -419,6 +466,7 @@ void GameManager::deathStage(int deathRound){
 				}
 				players[i].votes = 0;
 			}
+			currentState = DEATH_STAGE;
 			sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
 			_sendCandidates();
 			deathStage(1);
@@ -588,6 +636,13 @@ void GameManager::nightStage(){
 
 void GameManager::speakingStage(){
 	gonext = false;
+	for (int i = 0; i < playersCount; i++)
+	{
+		players[i].setCanSpeakNow(true);
+		players[i].setCanListenNow(true);
+		bool can = true;
+		netWorkerSingleton->sendMessage(playersIndexes[i], CAN_SPEAK_MESSAGE_ID, (char*)&(can), 1, myRoomId);
+	}
 	//std::cout << "speaking stage started!" << std::endl;
 	while (!gonext) {
 		if (!roomCreated) {
@@ -603,7 +658,24 @@ void GameManager::speakingStage(){
 }
 
 void GameManager::resultsStage(){
-	finish();
+	freePlayers();
+	currentState = WAITING_STAGE;
+	roomOpened = true;
+	roundIndex = 0;
+	sendToAllInRoom(STAGE_MESSAGE_ID, (char*)&currentState, 4);
+	for (int i = 0; i < playersCount; i++)
+	{
+		std::string name = players[i].getName();
+		players[i] = IRole();
+		players[i].setMyIdx(i);
+		players[i].setName(name);
+		std::cout << players[i].getName() << std::endl;
+		players[i].setRoomId(myRoomId);
+		std::cout << name << std::endl;
+		players[i].setCanListenNow(true);
+		players[i].setCanSpeakNow(true);
+	}
+	//finish();
 }
 
 int GameManager::gameCycle() {
@@ -665,6 +737,7 @@ void GameManager::fullGame() {
 	}
 	do {
 		res = gameCycle();
+		roundIndex++;
 	} while (res == 0 && roomCreated);
 	if (!roomCreated) {
 		std::cout << "room closed" << std::endl;
@@ -840,7 +913,10 @@ void GameManager::_setRoles(int *roles)
     for(int i = 0; i < playersCount; i++){
 		if (!players[i].isInitialized()) {
 			//std::cout << "set " << i << std::endl;
+			std::string name = players[i].getName();
 			players[i] = IRole(roles[curIdx]);
+			players[i].setName(name);
+			std::cout << players[i].getName() << std::endl;
 			players[i].setMyIdx(playersIndexes[i]);
 			players[i].setRoomId(myRoomId);
 			netWorkerSingleton->sendMessage(playersIndexes[i], ROLE_MESSAGE_ID, (char*)& roles[i], 4, myRoomId);
@@ -901,6 +977,19 @@ void GameManager::vote(int voterIdx, int playerIdx) {
 	{
 		if (playersIndexes[i] == voterIdx) {
 			players[i].setLastPlayerVotedIndex(playerIdx);
+			if (currentState == DEATH_STAGE) {
+				char* res = new char[8];
+				for (int j = 0; j < 4; j++)
+				{
+					res[j] = ((char*)&voterIdx)[j];
+				}
+				for (int j = 0; j < 4; j++)
+				{
+					res[4+j] = ((char*)&playerIdx)[j];
+				}
+				sendToAllInRoom(MADE_VOTE_MESSAGE, res, 8);
+				delete[] res;
+			}
 			//std::cout << i << " votes for " << playerIdx << std::endl;
 			break;
 		}

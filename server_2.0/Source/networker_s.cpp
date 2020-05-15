@@ -359,9 +359,11 @@ namespace Mafia {
 			if (clientsCount == 0) {
 				sendMessage(client, SET_ADMIN_MESSAGE_ID, (char*)& clientsCount, 4, roomId);
 			}
+			
 			rooms[roomId].addPlayer(freeId, std::string(name));
 			//maxClientIndex++;
 			rooms[roomId].sendToAllInRoom(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, (char*)name.c_str(), name.length());
+
 			//sendToAll(CLIENT_CONNECTED_DISCONNECTED_MESSAGE_ID, message, size);
 			std::cout << name << " joined room " << roomId << std::endl;
 			answered[freeId] = true;
