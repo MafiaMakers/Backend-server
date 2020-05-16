@@ -6,13 +6,13 @@ using namespace Mafia;
 IRole::IRole(){}
 
 
-char* IRole::die() {
+char* IRole::die(int idx) {
 	isAlive = false;
 	char* res = new char[5];
 	res[0] = (char)isAlive;
 	for (int i = 0; i < 4; i++)
 	{
-		res[i + 1] = ((char*)& myIdx)[i];
+		res[i + 1] = ((char*)& idx)[i];
 	}
 	return res;
 }

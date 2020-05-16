@@ -20,7 +20,7 @@ namespace Mafia{
 
 		std::string getName();
 
-		char* die();
+		char* die(int idx);
 
 		char* hill();
 

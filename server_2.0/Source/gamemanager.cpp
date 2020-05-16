@@ -147,7 +147,7 @@ void GameManager::setNotPlayers(int* notPlayers, int size) {
 		std::cout << players[notPlayers[i]].getName() << std::endl;
 		players[notPlayers[i]].setMyIdx(playersIndexes[notPlayers[i]]);
 		players[notPlayers[i]].setRoomId(myRoomId);
-		players[notPlayers[i]].die();
+		players[notPlayers[i]].die(notPlayers[i]);
 		char* mes = new char[5];
 		mes[0] = (char)true;
 		for (int j = 0; j < 4; j++)
@@ -477,7 +477,7 @@ void GameManager::deathStage(int deathRound){
 	if (maxIdx != -1) {
 		bool changeFather = (maxIdx == _getFather());
 		
-		sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[maxIdx].die(), 5);
+		sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[maxIdx].die(maxIdx), 5);
 
 		if (changeFather) {
 			int fatherId = _getFather();
@@ -604,7 +604,7 @@ void GameManager::nightStage(){
 				if (victim != resHilled) {
 					bool changeFather = (victim == _getFather());
 					//std::cout << "kill " << victim << std::endl;
-					sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[victim].die(), 5);
+					sendToAllInRoom(DIE_HEAL_MESSAGE_ID, players[victim].die(victim), 5);
 
 					if (changeFather) {
 						int fatherId = _getFather();
@@ -977,7 +977,7 @@ void GameManager::vote(int voterIdx, int playerIdx) {
 	{
 		if (playersIndexes[i] == voterIdx) {
 			players[i].setLastPlayerVotedIndex(playerIdx);
-			if (currentState == DEATH_STAGE) {
+			if (currentState == DEATH_STAGE || currentState == KILLING_STAGE) {
 				char* res = new char[8];
 				for (int j = 0; j < 4; j++)
 				{
