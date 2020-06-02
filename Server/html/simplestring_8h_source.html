@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл simplestring.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">simplestring.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="simplestring_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef SIMPLESTRING_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define SIMPLESTRING_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html">   11</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_mafia_1_1_string.html">String</a>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html#a7a8a34099075f6021668df787d3745af">   18</a></span>&#160;        <a class="code" href="class_mafia_1_1_string.html#a7a8a34099075f6021668df787d3745af">String</a>(<span class="keywordtype">char</span>* d, <span class="keywordtype">int</span> s){</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            this-&gt;<a class="code" href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">data</a> = d;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            this-&gt;<a class="code" href="class_mafia_1_1_string.html#ac91cf392764c223921095097e5d87487">size</a> = s;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html#a39f7ad3357a3e03438a2bdc181257cce">   26</a></span>&#160;        <a class="code" href="class_mafia_1_1_string.html#a39f7ad3357a3e03438a2bdc181257cce">String</a>(std::string <a class="code" href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">data</a>){</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            this-&gt;data = (<span class="keywordtype">char</span>*)<a class="code" href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">data</a>.c_str();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            this-&gt;<a class="code" href="class_mafia_1_1_string.html#ac91cf392764c223921095097e5d87487">size</a> = data.length();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html#a4d6ffd3725d8ee033d5fd0fd7684efcc">   35</a></span>&#160;        <a class="code" href="class_mafia_1_1_string.html#a4d6ffd3725d8ee033d5fd0fd7684efcc">String</a>(){</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="class_mafia_1_1_string.html#a4d6ffd3725d8ee033d5fd0fd7684efcc">String</a>(0, 0);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">   39</a></span>&#160;        <span class="keywordtype">char</span>* <a class="code" href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">data</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_mafia_1_1_string.html#ac91cf392764c223921095097e5d87487">   41</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="class_mafia_1_1_string.html#ac91cf392764c223921095097e5d87487">size</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    };</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif // SIMPLESTRING_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_string_html_a3c65d494c71246633b3ae1b49ad8a6b5"><div class="ttname"><a href="class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5">Mafia::String::data</a></div><div class="ttdeci">char * data</div><div class="ttdoc">массив данных строки</div><div class="ttdef"><b>Definition:</b> simplestring.h:39</div></div>
+<div class="ttc" id="aclass_mafia_1_1_string_html_ac91cf392764c223921095097e5d87487"><div class="ttname"><a href="class_mafia_1_1_string.html#ac91cf392764c223921095097e5d87487">Mafia::String::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">длина массива данных</div><div class="ttdef"><b>Definition:</b> simplestring.h:41</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdef"><b>Definition:</b> crypto.h:6</div></div>
+<div class="ttc" id="aclass_mafia_1_1_string_html_a39f7ad3357a3e03438a2bdc181257cce"><div class="ttname"><a href="class_mafia_1_1_string.html#a39f7ad3357a3e03438a2bdc181257cce">Mafia::String::String</a></div><div class="ttdeci">String(std::string data)</div><div class="ttdoc">String конструктор, создающий строку из std::string.</div><div class="ttdef"><b>Definition:</b> simplestring.h:26</div></div>
+<div class="ttc" id="aclass_mafia_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_string.html">Mafia::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:11</div></div>
+<div class="ttc" id="aclass_mafia_1_1_string_html_a4d6ffd3725d8ee033d5fd0fd7684efcc"><div class="ttname"><a href="class_mafia_1_1_string.html#a4d6ffd3725d8ee033d5fd0fd7684efcc">Mafia::String::String</a></div><div class="ttdeci">String()</div><div class="ttdoc">String пустой конструктор, который создает строку, к которой НЕЛЬЗЯ обращаться, так как в ней пустой ...</div><div class="ttdef"><b>Definition:</b> simplestring.h:35</div></div>
+<div class="ttc" id="aclass_mafia_1_1_string_html_a7a8a34099075f6021668df787d3745af"><div class="ttname"><a href="class_mafia_1_1_string.html#a7a8a34099075f6021668df787d3745af">Mafia::String::String</a></div><div class="ttdeci">String(char *d, int s)</div><div class="ttdoc">String конструктор, создающий строку из массива символов и его размера</div><div class="ttdef"><b>Definition:</b> simplestring.h:18</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>
