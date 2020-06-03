@@ -24,8 +24,11 @@ namespace Mafia {
          * \param data данные из которых копировать строку
          */
         String(std::string data){
-            this->data = (char*)data.c_str();
+            this->data = new char[data.length()];
             this->size = data.length();
+            for(int i = 0; i < this->size; i++){
+                this->data[i] = data[i];
+            }
         }
         /*!
          * \brief String пустой конструктор, который создает строку, к которой НЕЛЬЗЯ обращаться, так как в ней пустой указатель.
@@ -33,7 +36,22 @@ namespace Mafia {
          * Можно использовать в случае, когда строка тут же будет инициализирована какой-нибудь функцией или типа того
          */
         String(){
-            String(0, 0);
+            data = 0;
+            size = 0;
+        }
+
+        /*!
+         * \brief Оператор глубокого копирования
+         * \param source строка, из которой копировать
+         * \return Строку, полученную в результате копирования
+         */
+        String operator = (String source){
+            this->size = source.size;
+            this->data = new char[this->size];
+            for(int i = 0; i < this->size; i++){
+                this->data[i] = source.data[i];
+            }
+            return source;
         }
         //! массив данных строки
         char* data;

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['parse_5fdata_25',['parse_data',['../class_mafia_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c',1,'Mafia::Crypto::parse_data(char *data, int size)'],['../class_mafia_1_1_crypto.html#ae340ea5cfe03a701f1f7a8b652fb572d',1,'Mafia::Crypto::parse_data(String data)']]],
-  ['port_26',['port',['../struct_mafia_1_1_client.html#aedf850412dbaa664a0a998f1240466e7',1,'Mafia::Client']]]
+  ['key_28',['key',['../class_mafia_1_1_crypto.html#a4fea78a023d3c8cfa29b4e4985d0979b',1,'Mafia::Crypto']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mafia_42',['Mafia',['../namespace_mafia.html',1,'']]]
+  ['mafia_101',['Mafia',['../namespace_mafia.html',1,'']]]
 ];

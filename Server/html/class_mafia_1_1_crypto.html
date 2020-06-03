@@ -118,9 +118,12 @@ $(function() {
 <tr class="memitem:a4fea78a023d3c8cfa29b4e4985d0979b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_crypto.html#a4fea78a023d3c8cfa29b4e4985d0979b">key</a> = <a class="el" href="class_mafia_1_1_string.html">String</a>()</td></tr>
 <tr class="memdesc:a4fea78a023d3c8cfa29b4e4985d0979b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ключ шифрования  <a href="class_mafia_1_1_crypto.html#a4fea78a023d3c8cfa29b4e4985d0979b">Подробнее...</a><br /></td></tr>
 <tr class="separator:a4fea78a023d3c8cfa29b4e4985d0979b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9cf489d73ac6b331bac751adf46e81d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_crypto.html#aa9cf489d73ac6b331bac751adf46e81d">lastMessageId</a> = 0</td></tr>
-<tr class="memdesc:aa9cf489d73ac6b331bac751adf46e81d"><td class="mdescLeft">&#160;</td><td class="mdescRight">последний полученный подходящий id сообщения  <a href="class_mafia_1_1_crypto.html#aa9cf489d73ac6b331bac751adf46e81d">Подробнее...</a><br /></td></tr>
-<tr class="separator:aa9cf489d73ac6b331bac751adf46e81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f2408d825bb86a476d19e5784051ca4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_limited_queue.html">LimitedQueue</a>&lt; <a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_crypto.html#a9f2408d825bb86a476d19e5784051ca4">lastMessageIds</a> = new <a class="el" href="class_mafia_1_1_limited_queue.html">LimitedQueue</a>&lt;<a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&gt;(<a class="el" href="class_mafia_1_1_crypto.html#a0f091ed556d6f0b99fc81b24d09c9571">rememberMessagesCount</a>)</td></tr>
+<tr class="memdesc:a9f2408d825bb86a476d19e5784051ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Последние несколько id сообщений  <a href="class_mafia_1_1_crypto.html#a9f2408d825bb86a476d19e5784051ca4">Подробнее...</a><br /></td></tr>
+<tr class="separator:a9f2408d825bb86a476d19e5784051ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f091ed556d6f0b99fc81b24d09c9571"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_crypto.html#a0f091ed556d6f0b99fc81b24d09c9571">rememberMessagesCount</a> = 2</td></tr>
+<tr class="memdesc:a0f091ed556d6f0b99fc81b24d09c9571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество id сообщений, которые необходимо удерживать в памяти  <a href="class_mafia_1_1_crypto.html#a0f091ed556d6f0b99fc81b24d09c9571">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0f091ed556d6f0b99fc81b24d09c9571"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>По сути статический класс (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими) Класс используется для кодирования, декодирования, распаковки и запаковки сообщений перед отправкой или после получения по сети. </p>
@@ -458,8 +461,8 @@ $(function() {
 
 </div>
 </div>
-<a id="aa9cf489d73ac6b331bac751adf46e81d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9cf489d73ac6b331bac751adf46e81d">&#9670;&nbsp;</a></span>lastMessageId</h2>
+<a id="a9f2408d825bb86a476d19e5784051ca4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f2408d825bb86a476d19e5784051ca4">&#9670;&nbsp;</a></span>lastMessageIds</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -468,7 +471,7 @@ $(function() {
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> Crypto::lastMessageId = 0</td>
+          <td class="memname"><a class="el" href="class_mafia_1_1_limited_queue.html">LimitedQueue</a>&lt; <a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> &gt; * Crypto::lastMessageIds = new <a class="el" href="class_mafia_1_1_limited_queue.html">LimitedQueue</a>&lt;<a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&gt;(<a class="el" href="class_mafia_1_1_crypto.html#a0f091ed556d6f0b99fc81b24d09c9571">rememberMessagesCount</a>)</td>
         </tr>
       </table>
   </td>
@@ -478,7 +481,31 @@ $(function() {
 </table>
 </div><div class="memdoc">
 
-<p>последний полученный подходящий id сообщения </p>
+<p>Последние несколько id сообщений </p>
+
+</div>
+</div>
+<a id="a0f091ed556d6f0b99fc81b24d09c9571"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f091ed556d6f0b99fc81b24d09c9571">&#9670;&nbsp;</a></span>rememberMessagesCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Crypto::rememberMessagesCount = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество id сообщений, которые необходимо удерживать в памяти </p>
 
 </div>
 </div>

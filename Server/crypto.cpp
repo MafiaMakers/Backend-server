@@ -3,15 +3,16 @@
 
 using namespace Mafia;
 
-MessageIdType Crypto::lastMessageId = 0;
+LimitedQueue<MessageIdType>* Crypto::lastMessageIds = new LimitedQueue<MessageIdType>(rememberMessagesCount);
 String Crypto::key = String();
 
 void Crypto::setKey(String key){
+    lastMessageIds = new LimitedQueue<MessageIdType>(rememberMessagesCount);
     Crypto::key = key;
 }
 
 void Crypto::setKey(std::string key){
-    Crypto::key = String((char*)key.c_str(), key.length());
+    Crypto::key = String(key);
 }
 
 void Crypto::setKey(char* key, int size){
@@ -49,8 +50,6 @@ Message Crypto::parse_data(char *data, int size){
     result.id = *(MessageIdType*)mesIdChar;
     if(!Crypto::_message_id_ok(result.id)){
         throw new MessageParsingException(String("message id is less or equal to previous"), INVALID_MESSAGE_ID_EXCEPTION_ID);
-    } else{
-        Crypto::lastMessageId = result.id;
     }
 
     char* mesTypeChar = new char[sizeof (MessageTypeType)];
@@ -92,6 +91,8 @@ Message Crypto::parse_data(char *data, int size){
         throw new MessageParsingException(String("control sum doesn't match to real sum"), CONTROL_SUM_EXCEPTION_ID);
     }
 
+    Crypto::lastMessageIds->append(result.id);
+
     return result;
 }
 
@@ -109,7 +110,6 @@ String Crypto::wrap_message(Message mes){
     String resultData = String(new char[size], size);
 
     unsigned int currentInd = 0;
-
     for(unsigned int i = 0; i < sizeof(MessageIdType); i++){
         resultData.data[currentInd] = ((char*)(&(mes.id)))[i];
         currentInd++;
@@ -123,7 +123,6 @@ String Crypto::wrap_message(Message mes){
     currentInd += sizeof (ControlSumType);
 
     ControlSumType controlSum = 0;
-
     for(int i = 0; i < mes.size; i++){
         for(unsigned int j = 0; j < sizeof (SymbolType); j++){
             resultData.data[currentInd] = ((char*)&mes.data[i])[j];
@@ -142,18 +141,49 @@ String Crypto::wrap_message(Message mes){
     } catch (Exception* exception) {
         throw exception;
     }
+
     return result;
 }
 
 bool Crypto::_message_id_ok(MessageIdType id)
 {
-    return (id > Crypto::lastMessageId);
+    return(!(lastMessageIds->contains(id)) || id == -1);
 }
 
 String Crypto::_encrypt(String decrypted){
-    return decrypted;
+    if(Crypto::key.size == 0){
+        throw new MessageParsingException(String("encryption failed! Key is not set"), NONE_KEY_EXCEPTION_ID);
+    }
+    String encrypted = String(new char[decrypted.size], decrypted.size);
+    for(int i = 0; i < decrypted.size; i++){
+        short num = (short)decrypted.data[i] + (short)Crypto::key.data[i % Crypto::key.size];
+        if(num > 128){
+            num -= 256;
+        }
+        if(num < -128){
+            num += 256;
+        }
+        encrypted.data[i] = (char)num;
+    }
+
+    return encrypted;
 }
 
 String Crypto::_decrypt(String encrypted){
-    return encrypted;
+    if(Crypto::key.size == 0){
+        throw new MessageParsingException(String("decryption failed! Key is not set"), NONE_KEY_EXCEPTION_ID);
+    }
+    String decrypted = String(new char[encrypted.size], encrypted.size);
+    for(int i = 0; i < decrypted.size; i++){
+        short num = (short)encrypted.data[i] - (short)Crypto::key.data[i % Crypto::key.size];
+        if(num > 128){
+            num -= 256;
+        }
+        if(num < -128){
+            num += 256;
+        }
+        decrypted.data[i] = (char)(num);
+    }
+
+    return decrypted;
 }

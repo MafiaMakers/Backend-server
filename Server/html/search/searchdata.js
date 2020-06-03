@@ -1,12 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "_cdfiklmprstw",
-  1: "cms",
+  0: "_acdefgiklmnopqrstvw",
+  1: "clmnqrs",
   2: "m",
-  3: "cms",
-  4: "_mprsw",
-  5: "dfiklmpst",
-  6: "cms"
+  3: "clmnrs",
+  4: "_acgilmnoprstw",
+  5: "cdefiklmnprstvw",
+  6: "cms",
+  7: "acnrt"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "files",
   4: "functions",
   5: "variables",
-  6: "typedefs"
+  6: "typedefs",
+  7: "defines"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Файлы",
   4: "Функции",
   5: "Переменные",
-  6: "Определения типов"
+  6: "Определения типов",
+  7: "Макросы"
 };
 

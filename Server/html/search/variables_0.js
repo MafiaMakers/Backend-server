@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['data_61',['data',['../struct_mafia_1_1_message.html#a0187319729637a256c38648974b66cd2',1,'Mafia::Message::data()'],['../class_mafia_1_1_string.html#a3c65d494c71246633b3ae1b49ad8a6b5',1,'Mafia::String::data()']]]
+  ['client_152',['client',['../struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014',1,'Mafia::Message::client()'],['../class_mafia_1_1_network_request.html#ae611f328d7acd09410eb6b7a0844c0fc',1,'Mafia::NetworkRequest::client()']]]
 ];

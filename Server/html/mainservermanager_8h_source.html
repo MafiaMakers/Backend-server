@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл mainservermanager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mainservermanager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mainservermanager_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MAINSERVERMANAGER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MAINSERVERMANAGER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mainservernetworker_8h.html">mainservernetworker.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;Exceptions/exception.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="networkrequest_8h.html">networkrequest.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;thread&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_mafia_1_1_main_server_manager.html">   13</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_mafia_1_1_main_server_manager.html">MainServerManager</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_mafia_1_1_main_server_manager.html#a2c8e73189e5555671b77063fe358077d">MainServerManager</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_main_server_manager.html#a311037f79c4b164266728a09ed134da7">_get_data_from_request</a>(<a class="code" href="class_mafia_1_1_network_request.html">NetworkRequest</a>* req);</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="class_mafia_1_1_main_server_manager.html#ac5102a0ff8faa646017e4b61e0b588ef">   27</a></span>&#160;        <a class="code" href="class_mafia_1_1_main_server_networker.html">MainServerNetworker</a>* <a class="code" href="class_mafia_1_1_main_server_manager.html#ac5102a0ff8faa646017e4b61e0b588ef">networker</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    };</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif // MAINSERVERMANAGER_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_main_server_manager_html_ac5102a0ff8faa646017e4b61e0b588ef"><div class="ttname"><a href="class_mafia_1_1_main_server_manager.html#ac5102a0ff8faa646017e4b61e0b588ef">Mafia::MainServerManager::networker</a></div><div class="ttdeci">MainServerNetworker * networker</div><div class="ttdoc">Указатель на объект сетевого класса</div><div class="ttdef"><b>Definition:</b> mainservermanager.h:27</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdef"><b>Definition:</b> crypto.h:7</div></div>
+<div class="ttc" id="aclass_mafia_1_1_main_server_manager_html"><div class="ttname"><a href="class_mafia_1_1_main_server_manager.html">Mafia::MainServerManager</a></div><div class="ttdoc">Главный управляющий класс основного сервера. Он пока еще не дописан. Только начало....</div><div class="ttdef"><b>Definition:</b> mainservermanager.h:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_main_server_manager_html_a311037f79c4b164266728a09ed134da7"><div class="ttname"><a href="class_mafia_1_1_main_server_manager.html#a311037f79c4b164266728a09ed134da7">Mafia::MainServerManager::_get_data_from_request</a></div><div class="ttdeci">void _get_data_from_request(NetworkRequest *req)</div><div class="ttdoc">Получает данные от уже инициализированного сетевого запроса</div><div class="ttdef"><b>Definition:</b> mainservermanager.cpp:30</div></div>
+<div class="ttc" id="aclass_mafia_1_1_main_server_networker_html"><div class="ttname"><a href="class_mafia_1_1_main_server_networker.html">Mafia::MainServerNetworker</a></div><div class="ttdoc">Основной класс отправки и получения сообщений для основного сервера</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:12</div></div>
+<div class="ttc" id="anetworkrequest_8h_html"><div class="ttname"><a href="networkrequest_8h.html">networkrequest.h</a></div></div>
+<div class="ttc" id="aclass_mafia_1_1_main_server_manager_html_a2c8e73189e5555671b77063fe358077d"><div class="ttname"><a href="class_mafia_1_1_main_server_manager.html#a2c8e73189e5555671b77063fe358077d">Mafia::MainServerManager::MainServerManager</a></div><div class="ttdeci">MainServerManager()</div><div class="ttdoc">Конструктор, который также создает MainServerNetworker и пока что для теста еще создает 1 тестовый за...</div><div class="ttdef"><b>Definition:</b> mainservermanager.cpp:5</div></div>
+<div class="ttc" id="amainservernetworker_8h_html"><div class="ttname"><a href="mainservernetworker_8h.html">mainservernetworker.h</a></div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_request_html"><div class="ttname"><a href="class_mafia_1_1_network_request.html">Mafia::NetworkRequest</a></div><div class="ttdoc">Класс сетевого запроса. Получает сообщение, отправляет его нужному клиенту и по получении ответа гото...</div><div class="ttdef"><b>Definition:</b> networkrequest.h:13</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

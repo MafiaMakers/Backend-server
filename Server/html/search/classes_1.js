@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mainservernetworker_39',['MainServerNetworker',['../class_mafia_1_1_main_server_networker.html',1,'Mafia']]],
-  ['message_40',['Message',['../struct_mafia_1_1_message.html',1,'Mafia']]]
+  ['limitedqueue_91',['LimitedQueue',['../class_mafia_1_1_limited_queue.html',1,'Mafia']]],
+  ['limitedqueue_3c_20messageidtype_20_3e_92',['LimitedQueue&lt; MessageIdType &gt;',['../class_mafia_1_1_limited_queue.html',1,'Mafia']]]
 ];

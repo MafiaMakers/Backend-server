@@ -16,9 +16,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Exceptions/messageparsingexception.cpp \
+        Exceptions/messageprocessingexception.cpp \
+        Exceptions/requestexception.cpp \
         crypto.cpp \
         main.cpp \
-        mainservernetworker.cpp
+        mainservermanager.cpp \
+        mainservernetworker.cpp \
+        networkrequest.cpp \
+        request.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -28,7 +33,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Exceptions/exception.h \
     Exceptions/messageparsingexception.h \
+    Exceptions/messageprocessingexception.h \
+    Exceptions/requestexception.h \
     crypto.h \
+    limitedqueue.h \
+    mainservermanager.h \
     mainservernetworker.h \
     message.h \
+    messagetypes.h \
+    networkrequest.h \
+    request.h \
     simplestring.h

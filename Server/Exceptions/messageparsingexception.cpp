@@ -11,7 +11,7 @@ MessageParsingException::MessageParsingException(String data, int id)
 
 void MessageParsingException::show()
 {
-    std::cout << "Exception!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
+    std::cout << "Exception in parsing message!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
 }
 
 void MessageParsingException::set_data(String data)

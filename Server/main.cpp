@@ -1,8 +1,5 @@
 #include <QCoreApplication>
-#include "mainservernetworker.h"
-#include "Exceptions/exception.h"
-#include <thread>
-#include <chrono>
+#include "mainservermanager.h"
 
 
 using namespace Mafia;
@@ -14,22 +11,35 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    MainServerNetworker * nsnw = new MainServerNetworker(10000);
+    setlocale(LC_ALL, "Russian");
 
-    MainServerNetworker * ssnw = new MainServerNetworker(10001);
+    /*MainServerNetworker * nsnw = new MainServerNetworker(10000);
 
-    Message mes1;
-    mes1.id = 179;
-    mes1.data = (char*)"Hello world!";
-    mes1.size = 13;
-    mes1.type = 1;
-    String myMessage;
-    try {
-        myMessage = Crypto::wrap_message(mes1);
-    } catch (Mafia::Exception* exception) {
-        exception->show();
-    }
+    //MainServerNetworker * ssnw = new MainServerNetworker(10001);
 
-    ssnw->send_message(myMessage.data, myMessage.size, QHostAddress("192.168.1.66"));
+    Message mes1 = Message();
+    mes1.id = 1;
+    mes1.data = (char*)"This message doesn't need confirmation";
+    mes1.size = 39;
+    mes1.type = NO_CINFIRM_TEXT_MESSAGE_TYPE;
+    mes1.client.ip = QHostAddress("192.168.1.66").toIPv4Address();
+    mes1.client.port = 10000;
+
+    Crypto::setKey("HAHA_UNDECRYPTABLE_KEY");
+
+    nsnw->send_message(mes1);
+
+    Message mes2 = Message();
+    mes2.id = -1;
+    mes2.data = (char*)"This message needs confirmation";
+    mes2.size = 32;
+    mes2.type = TEXT_MESSAGE_TYPE;
+    mes2.client.ip = QHostAddress("192.168.1.66").toIPv4Address();
+    mes2.client.port = 10000;
+
+    nsnw->send_message(mes2);*/
+
+    MainServerManager myManager = MainServerManager();
+
     return a.exec();
 }

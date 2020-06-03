@@ -29,9 +29,15 @@ namespace Mafia {
     };
 }
 
-#define SHORT_MESSAGE_EXCEPTION_ID (MessageParsingException::defaultId + 1)
-#define INVALID_MESSAGE_ID_EXCEPTION_ID (MessageParsingException::defaultId + 2)
-#define INVALID_MESSAGE_SIZE_EXCEPTION_ID (MessageParsingException::defaultId + 3)
-#define CONTROL_SUM_EXCEPTION_ID (MessageParsingException::defaultId + 4)
+//! Исключение, вызываемое при получении сообщения, слишком короткого для декодирования
+#define SHORT_MESSAGE_EXCEPTION_ID ((ExceptionIdType)1)
+//! Исключение, вызываемое при получении сообщения с невозможным id
+#define INVALID_MESSAGE_ID_EXCEPTION_ID ((ExceptionIdType)2)
+//! Исключение, вызываемое при получении сообщения невозможного размера
+#define INVALID_MESSAGE_SIZE_EXCEPTION_ID ((ExceptionIdType)3)
+//! Исключение, вызываемое при получении сообщения с несовпадающей контрольной суммой
+#define CONTROL_SUM_EXCEPTION_ID ((ExceptionIdType)4)
+//! Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом
+#define NONE_KEY_EXCEPTION_ID ((ExceptionIdType)5)
 
 #endif // MESSAGEPARSINGEXCEPTION_H

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['id_63',['id',['../struct_mafia_1_1_message.html#a437cd8c266bbc2e2ebe37f6918722233',1,'Mafia::Message']]],
-  ['ip_64',['ip',['../struct_mafia_1_1_client.html#a7588fd0f6280a988225daee841533ca6',1,'Mafia::Client']]]
+  ['elementscount_154',['elementsCount',['../class_mafia_1_1_limited_queue.html#af185b88d4028cc4e2bc7703ea53fe631',1,'Mafia::LimitedQueue']]],
+  ['elementscountlimit_155',['elementsCountLimit',['../class_mafia_1_1_limited_queue.html#aee46f5eef41511ab3b02a8e054a14bc7',1,'Mafia::LimitedQueue']]]
 ];

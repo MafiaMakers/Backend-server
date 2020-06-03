@@ -3,6 +3,7 @@
 #include "message.h"
 #include <iostream>
 #include "simplestring.h"
+#include "limitedqueue.h"
 namespace Mafia {
     /*! \brief По сути статический класс
     * (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими)
@@ -52,8 +53,10 @@ namespace Mafia {
         static String _encrypt(String decrypted);
         //! Ключ шифрования
         static String key;
-        //! последний полученный подходящий id сообщения
-        static MessageIdType lastMessageId;
+        //! Последние несколько id сообщений
+        static LimitedQueue<MessageIdType> *lastMessageIds;
+        //! Количество id сообщений, которые необходимо удерживать в памяти
+        static const int rememberMessagesCount = 2;
     };
 }
 
