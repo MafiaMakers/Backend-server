@@ -1,8 +1,8 @@
 #ifndef MAINSERVERMANAGER_H
 #define MAINSERVERMANAGER_H
-#include "mainservernetworker.h"
+#include "Network/mainservernetworker.h"
 #include "Exceptions/exception.h"
-#include "networkrequest.h"
+#include "Requests/networkrequest.h"
 #include <thread>
 #include <chrono>
 
@@ -10,13 +10,15 @@ namespace Mafia {
     /*!
      * \brief Главный управляющий класс основного сервера. Он пока еще не дописан. Только начало...
      */
-    class MainServerManager
+    class MainServerManager : public QObject
     {
+        Q_OBJECT
     public:
         /*!
          * \brief Конструктор, который также создает \ref MainServerNetworker и пока что для теста еще создает 1 тестовый запрос
          */
-        MainServerManager();
+        explicit MainServerManager(QObject * parent = nullptr);
+
     private:
         /*!
          * \brief Получает данные от уже инициализированного сетевого запроса

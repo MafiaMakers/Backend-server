@@ -15,15 +15,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Exceptions/exception.cpp \
         Exceptions/messageparsingexception.cpp \
         Exceptions/messageprocessingexception.cpp \
         Exceptions/requestexception.cpp \
-        crypto.cpp \
+        Exceptions/subserverexception.cpp \
+        Network/crypto.cpp \
+        System/runprogram.cpp \
         main.cpp \
         mainservermanager.cpp \
-        mainservernetworker.cpp \
-        networkrequest.cpp \
-        request.cpp
+        Network/mainservernetworker.cpp \
+        Requests/networkrequest.cpp \
+        Requests/request.cpp \
+        subserverobject.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -35,12 +39,15 @@ HEADERS += \
     Exceptions/messageparsingexception.h \
     Exceptions/messageprocessingexception.h \
     Exceptions/requestexception.h \
-    crypto.h \
-    limitedqueue.h \
+    Exceptions/subserverexception.h \
+    Network/crypto.h \
+    System/limitedqueue.h \
+    System/runprogram.h \
     mainservermanager.h \
-    mainservernetworker.h \
-    message.h \
-    messagetypes.h \
-    networkrequest.h \
-    request.h \
-    simplestring.h
+    Network/mainservernetworker.h \
+    Network/message.h \
+    Network/messagetypes.h \
+    Requests/networkrequest.h \
+    Requests/request.h \
+    System/simplestring.h \
+    subserverobject.h

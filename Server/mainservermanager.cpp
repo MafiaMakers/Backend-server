@@ -1,8 +1,10 @@
 #include "mainservermanager.h"
+#include "System/runprogram.h"
+#include "subserverobject.h"
 using namespace Mafia;
 
 
-MainServerManager::MainServerManager()
+MainServerManager::MainServerManager(QObject* parent) : QObject(parent)
 {
     networker = new MainServerNetworker(10000);
     Crypto::setKey("HaHA_UnDeCrYptAbLe_keY");
@@ -21,6 +23,8 @@ MainServerManager::MainServerManager()
     } catch (Exception* exception) {
         exception->show();
     }
+
+    SubserverObject* subserver = new SubserverObject(networker, 100001, String("calc.exe"), String("Calculator.exe"));
 
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();

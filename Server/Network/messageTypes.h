@@ -13,4 +13,8 @@
 //! Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов
 #define ABSTRACT_REQUEST_MESSAGE_TYPE ((MessageTypeType)5)
 
+#define PASS_CLIENT_MESSAGE_TYPE ((MessageTypeType)6)
+
+#define CHECK_CONNECTION_MESSAGE_TYPE ((MessageTypeType)7)
+
 #endif // MESSAGETYPES_H

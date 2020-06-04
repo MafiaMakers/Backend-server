@@ -3,33 +3,14 @@
 
 using namespace Mafia;
 
-MessageParsingException::MessageParsingException(String data, int id)
-{
-    this->data = data;
-    this->id = defaultId + id;
-}
+MessageParsingException::MessageParsingException(String data, int id) : Mafia::Exception(data, id){}
 
 void MessageParsingException::show()
 {
     std::cout << "Exception in parsing message!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
 }
 
-void MessageParsingException::set_data(String data)
+ExceptionIdType MessageParsingException::get_base_exception_id()
 {
-    this->data = data;
-}
-
-void MessageParsingException::set_id(ExceptionIdType id)
-{
-    this->id = id;
-}
-
-ExceptionIdType MessageParsingException::get_id()
-{
-    return id;
-}
-
-String MessageParsingException::get_data()
-{
-    return data;
+    return MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID;
 }

@@ -2,8 +2,8 @@
 #define CRYPTO_H
 #include "message.h"
 #include <iostream>
-#include "simplestring.h"
-#include "limitedqueue.h"
+#include "System/simplestring.h"
+#include "System/limitedqueue.h"
 namespace Mafia {
     /*! \brief По сути статический класс
     * (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими)

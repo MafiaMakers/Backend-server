@@ -12,7 +12,7 @@ using namespace Mafia;
 
 const int MainServerNetworker::timeToResend = 500;
 const int MainServerNetworker::maxResendCount = 100;
-const int MainServerNetworker::idsForClient = 1000;
+//const int MainServerNetworker::idsForClient = 1000;
 
 const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<MessageTypeType>()
         << TEXT_MESSAGE_TYPE
@@ -21,6 +21,7 @@ const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<Message
 
 MainServerNetworker::MainServerNetworker(int port)
 {
+    this->currentMaxId = 0;
     this->socket = new QUdpSocket(this);
     this->myPort = port;
     this->socket->bind(QHostAddress::Any, this->myPort);
@@ -30,14 +31,18 @@ MainServerNetworker::MainServerNetworker(int port)
     connect(socket, SIGNAL(readyRead()), this, SLOT(receive_message()));
 }
 
-void MainServerNetworker::send_message(Message message)
+MessageIdType MainServerNetworker::send_message(Message message)
 {
     String mes = String();
+    if(message.id == (MessageIdType)(0)){
+        currentMaxId++;
+        message.id = currentMaxId;
+    }
     try {
         mes = Crypto::wrap_message(message);
     } catch (Exception* exception) {
         exception->show();
-        return;
+        return -2;
     }
 
     if(needConfirmation.contains(message.type)){
@@ -45,6 +50,7 @@ void MainServerNetworker::send_message(Message message)
     }
 
     _send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
+    return message.id;
     //std::cout << "Sent a message" << std::endl;
 }
 
@@ -56,13 +62,17 @@ void MainServerNetworker::_send_message(char* data, int size, QHostAddress clien
 void MainServerNetworker::_process_message(Message message)
 {    
     //show_message(message);
+    if(message.client.ip == (int)QHostAddress("127.0.0.1").toIPv4Address()){
+        emit on_subserver_api_message_received(message);
+    }
+
     switch (message.type) {
     case TEXT_MESSAGE_TYPE:{
-        show_message(message);
+        //show_message(message);
         break;
     }
     case NO_CINFIRM_TEXT_MESSAGE_TYPE:{
-        show_message(message);
+        //show_message(message);
         break;
     }
     case CONFIRMATION_MESSAGE_TYPE:{
@@ -147,6 +157,9 @@ void MainServerNetworker::receive_message() {
 
         trueData.client.ip = address->toIPv4Address();
         trueData.client.port = port;
+        if(trueData.id > currentMaxId){
+            currentMaxId = trueData.id;
+        }
 
         _process_message(trueData);
     }

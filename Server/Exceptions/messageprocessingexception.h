@@ -7,14 +7,17 @@ namespace Mafia {
     class MessageProcessingException : public Mafia::MessageParsingException
     {
     public:
+        MessageProcessingException(){};
         /*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
         MessageProcessingException(String data, int id);
-        /*! \brief Значение id сообщения, с которого начинаются индексы сообщений этого класса*/
-        static const ExceptionIdType defaultId = 200;
+
+        ExceptionIdType get_base_exception_id() override;
     };
 }
 
+#define MESSAGE_PROCESSING_EXCEPTION_DEFAULT_EXCEPTION_ID 200
+
 //! Исключение, вызываемое при получении сообщения неизвестного типа
-#define UNKNOWN_MESSAGE_TYPE_EXCEPTION_ID ((ExceptionIdType)1)
+#define UNKNOWN_MESSAGE_TYPE_EXCEPTION_ID (MESSAGE_PROCESSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)1)
 
 #endif // MESSAGEPROCESSINGEXCEPTION_H

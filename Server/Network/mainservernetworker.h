@@ -22,13 +22,15 @@ namespace Mafia {
          * \brief Отправления сообщения
          * \param message Сообщение для отправки. Должно быть полностью инициализированно
          */
-        void send_message(Message message);
+        MessageIdType send_message(Message message);
     signals:
         /*!
          * \brief Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов
          * \param message Пришедшее сообщение с ответом
          */
         void request_answer(Message message);
+
+        void on_subserver_api_message_received(Message message);
     private slots:
         /*!
          * \brief слот для получения сообщения. Вызывается автоматически
@@ -70,14 +72,14 @@ namespace Mafia {
         int myPort;
         //! Сообщения, ожидающие подтверждения
         QList<Message> waitingForConfirmation;
+
+        MessageIdType currentMaxId = (MessageIdType)0;
         //! Множество типов сообщений, которым необходимо подтверждение
         static const QSet<MessageTypeType> needConfirmation;
         //! Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение
         static const int timeToResend;
         //! Максимальное количество повторных отправок
         static const int maxResendCount;
-        //! Количество выделяемых одному клиенту id сообщений
-        static const int idsForClient;
     };
 }
 

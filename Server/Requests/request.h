@@ -23,11 +23,9 @@ namespace Mafia {
          * Внимательно работайте с ней, так как она может повесить всю систему
          */
         virtual void sleep_untill_finished();
-        /*! \brief Функция, возвращающая значение, когда получены данные.
-         * Она тоже ждет в том же потоке, где ее вызвали, так что будьте с ней осторожны
-         */
-        template <class T>
-        T get_when_finished(){ return T();}
+    signals:
+        void on_ready();
+        void on_ready_me(Request* me);
     private slots:
         /*!
          * \brief Слот для получения ответа на запрос, который может подходить

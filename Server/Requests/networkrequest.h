@@ -1,7 +1,7 @@
 #ifndef NETWORKREQUEST_H
 #define NETWORKREQUEST_H
 #include "request.h"
-#include "mainservernetworker.h"
+#include "Network/mainservernetworker.h"
 #include "Exceptions/requestexception.h"
 namespace Mafia {
     /*!
@@ -48,6 +48,7 @@ namespace Mafia {
             sleep_untill_finished();
             return get_result<T>();
         }
+
     private slots:
         /*!
          * \brief Слот для проверки, получены ли данные этого запроса. Слот привязан к серверному сигналу получения ответа на запрос

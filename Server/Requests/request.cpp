@@ -17,6 +17,8 @@ bool Mafia::Request::is_finished()
 void Mafia::Request::close_request()
 {
     this->finished = true;
+    emit this->on_ready();
+    emit this->on_ready_me(this);
 }
 
 void Request::sleep_untill_finished()

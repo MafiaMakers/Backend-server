@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include "mainservermanager.h"
-
+#include "System/runprogram.h"
+#include "subserverobject.h"
 
 using namespace Mafia;
 /*!
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     setlocale(LC_ALL, "Russian");
+
+    //run_app(String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"), String("ForLibsTest.exe"), String(""));
 
     /*MainServerNetworker * nsnw = new MainServerNetworker(10000);
 
@@ -39,7 +42,7 @@ int main(int argc, char *argv[])
 
     nsnw->send_message(mes2);*/
 
-    MainServerManager myManager = MainServerManager();
+    MainServerManager* myManager = new MainServerManager();
 
     return a.exec();
 }
