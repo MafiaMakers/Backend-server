@@ -11,8 +11,7 @@ MainServerManager::MainServerManager(QObject* parent) : QObject(parent)
     NetworkRequest * myTestRequest = 0;
     try {
         myTestRequest = new NetworkRequest(networker,
-                                              Message(-1,
-                                                      ABSTRACT_REQUEST_MESSAGE_TYPE,
+                                              Message(ABSTRACT_REQUEST_MESSAGE_TYPE,
                                                       (char*)"Some ask",
                                                       9,
                                                 Client(QHostAddress("192.168.1.66").toIPv4Address(),
@@ -24,7 +23,9 @@ MainServerManager::MainServerManager(QObject* parent) : QObject(parent)
         exception->show();
     }
 
-    SubserverObject* subserver = new SubserverObject(networker, 100001, String("calc.exe"), String("Calculator.exe"));
+    SubserverObject* subserver = new SubserverObject(networker, 100001,
+                        String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"),
+                        String("ForLibsTest.exe"));
 
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();

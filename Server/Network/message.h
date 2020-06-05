@@ -79,7 +79,7 @@ namespace Mafia {
          * \param size размер массива данных
          * \param client клиент
          */
-        Message(MessageIdType id, MessageTypeType type, SymbolType* data, int size, Client client){
+        Message(MessageTypeType type, SymbolType* data, int size, Client client, MessageIdType id = 0){
             this->id = id;
             this->data = data;
             this->size = size;

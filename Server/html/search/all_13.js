@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['waitingforconfirmation_87',['waitingForConfirmation',['../class_mafia_1_1_main_server_networker.html#a2280f18d26ce029d1908302964f4a000',1,'Mafia::MainServerNetworker']]],
-  ['wrap_5fmessage_88',['wrap_message',['../class_mafia_1_1_crypto.html#a83ce4795faf7170f2c78910b50e1eb3b',1,'Mafia::Crypto']]]
+  ['value_159',['value',['../struct_mafia_1_1_queue_element.html#a030e7789ec1d08705a9dfaa4d9dfb942',1,'Mafia::QueueElement']]]
 ];

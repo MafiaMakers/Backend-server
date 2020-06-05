@@ -24,7 +24,9 @@ namespace Mafia {
          */
         virtual void sleep_untill_finished();
     signals:
+        //! Слот, который вызывается при получении ответа на запрос. Ничего не передает
         void on_ready();
+        //! Такой же слот, как и \ref Mafia::Request::on_ready() , но передает указатель на себя для идентификации
         void on_ready_me(Request* me);
     private slots:
         /*!

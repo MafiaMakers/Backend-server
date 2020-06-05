@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Main server: Исходный файл request.h</title>
+<title>Main server: Исходный файл Requests/request.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,6 +59,11 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_7d8b53ffc17c83806016099b465eb08e.html">Requests</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">request.h</div>  </div>
@@ -76,8 +80,9 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="class_mafia_1_1_request.html#afaf8d8928de7ffff8a3767589489bd33">Request</a>();</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_mafia_1_1_request.html#a21cfe5943185bbf520d710741278bae4">is_finished</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">sleep_untill_finished</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">   30</a></span>&#160;        T <a class="code" href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">get_when_finished</a>(){ <span class="keywordflow">return</span> T();}</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    signals:</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">   28</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">on_ready</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">   30</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">on_ready_me</a>(<a class="code" href="class_mafia_1_1_request.html">Request</a>* me);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">private</span> slots:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_request.html#a427fba9fc570f8e2db3bd05aa99f9cc0">tryClose</a>();</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">protected</span>:</div>
@@ -89,14 +94,15 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif // REQUEST_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclass_mafia_1_1_request_html_af207cd08a48790269fc889c7a168f931"><div class="ttname"><a href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">Mafia::Request::get_when_finished</a></div><div class="ttdeci">T get_when_finished()</div><div class="ttdoc">Функция, возвращающая значение, когда получены данные. Она тоже ждет в том же потоке,...</div><div class="ttdef"><b>Definition:</b> request.h:30</div></div>
 <div class="ttc" id="aclass_mafia_1_1_request_html_afaf8d8928de7ffff8a3767589489bd33"><div class="ttname"><a href="class_mafia_1_1_request.html#afaf8d8928de7ffff8a3767589489bd33">Mafia::Request::Request</a></div><div class="ttdeci">Request()</div><div class="ttdoc">Пустой конструктор</div><div class="ttdef"><b>Definition:</b> request.cpp:7</div></div>
-<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdef"><b>Definition:</b> crypto.h:7</div></div>
-<div class="ttc" id="aclass_mafia_1_1_request_html_ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2"><div class="ttname"><a href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">Mafia::Request::sleep_untill_finished</a></div><div class="ttdeci">virtual void sleep_untill_finished()</div><div class="ttdoc">Функция, которая ждет в том же потоке, откуда ее вызвали когда данные будут получены....</div><div class="ttdef"><b>Definition:</b> request.cpp:22</div></div>
-<div class="ttc" id="aclass_mafia_1_1_request_html_a427fba9fc570f8e2db3bd05aa99f9cc0"><div class="ttname"><a href="class_mafia_1_1_request.html#a427fba9fc570f8e2db3bd05aa99f9cc0">Mafia::Request::tryClose</a></div><div class="ttdeci">virtual void tryClose()</div><div class="ttdoc">Слот для получения ответа на запрос, который может подходить</div><div class="ttdef"><b>Definition:</b> request.cpp:29</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> exception.h:9</div></div>
+<div class="ttc" id="aclass_mafia_1_1_request_html_ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2"><div class="ttname"><a href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">Mafia::Request::sleep_untill_finished</a></div><div class="ttdeci">virtual void sleep_untill_finished()</div><div class="ttdoc">Функция, которая ждет в том же потоке, откуда ее вызвали когда данные будут получены....</div><div class="ttdef"><b>Definition:</b> request.cpp:24</div></div>
+<div class="ttc" id="aclass_mafia_1_1_request_html_a427fba9fc570f8e2db3bd05aa99f9cc0"><div class="ttname"><a href="class_mafia_1_1_request.html#a427fba9fc570f8e2db3bd05aa99f9cc0">Mafia::Request::tryClose</a></div><div class="ttdeci">virtual void tryClose()</div><div class="ttdoc">Слот для получения ответа на запрос, который может подходить</div><div class="ttdef"><b>Definition:</b> request.cpp:31</div></div>
 <div class="ttc" id="aclass_mafia_1_1_request_html"><div class="ttname"><a href="class_mafia_1_1_request.html">Mafia::Request</a></div><div class="ttdoc">Базовый класс запроса. От него будут наследоваться классы сетевого запроса, запроса БД,...</div><div class="ttdef"><b>Definition:</b> request.h:9</div></div>
+<div class="ttc" id="aclass_mafia_1_1_request_html_a410e5b8e83f09afb4c665bca57fc3590"><div class="ttname"><a href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">Mafia::Request::on_ready_me</a></div><div class="ttdeci">void on_ready_me(Request *me)</div><div class="ttdoc">Такой же слот, как и Mafia::Request::on_ready() , но передает указатель на себя для идентификации</div></div>
 <div class="ttc" id="aclass_mafia_1_1_request_html_ad1780c5b7880efc00875c6b4537692d3"><div class="ttname"><a href="class_mafia_1_1_request.html#ad1780c5b7880efc00875c6b4537692d3">Mafia::Request::finished</a></div><div class="ttdeci">bool finished</div><div class="ttdoc">Отвечает на вопрос: готовы ли результаты запроса?</div><div class="ttdef"><b>Definition:</b> request.h:42</div></div>
 <div class="ttc" id="aclass_mafia_1_1_request_html_a21cfe5943185bbf520d710741278bae4"><div class="ttname"><a href="class_mafia_1_1_request.html#a21cfe5943185bbf520d710741278bae4">Mafia::Request::is_finished</a></div><div class="ttdeci">virtual bool is_finished()</div><div class="ttdoc">Функция проверки, готов ли сейчас запрос выдать результат</div><div class="ttdef"><b>Definition:</b> request.cpp:12</div></div>
+<div class="ttc" id="aclass_mafia_1_1_request_html_a841494d622e8b9134dfbd9dae84f4e89"><div class="ttname"><a href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Mafia::Request::on_ready</a></div><div class="ttdeci">void on_ready()</div><div class="ttdoc">Слот, который вызывается при получении ответа на запрос. Ничего не передает</div></div>
 <div class="ttc" id="aclass_mafia_1_1_request_html_a262899f5e790a88261b8b9acb2546ff3"><div class="ttname"><a href="class_mafia_1_1_request.html#a262899f5e790a88261b8b9acb2546ff3">Mafia::Request::close_request</a></div><div class="ttdeci">virtual void close_request()</div><div class="ttdoc">Функция завершения работы запроса по получении данных</div><div class="ttdef"><b>Definition:</b> request.cpp:17</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

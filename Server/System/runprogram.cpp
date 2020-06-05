@@ -26,14 +26,14 @@ int Mafia::run_app(const Mafia::String pathToFile, const String processName, con
     for(int i = 0; i < nowAppsPIDs.length(); i++){
         if(!previousAppsPIDs.contains(nowAppsPIDs[i])){
             difference.append(nowAppsPIDs[i]);
-            std::cout << "difference! - " << nowAppsPIDs[i] << std::endl;
+            //std::cout << "difference! - " << nowAppsPIDs[i] << std::endl;
         }
     }
     int a = -1;
 
     if(difference.length() == 1){
         a = difference[0];
-        std::cout << a << " - pid" << std::endl;
+        std::cout << "started new app. " << a << " - pid" << std::endl;
     }
     return a;
 }
@@ -79,7 +79,7 @@ QList<int> Mafia::get_all_pids_by_name(const Mafia::String name)
             }
             //std::cout << source << std::endl;
             int res = atoi(source);
-           // std::cout << res << " - res" << std::endl;
+            //std::cout << res << " - res" << std::endl;
             result.append(res);
         }
         if(data[i] == '\n'){
@@ -101,4 +101,5 @@ void Mafia::kill(int pid)
     ss >> pid_str;
     command += pid_str;
     system(command.c_str());
+    std::cout << "killed" << std::endl;
 }

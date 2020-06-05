@@ -33,7 +33,7 @@ int SubserverObject::send_request(MessageTypeType type, SymbolType *data, int si
 {
     NetworkRequest* req = 0;
     try {
-        req = new NetworkRequest(this->networker, Message((MessageIdType)0, type, data, size, this->myAddress));
+        req = new NetworkRequest(this->networker, Message(type, data, size, this->myAddress));
     } catch (Exception* exception) {
         switch (exception->get_id()) {
         default:{
@@ -64,16 +64,39 @@ int SubserverObject::send_request(MessageTypeType type, SymbolType *data, int si
 
 void SubserverObject::pass_client(Client client)
 {
-
-    Message message = Message((MessageIdType)0, PASS_CLIENT_MESSAGE_TYPE, (SymbolType*)&client, sizeof (client) / sizeof(SymbolType), myAddress);
-
     try {
-        networker->send_message(message);
+        this->send_message_to_subserver(PASS_CLIENT_MESSAGE_TYPE, (SymbolType*)&client, sizeof (client) / sizeof(SymbolType));
     } catch (Exception* exception) {
         switch(exception->get_id()){
         default:{
             exception->show();
             return;
+        }
+        }
+    }
+}
+
+bool SubserverObject::is_request_ready(RequestIdType requestId)
+{
+    for(int i = 0; i < this->currentRequests.length(); i++){
+        if(requestId == currentRequests[i].id){
+            return currentRequests[i].request->is_finished();
+        }
+    }
+    throw new SubserverException(String("request doesn't in requests list"), NO_SUCH_REQUEST_EXCEPTION_ID);
+    return false;
+}
+
+int SubserverObject::send_message_to_subserver(MessageTypeType type, SymbolType *data, int size, MessageIdType id)
+{
+    Message message = Message(type, data, size, myAddress, id);
+    try {
+        return networker->send_message(message);
+    } catch (Exception* exception) {
+        switch(exception->get_id()){
+        default:{
+            exception->show();
+            return -2;
         }
         }
     }
@@ -126,7 +149,7 @@ void SubserverObject::_check_subserver_respond()
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(this->checkRespondInterval));
         try {
-            networker->send_message(Message((MessageIdType)0, CHECK_CONNECTION_MESSAGE_TYPE, (SymbolType*)(char*)"check", 6 / sizeof(SymbolType), myAddress));
+            networker->send_message(Message(CHECK_CONNECTION_MESSAGE_TYPE, (SymbolType*)(char*)"check", 6 / sizeof(SymbolType), myAddress));
         } catch (Exception* exception) {
             switch (exception->get_id()) {
             default:{

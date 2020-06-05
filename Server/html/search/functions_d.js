@@ -1,4 +1,15 @@
 var searchData=
 [
-  ['wrap_5fmessage_151',['wrap_message',['../class_mafia_1_1_crypto.html#a83ce4795faf7170f2c78910b50e1eb3b',1,'Mafia::Crypto']]]
+  ['send_5fmessage_265',['send_message',['../class_mafia_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042',1,'Mafia::MainServerNetworker']]],
+  ['send_5fmessage_5fto_5fsubserver_266',['send_message_to_subserver',['../class_mafia_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2',1,'Mafia::SubserverObject']]],
+  ['send_5frequest_267',['send_request',['../class_mafia_1_1_subserver_object.html#a5c1f1ba7ab0a66f6012fd24967ef4fe3',1,'Mafia::SubserverObject']]],
+  ['set_5fdata_268',['set_data',['../class_mafia_1_1_exception.html#a2e826ed0405f14f999a51d2224319c5d',1,'Mafia::Exception']]],
+  ['set_5fid_269',['set_id',['../class_mafia_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0',1,'Mafia::Exception']]],
+  ['setkey_270',['setKey',['../class_mafia_1_1_crypto.html#a30343407cf3bdbe6469d232f9db10951',1,'Mafia::Crypto::setKey(String key)'],['../class_mafia_1_1_crypto.html#aa0fc7756df46649898fbf3bf51ee17e6',1,'Mafia::Crypto::setKey(char *key, int size)'],['../class_mafia_1_1_crypto.html#ae5567abfbbf2531f1857503e37111903',1,'Mafia::Crypto::setKey(std::string key)']]],
+  ['show_271',['show',['../class_mafia_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11',1,'Mafia::Exception::show()'],['../class_mafia_1_1_message_parsing_exception.html#aa07a342ff4be88fe9003306240cce00b',1,'Mafia::MessageParsingException::show()'],['../class_mafia_1_1_request_exception.html#adab82bb9c3f963f2c3b90e13b5872220',1,'Mafia::RequestException::show()'],['../class_mafia_1_1_subserver_exception.html#a6470d6a1ecbe4e99e9a604ae1f9c8026',1,'Mafia::SubserverException::show()']]],
+  ['show_5fmessage_272',['show_message',['../class_mafia_1_1_main_server_networker.html#a1c96b5fcfaf58b35e3b88d81230caf64',1,'Mafia::MainServerNetworker']]],
+  ['sleep_5funtill_5ffinished_273',['sleep_untill_finished',['../class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2',1,'Mafia::Request']]],
+  ['string_274',['String',['../class_mafia_1_1_string.html#a7a8a34099075f6021668df787d3745af',1,'Mafia::String::String(char *d, int s)'],['../class_mafia_1_1_string.html#a39f7ad3357a3e03438a2bdc181257cce',1,'Mafia::String::String(std::string data)'],['../class_mafia_1_1_string.html#a4d6ffd3725d8ee033d5fd0fd7684efcc',1,'Mafia::String::String()']]],
+  ['subserverexception_275',['SubserverException',['../class_mafia_1_1_subserver_exception.html#a121792a207dabfbcc046481c79e9a50b',1,'Mafia::SubserverException::SubserverException()'],['../class_mafia_1_1_subserver_exception.html#a06438933c8d80fc145460414f062f8f6',1,'Mafia::SubserverException::SubserverException(String data, ExceptionIdType id)']]],
+  ['subserverobject_276',['SubserverObject',['../class_mafia_1_1_subserver_object.html#ab7f216b53227762c7ef6987de8fb6d10',1,'Mafia::SubserverObject::SubserverObject(QObject *parent=nullptr)'],['../class_mafia_1_1_subserver_object.html#acc4e60d717bf145a5a053ed09f6d8393',1,'Mafia::SubserverObject::SubserverObject(MainServerNetworker *networker, int port, const String path, const String processName, int checkInterval=2000, int maxNotAnswering=5, const String specialCommands=String(&quot;&quot;))']]]
 ];

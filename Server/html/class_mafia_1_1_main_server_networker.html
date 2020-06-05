@@ -94,15 +94,18 @@ $(function() {
 <tr class="memitem:a0060bbfbcfe2b5d061ff985d6934dbe8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a0060bbfbcfe2b5d061ff985d6934dbe8">request_answer</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
 <tr class="memdesc:a0060bbfbcfe2b5d061ff985d6934dbe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов  <a href="class_mafia_1_1_main_server_networker.html#a0060bbfbcfe2b5d061ff985d6934dbe8">Подробнее...</a><br /></td></tr>
 <tr class="separator:a0060bbfbcfe2b5d061ff985d6934dbe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa502f2fda8acfca0dd8dd0043edd09ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#aa502f2fda8acfca0dd8dd0043edd09ba">on_subserver_api_message_received</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:aa502f2fda8acfca0dd8dd0043edd09ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении сообщения от api субсервера  <a href="class_mafia_1_1_main_server_networker.html#aa502f2fda8acfca0dd8dd0043edd09ba">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa502f2fda8acfca0dd8dd0043edd09ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker</a> (int port)</td></tr>
 <tr class="memdesc:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор, инициализирует сервер на указанном порте  <a href="class_mafia_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">Подробнее...</a><br /></td></tr>
 <tr class="separator:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe7b95b831649eaeca24e9a7a29d1c40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#afe7b95b831649eaeca24e9a7a29d1c40">send_message</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
-<tr class="memdesc:afe7b95b831649eaeca24e9a7a29d1c40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправления сообщения  <a href="class_mafia_1_1_main_server_networker.html#afe7b95b831649eaeca24e9a7a29d1c40">Подробнее...</a><br /></td></tr>
-<tr class="separator:afe7b95b831649eaeca24e9a7a29d1c40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809fe51085cf50cf95cb07315dbb1042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a809fe51085cf50cf95cb07315dbb1042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправления сообщения  <a href="class_mafia_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">Подробнее...</a><br /></td></tr>
+<tr class="separator:a809fe51085cf50cf95cb07315dbb1042"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Закрытые слоты</h2></td></tr>
@@ -139,6 +142,9 @@ $(function() {
 <tr class="memitem:a2280f18d26ce029d1908302964f4a000"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="struct_mafia_1_1_message.html">Message</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a2280f18d26ce029d1908302964f4a000">waitingForConfirmation</a></td></tr>
 <tr class="memdesc:a2280f18d26ce029d1908302964f4a000"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщения, ожидающие подтверждения  <a href="class_mafia_1_1_main_server_networker.html#a2280f18d26ce029d1908302964f4a000">Подробнее...</a><br /></td></tr>
 <tr class="separator:a2280f18d26ce029d1908302964f4a000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abbf9c050bc76052dc15da58c821a88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a7abbf9c050bc76052dc15da58c821a88">currentMaxId</a> = (<a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>)0</td></tr>
+<tr class="memdesc:a7abbf9c050bc76052dc15da58c821a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">id сообщения, которое на данный момент максимальное  <a href="class_mafia_1_1_main_server_networker.html#a7abbf9c050bc76052dc15da58c821a88">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7abbf9c050bc76052dc15da58c821a88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Закрытые статические данные</h2></td></tr>
@@ -151,9 +157,6 @@ $(function() {
 <tr class="memitem:a4e03d6a8da60b76287425537b2e0797a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a4e03d6a8da60b76287425537b2e0797a">maxResendCount</a> = 100</td></tr>
 <tr class="memdesc:a4e03d6a8da60b76287425537b2e0797a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальное количество повторных отправок  <a href="class_mafia_1_1_main_server_networker.html#a4e03d6a8da60b76287425537b2e0797a">Подробнее...</a><br /></td></tr>
 <tr class="separator:a4e03d6a8da60b76287425537b2e0797a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8be4730f3f6d9b5325d3925f058f5f84"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_networker.html#a8be4730f3f6d9b5325d3925f058f5f84">idsForClient</a> = 1000</td></tr>
-<tr class="memdesc:a8be4730f3f6d9b5325d3925f058f5f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество выделяемых одному клиенту id сообщений  <a href="class_mafia_1_1_main_server_networker.html#a8be4730f3f6d9b5325d3925f058f5f84">Подробнее...</a><br /></td></tr>
-<tr class="separator:a8be4730f3f6d9b5325d3925f058f5f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Основной класс отправки и получения сообщений для основного сервера </p>
@@ -349,6 +352,40 @@ $(function() {
 
 </div>
 </div>
+<a id="aa502f2fda8acfca0dd8dd0043edd09ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa502f2fda8acfca0dd8dd0043edd09ba">&#9670;&nbsp;</a></span>on_subserver_api_message_received</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::MainServerNetworker::on_subserver_api_message_received </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при получении сообщения от api субсервера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Пришедшее сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8dba1c5ee332ccb7789f5f503abdd627"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8dba1c5ee332ccb7789f5f503abdd627">&#9670;&nbsp;</a></span>receive_message</h2>
 
@@ -410,14 +447,14 @@ $(function() {
 
 </div>
 </div>
-<a id="afe7b95b831649eaeca24e9a7a29d1c40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe7b95b831649eaeca24e9a7a29d1c40">&#9670;&nbsp;</a></span>send_message()</h2>
+<a id="a809fe51085cf50cf95cb07315dbb1042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a809fe51085cf50cf95cb07315dbb1042">&#9670;&nbsp;</a></span>send_message()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void MainServerNetworker::send_message </td>
+          <td class="memname"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> MainServerNetworker::send_message </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_mafia_1_1_message.html">Message</a>&#160;</td>
           <td class="paramname"><em>message</em></td><td>)</td>
@@ -429,7 +466,7 @@ $(function() {
 <p>Отправления сообщения </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>Сообщение для отправки. Должно быть полностью инициализированно </td></tr>
+    <tr><td class="paramname">message</td><td>Сообщение для отправки. Должно быть инициализированно во всех полях. Если id сообщения не фиксированно, то следует в поле id указать 0 </td></tr>
   </table>
   </dd>
 </dl>
@@ -471,8 +508,8 @@ $(function() {
 </div>
 </div>
 <h2 class="groupheader">Данные класса</h2>
-<a id="a8be4730f3f6d9b5325d3925f058f5f84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8be4730f3f6d9b5325d3925f058f5f84">&#9670;&nbsp;</a></span>idsForClient</h2>
+<a id="a7abbf9c050bc76052dc15da58c821a88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7abbf9c050bc76052dc15da58c821a88">&#9670;&nbsp;</a></span>currentMaxId</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -481,17 +518,17 @@ $(function() {
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int MainServerNetworker::idsForClient = 1000</td>
+          <td class="memname"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> Mafia::MainServerNetworker::currentMaxId = (<a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>)0</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Количество выделяемых одному клиенту id сообщений </p>
+<p>id сообщения, которое на данный момент максимальное </p>
 
 </div>
 </div>
@@ -644,8 +681,8 @@ $(function() {
 </div>
 </div>
 <hr/>Объявления и описания членов классов находятся в файлах:<ul>
-<li><a class="el" href="mainservernetworker_8h_source.html">mainservernetworker.h</a></li>
-<li><a class="el" href="mainservernetworker_8cpp.html">mainservernetworker.cpp</a></li>
+<li>Network/<a class="el" href="mainservernetworker_8h_source.html">mainservernetworker.h</a></li>
+<li>Network/<a class="el" href="mainservernetworker_8cpp.html">mainservernetworker.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="amessage_types_8h_html_aab91abdd30c15d19064327e871b805d4"><div class="ttname"><a href="message_types_8h.html#aab91abdd30c15d19064327e871b805d4">TEXT_MESSAGE_TYPE</a></div><div class="ttdeci">#define TEXT_MESSAGE_TYPE</div><div class="ttdoc">Просто текстовое сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:6</div></div>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['late_5fsend_5fmessage_132',['late_send_message',['../class_mafia_1_1_main_server_networker.html#a0f128eda9c849d9120ab0ad478fe2742',1,'Mafia::MainServerNetworker']]],
-  ['limitedqueue_133',['LimitedQueue',['../class_mafia_1_1_limited_queue.html#ab52896e7211ce4bb4be79495ce88bccc',1,'Mafia::LimitedQueue']]]
+  ['is_5ffinished_235',['is_finished',['../class_mafia_1_1_request.html#a21cfe5943185bbf520d710741278bae4',1,'Mafia::Request']]],
+  ['is_5frequest_5fready_236',['is_request_ready',['../class_mafia_1_1_subserver_object.html#a1b1d019676fc906d777161c1a3f1f81d',1,'Mafia::SubserverObject']]]
 ];

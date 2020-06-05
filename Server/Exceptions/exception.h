@@ -14,7 +14,11 @@ namespace Mafia {
     public:
         /*! \brief Пустой конструктор для переопределения его в дочерних классах.*/
         Exception(){}
-
+        /*!
+         * \brief Основной конструктор, который инициализирует параметры исключения
+         * \param data см. \ref Mafia::Excepton::data
+         * \param id см. \ref Mafia::Exception::data
+         */
         Exception(String data, ExceptionIdType id);
         /*! \brief Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.*/
         virtual void show();
@@ -34,7 +38,10 @@ namespace Mafia {
         * \returns сообщение данного исключения
         */
         virtual String get_data();
-
+        /*!
+         * \brief Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа
+         * \return базовый id исключения (исключений с таким id не бывает)
+         */
         virtual ExceptionIdType get_base_exception_id() = 0;
     protected:
         //! \brief Сообщение, которое может быть использовано для отображения сообщения об ошибке

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Main server: Исходный файл crypto.h</title>
+<title>Main server: Исходный файл Network/crypto.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,6 +59,11 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_356d85c7fe3a31f6238a1e4b453e8aed.html">Network</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">crypto.h</div>  </div>
@@ -69,9 +73,9 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CRYPTO_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="message_8h.html">message.h</a>&quot;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="simplestring_8h.html">simplestring.h</a>&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="limitedqueue_8h.html">limitedqueue.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="namespace_mafia.html">    7</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="simplestring_8h.html">System/simplestring.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="limitedqueue_8h.html">System/limitedqueue.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_mafia_1_1_crypto.html">   12</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_mafia_1_1_crypto.html">Crypto</a></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">public</span>:</div>
@@ -97,7 +101,7 @@ $(function() {
 <div class="ttc" id="aclass_mafia_1_1_crypto_html_abff6bd2c6a2650fe8f3681981141a4c6"><div class="ttname"><a href="class_mafia_1_1_crypto.html#abff6bd2c6a2650fe8f3681981141a4c6">Mafia::Crypto::_encrypt</a></div><div class="ttdeci">static String _encrypt(String decrypted)</div><div class="ttdoc">Кодирует незакодированное сообщение</div><div class="ttdef"><b>Definition:</b> crypto.cpp:153</div></div>
 <div class="ttc" id="asimplestring_8h_html"><div class="ttname"><a href="simplestring_8h.html">simplestring.h</a></div></div>
 <div class="ttc" id="aclass_mafia_1_1_limited_queue_html"><div class="ttname"><a href="class_mafia_1_1_limited_queue.html">Mafia::LimitedQueue&lt; MessageIdType &gt;</a></div></div>
-<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdef"><b>Definition:</b> crypto.h:7</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> exception.h:9</div></div>
 <div class="ttc" id="amessage_8h_html_ae4f0f00b0e52927fff79c3362262fb1b"><div class="ttname"><a href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a></div><div class="ttdeci">int MessageIdType</div><div class="ttdoc">Тип, в котором хранится id сообщения</div><div class="ttdef"><b>Definition:</b> message.h:7</div></div>
 <div class="ttc" id="aclass_mafia_1_1_crypto_html_a4fea78a023d3c8cfa29b4e4985d0979b"><div class="ttname"><a href="class_mafia_1_1_crypto.html#a4fea78a023d3c8cfa29b4e4985d0979b">Mafia::Crypto::key</a></div><div class="ttdeci">static String key</div><div class="ttdoc">Ключ шифрования</div><div class="ttdef"><b>Definition:</b> crypto.h:55</div></div>
 <div class="ttc" id="aclass_mafia_1_1_crypto_html_a9f2408d825bb86a476d19e5784051ca4"><div class="ttname"><a href="class_mafia_1_1_crypto.html#a9f2408d825bb86a476d19e5784051ca4">Mafia::Crypto::lastMessageIds</a></div><div class="ttdeci">static LimitedQueue&lt; MessageIdType &gt; * lastMessageIds</div><div class="ttdoc">Последние несколько id сообщений</div><div class="ttdef"><b>Definition:</b> crypto.h:57</div></div>

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['mainservermanager_93',['MainServerManager',['../class_mafia_1_1_main_server_manager.html',1,'Mafia']]],
-  ['mainservernetworker_94',['MainServerNetworker',['../class_mafia_1_1_main_server_networker.html',1,'Mafia']]],
-  ['message_95',['Message',['../struct_mafia_1_1_message.html',1,'Mafia']]]
+  ['limitedqueue_166',['LimitedQueue',['../class_mafia_1_1_limited_queue.html',1,'Mafia']]],
+  ['limitedqueue_3c_20messageidtype_20_3e_167',['LimitedQueue&lt; MessageIdType &gt;',['../class_mafia_1_1_limited_queue.html',1,'Mafia']]]
 ];

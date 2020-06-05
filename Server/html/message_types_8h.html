@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Main server: Файл messageTypes.h</title>
+<title>Main server: Файл Network/messageTypes.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -59,6 +59,10 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_356d85c7fe3a31f6238a1e4b453e8aed.html">Network</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -88,6 +92,12 @@ $(function() {
 <tr class="memitem:adf47f2818aa1f0f6f9a85f50f8028920"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_types_8h.html#adf47f2818aa1f0f6f9a85f50f8028920">ABSTRACT_REQUEST_MESSAGE_TYPE</a>&#160;&#160;&#160;((<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>)5)</td></tr>
 <tr class="memdesc:adf47f2818aa1f0f6f9a85f50f8028920"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов  <a href="message_types_8h.html#adf47f2818aa1f0f6f9a85f50f8028920">Подробнее...</a><br /></td></tr>
 <tr class="separator:adf47f2818aa1f0f6f9a85f50f8028920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f1ed2ebb5efdcb269f0178b44e60d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_types_8h.html#af3f1ed2ebb5efdcb269f0178b44e60d7">PASS_CLIENT_MESSAGE_TYPE</a>&#160;&#160;&#160;((<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>)6)</td></tr>
+<tr class="memdesc:af3f1ed2ebb5efdcb269f0178b44e60d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщение для передачи субсерверу клиента  <a href="message_types_8h.html#af3f1ed2ebb5efdcb269f0178b44e60d7">Подробнее...</a><br /></td></tr>
+<tr class="separator:af3f1ed2ebb5efdcb269f0178b44e60d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eae5886e1532fdfb8df59f871748fb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_types_8h.html#a0eae5886e1532fdfb8df59f871748fb1">CHECK_CONNECTION_MESSAGE_TYPE</a>&#160;&#160;&#160;((<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>)7)</td></tr>
+<tr class="memdesc:a0eae5886e1532fdfb8df59f871748fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщение для проверки соединения (с субсерверами и с клиентами)  <a href="message_types_8h.html#a0eae5886e1532fdfb8df59f871748fb1">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0eae5886e1532fdfb8df59f871748fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Макросы</h2>
 <a id="adf47f2818aa1f0f6f9a85f50f8028920"></a>
@@ -103,6 +113,22 @@ $(function() {
 </div><div class="memdoc">
 
 <p>Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов </p>
+
+</div>
+</div>
+<a id="a0eae5886e1532fdfb8df59f871748fb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eae5886e1532fdfb8df59f871748fb1">&#9670;&nbsp;</a></span>CHECK_CONNECTION_MESSAGE_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHECK_CONNECTION_MESSAGE_TYPE&#160;&#160;&#160;((<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>)7)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Сообщение для проверки соединения (с субсерверами и с клиентами) </p>
 
 </div>
 </div>
@@ -135,6 +161,22 @@ $(function() {
 </div><div class="memdoc">
 
 <p>Текстовое сообщение, не требующее подтверждения </p>
+
+</div>
+</div>
+<a id="af3f1ed2ebb5efdcb269f0178b44e60d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f1ed2ebb5efdcb269f0178b44e60d7">&#9670;&nbsp;</a></span>PASS_CLIENT_MESSAGE_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PASS_CLIENT_MESSAGE_TYPE&#160;&#160;&#160;((<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>)6)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Сообщение для передачи субсерверу клиента </p>
 
 </div>
 </div>

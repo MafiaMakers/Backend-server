@@ -90,7 +90,7 @@ void MainServerNetworker::_process_message(Message message)
     }
     case ABSTRACT_REQUEST_MESSAGE_TYPE:{
         int answer = 42;
-        send_message(Message(message.id, REQUEST_ANSWER_MESSAGE_TYPE, (SymbolType*)&answer, 4 / sizeof(SymbolType), message.client));
+        send_message(Message(REQUEST_ANSWER_MESSAGE_TYPE, (SymbolType*)&answer, 4 / sizeof(SymbolType), message.client, message.id));
         break;
     }
         // Тут еще надо код со всякими emit...

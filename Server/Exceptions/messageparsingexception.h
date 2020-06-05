@@ -9,19 +9,18 @@ namespace Mafia {
     class MessageParsingException : public Mafia::Exception
     {
     public:
-        MessageParsingException(){};
-        /*! \brief Конструктор, который просто заполняет поля класса
-         * \param data соответствует полю data (см. \ref Mafia::Exception)
-         * \param id соответствует полю id (см. \ref Mafia::Exception)
-         */
-        MessageParsingException(String data, int id);
-        //! \brief см. \ref Mafia::Exception
-        void show() override;
 
+        MessageParsingException(){};
+        /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
+        MessageParsingException(String data, ExceptionIdType id);
+        //! \brief см. \ref Mafia::Exception::show()
+        void show() override;
+        //! \brief см. \ref Mafia::Exception::get_base_exception_id()
         ExceptionIdType get_base_exception_id() override;
     };
 }
 
+//! Базовый id исключения парсинга сообщения
 #define MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID 100
 
 //! Исключение, вызываемое при получении сообщения, слишком короткого для декодирования

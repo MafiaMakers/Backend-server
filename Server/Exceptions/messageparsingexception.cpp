@@ -3,7 +3,7 @@
 
 using namespace Mafia;
 
-MessageParsingException::MessageParsingException(String data, int id) : Mafia::Exception(data, id){}
+MessageParsingException::MessageParsingException(String data, ExceptionIdType id) : Mafia::Exception(data, id){}
 
 void MessageParsingException::show()
 {

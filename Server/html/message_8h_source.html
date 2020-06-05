@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.18"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Main server: Исходный файл message.h</title>
+<title>Main server: Исходный файл Network/message.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -45,7 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -60,6 +59,11 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_356d85c7fe3a31f6238a1e4b453e8aed.html">Network</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">message.h</div>  </div>
@@ -102,7 +106,7 @@ $(function() {
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="struct_mafia_1_1_message.html#aaf6f0d018d95e6566aa7023fcbb61975">size</a> = 0;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014">client</a> = <a class="code" href="struct_mafia_1_1_client.html">Client</a>();</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        }</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_message.html#a8036e32e96dfa2f0ed2b36bfd17d5637">   82</a></span>&#160;        <a class="code" href="struct_mafia_1_1_message.html#a8036e32e96dfa2f0ed2b36bfd17d5637">Message</a>(<a class="code" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> <span class="keywordtype">id</span>, <a class="code" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a> <a class="code" href="struct_mafia_1_1_message.html#a7cb0c77cdeb71d2b5bfbdb57143afd4e">type</a>, <a class="code" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a>* <a class="code" href="struct_mafia_1_1_message.html#a0187319729637a256c38648974b66cd2">data</a>, <span class="keywordtype">int</span> <a class="code" href="struct_mafia_1_1_message.html#aaf6f0d018d95e6566aa7023fcbb61975">size</a>, <a class="code" href="struct_mafia_1_1_client.html">Client</a> <a class="code" href="struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014">client</a>){</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_message.html#aa6b92d96f12fd764009be1d99ccf778d">   82</a></span>&#160;        <a class="code" href="struct_mafia_1_1_message.html#aa6b92d96f12fd764009be1d99ccf778d">Message</a>(<a class="code" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a> <a class="code" href="struct_mafia_1_1_message.html#a7cb0c77cdeb71d2b5bfbdb57143afd4e">type</a>, <a class="code" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a>* <a class="code" href="struct_mafia_1_1_message.html#a0187319729637a256c38648974b66cd2">data</a>, <span class="keywordtype">int</span> <a class="code" href="struct_mafia_1_1_message.html#aaf6f0d018d95e6566aa7023fcbb61975">size</a>, <a class="code" href="struct_mafia_1_1_client.html">Client</a> <a class="code" href="struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014">client</a>, <a class="code" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> <span class="keywordtype">id</span> = 0){</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            this-&gt;<span class="keywordtype">id</span> = <a class="code" href="struct_mafia_1_1_message.html#a437cd8c266bbc2e2ebe37f6918722233">id</a>;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            this-&gt;data = <a class="code" href="struct_mafia_1_1_message.html#a0187319729637a256c38648974b66cd2">data</a>;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            this-&gt;size = <a class="code" href="struct_mafia_1_1_message.html#aaf6f0d018d95e6566aa7023fcbb61975">size</a>;</div>
@@ -124,13 +128,13 @@ $(function() {
 <div class="ttc" id="astruct_mafia_1_1_client_html_a409b2a6e2ea91b0bb80d732b01afe431"><div class="ttname"><a href="struct_mafia_1_1_client.html#a409b2a6e2ea91b0bb80d732b01afe431">Mafia::Client::operator==</a></div><div class="ttdeci">bool operator==(Client a)</div><div class="ttdoc">Оператор сравнения</div><div class="ttdef"><b>Definition:</b> message.h:50</div></div>
 <div class="ttc" id="astruct_mafia_1_1_client_html_ac6481487a3ab92c9f9460a8d110f9d95"><div class="ttname"><a href="struct_mafia_1_1_client.html#ac6481487a3ab92c9f9460a8d110f9d95">Mafia::Client::Client</a></div><div class="ttdeci">Client(int ip, int port)</div><div class="ttdoc">Конструктор, задающий все значения</div><div class="ttdef"><b>Definition:</b> message.h:40</div></div>
 <div class="ttc" id="astruct_mafia_1_1_client_html_aedf850412dbaa664a0a998f1240466e7"><div class="ttname"><a href="struct_mafia_1_1_client.html#aedf850412dbaa664a0a998f1240466e7">Mafia::Client::port</a></div><div class="ttdeci">int port</div><div class="ttdoc">порт, с которого было отправлено сообщение</div><div class="ttdef"><b>Definition:</b> message.h:57</div></div>
-<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdef"><b>Definition:</b> crypto.h:7</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> exception.h:9</div></div>
 <div class="ttc" id="astruct_mafia_1_1_message_html_aa0d5fabbca2a699a34501f0b251e5014"><div class="ttname"><a href="struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014">Mafia::Message::client</a></div><div class="ttdeci">Client client</div><div class="ttdoc">Клиент-отправитель</div><div class="ttdef"><b>Definition:</b> message.h:98</div></div>
 <div class="ttc" id="astruct_mafia_1_1_message_html_a7cb0c77cdeb71d2b5bfbdb57143afd4e"><div class="ttname"><a href="struct_mafia_1_1_message.html#a7cb0c77cdeb71d2b5bfbdb57143afd4e">Mafia::Message::type</a></div><div class="ttdeci">MessageTypeType type</div><div class="ttdoc">тип сообщения</div><div class="ttdef"><b>Definition:</b> message.h:92</div></div>
-<div class="ttc" id="astruct_mafia_1_1_message_html_a8036e32e96dfa2f0ed2b36bfd17d5637"><div class="ttname"><a href="struct_mafia_1_1_message.html#a8036e32e96dfa2f0ed2b36bfd17d5637">Mafia::Message::Message</a></div><div class="ttdeci">Message(MessageIdType id, MessageTypeType type, SymbolType *data, int size, Client client)</div><div class="ttdoc">Конструктор, задающий все параметры</div><div class="ttdef"><b>Definition:</b> message.h:82</div></div>
 <div class="ttc" id="amessage_8h_html_ae4f0f00b0e52927fff79c3362262fb1b"><div class="ttname"><a href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a></div><div class="ttdeci">int MessageIdType</div><div class="ttdoc">Тип, в котором хранится id сообщения</div><div class="ttdef"><b>Definition:</b> message.h:7</div></div>
 <div class="ttc" id="amessage_8h_html_addb6b135a079eb123d448d09b2121b54"><div class="ttname"><a href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a></div><div class="ttdeci">char SymbolType</div><div class="ttdoc">Тип, в котором передаются символы (может быть заменен на wchar_t или qchar16 или еще на что-нибудь по...</div><div class="ttdef"><b>Definition:</b> message.h:15</div></div>
 <div class="ttc" id="astruct_mafia_1_1_message_html_a1d8f81e334b67ac519031846c4bcfc52"><div class="ttname"><a href="struct_mafia_1_1_message.html#a1d8f81e334b67ac519031846c4bcfc52">Mafia::Message::Message</a></div><div class="ttdeci">Message()</div><div class="ttdoc">Нулевой конструктор</div><div class="ttdef"><b>Definition:</b> message.h:67</div></div>
+<div class="ttc" id="astruct_mafia_1_1_message_html_aa6b92d96f12fd764009be1d99ccf778d"><div class="ttname"><a href="struct_mafia_1_1_message.html#aa6b92d96f12fd764009be1d99ccf778d">Mafia::Message::Message</a></div><div class="ttdeci">Message(MessageTypeType type, SymbolType *data, int size, Client client, MessageIdType id=0)</div><div class="ttdoc">Конструктор, задающий все параметры</div><div class="ttdef"><b>Definition:</b> message.h:82</div></div>
 <div class="ttc" id="amessage_8h_html_ac09be8fbfb795d6e6c8f60be564a6640"><div class="ttname"><a href="message_8h.html#ac09be8fbfb795d6e6c8f60be564a6640">ControlSumType</a></div><div class="ttdeci">int ControlSumType</div><div class="ttdoc">Тип, в котором хранится контрольная сумма (может быть заменен на long)</div><div class="ttdef"><b>Definition:</b> message.h:19</div></div>
 <div class="ttc" id="astruct_mafia_1_1_message_html"><div class="ttname"><a href="struct_mafia_1_1_message.html">Mafia::Message</a></div><div class="ttdoc">Основная структура для сообщений</div><div class="ttdef"><b>Definition:</b> message.h:63</div></div>
 <div class="ttc" id="astruct_mafia_1_1_client_html_a7588fd0f6280a988225daee841533ca6"><div class="ttname"><a href="struct_mafia_1_1_client.html#a7588fd0f6280a988225daee841533ca6">Mafia::Client::ip</a></div><div class="ttdeci">int ip</div><div class="ttdoc">ip отправителя сообщения</div><div class="ttdef"><b>Definition:</b> message.h:55</div></div>

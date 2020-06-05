@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['messageidtype_179',['MessageIdType',['../message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b',1,'message.h']]],
-  ['messagetypetype_180',['MessageTypeType',['../message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee',1,'message.h']]]
+  ['exceptionidtype_316',['ExceptionIdType',['../exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c',1,'exception.h']]]
 ];

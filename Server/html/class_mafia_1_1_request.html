@@ -66,6 +66,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#signals">Сигналы</a> &#124;
 <a href="#pub-methods">Открытые члены</a> &#124;
 <a href="#pro-methods">Защищенные члены</a> &#124;
 <a href="#pro-attribs">Защищенные данные</a> &#124;
@@ -90,6 +91,15 @@ $(function() {
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Сигналы</h2></td></tr>
+<tr class="memitem:a841494d622e8b9134dfbd9dae84f4e89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">on_ready</a> ()</td></tr>
+<tr class="memdesc:a841494d622e8b9134dfbd9dae84f4e89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот, который вызывается при получении ответа на запрос. Ничего не передает  <a href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Подробнее...</a><br /></td></tr>
+<tr class="separator:a841494d622e8b9134dfbd9dae84f4e89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a410e5b8e83f09afb4c665bca57fc3590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">on_ready_me</a> (<a class="el" href="class_mafia_1_1_request.html">Request</a> *me)</td></tr>
+<tr class="memdesc:a410e5b8e83f09afb4c665bca57fc3590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Такой же слот, как и <a class="el" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Mafia::Request::on_ready()</a> , но передает указатель на себя для идентификации  <a href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">Подробнее...</a><br /></td></tr>
+<tr class="separator:a410e5b8e83f09afb4c665bca57fc3590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
 <tr class="memitem:afaf8d8928de7ffff8a3767589489bd33"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#afaf8d8928de7ffff8a3767589489bd33">Request</a> ()</td></tr>
@@ -101,10 +111,6 @@ $(function() {
 <tr class="memitem:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">sleep_untill_finished</a> ()</td></tr>
 <tr class="memdesc:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, которая ждет в том же потоке, откуда ее вызвали когда данные будут получены. Внимательно работайте с ней, так как она может повесить всю систему  <a href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">Подробнее...</a><br /></td></tr>
 <tr class="separator:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af207cd08a48790269fc889c7a168f931"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:af207cd08a48790269fc889c7a168f931"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">get_when_finished</a> ()</td></tr>
-<tr class="memdesc:af207cd08a48790269fc889c7a168f931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, возвращающая значение, когда получены данные. Она тоже ждет в том же потоке, где ее вызвали, так что будьте с ней осторожны  <a href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">Подробнее...</a><br /></td></tr>
-<tr class="separator:af207cd08a48790269fc889c7a168f931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Защищенные члены</h2></td></tr>
@@ -174,35 +180,6 @@ $(function() {
 
 </div>
 </div>
-<a id="af207cd08a48790269fc889c7a168f931"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af207cd08a48790269fc889c7a168f931">&#9670;&nbsp;</a></span>get_when_finished()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">T Mafia::Request::get_when_finished </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Функция, возвращающая значение, когда получены данные. Она тоже ждет в том же потоке, где ее вызвали, так что будьте с ней осторожны </p>
-
-</div>
-</div>
 <a id="a21cfe5943185bbf520d710741278bae4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21cfe5943185bbf520d710741278bae4">&#9670;&nbsp;</a></span>is_finished()</h2>
 
@@ -228,6 +205,61 @@ template&lt;class T &gt; </div>
 
 <p>Функция проверки, готов ли сейчас запрос выдать результат </p>
 <dl class="section return"><dt>Возвращает</dt><dd>true, если готов и false, если результата запроса еще нет </dd></dl>
+
+</div>
+</div>
+<a id="a841494d622e8b9134dfbd9dae84f4e89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841494d622e8b9134dfbd9dae84f4e89">&#9670;&nbsp;</a></span>on_ready</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Request::on_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот, который вызывается при получении ответа на запрос. Ничего не передает </p>
+
+</div>
+</div>
+<a id="a410e5b8e83f09afb4c665bca57fc3590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a410e5b8e83f09afb4c665bca57fc3590">&#9670;&nbsp;</a></span>on_ready_me</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Request::on_ready_me </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_request.html">Request</a> *&#160;</td>
+          <td class="paramname"><em>me</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Такой же слот, как и <a class="el" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Mafia::Request::on_ready()</a> , но передает указатель на себя для идентификации </p>
 
 </div>
 </div>
@@ -311,8 +343,8 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>Объявления и описания членов классов находятся в файлах:<ul>
-<li><a class="el" href="request_8h_source.html">request.h</a></li>
-<li><a class="el" href="request_8cpp.html">request.cpp</a></li>
+<li>Requests/<a class="el" href="request_8h_source.html">request.h</a></li>
+<li>Requests/<a class="el" href="request_8cpp.html">request.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

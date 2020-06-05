@@ -9,24 +9,21 @@ namespace Mafia {
     class RequestException : public Mafia::Exception
     {
     public:
+        //! \brief см. \ref Mafia::Exception::Exception()
         RequestException(){}
-        /*!
-         * \brief На самом деле такой же конструктор, как и у других классов сообщения
-         * (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))
-         * \param data Описание ошибки
-         * \param id id ошибки
-         */
+        /*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
         RequestException(String data, ExceptionIdType id);
         /*!
          * \brief show Вывод сообщения
          */
         void show() override;
-
+        //! \brief см. \ref Mafia::Exception::get_base_exception_id()
         ExceptionIdType get_base_exception_id() override;
 
     };
 }
 
+//! Базовый id иключения, связанного с запросами
 #define REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID 300
 
 //! Исключение, вызываемое при ответе на запрос не тем клиентом, которому этот запрос предназначался

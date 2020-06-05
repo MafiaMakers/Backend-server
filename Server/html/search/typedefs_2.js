@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['symboltype_181',['SymbolType',['../message_8h.html#addb6b135a079eb123d448d09b2121b54',1,'message.h']]]
+  ['messageidtype_317',['MessageIdType',['../message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b',1,'message.h']]],
+  ['messagetypetype_318',['MessageTypeType',['../message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee',1,'message.h']]]
 ];

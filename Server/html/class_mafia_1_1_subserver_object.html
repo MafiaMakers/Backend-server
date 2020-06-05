@@ -1,0 +1,986 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::SubserverObject</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_subserver_object.html">SubserverObject</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">Сигналы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-slots">Защищенные слоты</a> &#124;
+<a href="#pro-methods">Защищенные члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="class_mafia_1_1_subserver_object-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::SubserverObject</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовый класс субсервера. Он запускает процесс субсервера, отслеживает краши этого процесса, может отправлять ему запросы и получать сообщения и ответы на запросы.  
+ <a href="class_mafia_1_1_subserver_object.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="subserverobject_8h_source.html">subserverobject.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::SubserverObject:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_subserver_object.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Сигналы</h2></td></tr>
+<tr class="memitem:a5d389765c7d4f5fc54e7cd8b5280857a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a5d389765c7d4f5fc54e7cd8b5280857a">on_request_ready</a> (<a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a> requestId)</td></tr>
+<tr class="memdesc:a5d389765c7d4f5fc54e7cd8b5280857a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при готовности запроса  <a href="class_mafia_1_1_subserver_object.html#a5d389765c7d4f5fc54e7cd8b5280857a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5d389765c7d4f5fc54e7cd8b5280857a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add8106f7de077e6ecee649901bb6ec76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#add8106f7de077e6ecee649901bb6ec76">on_crash</a> ()</td></tr>
+<tr class="memdesc:add8106f7de077e6ecee649901bb6ec76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при краше субсервера (перезапуск производится автоматически)  <a href="class_mafia_1_1_subserver_object.html#add8106f7de077e6ecee649901bb6ec76">Подробнее...</a><br /></td></tr>
+<tr class="separator:add8106f7de077e6ecee649901bb6ec76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5257e5fbff155961e8e5248e21991304"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a5257e5fbff155961e8e5248e21991304">on_message_got</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a5257e5fbff155961e8e5248e21991304"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении сообщения от субсервера  <a href="class_mafia_1_1_subserver_object.html#a5257e5fbff155961e8e5248e21991304">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5257e5fbff155961e8e5248e21991304"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ab7f216b53227762c7ef6987de8fb6d10"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#ab7f216b53227762c7ef6987de8fb6d10">SubserverObject</a> (QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:ab7f216b53227762c7ef6987de8fb6d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор, наследуемый от QObject'a.  <a href="class_mafia_1_1_subserver_object.html#ab7f216b53227762c7ef6987de8fb6d10">Подробнее...</a><br /></td></tr>
+<tr class="separator:ab7f216b53227762c7ef6987de8fb6d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc4e60d717bf145a5a053ed09f6d8393"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#acc4e60d717bf145a5a053ed09f6d8393">SubserverObject</a> (<a class="el" href="class_mafia_1_1_main_server_networker.html">MainServerNetworker</a> *<a class="el" href="class_mafia_1_1_subserver_object.html#a70d045873716217857efa542e9d5f52f">networker</a>, int port, const <a class="el" href="class_mafia_1_1_string.html">String</a> <a class="el" href="class_mafia_1_1_subserver_object.html#ac0033ee77fbf905624c7785e29ad92bc">path</a>, const <a class="el" href="class_mafia_1_1_string.html">String</a> <a class="el" href="class_mafia_1_1_subserver_object.html#a898e994f047e8443ce275d3ad1758380">processName</a>, int checkInterval=2000, int maxNotAnswering=5, const <a class="el" href="class_mafia_1_1_string.html">String</a> specialCommands=<a class="el" href="class_mafia_1_1_string.html">String</a>(&quot;&quot;))</td></tr>
+<tr class="memdesc:acc4e60d717bf145a5a053ed09f6d8393"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, который стоит использовать  <a href="class_mafia_1_1_subserver_object.html#acc4e60d717bf145a5a053ed09f6d8393">Подробнее...</a><br /></td></tr>
+<tr class="separator:acc4e60d717bf145a5a053ed09f6d8393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c1f1ba7ab0a66f6012fd24967ef4fe3"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a5c1f1ba7ab0a66f6012fd24967ef4fe3">send_request</a> (<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a> type, <a class="el" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a> *data, int size)</td></tr>
+<tr class="memdesc:a5c1f1ba7ab0a66f6012fd24967ef4fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод отправления запроса субсерверу  <a href="class_mafia_1_1_subserver_object.html#a5c1f1ba7ab0a66f6012fd24967ef4fe3">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5c1f1ba7ab0a66f6012fd24967ef4fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa520e87f886d9d200c14e2dbaa1f482b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b">pass_client</a> (<a class="el" href="struct_mafia_1_1_client.html">Client</a> client)</td></tr>
+<tr class="memdesc:aa520e87f886d9d200c14e2dbaa1f482b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод для передачи нового клиента данному субсерверу  <a href="class_mafia_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa520e87f886d9d200c14e2dbaa1f482b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af569ddd9f2199b62e9e0d647af5ffd78"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:af569ddd9f2199b62e9e0d647af5ffd78"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#af569ddd9f2199b62e9e0d647af5ffd78">get_request_result</a> (<a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a> requestId)</td></tr>
+<tr class="memdesc:af569ddd9f2199b62e9e0d647af5ffd78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения результата запроса по id запроса  <a href="class_mafia_1_1_subserver_object.html#af569ddd9f2199b62e9e0d647af5ffd78">Подробнее...</a><br /></td></tr>
+<tr class="separator:af569ddd9f2199b62e9e0d647af5ffd78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1d019676fc906d777161c1a3f1f81d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a1b1d019676fc906d777161c1a3f1f81d">is_request_ready</a> (<a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a> requestId)</td></tr>
+<tr class="memdesc:a1b1d019676fc906d777161c1a3f1f81d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция проверки, готов ли ответ на указанный запрос  <a href="class_mafia_1_1_subserver_object.html#a1b1d019676fc906d777161c1a3f1f81d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1b1d019676fc906d777161c1a3f1f81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35fa4b6547370650b5a30c1d5ab2f4f2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2">send_message_to_subserver</a> (<a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a> type, <a class="el" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a> *data, int size, <a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a> id=0)</td></tr>
+<tr class="memdesc:a35fa4b6547370650b5a30c1d5ab2f4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция отправки сообщения субсерверу  <a href="class_mafia_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2">Подробнее...</a><br /></td></tr>
+<tr class="separator:a35fa4b6547370650b5a30c1d5ab2f4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-slots"></a>
+Защищенные слоты</h2></td></tr>
+<tr class="memitem:a44a0c758ce9ac47051091dfc2615fac2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a44a0c758ce9ac47051091dfc2615fac2">request_answered</a> (<a class="el" href="class_mafia_1_1_request.html">Request</a> *request)</td></tr>
+<tr class="memdesc:a44a0c758ce9ac47051091dfc2615fac2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот, который привязывается к запросу и вызывает сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#a5d389765c7d4f5fc54e7cd8b5280857a">Mafia::SubserverObject::on_request_ready(RequestIdType requestId)</a>  <a href="class_mafia_1_1_subserver_object.html#a44a0c758ce9ac47051091dfc2615fac2">Подробнее...</a><br /></td></tr>
+<tr class="separator:a44a0c758ce9ac47051091dfc2615fac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10949f1bdc457f495bb0bb52f9434dfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a10949f1bdc457f495bb0bb52f9434dfa">message_from_server</a> (<a class="el" href="struct_mafia_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a10949f1bdc457f495bb0bb52f9434dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении сообщения от локалхоста. Проверяет от этого ли субсервера пришло сообщение и если от этого, то вызывает сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#a5257e5fbff155961e8e5248e21991304">Mafia::SubserverObject::on_message_got(Mafia::Message message)</a>  <a href="class_mafia_1_1_subserver_object.html#a10949f1bdc457f495bb0bb52f9434dfa">Подробнее...</a><br /></td></tr>
+<tr class="separator:a10949f1bdc457f495bb0bb52f9434dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4755e31d542426d8ce499bbe893e8d1b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a4755e31d542426d8ce499bbe893e8d1b">crash_processing</a> ()</td></tr>
+<tr class="memdesc:a4755e31d542426d8ce499bbe893e8d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот, обрабатывающий краш субсервера (в т.ч. перезапускает его)  <a href="class_mafia_1_1_subserver_object.html#a4755e31d542426d8ce499bbe893e8d1b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4755e31d542426d8ce499bbe893e8d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Защищенные члены</h2></td></tr>
+<tr class="memitem:a53c7fa0389178cbb806ebfe38931deba"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a53c7fa0389178cbb806ebfe38931deba">_check_subserver_respond</a> ()</td></tr>
+<tr class="memdesc:a53c7fa0389178cbb806ebfe38931deba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод, который все время существования субсервера проверяет, активен ли сейчас субсервер. И если субсервер не активен, то перезапускает его  <a href="class_mafia_1_1_subserver_object.html#a53c7fa0389178cbb806ebfe38931deba">Подробнее...</a><br /></td></tr>
+<tr class="separator:a53c7fa0389178cbb806ebfe38931deba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9b6518219c0d83c03ee2c9d54a73b5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a8f9b6518219c0d83c03ee2c9d54a73b5">run_me</a> (const <a class="el" href="class_mafia_1_1_string.html">String</a> specialCommands)</td></tr>
+<tr class="memdesc:a8f9b6518219c0d83c03ee2c9d54a73b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция запуска субсервера с указанием дополнительных комманд  <a href="class_mafia_1_1_subserver_object.html#a8f9b6518219c0d83c03ee2c9d54a73b5">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8f9b6518219c0d83c03ee2c9d54a73b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:a6d4bb71f4c5552b274a0deaaac5b2fc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_mafia_1_1_client.html">Client</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a6d4bb71f4c5552b274a0deaaac5b2fc6">myAddress</a></td></tr>
+<tr class="memdesc:a6d4bb71f4c5552b274a0deaaac5b2fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Адрес субсервера (127.0.0.1 и порт)  <a href="class_mafia_1_1_subserver_object.html#a6d4bb71f4c5552b274a0deaaac5b2fc6">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6d4bb71f4c5552b274a0deaaac5b2fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bf1be21fcb93b69baab53209cc02339"><td class="memItemLeft" align="right" valign="top">QList&lt; <a class="el" href="struct_mafia_1_1_request_with_id.html">RequestWithId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a8bf1be21fcb93b69baab53209cc02339">currentRequests</a></td></tr>
+<tr class="memdesc:a8bf1be21fcb93b69baab53209cc02339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Список всех запросов этого субсервера  <a href="class_mafia_1_1_subserver_object.html#a8bf1be21fcb93b69baab53209cc02339">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8bf1be21fcb93b69baab53209cc02339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70d045873716217857efa542e9d5f52f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mafia_1_1_main_server_networker.html">MainServerNetworker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a70d045873716217857efa542e9d5f52f">networker</a></td></tr>
+<tr class="memdesc:a70d045873716217857efa542e9d5f52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на объект <a class="el" href="class_mafia_1_1_main_server_networker.html">Mafia::MainServerNetworker</a> , используемый для создания запросов и отправления сообщений  <a href="class_mafia_1_1_subserver_object.html#a70d045873716217857efa542e9d5f52f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a70d045873716217857efa542e9d5f52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cac4a95afb62479ed467ec104a84d9b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a4cac4a95afb62479ed467ec104a84d9b">pid</a></td></tr>
+<tr class="memdesc:a4cac4a95afb62479ed467ec104a84d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID процесса субсервера  <a href="class_mafia_1_1_subserver_object.html#a4cac4a95afb62479ed467ec104a84d9b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4cac4a95afb62479ed467ec104a84d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0af59b83b39de72d76cd6270c761bef2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a0af59b83b39de72d76cd6270c761bef2">initialized</a> = false</td></tr>
+<tr class="memdesc:a0af59b83b39de72d76cd6270c761bef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">булевая переменная, отвечающая за то, работает ли еще субсервер  <a href="class_mafia_1_1_subserver_object.html#a0af59b83b39de72d76cd6270c761bef2">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0af59b83b39de72d76cd6270c761bef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d1f21ed6f038b02ddea47f7df885890"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a2d1f21ed6f038b02ddea47f7df885890">notAnsweringsCount</a> = 0</td></tr>
+<tr class="separator:a2d1f21ed6f038b02ddea47f7df885890"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0033ee77fbf905624c7785e29ad92bc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#ac0033ee77fbf905624c7785e29ad92bc">path</a></td></tr>
+<tr class="memdesc:ac0033ee77fbf905624c7785e29ad92bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к исполняемому файлу субсервера  <a href="class_mafia_1_1_subserver_object.html#ac0033ee77fbf905624c7785e29ad92bc">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac0033ee77fbf905624c7785e29ad92bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a898e994f047e8443ce275d3ad1758380"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a898e994f047e8443ce275d3ad1758380">processName</a></td></tr>
+<tr class="memdesc:a898e994f047e8443ce275d3ad1758380"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя процесса субсервера  <a href="class_mafia_1_1_subserver_object.html#a898e994f047e8443ce275d3ad1758380">Подробнее...</a><br /></td></tr>
+<tr class="separator:a898e994f047e8443ce275d3ad1758380"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae31c4a372ae11735f9e95b1f37b85d32"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#ae31c4a372ae11735f9e95b1f37b85d32">checkRespondInterval</a> = 2000</td></tr>
+<tr class="memdesc:ae31c4a372ae11735f9e95b1f37b85d32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Временной интервал (мс) между проверками активности субсервера  <a href="class_mafia_1_1_subserver_object.html#ae31c4a372ae11735f9e95b1f37b85d32">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae31c4a372ae11735f9e95b1f37b85d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ebcb2b96e9ac824724894489967920"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html#a74ebcb2b96e9ac824724894489967920">maxNotAnsweringsCount</a> = 5</td></tr>
+<tr class="separator:a74ebcb2b96e9ac824724894489967920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Базовый класс субсервера. Он запускает процесс субсервера, отслеживает краши этого процесса, может отправлять ему запросы и получать сообщения и ответы на запросы. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="ab7f216b53227762c7ef6987de8fb6d10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7f216b53227762c7ef6987de8fb6d10">&#9670;&nbsp;</a></span>SubserverObject() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SubserverObject::SubserverObject </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Конструктор, наследуемый от QObject'a. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>какая-то Qt-шная фигня... </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acc4e60d717bf145a5a053ed09f6d8393"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc4e60d717bf145a5a053ed09f6d8393">&#9670;&nbsp;</a></span>SubserverObject() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SubserverObject::SubserverObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_main_server_networker.html">MainServerNetworker</a> *&#160;</td>
+          <td class="paramname"><em>networker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>processName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>checkInterval</em> = <code>2000</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxNotAnswering</em> = <code>5</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>specialCommands</em> = <code><a class="el" href="class_mafia_1_1_string.html">String</a>(&quot;&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, который стоит использовать </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">networker</td><td>Указатель на объект <a class="el" href="class_mafia_1_1_main_server_networker.html" title="Основной класс отправки и получения сообщений для основного сервера">MainServerNetworker</a>, который отправляет сообщения </td></tr>
+    <tr><td class="paramname">port</td><td>Порт, на котором стоит запустить субсервер </td></tr>
+    <tr><td class="paramname">path</td><td>Путь к исполняемому файлу субсервера (включая имя исполняемого файла) </td></tr>
+    <tr><td class="paramname">processName</td><td>Имя процесса, который будет запущен при вызове исполняемого файла </td></tr>
+    <tr><td class="paramname">checkInterval</td><td>Временной интервал (мс) между проверками того, что субсервер отвечает (стандартное значение 2000) </td></tr>
+    <tr><td class="paramname">maxNotAnswering</td><td>Максимальное количество пропущенных запросов на подтверждение активности субсервера (стандартное значение 5) </td></tr>
+    <tr><td class="paramname">specialCommands</td><td>Специальные параметры, которые дополнительно надо передать при запуске субсервера (стандартное значение "") </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a53c7fa0389178cbb806ebfe38931deba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53c7fa0389178cbb806ebfe38931deba">&#9670;&nbsp;</a></span>_check_subserver_respond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::_check_subserver_respond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод, который все время существования субсервера проверяет, активен ли сейчас субсервер. И если субсервер не активен, то перезапускает его </p>
+
+</div>
+</div>
+<a id="a4755e31d542426d8ce499bbe893e8d1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4755e31d542426d8ce499bbe893e8d1b">&#9670;&nbsp;</a></span>crash_processing</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::crash_processing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот, обрабатывающий краш субсервера (в т.ч. перезапускает его) </p>
+
+</div>
+</div>
+<a id="af569ddd9f2199b62e9e0d647af5ffd78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af569ddd9f2199b62e9e0d647af5ffd78">&#9670;&nbsp;</a></span>get_request_result()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">T SubserverObject::get_request_result </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a>&#160;</td>
+          <td class="paramname"><em>requestId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция получения результата запроса по id запроса </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requestId</td><td>id запроса, у которого надо получить данные </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b1d019676fc906d777161c1a3f1f81d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b1d019676fc906d777161c1a3f1f81d">&#9670;&nbsp;</a></span>is_request_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SubserverObject::is_request_ready </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a>&#160;</td>
+          <td class="paramname"><em>requestId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция проверки, готов ли ответ на указанный запрос </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requestId</td><td>id запроса, который следует проверить на готовность </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если запрос готов вернуть данные, иначе false </dd></dl>
+
+</div>
+</div>
+<a id="a10949f1bdc457f495bb0bb52f9434dfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10949f1bdc457f495bb0bb52f9434dfa">&#9670;&nbsp;</a></span>message_from_server</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::message_from_server </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при получении сообщения от локалхоста. Проверяет от этого ли субсервера пришло сообщение и если от этого, то вызывает сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#a5257e5fbff155961e8e5248e21991304">Mafia::SubserverObject::on_message_got(Mafia::Message message)</a> </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение, полученное от сервера </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add8106f7de077e6ecee649901bb6ec76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add8106f7de077e6ecee649901bb6ec76">&#9670;&nbsp;</a></span>on_crash</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::SubserverObject::on_crash </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при краше субсервера (перезапуск производится автоматически) </p>
+
+</div>
+</div>
+<a id="a5257e5fbff155961e8e5248e21991304"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5257e5fbff155961e8e5248e21991304">&#9670;&nbsp;</a></span>on_message_got</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::SubserverObject::on_message_got </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при получении сообщения от субсервера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>сообщение, которое получено от субсервера </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5d389765c7d4f5fc54e7cd8b5280857a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d389765c7d4f5fc54e7cd8b5280857a">&#9670;&nbsp;</a></span>on_request_ready</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::SubserverObject::on_request_ready </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14">RequestIdType</a>&#160;</td>
+          <td class="paramname"><em>requestId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при готовности запроса </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">requestId</td><td>id запроса, который стал готов к отдаче информации </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa520e87f886d9d200c14e2dbaa1f482b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa520e87f886d9d200c14e2dbaa1f482b">&#9670;&nbsp;</a></span>pass_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::pass_client </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_client.html">Client</a>&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод для передачи нового клиента данному субсерверу </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>Клиент, которого необходимо передать </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a44a0c758ce9ac47051091dfc2615fac2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a0c758ce9ac47051091dfc2615fac2">&#9670;&nbsp;</a></span>request_answered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::request_answered </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_request.html">Request</a> *&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Слот, который привязывается к запросу и вызывает сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#a5d389765c7d4f5fc54e7cd8b5280857a">Mafia::SubserverObject::on_request_ready(RequestIdType requestId)</a> </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>указатель на запрос, который стал готов к отдаче информации </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8f9b6518219c0d83c03ee2c9d54a73b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f9b6518219c0d83c03ee2c9d54a73b5">&#9670;&nbsp;</a></span>run_me()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SubserverObject::run_me </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>specialCommands</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция запуска субсервера с указанием дополнительных комманд </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">specialCommands</td><td>дополнительные параметры, которые надо передать субсерверу для запуска </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a35fa4b6547370650b5a30c1d5ab2f4f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35fa4b6547370650b5a30c1d5ab2f4f2">&#9670;&nbsp;</a></span>send_message_to_subserver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SubserverObject::send_message_to_subserver </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b">MessageIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция отправки сообщения субсерверу </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Тип сообщения </td></tr>
+    <tr><td class="paramname">data</td><td>массив данных сообщения </td></tr>
+    <tr><td class="paramname">size</td><td>размер массива данных </td></tr>
+    <tr><td class="paramname">id</td><td>id сообщения (стандартное значение 0) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>id отправленного сообщения </dd></dl>
+
+</div>
+</div>
+<a id="a5c1f1ba7ab0a66f6012fd24967ef4fe3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c1f1ba7ab0a66f6012fd24967ef4fe3">&#9670;&nbsp;</a></span>send_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SubserverObject::send_request </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee">MessageTypeType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="message_8h.html#addb6b135a079eb123d448d09b2121b54">SymbolType</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод отправления запроса субсерверу </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Тип сообщения, которое надо отправить субсерверу </td></tr>
+    <tr><td class="paramname">data</td><td>Данные, которые надо передать в сообщении </td></tr>
+    <tr><td class="paramname">size</td><td>Размер массива данных </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>id реквеста, по которому потом можно обратиться в этот же объект <a class="el" href="class_mafia_1_1_subserver_object.html" title="Базовый класс субсервера. Он запускает процесс субсервера, отслеживает краши этого процесса,...">SubserverObject</a> и получить сведения </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="ae31c4a372ae11735f9e95b1f37b85d32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae31c4a372ae11735f9e95b1f37b85d32">&#9670;&nbsp;</a></span>checkRespondInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::SubserverObject::checkRespondInterval = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Временной интервал (мс) между проверками активности субсервера </p>
+
+</div>
+</div>
+<a id="a8bf1be21fcb93b69baab53209cc02339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf1be21fcb93b69baab53209cc02339">&#9670;&nbsp;</a></span>currentRequests</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt;<a class="el" href="struct_mafia_1_1_request_with_id.html">RequestWithId</a>&gt; Mafia::SubserverObject::currentRequests</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Список всех запросов этого субсервера </p>
+
+</div>
+</div>
+<a id="a0af59b83b39de72d76cd6270c761bef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0af59b83b39de72d76cd6270c761bef2">&#9670;&nbsp;</a></span>initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mafia::SubserverObject::initialized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>булевая переменная, отвечающая за то, работает ли еще субсервер </p>
+
+</div>
+</div>
+<a id="a74ebcb2b96e9ac824724894489967920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74ebcb2b96e9ac824724894489967920">&#9670;&nbsp;</a></span>maxNotAnsweringsCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::SubserverObject::maxNotAnsweringsCount = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Максимальное допустимое количество раз, сколько субсервер может не ответить на запрос. Если он не ответит большее число раз, то будет считаться, что он упал и будет вызван сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#add8106f7de077e6ecee649901bb6ec76">Mafia::SubserverObject::on_crash()</a>) </p>
+
+</div>
+</div>
+<a id="a6d4bb71f4c5552b274a0deaaac5b2fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d4bb71f4c5552b274a0deaaac5b2fc6">&#9670;&nbsp;</a></span>myAddress</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_mafia_1_1_client.html">Client</a> Mafia::SubserverObject::myAddress</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Адрес субсервера (127.0.0.1 и порт) </p>
+
+</div>
+</div>
+<a id="a70d045873716217857efa542e9d5f52f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70d045873716217857efa542e9d5f52f">&#9670;&nbsp;</a></span>networker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_main_server_networker.html">MainServerNetworker</a>* Mafia::SubserverObject::networker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Указатель на объект <a class="el" href="class_mafia_1_1_main_server_networker.html">Mafia::MainServerNetworker</a> , используемый для создания запросов и отправления сообщений </p>
+
+</div>
+</div>
+<a id="a2d1f21ed6f038b02ddea47f7df885890"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1f21ed6f038b02ddea47f7df885890">&#9670;&nbsp;</a></span>notAnsweringsCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Mafia::SubserverObject::notAnsweringsCount = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Текущее количество не отвеченных подряд запросов на подтверждение активности субсервера (если оно превысит <a class="el" href="class_mafia_1_1_subserver_object.html#a74ebcb2b96e9ac824724894489967920">Mafia::SubserverObject::maxNotAnsweringsCount</a> , то будет считаться, что субсервер упал и будет вызван сигнал <a class="el" href="class_mafia_1_1_subserver_object.html#add8106f7de077e6ecee649901bb6ec76">Mafia::SubserverObject::on_crash()</a>) </p>
+
+</div>
+</div>
+<a id="ac0033ee77fbf905624c7785e29ad92bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0033ee77fbf905624c7785e29ad92bc">&#9670;&nbsp;</a></span>path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_string.html">String</a> Mafia::SubserverObject::path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Путь к исполняемому файлу субсервера </p>
+
+</div>
+</div>
+<a id="a4cac4a95afb62479ed467ec104a84d9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cac4a95afb62479ed467ec104a84d9b">&#9670;&nbsp;</a></span>pid</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Mafia::SubserverObject::pid</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>PID процесса субсервера </p>
+
+</div>
+</div>
+<a id="a898e994f047e8443ce275d3ad1758380"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a898e994f047e8443ce275d3ad1758380">&#9670;&nbsp;</a></span>processName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_string.html">String</a> Mafia::SubserverObject::processName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Имя процесса субсервера </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li><a class="el" href="subserverobject_8h_source.html">subserverobject.h</a></li>
+<li><a class="el" href="subserverobject_8cpp.html">subserverobject.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

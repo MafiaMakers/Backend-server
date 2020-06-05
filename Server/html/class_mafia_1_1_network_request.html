@@ -112,10 +112,6 @@ $(function() {
 <tr class="memitem:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2 inherit pub_methods_class_mafia_1_1_request"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">sleep_untill_finished</a> ()</td></tr>
 <tr class="memdesc:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2 inherit pub_methods_class_mafia_1_1_request"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, которая ждет в том же потоке, откуда ее вызвали когда данные будут получены. Внимательно работайте с ней, так как она может повесить всю систему  <a href="class_mafia_1_1_request.html#ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2">Подробнее...</a><br /></td></tr>
 <tr class="separator:ac4e1ebbf5cb59ea9d1f2bde4eb1ed1d2 inherit pub_methods_class_mafia_1_1_request"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af207cd08a48790269fc889c7a168f931 inherit pub_methods_class_mafia_1_1_request"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:af207cd08a48790269fc889c7a168f931 inherit pub_methods_class_mafia_1_1_request"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">get_when_finished</a> ()</td></tr>
-<tr class="memdesc:af207cd08a48790269fc889c7a168f931 inherit pub_methods_class_mafia_1_1_request"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, возвращающая значение, когда получены данные. Она тоже ждет в том же потоке, где ее вызвали, так что будьте с ней осторожны  <a href="class_mafia_1_1_request.html#af207cd08a48790269fc889c7a168f931">Подробнее...</a><br /></td></tr>
-<tr class="separator:af207cd08a48790269fc889c7a168f931 inherit pub_methods_class_mafia_1_1_request"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
 Закрытые слоты</h2></td></tr>
@@ -140,6 +136,13 @@ $(function() {
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Дополнительные унаследованные члены</h2></td></tr>
+<tr class="inherit_header signals_class_mafia_1_1_request"><td colspan="2" onclick="javascript:toggleInherit('signals_class_mafia_1_1_request')"><img src="closed.png" alt="-"/>&#160;Сигналы унаследованные от <a class="el" href="class_mafia_1_1_request.html">Mafia::Request</a></td></tr>
+<tr class="memitem:a841494d622e8b9134dfbd9dae84f4e89 inherit signals_class_mafia_1_1_request"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">on_ready</a> ()</td></tr>
+<tr class="memdesc:a841494d622e8b9134dfbd9dae84f4e89 inherit signals_class_mafia_1_1_request"><td class="mdescLeft">&#160;</td><td class="mdescRight">Слот, который вызывается при получении ответа на запрос. Ничего не передает  <a href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Подробнее...</a><br /></td></tr>
+<tr class="separator:a841494d622e8b9134dfbd9dae84f4e89 inherit signals_class_mafia_1_1_request"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a410e5b8e83f09afb4c665bca57fc3590 inherit signals_class_mafia_1_1_request"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">on_ready_me</a> (<a class="el" href="class_mafia_1_1_request.html">Request</a> *me)</td></tr>
+<tr class="memdesc:a410e5b8e83f09afb4c665bca57fc3590 inherit signals_class_mafia_1_1_request"><td class="mdescLeft">&#160;</td><td class="mdescRight">Такой же слот, как и <a class="el" href="class_mafia_1_1_request.html#a841494d622e8b9134dfbd9dae84f4e89">Mafia::Request::on_ready()</a> , но передает указатель на себя для идентификации  <a href="class_mafia_1_1_request.html#a410e5b8e83f09afb4c665bca57fc3590">Подробнее...</a><br /></td></tr>
+<tr class="separator:a410e5b8e83f09afb4c665bca57fc3590 inherit signals_class_mafia_1_1_request"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_mafia_1_1_request"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_mafia_1_1_request')"><img src="closed.png" alt="-"/>&#160;Защищенные члены унаследованные от <a class="el" href="class_mafia_1_1_request.html">Mafia::Request</a></td></tr>
 <tr class="memitem:a262899f5e790a88261b8b9acb2546ff3 inherit pro_methods_class_mafia_1_1_request"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html#a262899f5e790a88261b8b9acb2546ff3">close_request</a> ()</td></tr>
 <tr class="memdesc:a262899f5e790a88261b8b9acb2546ff3 inherit pro_methods_class_mafia_1_1_request"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция завершения работы запроса по получении данных  <a href="class_mafia_1_1_request.html#a262899f5e790a88261b8b9acb2546ff3">Подробнее...</a><br /></td></tr>
@@ -380,8 +383,8 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <hr/>Объявления и описания членов классов находятся в файлах:<ul>
-<li><a class="el" href="networkrequest_8h_source.html">networkrequest.h</a></li>
-<li><a class="el" href="networkrequest_8cpp.html">networkrequest.cpp</a></li>
+<li>Requests/<a class="el" href="networkrequest_8h_source.html">networkrequest.h</a></li>
+<li>Requests/<a class="el" href="networkrequest_8cpp.html">networkrequest.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['value_86',['value',['../struct_mafia_1_1_queue_element.html#a030e7789ec1d08705a9dfaa4d9dfb942',1,'Mafia::QueueElement']]]
+  ['unknown_5fmessage_5ftype_5fexception_5fid_158',['UNKNOWN_MESSAGE_TYPE_EXCEPTION_ID',['../messageprocessingexception_8h.html#aa3493f3d1283896add796c522d792b24',1,'messageprocessingexception.h']]]
 ];

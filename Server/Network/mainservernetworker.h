@@ -20,7 +20,8 @@ namespace Mafia {
 
         /*!
          * \brief Отправления сообщения
-         * \param message Сообщение для отправки. Должно быть полностью инициализированно
+         * \param message Сообщение для отправки. Должно быть инициализированно во всех полях.
+         * Если id сообщения не фиксированно, то следует в поле id указать 0
          */
         MessageIdType send_message(Message message);
     signals:
@@ -29,7 +30,10 @@ namespace Mafia {
          * \param message Пришедшее сообщение с ответом
          */
         void request_answer(Message message);
-
+        /*!
+         * \brief Сигнал, вызываемый при получении сообщения от api субсервера
+         * \param message Пришедшее сообщение
+         */
         void on_subserver_api_message_received(Message message);
     private slots:
         /*!
@@ -72,7 +76,7 @@ namespace Mafia {
         int myPort;
         //! Сообщения, ожидающие подтверждения
         QList<Message> waitingForConfirmation;
-
+        //! id сообщения, которое на данный момент максимальное
         MessageIdType currentMaxId = (MessageIdType)0;
         //! Множество типов сообщений, которым необходимо подтверждение
         static const QSet<MessageTypeType> needConfirmation;

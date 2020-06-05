@@ -62,11 +62,15 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Классы</a>  </div>
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
   <div class="headertitle">
 <div class="title">Пространство имен Mafia</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Набор системных функций для запуска и завершения программ  
+<a href="namespace_mafia.html#details">Подробнее...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Классы</h2></td></tr>
@@ -76,7 +80,11 @@ $(function() {
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_crypto.html">Crypto</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">По сути статический класс (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими) Класс используется для кодирования, декодирования, распаковки и запаковки сообщений перед отправкой или после получения по сети.  <a href="class_mafia_1_1_crypto.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exception.html">Exception</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться от него. Соответственно в try-catch блоке стоит использовать Exception* вместо конкретных дочерних классов.  <a href="class_mafia_1_1_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_limited_queue.html">LimitedQueue</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс ограниченной очереди. Это очередь, в которой может храниться не более определенного количества элементов. При достижении максимума добавление нового элемента будет удалять самый старый элемент из находящихся в очереди  <a href="class_mafia_1_1_limited_queue.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_main_server_manager.html">MainServerManager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Главный управляющий класс основного сервера. Он пока еще не дописан. Только начало...  <a href="class_mafia_1_1_main_server_manager.html#details">Подробнее...</a><br /></td></tr>
@@ -87,6 +95,12 @@ $(function() {
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mafia_1_1_message.html">Message</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основная структура для сообщений  <a href="struct_mafia_1_1_message.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_message_parsing_exception.html">MessageParsingException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке.  <a href="class_mafia_1_1_message_parsing_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_message_processing_exception.html">MessageProcessingException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс исключений, произошедших при обработке сообщения  <a href="class_mafia_1_1_message_processing_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_request.html">NetworkRequest</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс сетевого запроса. Получает сообщение, отправляет его нужному клиенту и по получении ответа готов выдать результат в виде нужного типа данных. Таким образом он бездействует до получения данных от клиента и взять данные в этот момент нельзя  <a href="class_mafia_1_1_network_request.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -95,10 +109,165 @@ $(function() {
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request.html">Request</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый класс запроса. От него будут наследоваться классы сетевого запроса, запроса БД, запроса API субсерверов и т.п.  <a href="class_mafia_1_1_request.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request_exception.html">RequestException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс исключений, связанных с работой системы запросов  <a href="class_mafia_1_1_request_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mafia_1_1_request_with_id.html">RequestWithId</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Структура для хранения сетевого запроса и его id.  <a href="struct_mafia_1_1_request_with_id.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_string.html">String</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_mafia_1_1_string.html" title="The String class упрощенная строка (мне просто страшно использовать QString или std::string,...">String</a> class упрощенная строка (мне просто страшно использовать QString или std::string, так как они сложные и там возникают кринжи с последним символом)  <a href="class_mafia_1_1_string.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_exception.html">SubserverException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс ошибок работы с субсервером  <a href="class_mafia_1_1_subserver_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_object.html">SubserverObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый класс субсервера. Он запускает процесс субсервера, отслеживает краши этого процесса, может отправлять ему запросы и получать сообщения и ответы на запросы.  <a href="class_mafia_1_1_subserver_object.html#details">Подробнее...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6f5cb7d00444a101b43759ef8ce0bc0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html#a6f5cb7d00444a101b43759ef8ce0bc0a">run_app</a> (const <a class="el" href="class_mafia_1_1_string.html">String</a> path, const <a class="el" href="class_mafia_1_1_string.html">String</a> name, const <a class="el" href="class_mafia_1_1_string.html">String</a> args=<a class="el" href="class_mafia_1_1_string.html">String</a>(&quot;&quot;))</td></tr>
+<tr class="memdesc:a6f5cb7d00444a101b43759ef8ce0bc0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Запускает указанную программу  <a href="namespace_mafia.html#a6f5cb7d00444a101b43759ef8ce0bc0a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6f5cb7d00444a101b43759ef8ce0bc0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d02e1023501108dc5af648bc4c8aef6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html#a8d02e1023501108dc5af648bc4c8aef6">exec</a> (const char *cmd)</td></tr>
+<tr class="memdesc:a8d02e1023501108dc5af648bc4c8aef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполнение cmd-команды. (На самом деле эту функцию я просто со stackoverflow скопипастил и не разобрался, как она работает, так что соре) Но потом обязательно разберусь  <a href="namespace_mafia.html#a8d02e1023501108dc5af648bc4c8aef6">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8d02e1023501108dc5af648bc4c8aef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b9710c98161a725d61a0e5a17ded5cc"><td class="memItemLeft" align="right" valign="top">QList&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html#a5b9710c98161a725d61a0e5a17ded5cc">get_all_pids_by_name</a> (const <a class="el" href="class_mafia_1_1_string.html">String</a> name)</td></tr>
+<tr class="memdesc:a5b9710c98161a725d61a0e5a17ded5cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получение списка всех PID процессов с указанным именем  <a href="namespace_mafia.html#a5b9710c98161a725d61a0e5a17ded5cc">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5b9710c98161a725d61a0e5a17ded5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a220e197a0c26b8ba12757b3c199b4b87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html#a220e197a0c26b8ba12757b3c199b4b87">kill</a> (int pid)</td></tr>
+<tr class="memdesc:a220e197a0c26b8ba12757b3c199b4b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершение процесса с указанным PID.  <a href="namespace_mafia.html#a220e197a0c26b8ba12757b3c199b4b87">Подробнее...</a><br /></td></tr>
+<tr class="separator:a220e197a0c26b8ba12757b3c199b4b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Набор системных функций для запуска и завершения программ </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a8d02e1023501108dc5af648bc4c8aef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d02e1023501108dc5af648bc4c8aef6">&#9670;&nbsp;</a></span>exec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mafia::exec </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>cmd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Выполнение cmd-команды. (На самом деле эту функцию я просто со stackoverflow скопипастил и не разобрался, как она работает, так что соре) Но потом обязательно разберусь </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cmd</td><td>Полностью команда, которую следует выполнить </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Результат выполнения команды, записанный в std::string (По сути то, что терминал выводит при запросе этой команды) </dd></dl>
+
+</div>
+</div>
+<a id="a5b9710c98161a725d61a0e5a17ded5cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b9710c98161a725d61a0e5a17ded5cc">&#9670;&nbsp;</a></span>get_all_pids_by_name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; int &gt; Mafia::get_all_pids_by_name </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Получение списка всех PID процессов с указанным именем </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>имя процесса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>список PID всех процессов, у которых имя совпадает с переданным именем </dd></dl>
+
+</div>
+</div>
+<a id="a220e197a0c26b8ba12757b3c199b4b87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220e197a0c26b8ba12757b3c199b4b87">&#9670;&nbsp;</a></span>kill()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::kill </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завершение процесса с указанным PID. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>PID процесса, который следует завершить </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f5cb7d00444a101b43759ef8ce0bc0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f5cb7d00444a101b43759ef8ce0bc0a">&#9670;&nbsp;</a></span>run_app()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Mafia::run_app </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_mafia_1_1_string.html">String</a>&#160;</td>
+          <td class="paramname"><em>args</em> = <code><a class="el" href="class_mafia_1_1_string.html">String</a>(&quot;&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Запускает указанную программу </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Путь к программе, включая название файла </td></tr>
+    <tr><td class="paramname">name</td><td>Имя процесса, который будет запущен </td></tr>
+    <tr><td class="paramname">args</td><td>Дополнительные аргументы, которые стоит передать в программу </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>PID запущенного процесса. По этому PID можно позже завершить процесс </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
