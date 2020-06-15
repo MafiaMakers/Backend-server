@@ -1,7 +1,7 @@
 #include "subserverexception.h"
 using namespace Mafia;
-
-SubserverException::SubserverException(String data, int id) : Mafia::Exception(data, id){}
+using namespace Exceptions;
+SubserverException::SubserverException(System::String data, int id) : Exception(data, id){}
 
 void SubserverException::show(){
     std::cout << "Exception in subserver!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
@@ -9,5 +9,5 @@ void SubserverException::show(){
 
 ExceptionIdType SubserverException::get_base_exception_id()
 {
-    return SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID;
+    return SubserverExceptionId_Default;
 }

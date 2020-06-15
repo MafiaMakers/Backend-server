@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['exception_2ecpp_185',['exception.cpp',['../exception_8cpp.html',1,'']]],
-  ['exception_2eh_186',['exception.h',['../exception_8h.html',1,'']]]
+  ['databaseworker_2ecpp_394',['databaseworker.cpp',['../databaseworker_8cpp.html',1,'']]],
+  ['databaseworker_2eh_395',['databaseworker.h',['../databaseworker_8h.html',1,'']]],
+  ['databaseworkingexception_2ecpp_396',['databaseworkingexception.cpp',['../databaseworkingexception_8cpp.html',1,'']]],
+  ['databaseworkingexception_2eh_397',['databaseworkingexception.h',['../databaseworkingexception_8h.html',1,'']]]
 ];

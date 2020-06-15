@@ -68,7 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Классы</a> &#124;
 <a href="#namespaces">Пространства имен</a> &#124;
-<a href="#define-members">Макросы</a>  </div>
+<a href="#enum-members">Перечисления</a>  </div>
   <div class="headertitle">
 <div class="title">Файл subserverexception.h</div>  </div>
 </div><!--header-->
@@ -79,8 +79,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_subserver_exception.html">Mafia::SubserverException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс ошибок работы с субсервером  <a href="class_mafia_1_1_subserver_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html">Mafia::Exceptions::SubserverException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс ошибок работы с субсервером  <a href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -88,49 +88,19 @@ $(function() {
 <tr class="memitem:namespace_mafia"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html">Mafia</a></td></tr>
 <tr class="memdesc:namespace_mafia"><td class="mdescLeft">&#160;</td><td class="mdescRight">Набор системных функций для запуска и завершения программ <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_mafia_1_1_exceptions"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html">Mafia::Exceptions</a></td></tr>
+<tr class="memdesc:namespace_mafia_1_1_exceptions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пространство имен для описания и работы с исключениями <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Макросы</h2></td></tr>
-<tr class="memitem:a570e2e846a151901695bfaf16cbb276f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="subserverexception_8h.html#a570e2e846a151901695bfaf16cbb276f">SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID</a>&#160;&#160;&#160;400</td></tr>
-<tr class="memdesc:a570e2e846a151901695bfaf16cbb276f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый id исключения субсервера  <a href="subserverexception_8h.html#a570e2e846a151901695bfaf16cbb276f">Подробнее...</a><br /></td></tr>
-<tr class="separator:a570e2e846a151901695bfaf16cbb276f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af66a37be46f2b5fbb8c4def13847a814"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="subserverexception_8h.html#af66a37be46f2b5fbb8c4def13847a814">NO_SUCH_REQUEST_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="subserverexception_8h.html#a570e2e846a151901695bfaf16cbb276f">SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td></tr>
-<tr class="memdesc:af66a37be46f2b5fbb8c4def13847a814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при попытке обратиться к результату запроса, которого не отправляли этому субсерверу  <a href="subserverexception_8h.html#af66a37be46f2b5fbb8c4def13847a814">Подробнее...</a><br /></td></tr>
-<tr class="separator:af66a37be46f2b5fbb8c4def13847a814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a32b408996c5b73b7cfaa8beb47a9487c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html#a32b408996c5b73b7cfaa8beb47a9487c">Mafia::Exceptions::SubserverExceptionId</a> { <a class="el" href="namespace_mafia_1_1_exceptions.html#a32b408996c5b73b7cfaa8beb47a9487ca5f5c6c5d011da2fd5ea331bf19f62984">Mafia::Exceptions::SubserverExceptionId_Default</a> = 400, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a32b408996c5b73b7cfaa8beb47a9487ca5cff82b5c06728d196f81369668dc644">Mafia::Exceptions::SubserverExceptionId_NoSuchRequest</a> = 401, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a32b408996c5b73b7cfaa8beb47a9487ca3189f2eb0119a77057e830e343255b5b">Mafia::Exceptions::SubserverExceptionId_Last</a> = 402
+ }</td></tr>
+<tr class="memdesc:a32b408996c5b73b7cfaa8beb47a9487c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возможные id исключений работы с субсервером  <a href="namespace_mafia_1_1_exceptions.html#a32b408996c5b73b7cfaa8beb47a9487c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a32b408996c5b73b7cfaa8beb47a9487c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Макросы</h2>
-<a id="af66a37be46f2b5fbb8c4def13847a814"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af66a37be46f2b5fbb8c4def13847a814">&#9670;&nbsp;</a></span>NO_SUCH_REQUEST_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NO_SUCH_REQUEST_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="subserverexception_8h.html#a570e2e846a151901695bfaf16cbb276f">SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при попытке обратиться к результату запроса, которого не отправляли этому субсерверу </p>
-
-</div>
-</div>
-<a id="a570e2e846a151901695bfaf16cbb276f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a570e2e846a151901695bfaf16cbb276f">&#9670;&nbsp;</a></span>SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SUBSERVER_EXCEPTION_DEFAULT_EXCEPTION_ID&#160;&#160;&#160;400</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Базовый id исключения субсервера </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

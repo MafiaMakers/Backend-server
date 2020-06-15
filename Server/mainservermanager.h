@@ -24,7 +24,7 @@ namespace Mafia {
          * \brief Получает данные от уже инициализированного сетевого запроса
          * \param req Указатель на запрос
          */
-        void _get_data_from_request(NetworkRequest* req);
+        void _get_data_from_request(Requests::NetworkRequest* req);
         //! Указатель на объект сетевого класса
         MainServerNetworker* networker;
 

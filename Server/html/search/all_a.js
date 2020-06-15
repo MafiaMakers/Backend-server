@@ -1,30 +1,5 @@
 var searchData=
 [
-  ['mafia_57',['Mafia',['../namespace_mafia.html',1,'']]],
-  ['main_58',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['main_2ecpp_59',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mainservermanager_60',['MainServerManager',['../class_mafia_1_1_main_server_manager.html',1,'Mafia::MainServerManager'],['../class_mafia_1_1_main_server_manager.html#aa5321286c8992d5d5de547c71710ddc5',1,'Mafia::MainServerManager::MainServerManager()']]],
-  ['mainservermanager_2ecpp_61',['mainservermanager.cpp',['../mainservermanager_8cpp.html',1,'']]],
-  ['mainservermanager_2eh_62',['mainservermanager.h',['../mainservermanager_8h.html',1,'']]],
-  ['mainservernetworker_63',['MainServerNetworker',['../class_mafia_1_1_main_server_networker.html',1,'Mafia::MainServerNetworker'],['../class_mafia_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8',1,'Mafia::MainServerNetworker::MainServerNetworker()']]],
-  ['mainservernetworker_2ecpp_64',['mainservernetworker.cpp',['../mainservernetworker_8cpp.html',1,'']]],
-  ['mainservernetworker_2eh_65',['mainservernetworker.h',['../mainservernetworker_8h.html',1,'']]],
-  ['maxnotansweringscount_66',['maxNotAnsweringsCount',['../class_mafia_1_1_subserver_object.html#a74ebcb2b96e9ac824724894489967920',1,'Mafia::SubserverObject']]],
-  ['maxresendcount_67',['maxResendCount',['../class_mafia_1_1_main_server_networker.html#a4e03d6a8da60b76287425537b2e0797a',1,'Mafia::MainServerNetworker']]],
-  ['message_68',['Message',['../struct_mafia_1_1_message.html',1,'Mafia::Message'],['../struct_mafia_1_1_message.html#a1d8f81e334b67ac519031846c4bcfc52',1,'Mafia::Message::Message()'],['../struct_mafia_1_1_message.html#aa6b92d96f12fd764009be1d99ccf778d',1,'Mafia::Message::Message(MessageTypeType type, SymbolType *data, int size, Client client, MessageIdType id=0)']]],
-  ['message_2eh_69',['message.h',['../message_8h.html',1,'']]],
-  ['message_5ffrom_5fserver_70',['message_from_server',['../class_mafia_1_1_subserver_object.html#a10949f1bdc457f495bb0bb52f9434dfa',1,'Mafia::SubserverObject']]],
-  ['message_5fparsing_5fexception_5fdefault_5fexception_5fid_71',['MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID',['../messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982',1,'messageparsingexception.h']]],
-  ['message_5fprocessing_5fexception_5fdefault_5fexception_5fid_72',['MESSAGE_PROCESSING_EXCEPTION_DEFAULT_EXCEPTION_ID',['../messageprocessingexception_8h.html#a21a3e0bd643445fd1322a78030167593',1,'messageprocessingexception.h']]],
-  ['messageidtype_73',['MessageIdType',['../message_8h.html#ae4f0f00b0e52927fff79c3362262fb1b',1,'message.h']]],
-  ['messageparsingexception_74',['MessageParsingException',['../class_mafia_1_1_message_parsing_exception.html',1,'Mafia::MessageParsingException'],['../class_mafia_1_1_message_parsing_exception.html#a005977de5f94d21f8710c6c2ab0ce30a',1,'Mafia::MessageParsingException::MessageParsingException()'],['../class_mafia_1_1_message_parsing_exception.html#a9f58844bef1212b4140bbf14020d1dde',1,'Mafia::MessageParsingException::MessageParsingException(String data, ExceptionIdType id)']]],
-  ['messageparsingexception_2ecpp_75',['messageparsingexception.cpp',['../messageparsingexception_8cpp.html',1,'']]],
-  ['messageparsingexception_2eh_76',['messageparsingexception.h',['../messageparsingexception_8h.html',1,'']]],
-  ['messageprocessingexception_77',['MessageProcessingException',['../class_mafia_1_1_message_processing_exception.html',1,'Mafia::MessageProcessingException'],['../class_mafia_1_1_message_processing_exception.html#a5069f4d3635a21434050c082d91c1cad',1,'Mafia::MessageProcessingException::MessageProcessingException()'],['../class_mafia_1_1_message_processing_exception.html#a5b6805fe7d1449083f24868032fa1055',1,'Mafia::MessageProcessingException::MessageProcessingException(String data, ExceptionIdType id)']]],
-  ['messageprocessingexception_2ecpp_78',['messageprocessingexception.cpp',['../messageprocessingexception_8cpp.html',1,'']]],
-  ['messageprocessingexception_2eh_79',['messageprocessingexception.h',['../messageprocessingexception_8h.html',1,'']]],
-  ['messagetypes_2eh_80',['messageTypes.h',['../message_types_8h.html',1,'']]],
-  ['messagetypetype_81',['MessageTypeType',['../message_8h.html#acf7fde66987a2ef7c05ee8171c9fb5ee',1,'message.h']]],
-  ['myaddress_82',['myAddress',['../class_mafia_1_1_subserver_object.html#a6d4bb71f4c5552b274a0deaaac5b2fc6',1,'Mafia::SubserverObject']]],
-  ['myport_83',['myPort',['../class_mafia_1_1_main_server_networker.html#a05a833eed72c64f4595f13adee51ad35',1,'Mafia::MainServerNetworker']]]
+  ['key_152',['key',['../class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f',1,'Mafia::Network::Crypto']]],
+  ['kill_153',['kill',['../namespace_mafia_1_1_system.html#a2da36eeabfc82fb05dd3e71553cad31c',1,'Mafia::System']]]
 ];

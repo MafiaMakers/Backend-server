@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Network::Crypto</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html">Crypto</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-static-methods">Открытые статические члены</a> &#124;
+<a href="#pri-static-methods">Закрытые статические члены</a> &#124;
+<a href="#pri-static-attribs">Закрытые статические данные</a> &#124;
+<a href="class_mafia_1_1_network_1_1_crypto-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Network::Crypto</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>По сути статический класс (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими) Класс используется для кодирования, декодирования, распаковки и запаковки сообщений перед отправкой или после получения по сети.  
+ <a href="class_mafia_1_1_network_1_1_crypto.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="crypto_8h_source.html">crypto.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Открытые статические члены</h2></td></tr>
+<tr class="memitem:ac50c85ee014387da8cf6599bbd8f43a3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#ac50c85ee014387da8cf6599bbd8f43a3">setKey</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f">key</a>)</td></tr>
+<tr class="memdesc:ac50c85ee014387da8cf6599bbd8f43a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод задавания ключа шифрования  <a href="class_mafia_1_1_network_1_1_crypto.html#ac50c85ee014387da8cf6599bbd8f43a3">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac50c85ee014387da8cf6599bbd8f43a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0fc7756df46649898fbf3bf51ee17e6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#aa0fc7756df46649898fbf3bf51ee17e6">setKey</a> (char *<a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f">key</a>, int size)</td></tr>
+<tr class="memdesc:aa0fc7756df46649898fbf3bf51ee17e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">см. Mafia::Crypto::setKey(String key)  <a href="class_mafia_1_1_network_1_1_crypto.html#aa0fc7756df46649898fbf3bf51ee17e6">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa0fc7756df46649898fbf3bf51ee17e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5567abfbbf2531f1857503e37111903"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#ae5567abfbbf2531f1857503e37111903">setKey</a> (std::string <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f">key</a>)</td></tr>
+<tr class="memdesc:ae5567abfbbf2531f1857503e37111903"><td class="mdescLeft">&#160;</td><td class="mdescRight">см. Mafia::Crypto::setKey(String key)  <a href="class_mafia_1_1_network_1_1_crypto.html#ae5567abfbbf2531f1857503e37111903">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae5567abfbbf2531f1857503e37111903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76f9a33d422159cba94f2b65e9ea4c4c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">parse_data</a> (char *data, int size)</td></tr>
+<tr class="memdesc:a76f9a33d422159cba94f2b65e9ea4c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Метод для распаковки сообщения  <a href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a76f9a33d422159cba94f2b65e9ea4c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5c75d68a2e92096e365819c641caaa7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#ae5c75d68a2e92096e365819c641caaa7">parse_data</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> data)</td></tr>
+<tr class="memdesc:ae5c75d68a2e92096e365819c641caaa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">см. Mafia::Crypto::parse_data(char* data, int size)  <a href="class_mafia_1_1_network_1_1_crypto.html#ae5c75d68a2e92096e365819c641caaa7">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae5c75d68a2e92096e365819c641caaa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902ba51f2a3987eedd669ac5516d1187"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">wrap_message</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> mes)</td></tr>
+<tr class="memdesc:a902ba51f2a3987eedd669ac5516d1187"><td class="mdescLeft">&#160;</td><td class="mdescRight">Оборачивает сообщение в необходимую оболочку и подготавливает его к отправке по сети  <a href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Подробнее...</a><br /></td></tr>
+<tr class="separator:a902ba51f2a3987eedd669ac5516d1187"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
+Закрытые статические члены</h2></td></tr>
+<tr class="memitem:a9c8a18396c09c425e1ccc57cc0af0c18"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a9c8a18396c09c425e1ccc57cc0af0c18">_message_id_ok</a> (<a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a> id)</td></tr>
+<tr class="memdesc:a9c8a18396c09c425e1ccc57cc0af0c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для проверки того, не противоречит ли чему-либо полученный message id.  <a href="class_mafia_1_1_network_1_1_crypto.html#a9c8a18396c09c425e1ccc57cc0af0c18">Подробнее...</a><br /></td></tr>
+<tr class="separator:a9c8a18396c09c425e1ccc57cc0af0c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0bdbcc14caac32db2d31d9d7aa04e68"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#ad0bdbcc14caac32db2d31d9d7aa04e68">_decrypt</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> encrypted)</td></tr>
+<tr class="memdesc:ad0bdbcc14caac32db2d31d9d7aa04e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Декодирует сообщение, полученное по сети  <a href="class_mafia_1_1_network_1_1_crypto.html#ad0bdbcc14caac32db2d31d9d7aa04e68">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad0bdbcc14caac32db2d31d9d7aa04e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad895f9e1859bb6d67c937838974f3a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#adad895f9e1859bb6d67c937838974f3a">_encrypt</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> decrypted)</td></tr>
+<tr class="memdesc:adad895f9e1859bb6d67c937838974f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Кодирует незакодированное сообщение  <a href="class_mafia_1_1_network_1_1_crypto.html#adad895f9e1859bb6d67c937838974f3a">Подробнее...</a><br /></td></tr>
+<tr class="separator:adad895f9e1859bb6d67c937838974f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Закрытые статические данные</h2></td></tr>
+<tr class="memitem:a095dfe36de4d2d5797c0cded88e7715f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f">key</a> = <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>()</td></tr>
+<tr class="memdesc:a095dfe36de4d2d5797c0cded88e7715f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ключ шифрования  <a href="class_mafia_1_1_network_1_1_crypto.html#a095dfe36de4d2d5797c0cded88e7715f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a095dfe36de4d2d5797c0cded88e7715f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a710c9269f350c4ddb76375ead520666d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_mafia_1_1_system_1_1_limited_queue.html">System::LimitedQueue</a>&lt; <a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a710c9269f350c4ddb76375ead520666d">lastMessageIds</a> = new <a class="el" href="class_mafia_1_1_system_1_1_limited_queue.html">System::LimitedQueue</a>&lt;<a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>&gt;(<a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a37a3df1a44eb8248955984dfcfefef73">rememberMessagesCount</a>)</td></tr>
+<tr class="memdesc:a710c9269f350c4ddb76375ead520666d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Последние несколько id сообщений  <a href="class_mafia_1_1_network_1_1_crypto.html#a710c9269f350c4ddb76375ead520666d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a710c9269f350c4ddb76375ead520666d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37a3df1a44eb8248955984dfcfefef73"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a37a3df1a44eb8248955984dfcfefef73">rememberMessagesCount</a> = 2</td></tr>
+<tr class="memdesc:a37a3df1a44eb8248955984dfcfefef73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество id сообщений, которые необходимо удерживать в памяти  <a href="class_mafia_1_1_network_1_1_crypto.html#a37a3df1a44eb8248955984dfcfefef73">Подробнее...</a><br /></td></tr>
+<tr class="separator:a37a3df1a44eb8248955984dfcfefef73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>По сути статический класс (кажется, в c++ нельзя делать статические классы, так что я просто сделал класс со всеми полями и методами статическими) Класс используется для кодирования, декодирования, распаковки и запаковки сообщений перед отправкой или после получения по сети. </p>
+</div><h2 class="groupheader">Методы</h2>
+<a id="ad0bdbcc14caac32db2d31d9d7aa04e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0bdbcc14caac32db2d31d9d7aa04e68">&#9670;&nbsp;</a></span>_decrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Crypto::_decrypt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>encrypted</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Декодирует сообщение, полученное по сети </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">закодированное</td><td>сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>декодированное сообщение </dd></dl>
+
+</div>
+</div>
+<a id="adad895f9e1859bb6d67c937838974f3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adad895f9e1859bb6d67c937838974f3a">&#9670;&nbsp;</a></span>_encrypt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Crypto::_encrypt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>decrypted</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Кодирует незакодированное сообщение </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">decrypted</td><td>незакодированное сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>закодированное сообщение </dd></dl>
+
+</div>
+</div>
+<a id="a9c8a18396c09c425e1ccc57cc0af0c18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c8a18396c09c425e1ccc57cc0af0c18">&#9670;&nbsp;</a></span>_message_id_ok()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Crypto::_message_id_ok </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция для проверки того, не противоречит ли чему-либо полученный message id. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>id, который необходимо проверить </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если все хорошо, false - если есть противоречие </dd></dl>
+
+</div>
+</div>
+<a id="a76f9a33d422159cba94f2b65e9ea4c4c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76f9a33d422159cba94f2b65e9ea4c4c">&#9670;&nbsp;</a></span>parse_data() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> Crypto::parse_data </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод для распаковки сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>массив символов - полученное по сети сообщение </td></tr>
+    <tr><td class="paramname">size</td><td>размер сообщения в байтах </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Mafia::Message - сообщение, в котором описаны все параметры, КРОМЕ отправителя </dd></dl>
+
+</div>
+</div>
+<a id="ae5c75d68a2e92096e365819c641caaa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5c75d68a2e92096e365819c641caaa7">&#9670;&nbsp;</a></span>parse_data() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> Crypto::parse_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>см. Mafia::Crypto::parse_data(char* data, int size) </p>
+
+</div>
+</div>
+<a id="aa0fc7756df46649898fbf3bf51ee17e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0fc7756df46649898fbf3bf51ee17e6">&#9670;&nbsp;</a></span>setKey() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Crypto::setKey </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>см. Mafia::Crypto::setKey(String key) </p>
+
+</div>
+</div>
+<a id="ae5567abfbbf2531f1857503e37111903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5567abfbbf2531f1857503e37111903">&#9670;&nbsp;</a></span>setKey() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Crypto::setKey </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>см. Mafia::Crypto::setKey(String key) </p>
+
+</div>
+</div>
+<a id="ac50c85ee014387da8cf6599bbd8f43a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac50c85ee014387da8cf6599bbd8f43a3">&#9670;&nbsp;</a></span>setKey() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Crypto::setKey </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Метод задавания ключа шифрования </p>
+
+</div>
+</div>
+<a id="a902ba51f2a3987eedd669ac5516d1187"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a902ba51f2a3987eedd669ac5516d1187">&#9670;&nbsp;</a></span>wrap_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Crypto::wrap_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>mes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Оборачивает сообщение в необходимую оболочку и подготавливает его к отправке по сети </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mes</td><td>Mafia::Message сообщение, которое нужно подготовить к отправке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Mafia::String строку, которую надо отправить по сети </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a095dfe36de4d2d5797c0cded88e7715f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a095dfe36de4d2d5797c0cded88e7715f">&#9670;&nbsp;</a></span>key</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Crypto::key = <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Ключ шифрования </p>
+
+</div>
+</div>
+<a id="a710c9269f350c4ddb76375ead520666d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a710c9269f350c4ddb76375ead520666d">&#9670;&nbsp;</a></span>lastMessageIds</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_limited_queue.html">System::LimitedQueue</a>&lt; <a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a> &gt; * Crypto::lastMessageIds = new <a class="el" href="class_mafia_1_1_system_1_1_limited_queue.html">System::LimitedQueue</a>&lt;<a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>&gt;(<a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a37a3df1a44eb8248955984dfcfefef73">rememberMessagesCount</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Последние несколько id сообщений </p>
+
+</div>
+</div>
+<a id="a37a3df1a44eb8248955984dfcfefef73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37a3df1a44eb8248955984dfcfefef73">&#9670;&nbsp;</a></span>rememberMessagesCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Network::Crypto::rememberMessagesCount = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество id сообщений, которые необходимо удерживать в памяти </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Network/<a class="el" href="crypto_8h_source.html">crypto.h</a></li>
+<li>Network/<a class="el" href="crypto_8cpp.html">crypto.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

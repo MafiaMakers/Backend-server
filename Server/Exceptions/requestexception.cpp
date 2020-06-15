@@ -1,7 +1,7 @@
 #include "requestexception.h"
 using namespace Mafia;
-
-RequestException::RequestException(String data, int id) : Mafia::Exception(data, id){}
+using namespace Exceptions;
+RequestException::RequestException(System::String data, int id) : Exception(data, id){}
 
 void RequestException::show()
 {
@@ -10,7 +10,7 @@ void RequestException::show()
 
 ExceptionIdType RequestException::get_base_exception_id()
 {
-    return REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID;
+    return RequestExceptionId_Defaut;
 }
 
 

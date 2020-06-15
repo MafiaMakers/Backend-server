@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['string_179',['String',['../class_mafia_1_1_string.html',1,'Mafia']]],
-  ['subserverexception_180',['SubserverException',['../class_mafia_1_1_subserver_exception.html',1,'Mafia']]],
-  ['subserverobject_181',['SubserverObject',['../class_mafia_1_1_subserver_object.html',1,'Mafia']]]
+  ['queueelement_373',['QueueElement',['../struct_mafia_1_1_system_1_1_queue_element.html',1,'Mafia::System']]],
+  ['queueelement_3c_20messageidtype_20_3e_374',['QueueElement&lt; MessageIdType &gt;',['../struct_mafia_1_1_system_1_1_queue_element.html',1,'Mafia::System']]]
 ];

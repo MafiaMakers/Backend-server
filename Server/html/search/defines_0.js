@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['abstract_5frequest_5fmessage_5ftype_321',['ABSTRACT_REQUEST_MESSAGE_TYPE',['../message_types_8h.html#adf47f2818aa1f0f6f9a85f50f8028920',1,'messageTypes.h']]]
+  ['max_5fchats_5fcount_733',['MAX_CHATS_COUNT',['../userdatabaseworker_8h.html#a398a9ffb12147d934ae2bb3374c9041d',1,'userdatabaseworker.h']]],
+  ['max_5fgames_5fcount_734',['MAX_GAMES_COUNT',['../userdatabaseworker_8h.html#a4cfd1eb16d1a45bfaff264253463a9eb',1,'userdatabaseworker.h']]],
+  ['max_5ftransactions_5fcount_735',['MAX_TRANSACTIONS_COUNT',['../userdatabaseworker_8h.html#a43f946a854f8417af8dd9fc940ab323e',1,'userdatabaseworker.h']]]
 ];

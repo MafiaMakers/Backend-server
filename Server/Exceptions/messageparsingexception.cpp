@@ -2,8 +2,8 @@
 #include <iostream>
 
 using namespace Mafia;
-
-MessageParsingException::MessageParsingException(String data, ExceptionIdType id) : Mafia::Exception(data, id){}
+using namespace Exceptions;
+MessageParsingException::MessageParsingException(System::String data, ExceptionIdType id) : Exception(data, id){}
 
 void MessageParsingException::show()
 {
@@ -12,5 +12,5 @@ void MessageParsingException::show()
 
 ExceptionIdType MessageParsingException::get_base_exception_id()
 {
-    return MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID;
+    return MessageParsingExceptionId_Default;
 }

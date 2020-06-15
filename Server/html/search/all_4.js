@@ -1,10 +1,26 @@
 var searchData=
 [
-  ['elementscount_25',['elementsCount',['../class_mafia_1_1_limited_queue.html#af185b88d4028cc4e2bc7703ea53fe631',1,'Mafia::LimitedQueue']]],
-  ['elementscountlimit_26',['elementsCountLimit',['../class_mafia_1_1_limited_queue.html#aee46f5eef41511ab3b02a8e054a14bc7',1,'Mafia::LimitedQueue']]],
-  ['exception_27',['Exception',['../class_mafia_1_1_exception.html',1,'Mafia::Exception'],['../class_mafia_1_1_exception.html#a459877bd7ad93625c60b6ea99081d1a1',1,'Mafia::Exception::Exception()'],['../class_mafia_1_1_exception.html#a53ea1dcb2213a9f192f1ebb8469c9d4a',1,'Mafia::Exception::Exception(String data, ExceptionIdType id)']]],
-  ['exception_2ecpp_28',['exception.cpp',['../exception_8cpp.html',1,'']]],
-  ['exception_2eh_29',['exception.h',['../exception_8h.html',1,'']]],
-  ['exceptionidtype_30',['ExceptionIdType',['../exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c',1,'exception.h']]],
-  ['exec_31',['exec',['../namespace_mafia.html#a8d02e1023501108dc5af648bc4c8aef6',1,'Mafia']]]
+  ['data_55',['data',['../class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523',1,'Mafia::Exceptions::Exception::data()'],['../struct_mafia_1_1_network_1_1_message.html#a3ab5f8ad03bbf651681dba17005280f6',1,'Mafia::Network::Message::data()'],['../class_mafia_1_1_requests_1_1_network_request.html#ac22f55fb2c9a403f45214882b65167a4',1,'Mafia::Requests::NetworkRequest::data()'],['../class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96',1,'Mafia::System::String::data()']]],
+  ['database_56',['dataBase',['../class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af',1,'Mafia::Database::DatabaseWorker']]],
+  ['database_5fready_57',['database_ready',['../class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde',1,'Mafia::Database::DatabaseWorker']]],
+  ['databaseworker_58',['DatabaseWorker',['../class_mafia_1_1_database_1_1_database_worker.html',1,'Mafia::Database::DatabaseWorker'],['../class_mafia_1_1_database_1_1_database_worker.html#a593239fc4448ad743ec9e9fb7c69e6dd',1,'Mafia::Database::DatabaseWorker::DatabaseWorker()']]],
+  ['databaseworker_2ecpp_59',['databaseworker.cpp',['../databaseworker_8cpp.html',1,'']]],
+  ['databaseworker_2eh_60',['databaseworker.h',['../databaseworker_8h.html',1,'']]],
+  ['databaseworkingexception_61',['DatabaseWorkingException',['../class_mafia_1_1_exceptions_1_1_database_working_exception.html',1,'Mafia::Exceptions::DatabaseWorkingException'],['../class_mafia_1_1_exceptions_1_1_database_working_exception.html#ab80d9927ad13843453e8c117a12694e9',1,'Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException()'],['../class_mafia_1_1_exceptions_1_1_database_working_exception.html#a326980bbcfc1b36d65c49685b4b2e5d3',1,'Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(System::String data, ExceptionIdType id)']]],
+  ['databaseworkingexception_2ecpp_62',['databaseworkingexception.cpp',['../databaseworkingexception_8cpp.html',1,'']]],
+  ['databaseworkingexception_2eh_63',['databaseworkingexception.h',['../databaseworkingexception_8h.html',1,'']]],
+  ['databaseworkingexceptionid_64',['DatabaseWorkingExceptionId',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5fbackup_65',['DatabaseWorkingExceptionId_Backup',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27aa629578a42dac504247a0268c1ed7902',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5fdefault_66',['DatabaseWorkingExceptionId_Default',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27aa64b8647e3bda2903a2b7c9ab819a0e6',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5femptyqueryresult_67',['DatabaseWorkingExceptionId_EmptyQueryResult',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a1574561b27d4390683d13b0389369acf',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5flast_68',['DatabaseWorkingExceptionId_Last',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a18670bdc44175a0bc88757b2521928ad',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5fnotauthorizedaction_69',['DatabaseWorkingExceptionId_NotAuthorizedAction',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad57a85617527a789e1cf5eb6d9b03f37',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5fsqlquery_70',['DatabaseWorkingExceptionId_SQlQuery',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5ftimelimit_71',['DatabaseWorkingExceptionId_TimeLimit',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a39456e56a37c25b9684a85b9245fe80d',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5ftypemismatch_72',['DatabaseWorkingExceptionId_TypeMismatch',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad0fc6c1c36e44016eebce58a481dcc96',1,'Mafia::Exceptions']]],
+  ['databaseworkingexceptionid_5funknowntype_73',['DatabaseWorkingExceptionId_UnknownType',['../namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a0dd1be418ce3ffb7abbe55476c72793b',1,'Mafia::Exceptions']]],
+  ['dbname_74',['dbName',['../class_mafia_1_1_database_1_1_user_database_worker.html#af71b114884592d25493ff6448c42b9e4',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['dbworker_75',['dbWorker',['../class_mafia_1_1_database_1_1_user_database_worker.html#a5eb1881abe110fa36d86680f4b451947',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['defeatesbyroles_76',['defeatesByRoles',['../struct_mafia_1_1_database_1_1_user.html#a68c2c71e625f8703a0d8f0e453a00eae',1,'Mafia::Database::User']]],
+  ['digest_5fchars_77',['DIGEST_CHARS',['../class_mafia_1_1_system_1_1_s_h_a256.html#a07b7691157a44769d95fd7a8bc6ab3d2',1,'Mafia::System::SHA256']]]
 ];

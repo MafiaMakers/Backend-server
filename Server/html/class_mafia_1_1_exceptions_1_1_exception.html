@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Exceptions::Exception</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_exceptions.html">Exceptions</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html">Exception</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="class_mafia_1_1_exceptions_1_1_exception-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Exceptions::Exception<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться от него. Соответственно в try-catch блоке стоит использовать Exception* вместо конкретных дочерних классов.  
+ <a href="class_mafia_1_1_exceptions_1_1_exception.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="exception_8h_source.html">exception.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::Exceptions::Exception:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_exceptions_1_1_exception.png" usemap="#Mafia::Exceptions::Exception_map" alt=""/>
+  <map id="Mafia::Exceptions::Exception_map" name="Mafia::Exceptions::Exception_map">
+<area href="class_mafia_1_1_exceptions_1_1_database_working_exception.html" title="Класс для описания исключений работы с БД" alt="Mafia::Exceptions::DatabaseWorkingException" shape="rect" coords="0,56,286,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html" title="Класс для описания исключений, связанных с ролями, игрой и процессом игры" alt="Mafia::Exceptions::GameplayException" shape="rect" coords="296,56,582,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html" title="Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке." alt="Mafia::Exceptions::MessageParsingException" shape="rect" coords="592,56,878,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_request_exception.html" title="Класс исключений, связанных с работой системы запросов" alt="Mafia::Exceptions::RequestException" shape="rect" coords="888,56,1174,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_subserver_exception.html" title="Класс ошибок работы с субсервером" alt="Mafia::Exceptions::SubserverException" shape="rect" coords="1184,56,1470,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html" title="Класс исключений, произошедших при обработке сообщения" alt="Mafia::Exceptions::MessageProcessingException" shape="rect" coords="592,112,878,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ae324444a322453331a0c5238e4fd0457"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae324444a322453331a0c5238e4fd0457">Exception</a> ()</td></tr>
+<tr class="memdesc:ae324444a322453331a0c5238e4fd0457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пустой конструктор для переопределения его в дочерних классах.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ae324444a322453331a0c5238e4fd0457">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae324444a322453331a0c5238e4fd0457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435189f3e31beee233d1c590eebb2b92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Exception</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>, <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>)</td></tr>
+<tr class="memdesc:a435189f3e31beee233d1c590eebb2b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, который инициализирует параметры исключения  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Подробнее...</a><br /></td></tr>
+<tr class="separator:a435189f3e31beee233d1c590eebb2b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26505358738862d28c8fd6bcd701ec11"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a> ()</td></tr>
+<tr class="memdesc:a26505358738862d28c8fd6bcd701ec11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Подробнее...</a><br /></td></tr>
+<tr class="separator:a26505358738862d28c8fd6bcd701ec11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac91de6e5490eef7f0b518e869b081b2d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac91de6e5490eef7f0b518e869b081b2d">set_data</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>)</td></tr>
+<tr class="memdesc:ac91de6e5490eef7f0b518e869b081b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Задавание параметра data.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ac91de6e5490eef7f0b518e869b081b2d">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac91de6e5490eef7f0b518e869b081b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49aaf683c5138945abf3e7303c77bda0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0">set_id</a> (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>)</td></tr>
+<tr class="memdesc:a49aaf683c5138945abf3e7303c77bda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Задавание параметра id.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0">Подробнее...</a><br /></td></tr>
+<tr class="separator:a49aaf683c5138945abf3e7303c77bda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa13b69aad45b421508d39b09e48a2ef4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a> ()</td></tr>
+<tr class="memdesc:aa13b69aad45b421508d39b09e48a2ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Взятие параметра id.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa13b69aad45b421508d39b09e48a2ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3482df28b10ec9593af49872a174662d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a3482df28b10ec9593af49872a174662d">get_data</a> ()</td></tr>
+<tr class="memdesc:a3482df28b10ec9593af49872a174662d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Взятие параметра data.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a3482df28b10ec9593af49872a174662d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3482df28b10ec9593af49872a174662d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3810ab66f7bb17bebae4027982d97177"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a3810ab66f7bb17bebae4027982d97177">get_base_exception_id</a> ()=0</td></tr>
+<tr class="memdesc:a3810ab66f7bb17bebae4027982d97177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a3810ab66f7bb17bebae4027982d97177">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3810ab66f7bb17bebae4027982d97177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:ae10d1afe2f179fb0a81e585eb946e523"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a></td></tr>
+<tr class="memdesc:ae10d1afe2f179fb0a81e585eb946e523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщение, которое может быть использовано для отображения сообщения об ошибке  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae10d1afe2f179fb0a81e585eb946e523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a></td></tr>
+<tr class="memdesc:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="mdescLeft">&#160;</td><td class="mdescRight">id исключения для отличия одних от других  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться от него. Соответственно в try-catch блоке стоит использовать Exception* вместо конкретных дочерних классов. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="ae324444a322453331a0c5238e4fd0457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae324444a322453331a0c5238e4fd0457">&#9670;&nbsp;</a></span>Exception() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mafia::Exceptions::Exception::Exception </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Пустой конструктор для переопределения его в дочерних классах. </p>
+
+</div>
+</div>
+<a id="a435189f3e31beee233d1c590eebb2b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435189f3e31beee233d1c590eebb2b92">&#9670;&nbsp;</a></span>Exception() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Exception::Exception </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, который инициализирует параметры исключения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>см. Mafia::Excepton::data </td></tr>
+    <tr><td class="paramname">id</td><td>см. Mafia::Exception::data </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a3810ab66f7bb17bebae4027982d97177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3810ab66f7bb17bebae4027982d97177">&#9670;&nbsp;</a></span>get_base_exception_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Mafia::Exceptions::Exception::get_base_exception_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа </p>
+<dl class="section return"><dt>Возвращает</dt><dd>базовый id исключения (исключений с таким id не бывает) </dd></dl>
+
+<p>Замещается в <a class="el" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html#a6f7017a38d09eeeee66c2cca68621794">Mafia::Exceptions::DatabaseWorkingException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html#ab7754191563294720ec279b494c39ef6">Mafia::Exceptions::RequestException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#ad32134dce46fb9b8249b6b6a95c751b3">Mafia::Exceptions::SubserverException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html#a43abc07af5cbffa4794a73868180755a">Mafia::Exceptions::GameplayException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#a93ae1b5a6c7e84f4cb1b92c34e8aad1f">Mafia::Exceptions::MessageParsingException</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html#ae2b2b971e590402912a32d120ff90103">Mafia::Exceptions::MessageProcessingException</a>.</p>
+
+</div>
+</div>
+<a id="a3482df28b10ec9593af49872a174662d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3482df28b10ec9593af49872a174662d">&#9670;&nbsp;</a></span>get_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Exception::get_data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Взятие параметра data. </p>
+<dl class="section return"><dt>Возвращает</dt><dd>сообщение данного исключения </dd></dl>
+
+</div>
+</div>
+<a id="aa13b69aad45b421508d39b09e48a2ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa13b69aad45b421508d39b09e48a2ef4">&#9670;&nbsp;</a></span>get_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Exception::get_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Взятие параметра id. </p>
+<dl class="section return"><dt>Возвращает</dt><dd>id данного исключения </dd></dl>
+
+</div>
+</div>
+<a id="ac91de6e5490eef7f0b518e869b081b2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac91de6e5490eef7f0b518e869b081b2d">&#9670;&nbsp;</a></span>set_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::set_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Задавание параметра data. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>- То, что будет использовано в качестве данных </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a49aaf683c5138945abf3e7303c77bda0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49aaf683c5138945abf3e7303c77bda0">&#9670;&nbsp;</a></span>set_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::set_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Задавание параметра id. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>- То, что будет использовано в качестве id ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a26505358738862d28c8fd6bcd701ec11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26505358738862d28c8fd6bcd701ec11">&#9670;&nbsp;</a></span>show()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::show </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана. </p>
+
+<p>Переопределяется в <a class="el" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html#ad070b28e18be89dadac55332ba741225">Mafia::Exceptions::DatabaseWorkingException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html#adab82bb9c3f963f2c3b90e13b5872220">Mafia::Exceptions::RequestException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#a6470d6a1ecbe4e99e9a604ae1f9c8026">Mafia::Exceptions::SubserverException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html#a6a8c21c4f111807c24e7f43349b384d4">Mafia::Exceptions::GameplayException</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#aa07a342ff4be88fe9003306240cce00b">Mafia::Exceptions::MessageParsingException</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="ae10d1afe2f179fb0a81e585eb946e523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10d1afe2f179fb0a81e585eb946e523">&#9670;&nbsp;</a></span>data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Exceptions::Exception::data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сообщение, которое может быть использовано для отображения сообщения об ошибке </p>
+
+</div>
+</div>
+<a id="ac7ae270de65c24fcdcc0fb5364e1453e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7ae270de65c24fcdcc0fb5364e1453e">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Mafia::Exceptions::Exception::id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>id исключения для отличия одних от других </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Exceptions/<a class="el" href="exception_8h_source.html">exception.h</a></li>
+<li>Exceptions/<a class="el" href="exception_8cpp.html">exception.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

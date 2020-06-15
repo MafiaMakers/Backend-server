@@ -1,10 +1,10 @@
 #include "messageprocessingexception.h"
 
 using namespace Mafia;
-
-MessageProcessingException::MessageProcessingException(String data, ExceptionIdType id) : MessageParsingException(data, id){}
+using namespace Exceptions;
+MessageProcessingException::MessageProcessingException(System::String data, ExceptionIdType id) : MessageParsingException(data, id){}
 
 ExceptionIdType MessageProcessingException::get_base_exception_id()
 {
-    return MESSAGE_PROCESSING_EXCEPTION_DEFAULT_EXCEPTION_ID;
+    return MessageParsingExceptionId_Default;
 }

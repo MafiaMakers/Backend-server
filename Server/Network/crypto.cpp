@@ -2,30 +2,30 @@
 #include "Exceptions/messageparsingexception.h"
 
 using namespace Mafia;
+using namespace Network;
+System::LimitedQueue<MessageIdType>* Crypto::lastMessageIds = new System::LimitedQueue<MessageIdType>(rememberMessagesCount);
+System::String Crypto::key = System::String();
 
-LimitedQueue<MessageIdType>* Crypto::lastMessageIds = new LimitedQueue<MessageIdType>(rememberMessagesCount);
-String Crypto::key = String();
-
-void Crypto::setKey(String key){
-    lastMessageIds = new LimitedQueue<MessageIdType>(rememberMessagesCount);
+void Crypto::setKey(System::String key){
+    lastMessageIds = new System::LimitedQueue<MessageIdType>(rememberMessagesCount);
     Crypto::key = key;
 }
 
 void Crypto::setKey(std::string key){
-    Crypto::key = String(key);
+    Crypto::key = System::String(key);
 }
 
 void Crypto::setKey(char* key, int size){
-    Crypto::key = String(key, size);
+    Crypto::key = System::String(key, size);
 }
 
 Message Crypto::parse_data(char *data, int size){
-    String tData = String(0, 0);
+    System::String tData = System::String(0, 0);
     try {
-        tData = Crypto::_decrypt(String(data, size));
-    } catch (Exception* exception) {
+        tData = Crypto::_decrypt(System::String(data, size));
+    } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
-        case SHORT_MESSAGE_EXCEPTION_ID:{
+        case Exceptions::MessageParsingExceptionId_ShortMessage:{
             exception->show();
             break;
         }
@@ -38,7 +38,7 @@ Message Crypto::parse_data(char *data, int size){
     int othersCount = tData.size - (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType));
 
     if(othersCount < 0){
-        throw new MessageParsingException(String("decrypted data size is too small"), SHORT_MESSAGE_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("decrypted data size is too small"), Exceptions::MessageParsingExceptionId_ShortMessage);
     }
     Message result = Message();
     int currentInd = 0;
@@ -49,7 +49,7 @@ Message Crypto::parse_data(char *data, int size){
     }
     result.id = *(MessageIdType*)mesIdChar;
     if(!Crypto::_message_id_ok(result.id)){
-        throw new MessageParsingException(String("message id is less or equal to previous"), INVALID_MESSAGE_ID_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("message id is less or equal to previous"), Exceptions::MessageParsingExceptionId_InvalidMessageId);
     }
 
     char* mesTypeChar = new char[sizeof (MessageTypeType)];
@@ -67,7 +67,7 @@ Message Crypto::parse_data(char *data, int size){
 
     ControlSumType controlSum = *(ControlSumType*)controlSumChar;
     if(othersCount % sizeof(SymbolType) != 0){
-        throw new MessageParsingException(String("message size doesn't multiple to size of SymbolType"), INVALID_MESSAGE_SIZE_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("message size doesn't multiple to size of SymbolType"), Exceptions::MessageParsingExceptionId_InvalidMessageId);
     }
 
     result.data = new SymbolType[othersCount / sizeof (SymbolType)];
@@ -88,7 +88,7 @@ Message Crypto::parse_data(char *data, int size){
     }
 
     if(controlSum != realSum){
-        throw new MessageParsingException(String("control sum doesn't match to real sum"), CONTROL_SUM_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("control sum doesn't match to real sum"), Exceptions::MessageParsingExceptionId_ControlSumMismatch);
     }
 
     Crypto::lastMessageIds->append(result.id);
@@ -96,18 +96,18 @@ Message Crypto::parse_data(char *data, int size){
     return result;
 }
 
-Message Crypto::parse_data(String data){
+Message Crypto::parse_data(System::String data){
     try {
         return parse_data(data.data, data.size);
-    } catch (Exception* exception) {
+    } catch (Exceptions::Exception* exception) {
         throw exception;
     }
 }
 
-String Crypto::wrap_message(Message mes){
+System::String Crypto::wrap_message(Message mes){
     unsigned int size = (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType))+ mes.size * sizeof (SymbolType);
 
-    String resultData = String(new char[size], size);
+    System::String resultData = System::String(new char[size], size);
 
     unsigned int currentInd = 0;
     for(unsigned int i = 0; i < sizeof(MessageIdType); i++){
@@ -135,10 +135,10 @@ String Crypto::wrap_message(Message mes){
         resultData.data[sizeof(MessageIdType) + sizeof(MessageTypeType) + i] = ((char*)&controlSum)[i];
     }
 
-    String result;
+    System::String result;
     try {
         result = Crypto::_encrypt(resultData);
-    } catch (Exception* exception) {
+    } catch (Exceptions::Exception* exception) {
         throw exception;
     }
 
@@ -150,11 +150,11 @@ bool Crypto::_message_id_ok(MessageIdType id)
     return/*(!(lastMessageIds->contains(id)) || id == -1)*/ true;
 }
 
-String Crypto::_encrypt(String decrypted){
+System::String Crypto::_encrypt(System::String decrypted){
     if(Crypto::key.size == 0){
-        throw new MessageParsingException(String("encryption failed! Key is not set"), NONE_KEY_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("encryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
     }
-    String encrypted = String(new char[decrypted.size], decrypted.size);
+    System::String encrypted = System::String(new char[decrypted.size], decrypted.size);
     for(int i = 0; i < decrypted.size; i++){
         short num = (short)decrypted.data[i] + (short)Crypto::key.data[i % Crypto::key.size];
         if(num > 128){
@@ -169,11 +169,11 @@ String Crypto::_encrypt(String decrypted){
     return encrypted;
 }
 
-String Crypto::_decrypt(String encrypted){
+System::String Crypto::_decrypt(System::String encrypted){
     if(Crypto::key.size == 0){
-        throw new MessageParsingException(String("decryption failed! Key is not set"), NONE_KEY_EXCEPTION_ID);
+        throw new Exceptions::MessageParsingException(System::String("decryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
     }
-    String decrypted = String(new char[encrypted.size], encrypted.size);
+    System::String decrypted = System::String(new char[encrypted.size], encrypted.size);
     for(int i = 0; i < decrypted.size; i++){
         short num = (short)encrypted.data[i] - (short)Crypto::key.data[i % Crypto::key.size];
         if(num > 128){

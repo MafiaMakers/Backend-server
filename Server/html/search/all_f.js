@@ -1,21 +1,14 @@
 var searchData=
 [
-  ['receive_5fmessage_113',['receive_message',['../class_mafia_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627',1,'Mafia::MainServerNetworker']]],
-  ['remembermessagescount_114',['rememberMessagesCount',['../class_mafia_1_1_crypto.html#a0f091ed556d6f0b99fc81b24d09c9571',1,'Mafia::Crypto']]],
-  ['request_115',['Request',['../class_mafia_1_1_request.html',1,'Mafia::Request'],['../struct_mafia_1_1_request_with_id.html#a732bc35ab9cc0c1d71b09cf294df5e6e',1,'Mafia::RequestWithId::request()'],['../class_mafia_1_1_request.html#afaf8d8928de7ffff8a3767589489bd33',1,'Mafia::Request::Request()']]],
-  ['request_2ecpp_116',['request.cpp',['../request_8cpp.html',1,'']]],
-  ['request_2eh_117',['request.h',['../request_8h.html',1,'']]],
-  ['request_5fanswer_118',['request_answer',['../class_mafia_1_1_main_server_networker.html#a0060bbfbcfe2b5d061ff985d6934dbe8',1,'Mafia::MainServerNetworker']]],
-  ['request_5fanswer_5fmessage_5ftype_119',['REQUEST_ANSWER_MESSAGE_TYPE',['../message_types_8h.html#ac6925911cc16d2a38e6396c303b325ce',1,'messageTypes.h']]],
-  ['request_5fanswered_120',['request_answered',['../class_mafia_1_1_subserver_object.html#a44a0c758ce9ac47051091dfc2615fac2',1,'Mafia::SubserverObject']]],
-  ['request_5fexception_5fdefault_5fexception_5fid_121',['REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID',['../requestexception_8h.html#a93f1b741001262c5c1564a3d96241696',1,'requestexception.h']]],
-  ['requestexception_122',['RequestException',['../class_mafia_1_1_request_exception.html',1,'Mafia::RequestException'],['../class_mafia_1_1_request_exception.html#afc02147ff2287667cbaa102ffcd37d4c',1,'Mafia::RequestException::RequestException()'],['../class_mafia_1_1_request_exception.html#aa62aeb0201a8284dbd56a15d902a7bfa',1,'Mafia::RequestException::RequestException(String data, ExceptionIdType id)']]],
-  ['requestexception_2ecpp_123',['requestexception.cpp',['../requestexception_8cpp.html',1,'']]],
-  ['requestexception_2eh_124',['requestexception.h',['../requestexception_8h.html',1,'']]],
-  ['requestidtype_125',['RequestIdType',['../subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14',1,'subserverobject.h']]],
-  ['requestwithid_126',['RequestWithId',['../struct_mafia_1_1_request_with_id.html',1,'Mafia']]],
-  ['run_5fapp_127',['run_app',['../namespace_mafia.html#a6f5cb7d00444a101b43759ef8ce0bc0a',1,'Mafia']]],
-  ['run_5fme_128',['run_me',['../class_mafia_1_1_subserver_object.html#a8f9b6518219c0d83c03ee2c9d54a73b5',1,'Mafia::SubserverObject']]],
-  ['runprogram_2ecpp_129',['runprogram.cpp',['../runprogram_8cpp.html',1,'']]],
-  ['runprogram_2eh_130',['runprogram.h',['../runprogram_8h.html',1,'']]]
+  ['parse_5fdata_244',['parse_data',['../class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c',1,'Mafia::Network::Crypto::parse_data(char *data, int size)'],['../class_mafia_1_1_network_1_1_crypto.html#ae5c75d68a2e92096e365819c641caaa7',1,'Mafia::Network::Crypto::parse_data(System::String data)']]],
+  ['pass_5fclient_245',['pass_client',['../class_mafia_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b',1,'Mafia::SubserverObject']]],
+  ['passwordhash_246',['passwordHash',['../struct_mafia_1_1_database_1_1_user.html#a116110fd36923159e1f93d8567e641cb',1,'Mafia::Database::User']]],
+  ['path_247',['path',['../class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80',1,'Mafia::Database::DatabaseWorker::path()'],['../class_mafia_1_1_subserver_object.html#af632a330d19bd1ff30a2f502befc35ae',1,'Mafia::SubserverObject::path()']]],
+  ['pid_248',['pid',['../class_mafia_1_1_subserver_object.html#a4cac4a95afb62479ed467ec104a84d9b',1,'Mafia::SubserverObject']]],
+  ['port_249',['port',['../struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a',1,'Mafia::Network::Client']]],
+  ['preprocess_250',['preProcess',['../class_mafia_1_1_system_1_1_s_h_a256.html#a55d3525d3fdf0d7448b52de62d68e522',1,'Mafia::System::SHA256']]],
+  ['previous_251',['previous',['../struct_mafia_1_1_system_1_1_queue_element.html#af10b1b0f890945d8663b4203e1b24666',1,'Mafia::System::QueueElement']]],
+  ['price_252',['price',['../struct_mafia_1_1_database_1_1_transaction.html#a4f0482eec812c780c9d1b4831773e6bb',1,'Mafia::Database::Transaction']]],
+  ['processchunk_253',['processChunk',['../class_mafia_1_1_system_1_1_s_h_a256.html#af63f44a8791be2506bdf6cdbbb2ec331',1,'Mafia::System::SHA256']]],
+  ['processname_254',['processName',['../class_mafia_1_1_subserver_object.html#aa22d285053af9bc30670839f50dfda6f',1,'Mafia::SubserverObject']]]
 ];

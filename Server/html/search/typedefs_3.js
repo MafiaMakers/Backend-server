@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requestidtype_319',['RequestIdType',['../subserverobject_8h.html#acdb72ff9e2aa3630d431973333a68d14',1,'subserverobject.h']]]
+  ['gameidtype_643',['GameIdType',['../namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b',1,'Mafia::Database']]]
 ];

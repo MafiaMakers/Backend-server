@@ -68,7 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Классы</a> &#124;
 <a href="#namespaces">Пространства имен</a> &#124;
-<a href="#define-members">Макросы</a>  </div>
+<a href="#enum-members">Перечисления</a>  </div>
   <div class="headertitle">
 <div class="title">Файл messageparsingexception.h</div>  </div>
 </div><!--header-->
@@ -79,8 +79,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_message_parsing_exception.html">Mafia::MessageParsingException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке.  <a href="class_mafia_1_1_message_parsing_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html">Mafia::Exceptions::MessageParsingException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке.  <a href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -88,125 +88,26 @@ $(function() {
 <tr class="memitem:namespace_mafia"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html">Mafia</a></td></tr>
 <tr class="memdesc:namespace_mafia"><td class="mdescLeft">&#160;</td><td class="mdescRight">Набор системных функций для запуска и завершения программ <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_mafia_1_1_exceptions"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html">Mafia::Exceptions</a></td></tr>
+<tr class="memdesc:namespace_mafia_1_1_exceptions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пространство имен для описания и работы с исключениями <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Макросы</h2></td></tr>
-<tr class="memitem:a6f339b84375dd6c1e80489e84fdb7982"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a>&#160;&#160;&#160;100</td></tr>
-<tr class="memdesc:a6f339b84375dd6c1e80489e84fdb7982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый id исключения парсинга сообщения  <a href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">Подробнее...</a><br /></td></tr>
-<tr class="separator:a6f339b84375dd6c1e80489e84fdb7982"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebf2c77e544d42aa30b8eeccab5547d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#aebf2c77e544d42aa30b8eeccab5547d1">SHORT_MESSAGE_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td></tr>
-<tr class="memdesc:aebf2c77e544d42aa30b8eeccab5547d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при получении сообщения, слишком короткого для декодирования  <a href="messageparsingexception_8h.html#aebf2c77e544d42aa30b8eeccab5547d1">Подробнее...</a><br /></td></tr>
-<tr class="separator:aebf2c77e544d42aa30b8eeccab5547d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfccc3b4c5e1c121d88442c2cf927607"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#acfccc3b4c5e1c121d88442c2cf927607">INVALID_MESSAGE_ID_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)2)</td></tr>
-<tr class="memdesc:acfccc3b4c5e1c121d88442c2cf927607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при получении сообщения с невозможным id.  <a href="messageparsingexception_8h.html#acfccc3b4c5e1c121d88442c2cf927607">Подробнее...</a><br /></td></tr>
-<tr class="separator:acfccc3b4c5e1c121d88442c2cf927607"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a566f0ae51db33f3e1d84cd2e4f18834a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#a566f0ae51db33f3e1d84cd2e4f18834a">INVALID_MESSAGE_SIZE_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)3)</td></tr>
-<tr class="memdesc:a566f0ae51db33f3e1d84cd2e4f18834a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при получении сообщения невозможного размера  <a href="messageparsingexception_8h.html#a566f0ae51db33f3e1d84cd2e4f18834a">Подробнее...</a><br /></td></tr>
-<tr class="separator:a566f0ae51db33f3e1d84cd2e4f18834a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa51d1a95732f0007d105a720e05abb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#afa51d1a95732f0007d105a720e05abb9">CONTROL_SUM_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)4)</td></tr>
-<tr class="memdesc:afa51d1a95732f0007d105a720e05abb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при получении сообщения с несовпадающей контрольной суммой  <a href="messageparsingexception_8h.html#afa51d1a95732f0007d105a720e05abb9">Подробнее...</a><br /></td></tr>
-<tr class="separator:afa51d1a95732f0007d105a720e05abb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8701b44b7f2c15058a6140fddc83950e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="messageparsingexception_8h.html#a8701b44b7f2c15058a6140fddc83950e">NONE_KEY_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)5)</td></tr>
-<tr class="memdesc:a8701b44b7f2c15058a6140fddc83950e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом  <a href="messageparsingexception_8h.html#a8701b44b7f2c15058a6140fddc83950e">Подробнее...</a><br /></td></tr>
-<tr class="separator:a8701b44b7f2c15058a6140fddc83950e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a590a6c36292701b4a976cdf9f6dd1946"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946">Mafia::Exceptions::MessageParsingExceptionId</a> { <br />
+&#160;&#160;<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946ad509aed5e15b95096fe794873990119a">Mafia::Exceptions::MessageParsingExceptionId_Default</a> = 100, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946a9c7b8bb026abb5e89849d906b2e1cbfd">Mafia::Exceptions::MessageParsingExceptionId_ShortMessage</a> = 101, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946a949a5046d4ee06c90c3ed6a4a2780345">Mafia::Exceptions::MessageParsingExceptionId_InvalidMessageId</a> = 102, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946aa6fbd5210ef3d6215ced9072d5e89b1f">Mafia::Exceptions::MessageParsingExceptionId_InvalidMessageSize</a> = 103, 
+<br />
+&#160;&#160;<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946a59cf7282cee4d887554ba271f2471a46">Mafia::Exceptions::MessageParsingExceptionId_ControlSumMismatch</a> = 104, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946a201f3b2a42baf9e2f6793a30111a6ef8">Mafia::Exceptions::MessageParsingExceptionId_NoneKey</a> = 105, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946a47f17e46c764db780289e6000cfa541f">Mafia::Exceptions::MessageParsingExceptionId_Last</a> = 106
+<br />
+ }</td></tr>
+<tr class="memdesc:a590a6c36292701b4a976cdf9f6dd1946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возможные тиаы исключений распаковки или запаковки сообщений  <a href="namespace_mafia_1_1_exceptions.html#a590a6c36292701b4a976cdf9f6dd1946">Подробнее...</a><br /></td></tr>
+<tr class="separator:a590a6c36292701b4a976cdf9f6dd1946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Макросы</h2>
-<a id="afa51d1a95732f0007d105a720e05abb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa51d1a95732f0007d105a720e05abb9">&#9670;&nbsp;</a></span>CONTROL_SUM_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define CONTROL_SUM_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)4)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при получении сообщения с несовпадающей контрольной суммой </p>
-
-</div>
-</div>
-<a id="acfccc3b4c5e1c121d88442c2cf927607"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acfccc3b4c5e1c121d88442c2cf927607">&#9670;&nbsp;</a></span>INVALID_MESSAGE_ID_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INVALID_MESSAGE_ID_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при получении сообщения с невозможным id. </p>
-
-</div>
-</div>
-<a id="a566f0ae51db33f3e1d84cd2e4f18834a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a566f0ae51db33f3e1d84cd2e4f18834a">&#9670;&nbsp;</a></span>INVALID_MESSAGE_SIZE_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define INVALID_MESSAGE_SIZE_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)3)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при получении сообщения невозможного размера </p>
-
-</div>
-</div>
-<a id="a6f339b84375dd6c1e80489e84fdb7982"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f339b84375dd6c1e80489e84fdb7982">&#9670;&nbsp;</a></span>MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID&#160;&#160;&#160;100</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Базовый id исключения парсинга сообщения </p>
-
-</div>
-</div>
-<a id="a8701b44b7f2c15058a6140fddc83950e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8701b44b7f2c15058a6140fddc83950e">&#9670;&nbsp;</a></span>NONE_KEY_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NONE_KEY_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)5)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом </p>
-
-</div>
-</div>
-<a id="aebf2c77e544d42aa30b8eeccab5547d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebf2c77e544d42aa30b8eeccab5547d1">&#9670;&nbsp;</a></span>SHORT_MESSAGE_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SHORT_MESSAGE_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="messageparsingexception_8h.html#a6f339b84375dd6c1e80489e84fdb7982">MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при получении сообщения, слишком короткого для декодирования </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

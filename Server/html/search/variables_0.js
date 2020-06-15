@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['checkrespondinterval_279',['checkRespondInterval',['../class_mafia_1_1_subserver_object.html#ae31c4a372ae11735f9e95b1f37b85d32',1,'Mafia::SubserverObject']]],
-  ['client_280',['client',['../struct_mafia_1_1_message.html#aa0d5fabbca2a699a34501f0b251e5014',1,'Mafia::Message::client()'],['../class_mafia_1_1_network_request.html#ae611f328d7acd09410eb6b7a0844c0fc',1,'Mafia::NetworkRequest::client()']]],
-  ['currentmaxid_281',['currentMaxId',['../class_mafia_1_1_main_server_networker.html#a7abbf9c050bc76052dc15da58c821a88',1,'Mafia::MainServerNetworker']]],
-  ['currentrequests_282',['currentRequests',['../class_mafia_1_1_subserver_object.html#a8bf1be21fcb93b69baab53209cc02339',1,'Mafia::SubserverObject']]]
+  ['accounttype_539',['accountType',['../struct_mafia_1_1_database_1_1_user.html#a9ba706899cd712c4eda976cc40196acc',1,'Mafia::Database::User']]],
+  ['achievement_540',['achievement',['../struct_mafia_1_1_database_1_1_user.html#a4c9a685b2cc5bf84adbebc53e66a8976',1,'Mafia::Database::User']]],
+  ['allgames_541',['allGames',['../struct_mafia_1_1_database_1_1_user.html#a6c1ac0d3c688b5fd0b7bcafaa2505024',1,'Mafia::Database::User']]],
+  ['authorized_542',['authorized',['../struct_mafia_1_1_database_1_1_user.html#a6f6d6f255dbb930d8549c90ea2f9b03b',1,'Mafia::Database::User']]]
 ];

@@ -2,19 +2,19 @@
 #include <thread>
 #include<chrono>
 using namespace Mafia;
-
+using namespace Requests;
 
 Request::Request()
 {
     this->finished = false;
 }
 
-bool Mafia::Request::is_finished()
+bool Request::is_finished()
 {
     return this->finished;
 }
 
-void Mafia::Request::close_request()
+void Request::close_request()
 {
     this->finished = true;
     emit this->on_ready();

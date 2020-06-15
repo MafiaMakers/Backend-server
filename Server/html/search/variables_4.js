@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['id_288',['id',['../class_mafia_1_1_exception.html#a499fd22b3c70a789fd885a7dfb9a8ea0',1,'Mafia::Exception::id()'],['../struct_mafia_1_1_message.html#a437cd8c266bbc2e2ebe37f6918722233',1,'Mafia::Message::id()'],['../class_mafia_1_1_network_request.html#a25461977bac1c4956da1d50364e7bccc',1,'Mafia::NetworkRequest::id()'],['../struct_mafia_1_1_request_with_id.html#a55247bcc51f562c30f657fcf357b1444',1,'Mafia::RequestWithId::id()']]],
-  ['initialized_289',['initialized',['../class_mafia_1_1_subserver_object.html#a0af59b83b39de72d76cd6270c761bef2',1,'Mafia::SubserverObject']]],
-  ['ip_290',['ip',['../struct_mafia_1_1_client.html#a7588fd0f6280a988225daee841533ca6',1,'Mafia::Client']]]
+  ['elementscount_563',['elementsCount',['../class_mafia_1_1_system_1_1_limited_queue.html#aeb22b8bb6eae294846338c0b2427d15d',1,'Mafia::System::LimitedQueue']]],
+  ['elementscountlimit_564',['elementsCountLimit',['../class_mafia_1_1_system_1_1_limited_queue.html#aa2295dfe86b6cb1a8e254724ddd5ee94',1,'Mafia::System::LimitedQueue']]],
+  ['email_565',['email',['../struct_mafia_1_1_database_1_1_user.html#a975a5f88d9e890b6e7c5e9ecdf9727b4',1,'Mafia::Database::User']]],
+  ['endingdt_566',['endingDT',['../struct_mafia_1_1_gameplay_1_1_game.html#a60e4f5c241d677a0388e353c68ab6a70',1,'Mafia::Gameplay::Game']]],
+  ['errors_567',['ERRORS',['../class_mafia_1_1_system_1_1_s_h_a256.html#a4a0efd923fa68eff73fa8fa3d1492b9c',1,'Mafia::System::SHA256']]],
+  ['extended_5fword_5famount_568',['EXTENDED_WORD_AMOUNT',['../class_mafia_1_1_system_1_1_s_h_a256.html#a743df03f2e9b9783a945d9d55b86cedd',1,'Mafia::System::SHA256']]]
 ];

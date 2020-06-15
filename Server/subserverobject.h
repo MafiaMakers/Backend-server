@@ -16,7 +16,7 @@ namespace Mafia {
     //! Структура для хранения сетевого запроса и его id
     struct RequestWithId{
         //! Указатель на сетевой запрос
-        NetworkRequest* request;
+        Requests::NetworkRequest* request;
         //! id этого запроса
         RequestIdType id;
     };
@@ -44,8 +44,8 @@ namespace Mafia {
          * \param maxNotAnswering Максимальное количество пропущенных запросов на подтверждение активности субсервера (стандартное значение 5)
          * \param specialCommands Специальные параметры, которые дополнительно надо передать при запуске субсервера (стандартное значение "")
          */
-        SubserverObject(MainServerNetworker* networker, int port, const String path, const String processName,
-                        int checkInterval = 2000, int maxNotAnswering = 5, const String specialCommands = String(""));
+        SubserverObject(MainServerNetworker* networker, int port, const System::String path, const System::String processName,
+                        int checkInterval = 2000, int maxNotAnswering = 5, const System::String specialCommands = System::String(""));
         /*!
          * \brief Метод отправления запроса субсерверу
          * \param type Тип сообщения, которое надо отправить субсерверу
@@ -101,7 +101,7 @@ namespace Mafia {
          * \brief Слот, который привязывается к запросу и вызывает сигнал \ref Mafia::SubserverObject::on_request_ready(RequestIdType requestId)
          * \param request указатель на запрос, который стал готов к отдаче информации
          */
-        virtual void request_answered(Request* request);
+        virtual void request_answered(Requests::Request* request);
 
         /*!
          * \brief Сигнал, вызываемый при получении сообщения от локалхоста.
@@ -126,7 +126,7 @@ namespace Mafia {
          * \brief Функция запуска субсервера с указанием дополнительных комманд
          * \param specialCommands дополнительные параметры, которые надо передать субсерверу для запуска
          */
-        virtual void run_me(const String specialCommands);
+        virtual void run_me(const System::String specialCommands);
 
         //! Адрес субсервера (127.0.0.1 и порт)
         Client myAddress;
@@ -149,10 +149,10 @@ namespace Mafia {
         int notAnsweringsCount = 0;
 
         //! Путь к исполняемому файлу субсервера
-        const String path;
+        const System::String path;
 
         //! Имя процесса субсервера
-        const String processName;
+        const System::String processName;
 
         //! Временной интервал (мс) между проверками активности субсервера
         const int checkRespondInterval = 2000;

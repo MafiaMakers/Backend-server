@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл Database/userdatabaseworker.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d00f5e20d7b27686287f9c84bc9112f8.html">Database</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">userdatabaseworker.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="userdatabaseworker_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef USERDATABASEWORKER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define USERDATABASEWORKER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="databaseworker_8h.html">databaseworker.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user_8h.html">user.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__s_8h.html">Gameplay/game_s.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MAX_TRANSACTIONS_COUNT 1024</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="userdatabaseworker_8h.html#a43f946a854f8417af8dd9fc940ab323e">   10</a></span>&#160;<span class="preprocessor">#define MAX_GAMES_COUNT 65536</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="userdatabaseworker_8h.html#a4cfd1eb16d1a45bfaff264253463a9eb">   12</a></span>&#160;<span class="preprocessor">#define MAX_CHATS_COUNT 1024</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="userdatabaseworker_8h.html#a398a9ffb12147d934ae2bb3374c9041d">   14</a></span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a>{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">namespace </span>Database {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_mafia_1_1_database_1_1_user_database_worker.html">   20</a></span>&#160;        <span class="keyword">class </span><a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html">UserDatabaseWorker</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a0c5ef6541e5f76954a7561ec185d7bcd">UserDatabaseWorker</a>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a>* _dbWorker);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#af28746e28ae7fa94d46d33b44b5d0c33">add_user</a>(QString nickname, QString email, QString password);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a0463c9c60710a416b85e32ade5e94db6">login_user</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, QString password);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#aac751ab544707ab9c7040800563f5b60">logout_user</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a66e3afcdba1cf7f1007718de47b3e06e">confirm_user</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, QString confirmationKey);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <a class="code" href="struct_mafia_1_1_database_1_1_user.html">User</a> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#ab10cd037ba062f84274e496a01d4a6ca">get_user</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a700001621cdd28745228cbe8ccbc7945">register_game</a>(<a class="code" href="struct_mafia_1_1_gameplay_1_1_game.html">Gameplay::Game</a> game);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#ac331e1ed93c41b88a2b0c17da8e709be">add_transaction</a>(<a class="code" href="struct_mafia_1_1_database_1_1_transaction.html">Transaction</a> transaction);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a9e4f1ac22bc69bdb6ab70c3a11cf3bd4">change_password</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, QString newPassword);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a52ccd29465ed1b14edb8a812fa56457c">get_id</a>(QString email);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#aae7974d96cc47533ded221b3037596fd">add_achievement</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, <a class="code" href="namespace_mafia_1_1_database.html#a3898cb3d329cc8ad5b1bc947a837c76d">Achievement</a> achievement);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#afbf3904c4c16eb2b13927d54632cc128">add_user_to_chat</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> userId, <a class="code" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chatId);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a83d4d49e6e27666249d37e33640ac690">set_account_type</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, <a class="code" href="namespace_mafia_1_1_database.html#a186e79c56d97b38341cfa961499647c1">AccountType</a> newAccountType);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <span class="keywordtype">bool</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#af9aa249bc1843c371e7ec418a0da8ddd">change_email</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, QString newEmail);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a1954b5c6be7df1b070ae168968748647">change_nickname</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <span class="keywordtype">id</span>, QString newNickname);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#af28746e28ae7fa94d46d33b44b5d0c33">add_user</a>(<a class="code" href="struct_mafia_1_1_database_1_1_user.html">User</a> user);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <span class="keyword">static</span> QString <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a66c40616dca9ffd812351ad740d88a34">generate_salt</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            QList&lt;T&gt; <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#af07e95949bfc69f1edf7768ca94df2d2">qlist_from_byte_array</a>(QByteArray data);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            QByteArray <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a488194c3d49f6897161949eee5772c65">qbytearray_from_qlist</a>(QList&lt;T&gt; data);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="keyword">static</span> QString <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#ab652edb66b24b11c1da3c4fed73bca99">generate_confirmation_key</a>();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a700001621cdd28745228cbe8ccbc7945">register_game</a>(<a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> userId, <a class="code" href="namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b">GameIdType</a> gameId, <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8d">Gameplay::Role</a> role, <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12a">Gameplay::GamePersonalResult</a> result);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno"><a class="line" href="class_mafia_1_1_database_1_1_user_database_worker.html#a5eb1881abe110fa36d86680f4b451947">  175</a></span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a>* <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a5eb1881abe110fa36d86680f4b451947">dbWorker</a>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="class_mafia_1_1_database_1_1_user_database_worker.html#a995db3d2690edf28454cc5ff9532babb">  177</a></span>&#160;            <span class="keyword">const</span> QString <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#a995db3d2690edf28454cc5ff9532babb">localParameter</a> = <span class="stringliteral">&quot;Par@!A#$^%&amp;*()-_=+/\\MeTerLOCal&quot;</span>;</div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="class_mafia_1_1_database_1_1_user_database_worker.html#af71b114884592d25493ff6448c42b9e4">  179</a></span>&#160;            <span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="class_mafia_1_1_database_1_1_user_database_worker.html#af71b114884592d25493ff6448c42b9e4">dbName</a>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        };</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160; </div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#endif // USERDATABASEWORKER_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a66e3afcdba1cf7f1007718de47b3e06e"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a66e3afcdba1cf7f1007718de47b3e06e">Mafia::Database::UserDatabaseWorker::confirm_user</a></div><div class="ttdeci">bool confirm_user(UserIdType id, QString confirmationKey)</div><div class="ttdoc">Подтверждение адреса электронной почты пользователем</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:143</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a66c40616dca9ffd812351ad740d88a34"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a66c40616dca9ffd812351ad740d88a34">Mafia::Database::UserDatabaseWorker::generate_salt</a></div><div class="ttdeci">static QString generate_salt()</div><div class="ttdoc">Функция случайной генерации соли для хеширования пароля</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:490</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a5eb1881abe110fa36d86680f4b451947"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a5eb1881abe110fa36d86680f4b451947">Mafia::Database::UserDatabaseWorker::dbWorker</a></div><div class="ttdeci">DatabaseWorker * dbWorker</div><div class="ttdoc">Указатель на объект для работы с базой данных</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.h:175</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a32d9adb766390ac90c582664f496c524"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">Mafia::Database::ChatIdType</a></div><div class="ttdeci">int ChatIdType</div><div class="ttdoc">Тип, использующийся для id чатов в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a488194c3d49f6897161949eee5772c65"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a488194c3d49f6897161949eee5772c65">Mafia::Database::UserDatabaseWorker::qbytearray_from_qlist</a></div><div class="ttdeci">QByteArray qbytearray_from_qlist(QList&lt; T &gt; data)</div><div class="ttdoc">Функция преобразования QList&lt;T&gt;, полученного из программы в QByteArray для записи в БД</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:551</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_transaction_html"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_transaction.html">Mafia::Database::Transaction</a></div><div class="ttdoc">Структура, используемая для хранения и работы с транзакциями</div><div class="ttdef"><b>Definition:</b> user.h:61</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_aae7974d96cc47533ded221b3037596fd"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#aae7974d96cc47533ded221b3037596fd">Mafia::Database::UserDatabaseWorker::add_achievement</a></div><div class="ttdeci">void add_achievement(UserIdType id, Achievement achievement)</div><div class="ttdoc">Изменение достижения (нашивки) пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:318</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> databaseworker.h:14</div></div>
+<div class="ttc" id="adatabaseworker_8h_html"><div class="ttname"><a href="databaseworker_8h.html">databaseworker.h</a></div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_af9aa249bc1843c371e7ec418a0da8ddd"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#af9aa249bc1843c371e7ec418a0da8ddd">Mafia::Database::UserDatabaseWorker::change_email</a></div><div class="ttdeci">bool change_email(UserIdType id, QString newEmail)</div><div class="ttdoc">Функция изменения адреса электронной почты пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:378</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a700001621cdd28745228cbe8ccbc7945"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a700001621cdd28745228cbe8ccbc7945">Mafia::Database::UserDatabaseWorker::register_game</a></div><div class="ttdeci">void register_game(Gameplay::Game game)</div><div class="ttdoc">Добавление в БД новой игры (касается только пользователей! В БД с играми ничего добавлено не будет!...</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:566</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a0463c9c60710a416b85e32ade5e94db6"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a0463c9c60710a416b85e32ade5e94db6">Mafia::Database::UserDatabaseWorker::login_user</a></div><div class="ttdeci">bool login_user(UserIdType id, QString password)</div><div class="ttdoc">Функция для входа пользователя в учетную запись</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:100</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_user_html"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_user.html">Mafia::Database::User</a></div><div class="ttdoc">Структура, используемая для хранения и работы с пользователем</div><div class="ttdef"><b>Definition:</b> user.h:73</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_ab652edb66b24b11c1da3c4fed73bca99"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#ab652edb66b24b11c1da3c4fed73bca99">Mafia::Database::UserDatabaseWorker::generate_confirmation_key</a></div><div class="ttdeci">static QString generate_confirmation_key()</div><div class="ttdoc">Функция рандомной генерации ключа подтверждения email-a.</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:503</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_ac331e1ed93c41b88a2b0c17da8e709be"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#ac331e1ed93c41b88a2b0c17da8e709be">Mafia::Database::UserDatabaseWorker::add_transaction</a></div><div class="ttdeci">void add_transaction(Transaction transaction)</div><div class="ttdoc">Добавление транзакции в БД (касается только пользователей! В БД с транзакциями ничего добавлено не бу...</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:214</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8d"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8d">Mafia::Gameplay::Role</a></div><div class="ttdeci">Role</div><div class="ttdoc">Возможные роли</div><div class="ttdef"><b>Definition:</b> gameitems.h:8</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a3898cb3d329cc8ad5b1bc947a837c76d"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a3898cb3d329cc8ad5b1bc947a837c76d">Mafia::Database::Achievement</a></div><div class="ttdeci">Achievement</div><div class="ttdoc">Возможные достижения (ну или что-то вроде нашивок)</div><div class="ttdef"><b>Definition:</b> user.h:49</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a995db3d2690edf28454cc5ff9532babb"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a995db3d2690edf28454cc5ff9532babb">Mafia::Database::UserDatabaseWorker::localParameter</a></div><div class="ttdeci">const QString localParameter</div><div class="ttdoc">Локальный параметр хеширования</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.h:177</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a52ccd29465ed1b14edb8a812fa56457c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a52ccd29465ed1b14edb8a812fa56457c">Mafia::Database::UserDatabaseWorker::get_id</a></div><div class="ttdeci">UserIdType get_id(QString email)</div><div class="ttdoc">Получение id пользователя по email-у</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:289</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html">Mafia::Database::DatabaseWorker</a></div><div class="ttdoc">Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных</div><div class="ttdef"><b>Definition:</b> databaseworker.h:21</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12a"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12a">Mafia::Gameplay::GamePersonalResult</a></div><div class="ttdeci">GamePersonalResult</div><div class="ttdoc">Возможные личные результаты игры</div><div class="ttdef"><b>Definition:</b> gameitems.h:26</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html">Mafia::Gameplay::Game</a></div><div class="ttdoc">Структура для хранения информации об игре</div><div class="ttdef"><b>Definition:</b> game_s.h:9</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_af71b114884592d25493ff6448c42b9e4"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#af71b114884592d25493ff6448c42b9e4">Mafia::Database::UserDatabaseWorker::dbName</a></div><div class="ttdeci">static const QString dbName</div><div class="ttdoc">Имя таблицы с пользователями</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.h:179</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_aeb0924401346b7ecd45940ca6e24c61b"><div class="ttname"><a href="namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b">Mafia::Database::GameIdType</a></div><div class="ttdeci">int GameIdType</div><div class="ttdoc">Тип, использующийся для хранения id игр в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:18</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a9e4f1ac22bc69bdb6ab70c3a11cf3bd4"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a9e4f1ac22bc69bdb6ab70c3a11cf3bd4">Mafia::Database::UserDatabaseWorker::change_password</a></div><div class="ttdeci">void change_password(UserIdType id, QString newPassword)</div><div class="ttdoc">Изменение пароля пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:246</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_ab10cd037ba062f84274e496a01d4a6ca"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#ab10cd037ba062f84274e496a01d4a6ca">Mafia::Database::UserDatabaseWorker::get_user</a></div><div class="ttdeci">User get_user(UserIdType id)</div><div class="ttdoc">Собирает все данные о пользователе по id.</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:165</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a83d4d49e6e27666249d37e33640ac690"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a83d4d49e6e27666249d37e33640ac690">Mafia::Database::UserDatabaseWorker::set_account_type</a></div><div class="ttdeci">void set_account_type(UserIdType id, AccountType newAccountType)</div><div class="ttdoc">Назначение типа аккаунта пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:363</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a186e79c56d97b38341cfa961499647c1"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a186e79c56d97b38341cfa961499647c1">Mafia::Database::AccountType</a></div><div class="ttdeci">AccountType</div><div class="ttdoc">Возможные типы аккаунтов</div><div class="ttdef"><b>Definition:</b> user.h:36</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_ab42c0ff51241aae191094adfd24334d1"><div class="ttname"><a href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">Mafia::Database::UserIdType</a></div><div class="ttdeci">int UserIdType</div><div class="ttdoc">Тип, использующийся для id пользователей в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:12</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_af07e95949bfc69f1edf7768ca94df2d2"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#af07e95949bfc69f1edf7768ca94df2d2">Mafia::Database::UserDatabaseWorker::qlist_from_byte_array</a></div><div class="ttdeci">QList&lt; T &gt; qlist_from_byte_array(QByteArray data)</div><div class="ttdoc">Функция преобразования QByteArray, полученного из БД в QList&lt;T&gt;</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:517</div></div>
+<div class="ttc" id="auser_8h_html"><div class="ttname"><a href="user_8h.html">user.h</a></div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html">Mafia::Database::UserDatabaseWorker</a></div><div class="ttdoc">Класс для работы с базой данных пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.h:21</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_aac751ab544707ab9c7040800563f5b60"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#aac751ab544707ab9c7040800563f5b60">Mafia::Database::UserDatabaseWorker::logout_user</a></div><div class="ttdeci">void logout_user(UserIdType id)</div><div class="ttdoc">Функция для выхода пользователя из игры</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:128</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_afbf3904c4c16eb2b13927d54632cc128"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#afbf3904c4c16eb2b13927d54632cc128">Mafia::Database::UserDatabaseWorker::add_user_to_chat</a></div><div class="ttdeci">void add_user_to_chat(UserIdType userId, ChatIdType chatId)</div><div class="ttdoc">Добавление пользователя в указанный чат</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:335</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a0c5ef6541e5f76954a7561ec185d7bcd"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a0c5ef6541e5f76954a7561ec185d7bcd">Mafia::Database::UserDatabaseWorker::UserDatabaseWorker</a></div><div class="ttdeci">UserDatabaseWorker(DatabaseWorker *_dbWorker)</div><div class="ttdoc">Основной конструктор, который принимает и инициализирует объект DatabaseWorker для работы с БД</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_af28746e28ae7fa94d46d33b44b5d0c33"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#af28746e28ae7fa94d46d33b44b5d0c33">Mafia::Database::UserDatabaseWorker::add_user</a></div><div class="ttdeci">UserIdType add_user(QString nickname, QString email, QString password)</div><div class="ttdoc">Функция добавления нового пользователя в БД</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:55</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_user_database_worker_html_a1954b5c6be7df1b070ae168968748647"><div class="ttname"><a href="class_mafia_1_1_database_1_1_user_database_worker.html#a1954b5c6be7df1b070ae168968748647">Mafia::Database::UserDatabaseWorker::change_nickname</a></div><div class="ttdeci">void change_nickname(UserIdType id, QString newNickname)</div><div class="ttdoc">Функция изменения имени пользователя</div><div class="ttdef"><b>Definition:</b> userdatabaseworker.cpp:408</div></div>
+<div class="ttc" id="agame__s_8h_html"><div class="ttname"><a href="game__s_8h.html">game_s.h</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

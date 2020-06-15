@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['parse_5fdata_103',['parse_data',['../class_mafia_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c',1,'Mafia::Crypto::parse_data(char *data, int size)'],['../class_mafia_1_1_crypto.html#ae340ea5cfe03a701f1f7a8b652fb572d',1,'Mafia::Crypto::parse_data(String data)']]],
-  ['pass_5fclient_104',['pass_client',['../class_mafia_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b',1,'Mafia::SubserverObject']]],
-  ['pass_5fclient_5fmessage_5ftype_105',['PASS_CLIENT_MESSAGE_TYPE',['../message_types_8h.html#af3f1ed2ebb5efdcb269f0178b44e60d7',1,'messageTypes.h']]],
-  ['path_106',['path',['../class_mafia_1_1_subserver_object.html#ac0033ee77fbf905624c7785e29ad92bc',1,'Mafia::SubserverObject']]],
-  ['pid_107',['pid',['../class_mafia_1_1_subserver_object.html#a4cac4a95afb62479ed467ec104a84d9b',1,'Mafia::SubserverObject']]],
-  ['port_108',['port',['../struct_mafia_1_1_client.html#aedf850412dbaa664a0a998f1240466e7',1,'Mafia::Client']]],
-  ['previous_109',['previous',['../struct_mafia_1_1_queue_element.html#aa633a7df407e48c19f3263a3b9d95817',1,'Mafia::QueueElement']]],
-  ['processname_110',['processName',['../class_mafia_1_1_subserver_object.html#a898e994f047e8443ce275d3ad1758380',1,'Mafia::SubserverObject']]]
+  ['name_225',['NAME',['../simplestring_8h.html#a0e532ba856af6748897f652117e25c93',1,'simplestring.h']]],
+  ['needconfirmation_226',['needConfirmation',['../class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1',1,'Mafia::Network::MainServerNetworker']]],
+  ['networker_227',['networker',['../class_mafia_1_1_main_server_manager.html#ac5102a0ff8faa646017e4b61e0b588ef',1,'Mafia::MainServerManager::networker()'],['../class_mafia_1_1_subserver_object.html#a70d045873716217857efa542e9d5f52f',1,'Mafia::SubserverObject::networker()']]],
+  ['networkrequest_228',['NetworkRequest',['../class_mafia_1_1_requests_1_1_network_request.html',1,'Mafia::Requests::NetworkRequest'],['../class_mafia_1_1_requests_1_1_network_request.html#a09341ba386521236f332e5431b6910c7',1,'Mafia::Requests::NetworkRequest::NetworkRequest()']]],
+  ['networkrequest_2ecpp_229',['networkrequest.cpp',['../networkrequest_8cpp.html',1,'']]],
+  ['networkrequest_2eh_230',['networkrequest.h',['../networkrequest_8h.html',1,'']]],
+  ['next_231',['next',['../struct_mafia_1_1_system_1_1_queue_element.html#a4afe6dcf5a21a93690f7670f0c95de40',1,'Mafia::System::QueueElement']]],
+  ['nickname_232',['nickname',['../struct_mafia_1_1_database_1_1_user.html#a7398dbcb845259fafd09e0ab2a3454b1',1,'Mafia::Database::User']]],
+  ['not_5fnull_233',['NOT_NULL',['../databaseworker_8h.html#a294410b213914d2cacf150fe37098733',1,'databaseworker.h']]],
+  ['notansweringscount_234',['notAnsweringsCount',['../class_mafia_1_1_subserver_object.html#a2d1f21ed6f038b02ddea47f7df885890',1,'Mafia::SubserverObject']]]
 ];

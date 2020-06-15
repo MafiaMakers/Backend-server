@@ -5,33 +5,40 @@
 
 
 namespace Mafia {
-    //! \brief Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке.
-    class MessageParsingException : public Mafia::Exception
-    {
-    public:
+    namespace Exceptions {
+        //! \brief Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке.
+        class MessageParsingException : public Exception
+        {
+        public:
 
-        MessageParsingException(){};
-        /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
-        MessageParsingException(String data, ExceptionIdType id);
-        //! \brief см. \ref Mafia::Exception::show()
-        void show() override;
-        //! \brief см. \ref Mafia::Exception::get_base_exception_id()
-        ExceptionIdType get_base_exception_id() override;
-    };
+            MessageParsingException(){};
+            /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
+            MessageParsingException(System::String data, ExceptionIdType id);
+            //! \brief см. \ref Mafia::Exception::show()
+            void show() override;
+            //! \brief см. \ref Mafia::Exception::get_base_exception_id()
+            ExceptionIdType get_base_exception_id() override;
+        };
+
+        //! \brief Возможные тиаы исключений распаковки или запаковки сообщений
+        enum MessageParsingExceptionId{
+            //! \brief Базовый id исключения парсинга сообщения
+            MessageParsingExceptionId_Default = 100,
+            //! \brief Исключение, вызываемое при получении сообщения, слишком короткого для декодирования
+            MessageParsingExceptionId_ShortMessage = 101,
+            //! \brief Исключение, вызываемое при получении сообщения с невозможным id
+            MessageParsingExceptionId_InvalidMessageId = 102,
+            //! \brief Исключение, вызываемое при получении сообщения невозможного размера
+            MessageParsingExceptionId_InvalidMessageSize = 103,
+            //! \brief Исключение, вызываемое при получении сообщения с несовпадающей контрольной суммой
+            MessageParsingExceptionId_ControlSumMismatch = 104,
+            //! \brief Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом
+            MessageParsingExceptionId_NoneKey = 105,
+            //! \brief Верхняя граница типов исключений парсинга сообщений (см. \ref Mafia::Database::Status_First)
+            MessageParsingExceptionId_Last = 106
+        };
+    }
 }
 
-//! Базовый id исключения парсинга сообщения
-#define MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID 100
-
-//! Исключение, вызываемое при получении сообщения, слишком короткого для декодирования
-#define SHORT_MESSAGE_EXCEPTION_ID (MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)1)
-//! Исключение, вызываемое при получении сообщения с невозможным id
-#define INVALID_MESSAGE_ID_EXCEPTION_ID (MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)2)
-//! Исключение, вызываемое при получении сообщения невозможного размера
-#define INVALID_MESSAGE_SIZE_EXCEPTION_ID (MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)3)
-//! Исключение, вызываемое при получении сообщения с несовпадающей контрольной суммой
-#define CONTROL_SUM_EXCEPTION_ID (MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)4)
-//! Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом
-#define NONE_KEY_EXCEPTION_ID (MESSAGE_PARSING_EXCEPTION_DEFAULT_EXCEPTION_ID + (ExceptionIdType)5)
 
 #endif // MESSAGEPARSINGEXCEPTION_H

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wrap_5fmessage_278',['wrap_message',['../class_mafia_1_1_crypto.html#a83ce4795faf7170f2c78910b50e1eb3b',1,'Mafia::Crypto']]]
+  ['qbytearray_5ffrom_5fqlist_505',['qbytearray_from_qlist',['../class_mafia_1_1_database_1_1_user_database_worker.html#a488194c3d49f6897161949eee5772c65',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['qlist_5ffrom_5fbyte_5farray_506',['qlist_from_byte_array',['../class_mafia_1_1_database_1_1_user_database_worker.html#af07e95949bfc69f1edf7768ca94df2d2',1,'Mafia::Database::UserDatabaseWorker']]]
 ];

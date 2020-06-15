@@ -1,6 +1,7 @@
 #include "mainservermanager.h"
 #include "System/runprogram.h"
 #include "subserverobject.h"
+#include "Database/userdatabaseworker.h"
 using namespace Mafia;
 
 
@@ -8,10 +9,10 @@ MainServerManager::MainServerManager(QObject* parent) : QObject(parent)
 {
     networker = new MainServerNetworker(10000);
     Crypto::setKey("HaHA_UnDeCrYptAbLe_keY");
-    NetworkRequest * myTestRequest = 0;
+    Requests::NetworkRequest * myTestRequest = 0;
     try {
-        myTestRequest = new NetworkRequest(networker,
-                                              Message(ABSTRACT_REQUEST_MESSAGE_TYPE,
+        myTestRequest = new Requests::NetworkRequest(networker,
+                                              Message(MessageType_AbstractRequest,
                                                       (char*)"Some ask",
                                                       9,
                                                 Client(QHostAddress("192.168.1.66").toIPv4Address(),
@@ -24,15 +25,15 @@ MainServerManager::MainServerManager(QObject* parent) : QObject(parent)
     }
 
     SubserverObject* subserver = new SubserverObject(networker, 100001,
-                        String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"),
-                        String("ForLibsTest.exe"));
+                        System::String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"),
+                        System::String("ForLibsTest.exe"));
 
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();
 
 }
 
-void MainServerManager::_get_data_from_request(NetworkRequest *req)
+void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
 {
     if(req != 0){
         try {

@@ -6,8 +6,8 @@ using namespace Mafia;
 
 SubserverObject::SubserverObject(QObject *parent) : QObject(parent){}
 
-SubserverObject::SubserverObject(MainServerNetworker* networker, int port, const String _path, const String _processName,
-                                 int checkInterval, int maxNotAnswering, const String specialCommands)
+SubserverObject::SubserverObject(MainServerNetworker* networker, int port, const System::String _path, const System::String _processName,
+                                 int checkInterval, int maxNotAnswering, const System::String specialCommands)
     : path(_path), processName(_processName), checkRespondInterval(checkInterval), maxNotAnsweringsCount(maxNotAnswering)
 {
     this->networker = networker;
@@ -31,9 +31,9 @@ SubserverObject::SubserverObject(MainServerNetworker* networker, int port, const
 
 int SubserverObject::send_request(MessageTypeType type, SymbolType *data, int size)
 {
-    NetworkRequest* req = 0;
+    Requests::NetworkRequest* req = 0;
     try {
-        req = new NetworkRequest(this->networker, Message(type, data, size, this->myAddress));
+        req = new Requests::NetworkRequest(this->networker, Message(type, data, size, this->myAddress));
     } catch (Exception* exception) {
         switch (exception->get_id()) {
         default:{
@@ -55,7 +55,7 @@ int SubserverObject::send_request(MessageTypeType type, SymbolType *data, int si
     current.id = myId;
     current.request = req;
 
-    connect(req, &NetworkRequest::on_ready_me, this, &SubserverObject::request_answered);
+    connect(req, &Requests::NetworkRequest::on_ready_me, this, &SubserverObject::request_answered);
 
     this->currentRequests.append(current);
 
@@ -65,7 +65,7 @@ int SubserverObject::send_request(MessageTypeType type, SymbolType *data, int si
 void SubserverObject::pass_client(Client client)
 {
     try {
-        this->send_message_to_subserver(PASS_CLIENT_MESSAGE_TYPE, (SymbolType*)&client, sizeof (client) / sizeof(SymbolType));
+        this->send_message_to_subserver(MessageType_PassClientRequest, (SymbolType*)&client, sizeof (client) / sizeof(SymbolType));
     } catch (Exception* exception) {
         switch(exception->get_id()){
         default:{
@@ -83,7 +83,7 @@ bool SubserverObject::is_request_ready(RequestIdType requestId)
             return currentRequests[i].request->is_finished();
         }
     }
-    throw new SubserverException(String("request doesn't in requests list"), NO_SUCH_REQUEST_EXCEPTION_ID);
+    throw new SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
     return false;
 }
 
@@ -103,7 +103,7 @@ int SubserverObject::send_message_to_subserver(MessageTypeType type, SymbolType 
 
 }
 
-void SubserverObject::request_answered(Request *request)
+void SubserverObject::request_answered(Requests::Request *request)
 {
     for(int i = 0; i < this->currentRequests.length(); i++){
         if(request == currentRequests[i].request){
@@ -111,7 +111,7 @@ void SubserverObject::request_answered(Request *request)
             return;
         }
     }
-    throw new SubserverException(String("request doesn't in requests list"), NO_SUCH_REQUEST_EXCEPTION_ID);
+    throw new SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
 
 template<class T>
@@ -130,15 +130,15 @@ T SubserverObject::get_request_result(RequestIdType requestId)
             }
         }
     }
-    throw new SubserverException(String("request doesn't in requests list"), NO_SUCH_REQUEST_EXCEPTION_ID);
+    throw new SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
 
 void SubserverObject::crash_processing()
 {
     if(this->pid != -1){
-        kill(this->pid);
+        System::kill(this->pid);
     }
-    run_me(String("after crash"));
+    run_me(System::String("after crash"));
 }
 
 void SubserverObject::_check_subserver_respond()
@@ -149,7 +149,7 @@ void SubserverObject::_check_subserver_respond()
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(this->checkRespondInterval));
         try {
-            networker->send_message(Message(CHECK_CONNECTION_MESSAGE_TYPE, (SymbolType*)(char*)"check", 6 / sizeof(SymbolType), myAddress));
+            networker->send_message(Message(MessageType_CheckConnection, (SymbolType*)(char*)"check", 6 / sizeof(SymbolType), myAddress));
         } catch (Exception* exception) {
             switch (exception->get_id()) {
             default:{
@@ -162,7 +162,7 @@ void SubserverObject::_check_subserver_respond()
     }
 }
 
-void SubserverObject::run_me(const String specialCommands)
+void SubserverObject::run_me(const System::String specialCommands)
 {
     try {
         this->pid = run_app(this->path, this->processName, specialCommands);
@@ -187,7 +187,7 @@ void SubserverObject::message_from_server(Message message)
 {
     if(message.client == this->myAddress){
         switch (message.type) {
-        case CHECK_CONNECTION_MESSAGE_TYPE:{
+        case MessageType_CheckConnection:{
             notAnsweringsCount = 0;
             break;
         }

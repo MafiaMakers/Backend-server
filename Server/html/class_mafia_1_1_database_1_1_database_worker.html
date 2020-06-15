@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Database::DatabaseWorker</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pub-static-methods">Открытые статические члены</a> &#124;
+<a href="#pri-methods">Закрытые члены</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
+<a href="#pri-static-attribs">Закрытые статические данные</a> &#124;
+<a href="class_mafia_1_1_database_1_1_database_worker-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Database::DatabaseWorker</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных  
+ <a href="class_mafia_1_1_database_1_1_database_worker.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="databaseworker_8h_source.html">databaseworker.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a593239fc4448ad743ec9e9fb7c69e6dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a593239fc4448ad743ec9e9fb7c69e6dd">DatabaseWorker</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> _path=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;&quot;), <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> _backupPath=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;D:\\&quot;), System::String _filename=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;MyDatabase.sqlite&quot;))</td></tr>
+<tr class="memdesc:a593239fc4448ad743ec9e9fb7c69e6dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, инициализирующий параметры базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a593239fc4448ad743ec9e9fb7c69e6dd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a593239fc4448ad743ec9e9fb7c69e6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1832afc64d376c6a86399882f44bddde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready</a> ()</td></tr>
+<tr class="memdesc:a1832afc64d376c6a86399882f44bddde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция проверяющая готовность базы данных к работе с ней  <a href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1832afc64d376c6a86399882f44bddde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bf26edac421999293650a9d6a5c302"><td class="memItemLeft" align="right" valign="top">QSqlQuery *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a> (QString request)</td></tr>
+<tr class="memdesc:a77bf26edac421999293650a9d6a5c302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, выполняющая строковой Sql запрос  <a href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Подробнее...</a><br /></td></tr>
+<tr class="separator:a77bf26edac421999293650a9d6a5c302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Открытые статические члены</h2></td></tr>
+<tr class="memitem:a6bd6775b81e4174b48b6e9ecd9313736"><td class="memItemLeft" align="right" valign="top">static QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bd6775b81e4174b48b6e9ecd9313736">get_sql_type</a> (size_t type_hashcode, int maxListSize=0)</td></tr>
+<tr class="memdesc:a6bd6775b81e4174b48b6e9ecd9313736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразует typeid(T).hash_code в Sql тип  <a href="class_mafia_1_1_database_1_1_database_worker.html#a6bd6775b81e4174b48b6e9ecd9313736">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6bd6775b81e4174b48b6e9ecd9313736"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup</a> ()</td></tr>
+<tr class="memdesc:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет во втором потоке резервное копирование базы данных для возможности восстановления  <a href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a></td></tr>
+<tr class="memdesc:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Переменная, отвечающая за то, находится ли прямо сейчас база данных в процессе резервного копирования  <a href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8303513198157415f9ef3bf7a991f6af"><td class="memItemLeft" align="right" valign="top">QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a></td></tr>
+<tr class="memdesc:a8303513198157415f9ef3bf7a991f6af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Интерфейс базы данных в виде QSqlDatabase.  <a href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8303513198157415f9ef3bf7a991f6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85607bef8b551b95e1986d7a694b1c50"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">backupInterval</a> = 10000</td></tr>
+<tr class="memdesc:a85607bef8b551b95e1986d7a694b1c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Временной промежуток между двумя резервными копированиями (мс)  <a href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">Подробнее...</a><br /></td></tr>
+<tr class="separator:a85607bef8b551b95e1986d7a694b1c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a></td></tr>
+<tr class="memdesc:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к папке базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a></td></tr>
+<tr class="memdesc:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к папке резервной копии базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53590b2924a2ec5e905213444334266b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a></td></tr>
+<tr class="memdesc:a53590b2924a2ec5e905213444334266b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя файла базы данных (в обеих файлах)  <a href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a53590b2924a2ec5e905213444334266b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Закрытые статические данные</h2></td></tr>
+<tr class="memitem:aba84ce575f4edb80d8a85e1a32927c7a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">maxWaitingTime</a> = 2000</td></tr>
+<tr class="memdesc:aba84ce575f4edb80d8a85e1a32927c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальное время ожидания готовности базы данных. Если это время превышается, будет выброшена ошибка о первышении времени ожидания  <a href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">Подробнее...</a><br /></td></tr>
+<tr class="separator:aba84ce575f4edb80d8a85e1a32927c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a593239fc4448ad743ec9e9fb7c69e6dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a593239fc4448ad743ec9e9fb7c69e6dd">&#9670;&nbsp;</a></span>DatabaseWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseWorker::DatabaseWorker </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_path</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;&quot;)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_backupPath</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;D:\\&quot;)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_filename</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;MyDatabase.sqlite&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, инициализирующий параметры базы данных </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_path</td><td>Путь к папке базы данных (Стандартноое значение "") </td></tr>
+    <tr><td class="paramname">_backupPath</td><td>Путь к папке резервного копирования базы данных (Стандартное значение "D:\") </td></tr>
+    <tr><td class="paramname">_filename</td><td>Имя файла базы данных (Стандартное значение "MyDatabase.sqlite") </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a3e19e99a86e1821dc8c8ec1bda67cebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e19e99a86e1821dc8c8ec1bda67cebd">&#9670;&nbsp;</a></span>_database_backup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseWorker::_database_backup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Выполняет во втором потоке резервное копирование базы данных для возможности восстановления </p>
+
+</div>
+</div>
+<a id="a1832afc64d376c6a86399882f44bddde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1832afc64d376c6a86399882f44bddde">&#9670;&nbsp;</a></span>database_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseWorker::database_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция проверяющая готовность базы данных к работе с ней </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если БД готова к работе, иначе false </dd></dl>
+
+</div>
+</div>
+<a id="a6bd6775b81e4174b48b6e9ecd9313736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bd6775b81e4174b48b6e9ecd9313736">&#9670;&nbsp;</a></span>get_sql_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QString DatabaseWorker::get_sql_type </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>type_hashcode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxListSize</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Преобразует typeid(T).hash_code в Sql тип </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type_hashcode</td><td>хэш типа данных (можно получить через typeid(T).hash_code()) </td></tr>
+    <tr><td class="paramname">maxListSize</td><td>Если передается список, то необходимо также передать максимальный размер этого списка </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Sql тип данных, в виде строки </dd></dl>
+
+</div>
+</div>
+<a id="a77bf26edac421999293650a9d6a5c302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77bf26edac421999293650a9d6a5c302">&#9670;&nbsp;</a></span>run_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSqlQuery * DatabaseWorker::run_query </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция, выполняющая строковой Sql запрос </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Запрос, который следует выполнить </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полученный результат в виде QSqlQuery* </dd></dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">DatabaseWorkingExceptionId_SQlQuery</td><td>в случае неудачного выполнения запроса </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a85607bef8b551b95e1986d7a694b1c50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85607bef8b551b95e1986d7a694b1c50">&#9670;&nbsp;</a></span>backupInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Database::DatabaseWorker::backupInterval = 10000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Временной промежуток между двумя резервными копированиями (мс) </p>
+
+</div>
+</div>
+<a id="a8d5c3f57c330a650b8f1fd0b8d0885d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5c3f57c330a650b8f1fd0b8d0885d8">&#9670;&nbsp;</a></span>backupPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::backupPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Путь к папке резервной копии базы данных </p>
+
+</div>
+</div>
+<a id="a8303513198157415f9ef3bf7a991f6af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8303513198157415f9ef3bf7a991f6af">&#9670;&nbsp;</a></span>dataBase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSqlDatabase Mafia::Database::DatabaseWorker::dataBase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Интерфейс базы данных в виде QSqlDatabase. </p>
+
+</div>
+</div>
+<a id="a53590b2924a2ec5e905213444334266b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53590b2924a2ec5e905213444334266b">&#9670;&nbsp;</a></span>filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Имя файла базы данных (в обеих файлах) </p>
+
+</div>
+</div>
+<a id="a6bf12e6fd12d0afb5a96cc694baee8a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bf12e6fd12d0afb5a96cc694baee8a8">&#9670;&nbsp;</a></span>isOnBackup</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mafia::Database::DatabaseWorker::isOnBackup</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Переменная, отвечающая за то, находится ли прямо сейчас база данных в процессе резервного копирования </p>
+
+</div>
+</div>
+<a id="aba84ce575f4edb80d8a85e1a32927c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba84ce575f4edb80d8a85e1a32927c7a">&#9670;&nbsp;</a></span>maxWaitingTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Database::DatabaseWorker::maxWaitingTime = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Максимальное время ожидания готовности базы данных. Если это время превышается, будет выброшена ошибка о первышении времени ожидания </p>
+
+</div>
+</div>
+<a id="a0d247f6ae6460bbcc640a7e2c33b2b80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d247f6ae6460bbcc640a7e2c33b2b80">&#9670;&nbsp;</a></span>path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Путь к папке базы данных </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Database/<a class="el" href="databaseworker_8h_source.html">databaseworker.h</a></li>
+<li>Database/<a class="el" href="databaseworker_8cpp.html">databaseworker.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

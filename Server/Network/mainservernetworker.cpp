@@ -9,15 +9,16 @@
 
 
 using namespace Mafia;
-
+using namespace Network;
 const int MainServerNetworker::timeToResend = 500;
 const int MainServerNetworker::maxResendCount = 100;
 //const int MainServerNetworker::idsForClient = 1000;
 
 const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<MessageTypeType>()
-        << TEXT_MESSAGE_TYPE
-        << REQUEST_ANSWER_MESSAGE_TYPE
-        << ABSTRACT_REQUEST_MESSAGE_TYPE;
+        << MessageType_Text
+        << MessageType_RequestAnswer
+        << MessageType_AbstractRequest
+        << MessageType_PassClientRequest;
 
 MainServerNetworker::MainServerNetworker(int port)
 {
@@ -33,14 +34,14 @@ MainServerNetworker::MainServerNetworker(int port)
 
 MessageIdType MainServerNetworker::send_message(Message message)
 {
-    String mes = String();
+    System::String mes = System::String();
     if(message.id == (MessageIdType)(0)){
         currentMaxId++;
         message.id = currentMaxId;
     }
     try {
         mes = Crypto::wrap_message(message);
-    } catch (Exception* exception) {
+    } catch (Exceptions::Exception* exception) {
         exception->show();
         return -2;
     }
@@ -67,15 +68,15 @@ void MainServerNetworker::_process_message(Message message)
     }
 
     switch (message.type) {
-    case TEXT_MESSAGE_TYPE:{
+    case MessageType_Text:{
         //show_message(message);
         break;
     }
-    case NO_CINFIRM_TEXT_MESSAGE_TYPE:{
+    case MessageType_NoConfirmText:{
         //show_message(message);
         break;
     }
-    case CONFIRMATION_MESSAGE_TYPE:{
+    case MessageType_Confirmation:{
         for(int i = 0; i < waitingForConfirmation.length(); i++){
             if(((Message)waitingForConfirmation[i]).id == message.id){
                 waitingForConfirmation.removeAt(i);
@@ -84,18 +85,18 @@ void MainServerNetworker::_process_message(Message message)
         }
         break;
     }
-    case REQUEST_ANSWER_MESSAGE_TYPE:{
+    case MessageType_RequestAnswer:{
         emit request_answer(message);
         break;
     }
-    case ABSTRACT_REQUEST_MESSAGE_TYPE:{
+    case MessageType_AbstractRequest:{
         int answer = 42;
-        send_message(Message(REQUEST_ANSWER_MESSAGE_TYPE, (SymbolType*)&answer, 4 / sizeof(SymbolType), message.client, message.id));
+        send_message(Message(MessageType_RequestAnswer, (SymbolType*)&answer, 4 / sizeof(SymbolType), message.client, message.id));
         break;
     }
         // Тут еще надо код со всякими emit...
     default:{
-        throw new MessageProcessingException(String("unknown message type received"), UNKNOWN_MESSAGE_TYPE_EXCEPTION_ID);
+        throw new Exceptions::MessageProcessingException(System::String("unknown message type received"), Exceptions::MessageProcessingExceptionId_UnknownMessageType);
     }
     }
 
@@ -104,7 +105,7 @@ void MainServerNetworker::_process_message(Message message)
     if(needConfirmation.contains(message.type)){
         //std::cout << "Need confirmation" << std::endl;
         Message confirmationMessage = Message();
-        confirmationMessage.type = CONFIRMATION_MESSAGE_TYPE;
+        confirmationMessage.type = MessageType_Confirmation;
         confirmationMessage.id = message.id;
         confirmationMessage.data = (SymbolType*)"Message received!";
         confirmationMessage.size = 18;
@@ -119,10 +120,10 @@ void MainServerNetworker::_resend_not_confirmed_messages()
         std::this_thread::sleep_for(std::chrono::milliseconds(timeToResend));
         for(int i = 0; i < waitingForConfirmation.length(); i++){
             //std::cout << "resending..." << std::endl;
-            String mes = String();
+            System::String mes = System::String();
             try {
                 mes = Crypto::wrap_message((Message)waitingForConfirmation[i]);
-            } catch (Exception* exception) {
+            } catch (Exceptions::Exception* exception) {
                 exception->show();
                 return;
             }
@@ -150,7 +151,7 @@ void MainServerNetworker::receive_message() {
         Message trueData;
         try {
             trueData = Crypto::parse_data(datagram.data(), datagram.size());
-        } catch (Exception* exception) {
+        } catch (Exceptions::Exception* exception) {
             exception->show();
             return;
         }

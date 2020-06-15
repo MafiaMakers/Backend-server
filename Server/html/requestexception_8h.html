@@ -68,7 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Классы</a> &#124;
 <a href="#namespaces">Пространства имен</a> &#124;
-<a href="#define-members">Макросы</a>  </div>
+<a href="#enum-members">Перечисления</a>  </div>
   <div class="headertitle">
 <div class="title">Файл requestexception.h</div>  </div>
 </div><!--header-->
@@ -79,8 +79,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_request_exception.html">Mafia::RequestException</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс исключений, связанных с работой системы запросов  <a href="class_mafia_1_1_request_exception.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html">Mafia::Exceptions::RequestException</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс исключений, связанных с работой системы запросов  <a href="class_mafia_1_1_exceptions_1_1_request_exception.html#details">Подробнее...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -88,87 +88,24 @@ $(function() {
 <tr class="memitem:namespace_mafia"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html">Mafia</a></td></tr>
 <tr class="memdesc:namespace_mafia"><td class="mdescLeft">&#160;</td><td class="mdescRight">Набор системных функций для запуска и завершения программ <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_mafia_1_1_exceptions"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html">Mafia::Exceptions</a></td></tr>
+<tr class="memdesc:namespace_mafia_1_1_exceptions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пространство имен для описания и работы с исключениями <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Макросы</h2></td></tr>
-<tr class="memitem:a93f1b741001262c5c1564a3d96241696"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a>&#160;&#160;&#160;300</td></tr>
-<tr class="memdesc:a93f1b741001262c5c1564a3d96241696"><td class="mdescLeft">&#160;</td><td class="mdescRight">Базовый id иключения, связанного с запросами  <a href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">Подробнее...</a><br /></td></tr>
-<tr class="separator:a93f1b741001262c5c1564a3d96241696"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a607947c970349c9c53c1d2fafbdede40"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="requestexception_8h.html#a607947c970349c9c53c1d2fafbdede40">WRONG_CLIENT_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td></tr>
-<tr class="memdesc:a607947c970349c9c53c1d2fafbdede40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при ответе на запрос не тем клиентом, которому этот запрос предназначался  <a href="requestexception_8h.html#a607947c970349c9c53c1d2fafbdede40">Подробнее...</a><br /></td></tr>
-<tr class="separator:a607947c970349c9c53c1d2fafbdede40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe6c5a39b57358a48f3e48612ba03558"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="requestexception_8h.html#abe6c5a39b57358a48f3e48612ba03558">SIZE_NOT_MATCH_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)2)</td></tr>
-<tr class="memdesc:abe6c5a39b57358a48f3e48612ba03558"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при несовпадении размеров типов данных - переданный для получения из ответа запроса и полученный в результате запроса  <a href="requestexception_8h.html#abe6c5a39b57358a48f3e48612ba03558">Подробнее...</a><br /></td></tr>
-<tr class="separator:abe6c5a39b57358a48f3e48612ba03558"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba9d34ba4ae6a50cc0b47b09ab76e2d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="requestexception_8h.html#a5ba9d34ba4ae6a50cc0b47b09ab76e2d">NOT_FINISHED_EXCEPTION_ID</a>&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)3)</td></tr>
-<tr class="memdesc:a5ba9d34ba4ae6a50cc0b47b09ab76e2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Исключение, вызываемое при попытке получить данные из запроса, который еще не завершил свою работу  <a href="requestexception_8h.html#a5ba9d34ba4ae6a50cc0b47b09ab76e2d">Подробнее...</a><br /></td></tr>
-<tr class="separator:a5ba9d34ba4ae6a50cc0b47b09ab76e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:acb1205e71796a340bf870c5c7272a5dd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dd">Mafia::Exceptions::RequestExceptionId</a> { <br />
+&#160;&#160;<a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dda1b4c6bade1ca14f44f282b96a70ca602">Mafia::Exceptions::RequestExceptionId_Defaut</a> = 300, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dda2f45aaa004727893c36a1c15ceca026d">Mafia::Exceptions::RequestExceptionId_WrongClient</a> = 301, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dda0e4e7e2f487f388c4c7eb47804e4f1f3">Mafia::Exceptions::RequestExceptionId_SizeMismatch</a> = 302, 
+<a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dda58897fc8035220a040302d514bb3c978">Mafia::Exceptions::RequestExceptionId_NotFinished</a> = 303, 
+<br />
+&#160;&#160;<a class="el" href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dda7f45b1b0b3fffd61336eaa9555eae1bb">Mafia::Exceptions::RequestExceptionId_Last</a> = 304
+<br />
+ }</td></tr>
+<tr class="memdesc:acb1205e71796a340bf870c5c7272a5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Возможные id исключений работы системы запросов  <a href="namespace_mafia_1_1_exceptions.html#acb1205e71796a340bf870c5c7272a5dd">Подробнее...</a><br /></td></tr>
+<tr class="separator:acb1205e71796a340bf870c5c7272a5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Макросы</h2>
-<a id="a5ba9d34ba4ae6a50cc0b47b09ab76e2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ba9d34ba4ae6a50cc0b47b09ab76e2d">&#9670;&nbsp;</a></span>NOT_FINISHED_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NOT_FINISHED_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)3)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при попытке получить данные из запроса, который еще не завершил свою работу </p>
-
-</div>
-</div>
-<a id="a93f1b741001262c5c1564a3d96241696"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93f1b741001262c5c1564a3d96241696">&#9670;&nbsp;</a></span>REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID&#160;&#160;&#160;300</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Базовый id иключения, связанного с запросами </p>
-
-</div>
-</div>
-<a id="abe6c5a39b57358a48f3e48612ba03558"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe6c5a39b57358a48f3e48612ba03558">&#9670;&nbsp;</a></span>SIZE_NOT_MATCH_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SIZE_NOT_MATCH_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)2)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при несовпадении размеров типов данных - переданный для получения из ответа запроса и полученный в результате запроса </p>
-
-</div>
-</div>
-<a id="a607947c970349c9c53c1d2fafbdede40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a607947c970349c9c53c1d2fafbdede40">&#9670;&nbsp;</a></span>WRONG_CLIENT_EXCEPTION_ID</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define WRONG_CLIENT_EXCEPTION_ID&#160;&#160;&#160;(<a class="el" href="requestexception_8h.html#a93f1b741001262c5c1564a3d96241696">REQUEST_EXCEPTION_DEFAULT_EXCEPTION_ID</a> + (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>)1)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Исключение, вызываемое при ответе на запрос не тем клиентом, которому этот запрос предназначался </p>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

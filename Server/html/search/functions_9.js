@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['networkrequest_247',['NetworkRequest',['../class_mafia_1_1_network_request.html#a9f64abc0c7656d5aa669637d335cf2a3',1,'Mafia::NetworkRequest']]]
+  ['kill_480',['kill',['../namespace_mafia_1_1_system.html#a2da36eeabfc82fb05dd3e71553cad31c',1,'Mafia::System']]]
 ];

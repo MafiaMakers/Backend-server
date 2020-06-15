@@ -1,7 +1,9 @@
 #include "runprogram.h"
 #include "sstream"
+using namespace Mafia;
+using namespace System;
 
-int Mafia::run_app(const Mafia::String pathToFile, const String processName, const Mafia::String args)
+int Mafia::System::run_app(const String pathToFile, const String processName, const String args)
 {
 
     QList<int> previousAppsPIDs = get_all_pids_by_name(processName);
@@ -38,7 +40,7 @@ int Mafia::run_app(const Mafia::String pathToFile, const String processName, con
     return a;
 }
 
-std::string Mafia::exec(const char *cmd)
+std::string Mafia::System::exec(const char *cmd)
 {
     std::array<char, 128> buffer;
     std::string result;
@@ -52,7 +54,7 @@ std::string Mafia::exec(const char *cmd)
     return result;
 }
 
-QList<int> Mafia::get_all_pids_by_name(const Mafia::String name)
+QList<int> Mafia::System::get_all_pids_by_name(const String name)
 {
     std::string command = "tasklist /v /fo csv | findstr /i \"";
     for(int i = 0; i < name.size; i++){
@@ -60,7 +62,7 @@ QList<int> Mafia::get_all_pids_by_name(const Mafia::String name)
     }
     command += "\"";
 
-    std::string data = exec(command.c_str());
+    std::string data = Mafia::System::exec(command.c_str());
 
     //std::cout << data << std::endl << std::endl;
 
@@ -92,7 +94,7 @@ QList<int> Mafia::get_all_pids_by_name(const Mafia::String name)
     return(result);
 }
 
-void Mafia::kill(int pid)
+void Mafia::System::kill(int pid)
 {
     std::stringstream ss;
     ss << pid;

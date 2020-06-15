@@ -1,5 +1,9 @@
+
 QT -= gui
 QT += network
+QT += sql
+QT += core
+
 CONFIG += c++11 console
 CONFIG -= app_bundle
 
@@ -15,12 +19,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Database/databaseworker.cpp \
+        Database/userdatabaseworker.cpp \
+        Exceptions/databaseworkingexception.cpp \
         Exceptions/exception.cpp \
+        Exceptions/gameplayexception.cpp \
         Exceptions/messageparsingexception.cpp \
         Exceptions/messageprocessingexception.cpp \
         Exceptions/requestexception.cpp \
         Exceptions/subserverexception.cpp \
+        Gameplay/game_s.cpp \
         Network/crypto.cpp \
+        System/SHA_256.cpp \
         System/runprogram.cpp \
         main.cpp \
         mainservermanager.cpp \
@@ -35,12 +45,20 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    Database/databaseworker.h \
+    Database/user.h \
+    Database/userdatabaseworker.h \
+    Exceptions/databaseworkingexception.h \
     Exceptions/exception.h \
+    Exceptions/gameplayexception.h \
     Exceptions/messageparsingexception.h \
     Exceptions/messageprocessingexception.h \
     Exceptions/requestexception.h \
     Exceptions/subserverexception.h \
+    Gameplay/game_s.h \
+    Gameplay/gameitems.h \
     Network/crypto.h \
+    System/SHA_256.h \
     System/limitedqueue.h \
     System/runprogram.h \
     mainservermanager.h \

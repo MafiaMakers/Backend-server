@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['is_5ffinished_235',['is_finished',['../class_mafia_1_1_request.html#a21cfe5943185bbf520d710741278bae4',1,'Mafia::Request']]],
-  ['is_5frequest_5fready_236',['is_request_ready',['../class_mafia_1_1_subserver_object.html#a1b1d019676fc906d777161c1a3f1f81d',1,'Mafia::SubserverObject']]]
+  ['exception_462',['Exception',['../class_mafia_1_1_exceptions_1_1_exception.html#ae324444a322453331a0c5238e4fd0457',1,'Mafia::Exceptions::Exception::Exception()'],['../class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92',1,'Mafia::Exceptions::Exception::Exception(System::String data, ExceptionIdType id)']]],
+  ['exec_463',['exec',['../namespace_mafia_1_1_system.html#acf5f5228ed026312588b8ffdd5dd3514',1,'Mafia::System']]]
 ];

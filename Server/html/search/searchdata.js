@@ -1,13 +1,15 @@
 var indexSectionsWithContent =
 {
-  0: "_acdefgiklmnopqrstuvw",
-  1: "celmnqrs",
+  0: "_abcdefghiklmnopqrstuvw~",
+  1: "cdeglmnqrstu",
   2: "m",
-  3: "celmnrs",
-  4: "_acegiklmnoprstw",
-  5: "cdefiklmnprstvw",
-  6: "cemrs",
-  7: "acimnprstuw"
+  3: "cdeglmnrsu",
+  4: "_abcdeghiklmnopqrstuw~",
+  5: "abcdefhiklmnoprstuvw",
+  6: "bceglmrstuw",
+  7: "adgmrs",
+  8: "adgmrs",
+  9: "mnsu"
 };
 
 var indexSectionNames =
@@ -19,7 +21,9 @@ var indexSectionNames =
   4: "functions",
   5: "variables",
   6: "typedefs",
-  7: "defines"
+  7: "enums",
+  8: "enumvalues",
+  9: "defines"
 };
 
 var indexSectionLabels =
@@ -31,6 +35,8 @@ var indexSectionLabels =
   4: "Функции",
   5: "Переменные",
   6: "Определения типов",
-  7: "Макросы"
+  7: "Перечисления",
+  8: "Элементы перечислений",
+  9: "Макросы"
 };
 

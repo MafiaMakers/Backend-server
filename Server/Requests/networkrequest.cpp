@@ -1,6 +1,9 @@
 #include "networkrequest.h"
 #include "Exceptions/requestexception.h"
-Mafia::NetworkRequest::NetworkRequest(Mafia::MainServerNetworker *_networker, Mafia::Message toAsk)
+using namespace Mafia;
+using namespace Requests;
+
+NetworkRequest::NetworkRequest(MainServerNetworker *_networker, Message toAsk)
     : Request(), id(_networker->send_message(toAsk)), client(toAsk.client)
 {
     data = 0;
@@ -12,7 +15,7 @@ Mafia::NetworkRequest::NetworkRequest(Mafia::MainServerNetworker *_networker, Ma
     std::cout << "Request data is: " << toAsk.data << std::endl;
 }
 
-void Mafia::NetworkRequest::tryClose(Mafia::Message received)
+void NetworkRequest::tryClose(Message received)
 {
     if(received.id == id){
         if(received.client == client){
@@ -25,7 +28,7 @@ void Mafia::NetworkRequest::tryClose(Mafia::Message received)
 
             close_request();
         } else{
-            throw new RequestException(String("Clients doesn't match!"), WRONG_CLIENT_EXCEPTION_ID);
+            throw new RequestException(System::String("Clients doesn't match!"), Exceptions::RequestExceptionId_WrongClient);
         }
     } else{
         std::cout << "Id not matching. Expected id" << id << ", but " << received.id << " is given\n";

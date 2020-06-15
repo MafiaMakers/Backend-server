@@ -1,14 +1,17 @@
 var searchData=
 [
-  ['needconfirmation_84',['needConfirmation',['../class_mafia_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1',1,'Mafia::MainServerNetworker']]],
-  ['networker_85',['networker',['../class_mafia_1_1_main_server_manager.html#ac5102a0ff8faa646017e4b61e0b588ef',1,'Mafia::MainServerManager::networker()'],['../class_mafia_1_1_subserver_object.html#a70d045873716217857efa542e9d5f52f',1,'Mafia::SubserverObject::networker()']]],
-  ['networkrequest_86',['NetworkRequest',['../class_mafia_1_1_network_request.html',1,'Mafia::NetworkRequest'],['../class_mafia_1_1_network_request.html#a9f64abc0c7656d5aa669637d335cf2a3',1,'Mafia::NetworkRequest::NetworkRequest()']]],
-  ['networkrequest_2ecpp_87',['networkrequest.cpp',['../networkrequest_8cpp.html',1,'']]],
-  ['networkrequest_2eh_88',['networkrequest.h',['../networkrequest_8h.html',1,'']]],
-  ['next_89',['next',['../struct_mafia_1_1_queue_element.html#ab92e409ab61d799767d8b59b348dfcd4',1,'Mafia::QueueElement']]],
-  ['no_5fcinfirm_5ftext_5fmessage_5ftype_90',['NO_CINFIRM_TEXT_MESSAGE_TYPE',['../message_types_8h.html#af4514c9ff963da1e61f2f15f0664b452',1,'messageTypes.h']]],
-  ['no_5fsuch_5frequest_5fexception_5fid_91',['NO_SUCH_REQUEST_EXCEPTION_ID',['../subserverexception_8h.html#af66a37be46f2b5fbb8c4def13847a814',1,'subserverexception.h']]],
-  ['none_5fkey_5fexception_5fid_92',['NONE_KEY_EXCEPTION_ID',['../messageparsingexception_8h.html#a8701b44b7f2c15058a6140fddc83950e',1,'messageparsingexception.h']]],
-  ['not_5ffinished_5fexception_5fid_93',['NOT_FINISHED_EXCEPTION_ID',['../requestexception_8h.html#a5ba9d34ba4ae6a50cc0b47b09ab76e2d',1,'requestexception.h']]],
-  ['notansweringscount_94',['notAnsweringsCount',['../class_mafia_1_1_subserver_object.html#a2d1f21ed6f038b02ddea47f7df885890',1,'Mafia::SubserverObject']]]
+  ['last_154',['last',['../class_mafia_1_1_system_1_1_limited_queue.html#a539e34560c3db063a02e305b18389957',1,'Mafia::System::LimitedQueue']]],
+  ['lastmessageids_155',['lastMessageIds',['../class_mafia_1_1_network_1_1_crypto.html#a710c9269f350c4ddb76375ead520666d',1,'Mafia::Network::Crypto']]],
+  ['late_5fsend_5fmessage_156',['late_send_message',['../class_mafia_1_1_network_1_1_main_server_networker.html#a0f128eda9c849d9120ab0ad478fe2742',1,'Mafia::Network::MainServerNetworker']]],
+  ['limitedqueue_157',['LimitedQueue',['../class_mafia_1_1_system_1_1_limited_queue.html',1,'Mafia::System::LimitedQueue&lt; T &gt;'],['../class_mafia_1_1_system_1_1_limited_queue.html#a0f043b413afbb97f917c6bc0a50568d2',1,'Mafia::System::LimitedQueue::LimitedQueue()']]],
+  ['limitedqueue_2ecpp_158',['limitedqueue.cpp',['../limitedqueue_8cpp.html',1,'']]],
+  ['limitedqueue_2eh_159',['limitedqueue.h',['../limitedqueue_8h.html',1,'']]],
+  ['limitedqueue_3c_20messageidtype_20_3e_160',['LimitedQueue&lt; MessageIdType &gt;',['../class_mafia_1_1_system_1_1_limited_queue.html',1,'Mafia::System']]],
+  ['localparameter_161',['localParameter',['../class_mafia_1_1_database_1_1_user_database_worker.html#a995db3d2690edf28454cc5ff9532babb',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['login_5fuser_162',['login_user',['../class_mafia_1_1_database_1_1_user_database_worker.html#a0463c9c60710a416b85e32ade5e94db6',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['logindatetime_163',['loginDateTime',['../struct_mafia_1_1_database_1_1_user.html#ab7d4578fae4c304d727b8db62467113d',1,'Mafia::Database::User']]],
+  ['logout_5fuser_164',['logout_user',['../class_mafia_1_1_database_1_1_user_database_worker.html#aac751ab544707ab9c7040800563f5b60',1,'Mafia::Database::UserDatabaseWorker']]],
+  ['longword_165',['longword',['../namespace_mafia_1_1_system.html#ae06adc07d3b2d91d333cca1cb9b01137',1,'Mafia::System']]],
+  ['longword_5fbytes_166',['LONGWORD_BYTES',['../class_mafia_1_1_system_1_1_s_h_a256.html#ae915c942c2c089dc8df53be31db2ded1',1,'Mafia::System::SHA256']]],
+  ['longword_5fsize_167',['LONGWORD_SIZE',['../class_mafia_1_1_system_1_1_s_h_a256.html#ab56f96d0e1de32619cee1c3250d4454c',1,'Mafia::System::SHA256']]]
 ];

@@ -2,7 +2,9 @@
 #include "mainservermanager.h"
 #include "System/runprogram.h"
 #include "subserverobject.h"
-
+#include "System/SHA_256.h"
+#include "Database/databaseworker.h"
+#include "Database/userdatabaseworker.h"
 using namespace Mafia;
 /*!
  * \brief Это пример использования этой системы классов. Пока это просто заглушка, можно сказать.
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    setlocale(LC_ALL, "Russian");
+    Database::DatabaseWorker myDBWorker = Database::DatabaseWorker();
 
     //run_app(String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"), String("ForLibsTest.exe"), String(""));
 
