@@ -1,26 +1,36 @@
 #ifndef MESSAGETYPES_H
 #define MESSAGETYPES_H
 #include "message.h"
-
+#include "System/functions.h"
 enum MessageType{
-    //! Нижняя граница типов сообщений
+    //! \brief Нижняя граница типов сообщений
     MessageType_First = 1,
-    //! Просто текстовое сообщение
+    //! \brief Просто текстовое сообщение
     MessageType_Text = 1,
-    //! Текстовое сообщение, не требующее подтверждения
+    //! \brief Текстовое сообщение, не требующее подтверждения
     MessageType_NoConfirmText = 2,
-    //! Подтверждающее сообщение
+    //! \brief Подтверждающее сообщение
     MessageType_Confirmation = 3,
-    //! Сообщение с ответом на запрос
+    //! \brief Сообщение с ответом на запрос
     MessageType_RequestAnswer = 4,
-    //! Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов
+    //! \brief Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов
     MessageType_AbstractRequest = 5,
-    //! Сообщение для передачи субсерверу клиента
+    //! \brief Сообщение для передачи субсерверу клиента
     MessageType_PassClientRequest = 6,
-    //! Сообщение для проверки соединения (с субсерверами и с клиентами)
+    //! \brief Сообщение для проверки соединения (с субсерверами и с клиентами)
     MessageType_CheckConnection = 7,
-    //! Верхняя граница типов сообщений
-    MessageType_Last = 8
+    //! \brief Сообщение для проверки соединения с основным сервером (отправляется субсервером-восстановителем)
+    MessageType_CheckConnectionServer = 8,
+    //! \brief Сообщение для отправки сообщения в чат
+    MessageType_SendChatMessage = 9,
+    //! \brief Сообщение для изменения сообщения в чате
+    MessageType_EditChatMessage = 10,
+    //! \brief Сообщение для удаления сообщения из чата
+    MessageType_DeleteChatMessage = 11,
+    //! \brief Сообщение для уведомление о том, что игрок прочитал сообщение
+    MessageType_ReadChatMessage = 12,
+    //! \brief Верхняя граница типов сообщений
+    MessageType_Last = 13
 };
 
 

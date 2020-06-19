@@ -1,5 +1,6 @@
 #ifndef GAMEITEMS_H
 #define GAMEITEMS_H
+#include "System/functions.h"
 namespace Mafia {
     //! \brief Пространство имен для работы с процессом игры и игровыми элементами
     namespace Gameplay {
@@ -7,19 +8,19 @@ namespace Mafia {
         //! \brief Возможные роли
         enum Role{
             //! \brief Индекс первой роли (см. \ref Mafia::Database::Status_First)
-            Role_First = 1,
+            Role_First = 0,
             //! \brief Жирный митель
-            Role_Civilian = 1,
+            Role_Civilian = 0,
             //! \brief Мафия
-            Role_Mafia = 2,
+            Role_Mafia = 1,
             //! \brief Отсутствие роли
-            Role_None = 3,
+            Role_None = 2,
             //! \brief Комиссар
-            Role_Sheriff = 4,
+            Role_Sheriff = 3,
             //! \brief Доктор
-            Role_Doctor = 5,
+            Role_Doctor = 4,
             //! \brief Последний индекс роли (см. \ref Mafia::Database::Status_First)
-            Role_Last = 6
+            Role_Last = 5
         };
 
         //! \brief Возможные личные результаты игры

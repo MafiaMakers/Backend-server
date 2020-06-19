@@ -1,9 +1,12 @@
 #ifndef GAME_S_H
 #define GAME_S_H
 #include "Database/user.h"
+#include "Database/databasehelper.h"
 
 namespace Mafia {
     namespace Gameplay {
+        //! \brief Максимальное количество игроков в одной игре
+        const int MAXIMUM_USERS_IN_GAME = 100;
 
         //! \brief Структура для хранения информации об игре
         struct Game{
@@ -12,13 +15,15 @@ namespace Mafia {
             //! \brief Глобальный результат игры
             GameResult result;
             //! \brief Список всех пользователей, учавствовавших и наблюдавших за игрой
-            QList<Database::UserIdType> users;
+            MafiaList<Database::UserIdType> users;
             //! \brief Список ролей пользователей
-            QList<Role> roles;
+            MafiaList<Role> roles;
             //! \brief Дата и время начала игры
             QDateTime beginningDT;
             //! \brief Дата и время окончания игры
             QDateTime endingDT;
+            //! \brief Метод вывода в консоль всех параметров игры
+            void show();
         };
 
         /*!

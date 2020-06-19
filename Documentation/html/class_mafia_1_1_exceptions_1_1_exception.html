@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Exceptions::Exception</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_exceptions.html">Exceptions</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html">Exception</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="class_mafia_1_1_exceptions_1_1_exception-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Exceptions::Exception<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться от него. Соответственно в try-catch блоке стоит использовать Exception* вместо конкретных дочерних классов.  
+ <a href="class_mafia_1_1_exceptions_1_1_exception.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="exception_8h_source.html">exception.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::Exceptions::Exception:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_exceptions_1_1_exception.png" usemap="#Mafia::Exceptions::Exception_map" alt=""/>
+  <map id="Mafia::Exceptions::Exception_map" name="Mafia::Exceptions::Exception_map">
+<area href="class_mafia_1_1_exceptions_1_1_database_working_exception.html" title="Класс для описания исключений работы с БД" alt="Mafia::Exceptions::DatabaseWorkingException" shape="rect" coords="0,56,286,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html" title="Класс для описания исключений, связанных с ролями, игрой и процессом игры" alt="Mafia::Exceptions::GameplayException" shape="rect" coords="296,56,582,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html" title="Класс для ошибок, связанных с распаковкой или запаковкой сообщений при отправке." alt="Mafia::Exceptions::MessageParsingException" shape="rect" coords="592,56,878,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_request_exception.html" title="Класс исключений, связанных с работой системы запросов" alt="Mafia::Exceptions::RequestException" shape="rect" coords="888,56,1174,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_subserver_exception.html" title="Класс ошибок работы с субсервером" alt="Mafia::Exceptions::SubserverException" shape="rect" coords="1184,56,1470,80"/>
+<area href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html" title="Класс исключений, произошедших при обработке сообщения" alt="Mafia::Exceptions::MessageProcessingException" shape="rect" coords="592,112,878,136"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ae324444a322453331a0c5238e4fd0457"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae324444a322453331a0c5238e4fd0457">Exception</a> ()</td></tr>
+<tr class="memdesc:ae324444a322453331a0c5238e4fd0457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пустой конструктор для переопределения его в дочерних классах.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ae324444a322453331a0c5238e4fd0457">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae324444a322453331a0c5238e4fd0457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a435189f3e31beee233d1c590eebb2b92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Exception</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>, <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>)</td></tr>
+<tr class="memdesc:a435189f3e31beee233d1c590eebb2b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, который инициализирует параметры исключения  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Подробнее...</a><br /></td></tr>
+<tr class="separator:a435189f3e31beee233d1c590eebb2b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26505358738862d28c8fd6bcd701ec11"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a> ()</td></tr>
+<tr class="memdesc:a26505358738862d28c8fd6bcd701ec11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Подробнее...</a><br /></td></tr>
+<tr class="separator:a26505358738862d28c8fd6bcd701ec11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac91de6e5490eef7f0b518e869b081b2d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac91de6e5490eef7f0b518e869b081b2d">set_data</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>)</td></tr>
+<tr class="memdesc:ac91de6e5490eef7f0b518e869b081b2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Задавание параметра data.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ac91de6e5490eef7f0b518e869b081b2d">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac91de6e5490eef7f0b518e869b081b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49aaf683c5138945abf3e7303c77bda0"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0">set_id</a> (<a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>)</td></tr>
+<tr class="memdesc:a49aaf683c5138945abf3e7303c77bda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Задавание параметра id.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0">Подробнее...</a><br /></td></tr>
+<tr class="separator:a49aaf683c5138945abf3e7303c77bda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa13b69aad45b421508d39b09e48a2ef4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a> ()</td></tr>
+<tr class="memdesc:aa13b69aad45b421508d39b09e48a2ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Взятие параметра id.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa13b69aad45b421508d39b09e48a2ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3482df28b10ec9593af49872a174662d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a3482df28b10ec9593af49872a174662d">get_data</a> ()</td></tr>
+<tr class="memdesc:a3482df28b10ec9593af49872a174662d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Взятие параметра data.  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a3482df28b10ec9593af49872a174662d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3482df28b10ec9593af49872a174662d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3810ab66f7bb17bebae4027982d97177"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a3810ab66f7bb17bebae4027982d97177">get_base_exception_id</a> ()=0</td></tr>
+<tr class="memdesc:a3810ab66f7bb17bebae4027982d97177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа  <a href="class_mafia_1_1_exceptions_1_1_exception.html#a3810ab66f7bb17bebae4027982d97177">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3810ab66f7bb17bebae4027982d97177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:ae10d1afe2f179fb0a81e585eb946e523"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a></td></tr>
+<tr class="memdesc:ae10d1afe2f179fb0a81e585eb946e523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщение, которое может быть использовано для отображения сообщения об ошибке  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae10d1afe2f179fb0a81e585eb946e523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a></td></tr>
+<tr class="memdesc:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="mdescLeft">&#160;</td><td class="mdescRight">id исключения для отличия одних от других  <a href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac7ae270de65c24fcdcc0fb5364e1453e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться от него. Соответственно в try-catch блоке стоит использовать Exception* вместо конкретных дочерних классов. </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="ae324444a322453331a0c5238e4fd0457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae324444a322453331a0c5238e4fd0457">&#9670;&nbsp;</a></span>Exception() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mafia::Exceptions::Exception::Exception </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Пустой конструктор для переопределения его в дочерних классах. </p>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a435189f3e31beee233d1c590eebb2b92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a435189f3e31beee233d1c590eebb2b92">&#9670;&nbsp;</a></span>Exception() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Exception::Exception </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, который инициализирует параметры исключения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>см. Mafia::Excepton::data </td></tr>
+    <tr><td class="paramname">id</td><td>см. Mafia::Exception::data </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    this-&gt;data = <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    this-&gt;<span class="keywordtype">id</span> = <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a3810ab66f7bb17bebae4027982d97177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3810ab66f7bb17bebae4027982d97177">&#9670;&nbsp;</a></span>get_base_exception_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Mafia::Exceptions::Exception::get_base_exception_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа </p>
+<dl class="section return"><dt>Возвращает</dt><dd>базовый id исключения (исключений с таким id не бывает) </dd></dl>
+
+<p>Замещается в <a class="el" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html#a6f7017a38d09eeeee66c2cca68621794">Mafia::Exceptions::DatabaseWorkingException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html#ab7754191563294720ec279b494c39ef6">Mafia::Exceptions::RequestException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#ad32134dce46fb9b8249b6b6a95c751b3">Mafia::Exceptions::SubserverException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html#a43abc07af5cbffa4794a73868180755a">Mafia::Exceptions::GameplayException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#a93ae1b5a6c7e84f4cb1b92c34e8aad1f">Mafia::Exceptions::MessageParsingException</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html#ae2b2b971e590402912a32d120ff90103">Mafia::Exceptions::MessageProcessingException</a>.</p>
+
+</div>
+</div>
+<a id="a3482df28b10ec9593af49872a174662d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3482df28b10ec9593af49872a174662d">&#9670;&nbsp;</a></span>get_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Exception::get_data </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Взятие параметра data. </p>
+<dl class="section return"><dt>Возвращает</dt><dd>сообщение данного исключения </dd></dl>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>.</p>
+
+</div>
+</div>
+<a id="aa13b69aad45b421508d39b09e48a2ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa13b69aad45b421508d39b09e48a2ef4">&#9670;&nbsp;</a></span>get_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Exception::get_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Взятие параметра id. </p>
+<dl class="section return"><dt>Возвращает</dt><dd>id данного исключения </dd></dl>
+<div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a53c7fa0389178cbb806ebfe38931deba">Mafia::Subservers::SubserverObject::_check_subserver_respond()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#acaec544bdbbfe052e991ca566fadb694">Mafia::Database::UserDatabaseManager::add_achievement()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">Mafia::Database::GameDatabaseManager::add_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">Mafia::Database::ChatDatabaseManager::add_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a655539012fa580510df277a684209c46">Mafia::Database::TransactionDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a186eb682e5f8a1ec982205793c7f6d6d">Mafia::Database::UserDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a4e97e09d6c70c100f9c3f8c0908f5363">Mafia::Database::UserDatabaseManager::add_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#afbfaa0457c7139b7d3b012857c5bea1b">Mafia::Database::ChatSettingsDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7d549fb2eab44b531a907646eef9ec25">Mafia::Database::UserDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a19e9e3d450f5de4fdcb9170da6b1c0f7">Mafia::Database::UserDatabaseManager::change_email()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5e3f228885359e95ffd5f1645183ddd4">Mafia::Database::UserDatabaseManager::change_nickname()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#ae2a66aa026cb447ecc29be1a242bd784">Mafia::Database::UserDatabaseManager::change_password()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Mafia::Database::ChatDatabaseManager::ChatDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#ac2b0ba1aff7cec079ca8d97bbfdf28ae">Mafia::Database::ChatSettingsDatabaseManager::ChatSettingsDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_backup_subserver_object.html#a18e0bd0342f02bd2897d74d7ac25fb1c">Mafia::Subservers::BackupSubserverObject::check_connection()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#aa35f53e9225e4a551fd6fa22ef48dcb5">Mafia::Database::TransactionDatabaseManager::check_transaction_hashes()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7bfaeb74b6be6910b3f3dc4cb59a6c6c">Mafia::Database::UserDatabaseManager::confirm_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a31b754c2045ce5554d3d1caa9240b842">Mafia::Database::ChatSettingsDatabaseManager::create_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">Mafia::Database::ChatDatabaseManager::delete_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">Mafia::Database::ChatDatabaseManager::edit_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa832d189f1c7ac747d0a860bda596572">Mafia::Database::ChatSettingsDatabaseManager::get_all_chats()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae1d3a6574ea868afcbf1916380b44a42">Mafia::Database::TransactionDatabaseManager::get_all_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa0f2e962d6d81cf3ceaa52a23e98d0f0">Mafia::Database::ChatSettingsDatabaseManager::get_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">Mafia::Database::GameDatabaseManager::get_game_data()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">Mafia::Database::GameDatabaseManager::get_games_with()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a663db93379e88e30afcb29e583e3d156">Mafia::Database::UserDatabaseManager::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">Mafia::Database::ChatDatabaseManager::get_last_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">Mafia::Database::ChatDatabaseManager::get_messages()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#af569ddd9f2199b62e9e0d647af5ffd78">Mafia::Subservers::SubserverObject::get_request_result()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ac91e237790cb6ecb4cafb4d7f65a6205">Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#afc61bb5c35cdc92de86bace96e39edd3">Mafia::Database::TransactionDatabaseManager::get_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a89fd6c7e3163d07a093427b527d791ca">Mafia::Database::UserDatabaseManager::get_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#adbe3e0baab3495650f949c2896026233">Mafia::Database::UserDatabaseManager::get_users()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a93418cd4e490579b304ea9dd6a4e1de1">Mafia::Database::ChatSettingsDatabaseManager::get_users_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a5874ef52a707346b358a816328ccaf87">Mafia::Database::TransactionDatabaseManager::get_users_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a0962c5d73710a73440305399431dbdda">Mafia::Database::UserDatabaseManager::login_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aea106242ecdea9f7ea90ef7ececa0707">Mafia::Database::UserDatabaseManager::logout_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">Mafia::Database::ChatDatabaseManager::message_read()</a>, <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Mafia::Network::Crypto::parse_data()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b">Mafia::Subservers::SubserverObject::pass_client()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a54c653dda0348afa383290471fd217be">Mafia::Database::UserDatabaseManager::register_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a53d1a7cf2f09e70b4c13ee038696abf0">Mafia::Database::ChatSettingsDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a8cf06a58e930dc95ddbda567a16c884e">Mafia::Database::UserDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a0e86d485e8f634f58755774fb7c436b4">Mafia::Subservers::SubserverObject::run_me()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2">Mafia::Subservers::SubserverObject::send_message_to_subserver()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a5c1f1ba7ab0a66f6012fd24967ef4fe3">Mafia::Subservers::SubserverObject::send_request()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5f76787c1ee6bffbd7be706f173d2468">Mafia::Database::UserDatabaseManager::set_account_type()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a661e24b0ecc89a178f9c292ae399df71">Mafia::Database::ChatSettingsDatabaseManager::set_capability()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ad656f78044b12ee27f416383586558f4">Mafia::Database::TransactionDatabaseManager::TransactionDatabaseManager()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a224310e4f2a7611f40863a940fb34b86">Mafia::Database::UserDatabaseManager::UserDatabaseManager()</a>.</p>
+
+</div>
+</div>
+<a id="ac91de6e5490eef7f0b518e869b081b2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac91de6e5490eef7f0b518e869b081b2d">&#9670;&nbsp;</a></span>set_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::set_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Задавание параметра data. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>- То, что будет использовано в качестве данных </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    this-&gt;data = <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>.</p>
+
+</div>
+</div>
+<a id="a49aaf683c5138945abf3e7303c77bda0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49aaf683c5138945abf3e7303c77bda0">&#9670;&nbsp;</a></span>set_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::set_id </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Задавание параметра id. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>- То, что будет использовано в качестве id ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    this-&gt;<span class="keywordtype">id</span> = <a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">id</a>.</p>
+
+</div>
+</div>
+<a id="a26505358738862d28c8fd6bcd701ec11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26505358738862d28c8fd6bcd701ec11">&#9670;&nbsp;</a></span>show()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Exception::show </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана. </p>
+
+<p>Переопределяется в <a class="el" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html#ad070b28e18be89dadac55332ba741225">Mafia::Exceptions::DatabaseWorkingException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html#adab82bb9c3f963f2c3b90e13b5872220">Mafia::Exceptions::RequestException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#a6470d6a1ecbe4e99e9a604ae1f9c8026">Mafia::Exceptions::SubserverException</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_gameplay_exception.html#a6a8c21c4f111807c24e7f43349b384d4">Mafia::Exceptions::GameplayException</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#aa07a342ff4be88fe9003306240cce00b">Mafia::Exceptions::MessageParsingException</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Exception!\nException info : &quot;</span> &lt;&lt; this-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a> &lt;&lt; <span class="stringliteral">&quot;\nException id : &quot;</span> &lt;&lt; this-&gt;<span class="keywordtype">id</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">data</a> и <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a53c7fa0389178cbb806ebfe38931deba">Mafia::Subservers::SubserverObject::_check_subserver_respond()</a>, <a class="el" href="class_mafia_1_1_main_server_manager.html#a08920a5fb6316edff2308467c69f42c0">Mafia::MainServerManager::_database_test()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">Mafia::Network::MainServerNetworker::_resend_not_confirmed_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Mafia::Database::ChatDatabaseManager::ChatDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#ac2b0ba1aff7cec079ca8d97bbfdf28ae">Mafia::Database::ChatSettingsDatabaseManager::ChatSettingsDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_backup_subserver_object.html#a18e0bd0342f02bd2897d74d7ac25fb1c">Mafia::Subservers::BackupSubserverObject::check_connection()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#aa35f53e9225e4a551fd6fa22ef48dcb5">Mafia::Database::TransactionDatabaseManager::check_transaction_hashes()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_main_server_manager.html#ab526a733674ada1f4527fdeb9e74dafb">Mafia::MainServerManager::MainServerManager()</a>, <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Mafia::Network::Crypto::parse_data()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#aa520e87f886d9d200c14e2dbaa1f482b">Mafia::Subservers::SubserverObject::pass_client()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">Mafia::Network::MainServerNetworker::receive_message()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a0e86d485e8f634f58755774fb7c436b4">Mafia::Subservers::SubserverObject::run_me()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">Mafia::Network::MainServerNetworker::send_message()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2">Mafia::Subservers::SubserverObject::send_message_to_subserver()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a5c1f1ba7ab0a66f6012fd24967ef4fe3">Mafia::Subservers::SubserverObject::send_request()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ad656f78044b12ee27f416383586558f4">Mafia::Database::TransactionDatabaseManager::TransactionDatabaseManager()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a224310e4f2a7611f40863a940fb34b86">Mafia::Database::UserDatabaseManager::UserDatabaseManager()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="ae10d1afe2f179fb0a81e585eb946e523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10d1afe2f179fb0a81e585eb946e523">&#9670;&nbsp;</a></span>data</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Exceptions::Exception::data</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сообщение, которое может быть использовано для отображения сообщения об ошибке </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Exception()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a3482df28b10ec9593af49872a174662d">get_data()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#ac91de6e5490eef7f0b518e869b081b2d">set_data()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#aa07a342ff4be88fe9003306240cce00b">Mafia::Exceptions::MessageParsingException::show()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_subserver_exception.html#a6470d6a1ecbe4e99e9a604ae1f9c8026">Mafia::Exceptions::SubserverException::show()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_request_exception.html#adab82bb9c3f963f2c3b90e13b5872220">Mafia::Exceptions::RequestException::show()</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show()</a>.</p>
+
+</div>
+</div>
+<a id="ac7ae270de65c24fcdcc0fb5364e1453e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7ae270de65c24fcdcc0fb5364e1453e">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="exception_8h.html#a3bdcbe4cb80c11eead67c99ecdb3860c">ExceptionIdType</a> Mafia::Exceptions::Exception::id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>id исключения для отличия одних от других </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a435189f3e31beee233d1c590eebb2b92">Exception()</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id()</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a49aaf683c5138945abf3e7303c77bda0">set_id()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Exceptions/<a class="el" href="exception_8h_source.html">exception.h</a></li>
+<li>Exceptions/<a class="el" href="exception_8cpp.html">exception.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_ac7ae270de65c24fcdcc0fb5364e1453e"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#ac7ae270de65c24fcdcc0fb5364e1453e">Mafia::Exceptions::Exception::id</a></div><div class="ttdeci">ExceptionIdType id</div><div class="ttdoc">id исключения для отличия одних от других</div><div class="ttdef"><b>Definition:</b> exception.h:52</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_ae10d1afe2f179fb0a81e585eb946e523"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#ae10d1afe2f179fb0a81e585eb946e523">Mafia::Exceptions::Exception::data</a></div><div class="ttdeci">System::String data</div><div class="ttdoc">Сообщение, которое может быть использовано для отображения сообщения об ошибке</div><div class="ttdef"><b>Definition:</b> exception.h:50</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a0d37741c5de5c575cd7de8248a81aa96"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a></div><div class="ttdeci">char * data</div><div class="ttdoc">массив данных строки</div><div class="ttdef"><b>Definition:</b> simplestring.h:59</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

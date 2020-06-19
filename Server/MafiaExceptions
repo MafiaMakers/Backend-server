@@ -1,0 +1,7 @@
+#include "Exceptions/databaseworkingexception.h"
+#include "Exceptions/exception.h"
+#include "Exceptions/gameplayexception.h"
+#include "Exceptions/messageparsingexception.h"
+#include "Exceptions/messageprocessingexception.h"
+#include "Exceptions/requestexception.h"
+#include "Exceptions/subserverexception.h"

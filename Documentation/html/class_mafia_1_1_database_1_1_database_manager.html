@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Database::DatabaseManager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html">DatabaseManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pro-methods">Защищенные члены</a> &#124;
+<a href="#pro-attribs">Защищенные данные</a> &#124;
+<a href="class_mafia_1_1_database_1_1_database_manager-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Database::DatabaseManager</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Базовый класс, от которого наследуются все классы для работы с конкретными БД  
+ <a href="class_mafia_1_1_database_1_1_database_manager.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="databasemanager_8h_source.html">databasemanager.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::Database::DatabaseManager:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_database_1_1_database_manager.png" usemap="#Mafia::Database::DatabaseManager_map" alt=""/>
+  <map id="Mafia::Database::DatabaseManager_map" name="Mafia::Database::DatabaseManager_map">
+<area href="class_mafia_1_1_database_1_1_chat_database_manager.html" title="Основной класс для работы с базой данных сообщений чатов" alt="Mafia::Database::ChatDatabaseManager" shape="rect" coords="0,56,283,80"/>
+<area href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html" title="Основной класс для работы с БД чатов" alt="Mafia::Database::ChatSettingsDatabaseManager" shape="rect" coords="293,56,576,80"/>
+<area href="class_mafia_1_1_database_1_1_game_database_manager.html" title="Основной класс для работы с БД с играми" alt="Mafia::Database::GameDatabaseManager" shape="rect" coords="586,56,869,80"/>
+<area href="class_mafia_1_1_database_1_1_transaction_database_manager.html" title="Основной класс для работы с БД транзакций" alt="Mafia::Database::TransactionDatabaseManager" shape="rect" coords="879,56,1162,80"/>
+<area href="class_mafia_1_1_database_1_1_user_database_manager.html" title="Класс для работы с базой данных пользователя" alt="Mafia::Database::UserDatabaseManager" shape="rect" coords="1172,56,1455,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Защищенные члены</h2></td></tr>
+<tr class="memitem:a67d37c10ee6291fe6e4b849010c19b7f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">DatabaseManager</a> (<a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *databaseWorker, QString name)</td></tr>
+<tr class="memdesc:a67d37c10ee6291fe6e4b849010c19b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной и единственный конструктор, который связывается с БД и конкретной таблицей  <a href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a67d37c10ee6291fe6e4b849010c19b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Защищенные данные</h2></td></tr>
+<tr class="memitem:a7df3cb1cc851c6eb410294016647a29c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a></td></tr>
+<tr class="memdesc:a7df3cb1cc851c6eb410294016647a29c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на объект для работы с базой данных  <a href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7df3cb1cc851c6eb410294016647a29c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d0a66a2bc96dd477c37f0dcc1ec0ce"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a31d0a66a2bc96dd477c37f0dcc1ec0ce">localParameter</a> = &quot;Par@!A#$^%&amp;*()-_=+/\\MeTerLOCal&quot;</td></tr>
+<tr class="memdesc:a31d0a66a2bc96dd477c37f0dcc1ec0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Локальный параметр хеширования  <a href="class_mafia_1_1_database_1_1_database_manager.html#a31d0a66a2bc96dd477c37f0dcc1ec0ce">Подробнее...</a><br /></td></tr>
+<tr class="separator:a31d0a66a2bc96dd477c37f0dcc1ec0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01862e5fdbcad75efcd13771b700ea2c"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a></td></tr>
+<tr class="memdesc:a01862e5fdbcad75efcd13771b700ea2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя таблицы  <a href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a01862e5fdbcad75efcd13771b700ea2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Базовый класс, от которого наследуются все классы для работы с конкретными БД </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a67d37c10ee6291fe6e4b849010c19b7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67d37c10ee6291fe6e4b849010c19b7f">&#9670;&nbsp;</a></span>DatabaseManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseManager::DatabaseManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *&#160;</td>
+          <td class="paramname"><em>databaseWorker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Основной и единственный конструктор, который связывается с БД и конкретной таблицей </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">databaseWorker</td><td>указатель на объект для работы с БД </td></tr>
+    <tr><td class="paramname">name</td><td>имя таблицы в этой БД </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;                                                                             : <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a>(name)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a> = databaseWorker;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a01862e5fdbcad75efcd13771b700ea2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01862e5fdbcad75efcd13771b700ea2c">&#9670;&nbsp;</a></span>dbName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString Mafia::Database::DatabaseManager::dbName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Имя таблицы </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#acaec544bdbbfe052e991ca566fadb694">Mafia::Database::UserDatabaseManager::add_achievement()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">Mafia::Database::GameDatabaseManager::add_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">Mafia::Database::ChatDatabaseManager::add_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a655539012fa580510df277a684209c46">Mafia::Database::TransactionDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a186eb682e5f8a1ec982205793c7f6d6d">Mafia::Database::UserDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aee07743b17bf7a6ace97818cb3b9865b">Mafia::Database::UserDatabaseManager::add_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#afbfaa0457c7139b7d3b012857c5bea1b">Mafia::Database::ChatSettingsDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7d549fb2eab44b531a907646eef9ec25">Mafia::Database::UserDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a19e9e3d450f5de4fdcb9170da6b1c0f7">Mafia::Database::UserDatabaseManager::change_email()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5e3f228885359e95ffd5f1645183ddd4">Mafia::Database::UserDatabaseManager::change_nickname()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#ae2a66aa026cb447ecc29be1a242bd784">Mafia::Database::UserDatabaseManager::change_password()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Mafia::Database::ChatDatabaseManager::ChatDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#ac2b0ba1aff7cec079ca8d97bbfdf28ae">Mafia::Database::ChatSettingsDatabaseManager::ChatSettingsDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7bfaeb74b6be6910b3f3dc4cb59a6c6c">Mafia::Database::UserDatabaseManager::confirm_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a31b754c2045ce5554d3d1caa9240b842">Mafia::Database::ChatSettingsDatabaseManager::create_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">Mafia::Database::ChatDatabaseManager::delete_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">Mafia::Database::ChatDatabaseManager::edit_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa832d189f1c7ac747d0a860bda596572">Mafia::Database::ChatSettingsDatabaseManager::get_all_chats()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae1d3a6574ea868afcbf1916380b44a42">Mafia::Database::TransactionDatabaseManager::get_all_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa0f2e962d6d81cf3ceaa52a23e98d0f0">Mafia::Database::ChatSettingsDatabaseManager::get_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">Mafia::Database::GameDatabaseManager::get_game_data()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">Mafia::Database::GameDatabaseManager::get_games_with()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a663db93379e88e30afcb29e583e3d156">Mafia::Database::UserDatabaseManager::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">Mafia::Database::ChatDatabaseManager::get_last_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">Mafia::Database::ChatDatabaseManager::get_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ac91e237790cb6ecb4cafb4d7f65a6205">Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#afc61bb5c35cdc92de86bace96e39edd3">Mafia::Database::TransactionDatabaseManager::get_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a89fd6c7e3163d07a093427b527d791ca">Mafia::Database::UserDatabaseManager::get_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#adbe3e0baab3495650f949c2896026233">Mafia::Database::UserDatabaseManager::get_users()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a93418cd4e490579b304ea9dd6a4e1de1">Mafia::Database::ChatSettingsDatabaseManager::get_users_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a5874ef52a707346b358a816328ccaf87">Mafia::Database::TransactionDatabaseManager::get_users_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a0962c5d73710a73440305399431dbdda">Mafia::Database::UserDatabaseManager::login_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aea106242ecdea9f7ea90ef7ececa0707">Mafia::Database::UserDatabaseManager::logout_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">Mafia::Database::ChatDatabaseManager::message_read()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aa3a5557374f9f8de542d2e2eee2f84f7">Mafia::Database::UserDatabaseManager::register_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a53d1a7cf2f09e70b4c13ee038696abf0">Mafia::Database::ChatSettingsDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a8cf06a58e930dc95ddbda567a16c884e">Mafia::Database::UserDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5f76787c1ee6bffbd7be706f173d2468">Mafia::Database::UserDatabaseManager::set_account_type()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a661e24b0ecc89a178f9c292ae399df71">Mafia::Database::ChatSettingsDatabaseManager::set_capability()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ad656f78044b12ee27f416383586558f4">Mafia::Database::TransactionDatabaseManager::TransactionDatabaseManager()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a224310e4f2a7611f40863a940fb34b86">Mafia::Database::UserDatabaseManager::UserDatabaseManager()</a>.</p>
+
+</div>
+</div>
+<a id="a7df3cb1cc851c6eb410294016647a29c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df3cb1cc851c6eb410294016647a29c">&#9670;&nbsp;</a></span>dbWorker</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a>* Mafia::Database::DatabaseManager::dbWorker</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Указатель на объект для работы с базой данных </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#acaec544bdbbfe052e991ca566fadb694">Mafia::Database::UserDatabaseManager::add_achievement()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">Mafia::Database::GameDatabaseManager::add_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">Mafia::Database::ChatDatabaseManager::add_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a655539012fa580510df277a684209c46">Mafia::Database::TransactionDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a186eb682e5f8a1ec982205793c7f6d6d">Mafia::Database::UserDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aee07743b17bf7a6ace97818cb3b9865b">Mafia::Database::UserDatabaseManager::add_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#afbfaa0457c7139b7d3b012857c5bea1b">Mafia::Database::ChatSettingsDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7d549fb2eab44b531a907646eef9ec25">Mafia::Database::UserDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a19e9e3d450f5de4fdcb9170da6b1c0f7">Mafia::Database::UserDatabaseManager::change_email()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5e3f228885359e95ffd5f1645183ddd4">Mafia::Database::UserDatabaseManager::change_nickname()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#ae2a66aa026cb447ecc29be1a242bd784">Mafia::Database::UserDatabaseManager::change_password()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Mafia::Database::ChatDatabaseManager::ChatDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#ac2b0ba1aff7cec079ca8d97bbfdf28ae">Mafia::Database::ChatSettingsDatabaseManager::ChatSettingsDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#aa35f53e9225e4a551fd6fa22ef48dcb5">Mafia::Database::TransactionDatabaseManager::check_transaction_hashes()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7bfaeb74b6be6910b3f3dc4cb59a6c6c">Mafia::Database::UserDatabaseManager::confirm_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a31b754c2045ce5554d3d1caa9240b842">Mafia::Database::ChatSettingsDatabaseManager::create_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">DatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">Mafia::Database::ChatDatabaseManager::delete_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">Mafia::Database::ChatDatabaseManager::edit_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa832d189f1c7ac747d0a860bda596572">Mafia::Database::ChatSettingsDatabaseManager::get_all_chats()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae1d3a6574ea868afcbf1916380b44a42">Mafia::Database::TransactionDatabaseManager::get_all_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa0f2e962d6d81cf3ceaa52a23e98d0f0">Mafia::Database::ChatSettingsDatabaseManager::get_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">Mafia::Database::GameDatabaseManager::get_game_data()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">Mafia::Database::GameDatabaseManager::get_games_with()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a663db93379e88e30afcb29e583e3d156">Mafia::Database::UserDatabaseManager::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">Mafia::Database::ChatDatabaseManager::get_last_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">Mafia::Database::ChatDatabaseManager::get_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ac91e237790cb6ecb4cafb4d7f65a6205">Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#afc61bb5c35cdc92de86bace96e39edd3">Mafia::Database::TransactionDatabaseManager::get_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a89fd6c7e3163d07a093427b527d791ca">Mafia::Database::UserDatabaseManager::get_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#adbe3e0baab3495650f949c2896026233">Mafia::Database::UserDatabaseManager::get_users()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a93418cd4e490579b304ea9dd6a4e1de1">Mafia::Database::ChatSettingsDatabaseManager::get_users_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a5874ef52a707346b358a816328ccaf87">Mafia::Database::TransactionDatabaseManager::get_users_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a0962c5d73710a73440305399431dbdda">Mafia::Database::UserDatabaseManager::login_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aea106242ecdea9f7ea90ef7ececa0707">Mafia::Database::UserDatabaseManager::logout_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">Mafia::Database::ChatDatabaseManager::message_read()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae4f250a52ca9f1a1fe7abeb03bab7880">Mafia::Database::TransactionDatabaseManager::on_database_cracked()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aa3a5557374f9f8de542d2e2eee2f84f7">Mafia::Database::UserDatabaseManager::register_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a53d1a7cf2f09e70b4c13ee038696abf0">Mafia::Database::ChatSettingsDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a8cf06a58e930dc95ddbda567a16c884e">Mafia::Database::UserDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5f76787c1ee6bffbd7be706f173d2468">Mafia::Database::UserDatabaseManager::set_account_type()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a661e24b0ecc89a178f9c292ae399df71">Mafia::Database::ChatSettingsDatabaseManager::set_capability()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ad656f78044b12ee27f416383586558f4">Mafia::Database::TransactionDatabaseManager::TransactionDatabaseManager()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a224310e4f2a7611f40863a940fb34b86">Mafia::Database::UserDatabaseManager::UserDatabaseManager()</a>.</p>
+
+</div>
+</div>
+<a id="a31d0a66a2bc96dd477c37f0dcc1ec0ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31d0a66a2bc96dd477c37f0dcc1ec0ce">&#9670;&nbsp;</a></span>localParameter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString Mafia::Database::DatabaseManager::localParameter = &quot;Par@!A#$^%&amp;*()-_=+/\\MeTerLOCal&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Локальный параметр хеширования </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a655539012fa580510df277a684209c46">Mafia::Database::TransactionDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a4e97e09d6c70c100f9c3f8c0908f5363">Mafia::Database::UserDatabaseManager::add_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#ae2a66aa026cb447ecc29be1a242bd784">Mafia::Database::UserDatabaseManager::change_password()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#aa35f53e9225e4a551fd6fa22ef48dcb5">Mafia::Database::TransactionDatabaseManager::check_transaction_hashes()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a0962c5d73710a73440305399431dbdda">Mafia::Database::UserDatabaseManager::login_user()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Database/<a class="el" href="databasemanager_8h_source.html">databasemanager.h</a></li>
+<li>Database/<a class="el" href="databasemanager_8cpp.html">databasemanager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a01862e5fdbcad75efcd13771b700ea2c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a></div><div class="ttdeci">const QString dbName</div><div class="ttdoc">Имя таблицы</div><div class="ttdef"><b>Definition:</b> databasemanager.h:24</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a7df3cb1cc851c6eb410294016647a29c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a></div><div class="ttdeci">DatabaseWorker * dbWorker</div><div class="ttdoc">Указатель на объект для работы с базой данных</div><div class="ttdef"><b>Definition:</b> databasemanager.h:20</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

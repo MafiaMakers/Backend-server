@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл Gameplay/gameitems.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_042d05fde9de49a23d65aa13d3a79273.html">Gameplay</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">gameitems.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="gameitems_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GAMEITEMS_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define GAMEITEMS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="functions_8h.html">System/functions.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">namespace </span>Gameplay {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8d">    9</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8d">Role</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daa9f7b79173bb438ee9e180977eb229e9">   11</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daa9f7b79173bb438ee9e180977eb229e9">Role_First</a> = 0,</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da6c1c44675cc55845fbc723497aaa4e1b">   13</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da6c1c44675cc55845fbc723497aaa4e1b">Role_Civilian</a> = 0,</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8dacdef40ae0e41cb4125b279e8bbb0a697">   15</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8dacdef40ae0e41cb4125b279e8bbb0a697">Role_Mafia</a> = 1,</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c">   17</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c">Role_None</a> = 2,</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da305d810703d7642b812d4834126245f1">   19</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da305d810703d7642b812d4834126245f1">Role_Sheriff</a> = 3,</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da345a9d0992e2300b1c526224b96b833b">   21</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da345a9d0992e2300b1c526224b96b833b">Role_Doctor</a> = 4,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da56147dadf0365a56e67da3b09100a74f">Role_Last</a> = 5</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da56147dadf0365a56e67da3b09100a74f">   24</a></span>&#160;        };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12a">   27</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12a">GamePersonalResult</a>{</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa68448237896e5c0a7fd85a55156011e3">   29</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa68448237896e5c0a7fd85a55156011e3">GamePersonalResult_First</a> = 0,</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa52d16619e4fed98d7bba69e7e48ce9cc">   31</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa52d16619e4fed98d7bba69e7e48ce9cc">GamePersonalResult_Defeat</a> = 0,</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa2953fd3ff4f83f3fd220957b9940c6f0">   33</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa2953fd3ff4f83f3fd220957b9940c6f0">GamePersonalResult_Victory</a> = 1,</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aacd5a182466878d3902e0430450336acb">   35</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aacd5a182466878d3902e0430450336acb">GamePersonalResult_None</a> = 2,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa278e10affc0435d655375e0bd1ff0a19">GamePersonalResult_Last</a> = 3</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa278e10affc0435d655375e0bd1ff0a19">   38</a></span>&#160;        };</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3">   41</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3">GameResult</a>{</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a9912d83b3a85802807d1b919345f0619">   43</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a9912d83b3a85802807d1b919345f0619">GameResult_First</a> = 0,</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3af3c34b19447a520451c90704f6400a1e">   45</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3af3c34b19447a520451c90704f6400a1e">GameResult_None</a> = 0,</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a505d0f76a99246b09f9323afcf2824b3">   47</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a505d0f76a99246b09f9323afcf2824b3">GameResult_MafiaWins</a> = 1,</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3aa41bedd1450d18e2fc039ecdbf21ba58">   49</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3aa41bedd1450d18e2fc039ecdbf21ba58">GameResult_CiviliansWin</a> = 2,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a36b8da918395dd64f9908f7cffef2d64">GameResult_Last</a> = 3</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a36b8da918395dd64f9908f7cffef2d64">   52</a></span>&#160;        };</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif // GAMEITEMS_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8da6c1c44675cc55845fbc723497aaa4e1b"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da6c1c44675cc55845fbc723497aaa4e1b">Mafia::Gameplay::Role_Civilian</a></div><div class="ttdeci">@ Role_Civilian</div><div class="ttdoc">Жирный митель</div><div class="ttdef"><b>Definition:</b> gameitems.h:13</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12aa278e10affc0435d655375e0bd1ff0a19"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa278e10affc0435d655375e0bd1ff0a19">Mafia::Gameplay::GamePersonalResult_Last</a></div><div class="ttdeci">@ GamePersonalResult_Last</div><div class="ttdoc">Последний индекс личного результата (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:37</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3">Mafia::Gameplay::GameResult</a></div><div class="ttdeci">GameResult</div><div class="ttdoc">Возможные глобальные результаты игры</div><div class="ttdef"><b>Definition:</b> gameitems.h:41</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:9</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12aa2953fd3ff4f83f3fd220957b9940c6f0"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa2953fd3ff4f83f3fd220957b9940c6f0">Mafia::Gameplay::GamePersonalResult_Victory</a></div><div class="ttdeci">@ GamePersonalResult_Victory</div><div class="ttdoc">Победа</div><div class="ttdef"><b>Definition:</b> gameitems.h:33</div></div>
+<div class="ttc" id="afunctions_8h_html"><div class="ttname"><a href="functions_8h.html">functions.h</a></div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12aacd5a182466878d3902e0430450336acb"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aacd5a182466878d3902e0430450336acb">Mafia::Gameplay::GamePersonalResult_None</a></div><div class="ttdeci">@ GamePersonalResult_None</div><div class="ttdoc">Отсутствие результата</div><div class="ttdef"><b>Definition:</b> gameitems.h:35</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12aa68448237896e5c0a7fd85a55156011e3"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa68448237896e5c0a7fd85a55156011e3">Mafia::Gameplay::GamePersonalResult_First</a></div><div class="ttdeci">@ GamePersonalResult_First</div><div class="ttdoc">Первый индекс личного результата (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:29</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8da56147dadf0365a56e67da3b09100a74f"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da56147dadf0365a56e67da3b09100a74f">Mafia::Gameplay::Role_Last</a></div><div class="ttdeci">@ Role_Last</div><div class="ttdoc">Последний индекс роли (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:23</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3af3c34b19447a520451c90704f6400a1e"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3af3c34b19447a520451c90704f6400a1e">Mafia::Gameplay::GameResult_None</a></div><div class="ttdeci">@ GameResult_None</div><div class="ttdoc">Отсутствие результата игры (раннее завершение и т.п.)</div><div class="ttdef"><b>Definition:</b> gameitems.h:45</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3a505d0f76a99246b09f9323afcf2824b3"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a505d0f76a99246b09f9323afcf2824b3">Mafia::Gameplay::GameResult_MafiaWins</a></div><div class="ttdeci">@ GameResult_MafiaWins</div><div class="ttdoc">Победа мафии</div><div class="ttdef"><b>Definition:</b> gameitems.h:47</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3aa41bedd1450d18e2fc039ecdbf21ba58"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3aa41bedd1450d18e2fc039ecdbf21ba58">Mafia::Gameplay::GameResult_CiviliansWin</a></div><div class="ttdeci">@ GameResult_CiviliansWin</div><div class="ttdoc">Победа мирных</div><div class="ttdef"><b>Definition:</b> gameitems.h:49</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8d"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8d">Mafia::Gameplay::Role</a></div><div class="ttdeci">Role</div><div class="ttdoc">Возможные роли</div><div class="ttdef"><b>Definition:</b> gameitems.h:9</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12a"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12a">Mafia::Gameplay::GamePersonalResult</a></div><div class="ttdeci">GamePersonalResult</div><div class="ttdoc">Возможные личные результаты игры</div><div class="ttdef"><b>Definition:</b> gameitems.h:27</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c">Mafia::Gameplay::Role_None</a></div><div class="ttdeci">@ Role_None</div><div class="ttdoc">Отсутствие роли</div><div class="ttdef"><b>Definition:</b> gameitems.h:17</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8daa9f7b79173bb438ee9e180977eb229e9"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daa9f7b79173bb438ee9e180977eb229e9">Mafia::Gameplay::Role_First</a></div><div class="ttdeci">@ Role_First</div><div class="ttdoc">Индекс первой роли (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:11</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3a9912d83b3a85802807d1b919345f0619"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a9912d83b3a85802807d1b919345f0619">Mafia::Gameplay::GameResult_First</a></div><div class="ttdeci">@ GameResult_First</div><div class="ttdoc">Первый индекс глобального результата (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:43</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a879d9449b893316519ebe43cc1a2f12aa52d16619e4fed98d7bba69e7e48ce9cc"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a879d9449b893316519ebe43cc1a2f12aa52d16619e4fed98d7bba69e7e48ce9cc">Mafia::Gameplay::GamePersonalResult_Defeat</a></div><div class="ttdeci">@ GamePersonalResult_Defeat</div><div class="ttdoc">Поражение</div><div class="ttdef"><b>Definition:</b> gameitems.h:31</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8da345a9d0992e2300b1c526224b96b833b"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da345a9d0992e2300b1c526224b96b833b">Mafia::Gameplay::Role_Doctor</a></div><div class="ttdeci">@ Role_Doctor</div><div class="ttdoc">Доктор</div><div class="ttdef"><b>Definition:</b> gameitems.h:21</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8da305d810703d7642b812d4834126245f1"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8da305d810703d7642b812d4834126245f1">Mafia::Gameplay::Role_Sheriff</a></div><div class="ttdeci">@ Role_Sheriff</div><div class="ttdoc">Комиссар</div><div class="ttdef"><b>Definition:</b> gameitems.h:19</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8dacdef40ae0e41cb4125b279e8bbb0a697"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8dacdef40ae0e41cb4125b279e8bbb0a697">Mafia::Gameplay::Role_Mafia</a></div><div class="ttdeci">@ Role_Mafia</div><div class="ttdoc">Мафия</div><div class="ttdef"><b>Definition:</b> gameitems.h:15</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a173aa87e8dbf534dbfb8f1ae940556b3a36b8da918395dd64f9908f7cffef2d64"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a173aa87e8dbf534dbfb8f1ae940556b3a36b8da918395dd64f9908f7cffef2d64">Mafia::Gameplay::GameResult_Last</a></div><div class="ttdeci">@ GameResult_Last</div><div class="ttdoc">Последний индекс глобального результата (см. Mafia::Database::Status_First)</div><div class="ttdef"><b>Definition:</b> gameitems.h:51</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

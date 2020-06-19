@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл Database/gamedatabasemanager.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d00f5e20d7b27686287f9c84bc9112f8.html">Database</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">gamedatabasemanager.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="gamedatabasemanager_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GAMEDATABASEWORKER_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define GAMEDATABASEWORKER_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="databasemanager_8h.html">databasemanager.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="game__s_8h.html">Gameplay/game_s.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">namespace </span>Database {</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004">   12</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004">FilterType</a>{</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4">   14</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4">FilterType_NONE</a>,</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a123ab34e31a0a17f1340d59ab090b8df">   16</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a123ab34e31a0a17f1340d59ab090b8df">FilterType_OR</a>,</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a8a85d3bd451c5f692e56e1ed32c92756">FilterType_AND</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a8a85d3bd451c5f692e56e1ed32c92756">   19</a></span>&#160;        };</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_mafia_1_1_database_1_1_game_database_manager.html">   22</a></span>&#160;        <span class="keyword">class </span><a class="code" href="class_mafia_1_1_database_1_1_game_database_manager.html">GameDatabaseManager</a> : <span class="keyword">public</span> <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html">DatabaseManager</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">GameDatabaseManager</a>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a>* databaseWorker);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="struct_mafia_1_1_gameplay_1_1_game.html">Gameplay::Game</a> <a class="code" href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">get_game_data</a>(<a class="code" href="namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b">GameIdType</a> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b">GameIdType</a> <a class="code" href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">add_game</a>(<a class="code" href="struct_mafia_1_1_gameplay_1_1_game.html">Gameplay::Game</a> &amp;game);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            MafiaList&lt;Gameplay::Game&gt; <a class="code" href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">get_games_with</a>(MafiaList&lt;UserIdType&gt; participants = MafiaList&lt;UserIdType&gt;(),</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                                 <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004">FilterType</a> participantsFilter = <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4">FilterType_NONE</a>,</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                                 MafiaList&lt;Gameplay::Role&gt; roles = MafiaList&lt;Gameplay::Role&gt;(),</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                                 <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004">FilterType</a> rolesFilter = <a class="code" href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4">FilterType_NONE</a>,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                                 MafiaList&lt;Gameplay::GameResult&gt; outcomes = MafiaList&lt;Gameplay::GameResult&gt;(),</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                                                 QDateTime beginAfter = <a class="code" href="namespace_mafia_1_1_database.html#a729b70e8feb11b7f1d338f870b47150a">BEGINNING_TIME</a>,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                                                 QDateTime endBefore = <a class="code" href="namespace_mafia_1_1_database.html#a0acea0d0e2de9c9b3d82f5241d5678e1">ENDING_TIME</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif // GAMEDATABASEWORKER_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a7c37aa14c5d50e037727e714ad75e004a8a85d3bd451c5f692e56e1ed32c92756"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a8a85d3bd451c5f692e56e1ed32c92756">Mafia::Database::FilterType_AND</a></div><div class="ttdeci">@ FilterType_AND</div><div class="ttdoc">Тип И</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.h:18</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_a26505358738862d28c8fd6bcd701ec11"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show</a></div><div class="ttdeci">virtual void show()</div><div class="ttdoc">Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.</div><div class="ttdef"><b>Definition:</b> exception.cpp:12</div></div>
+<div class="ttc" id="afunctions_8h_html_aa06eedd6f738a415870e97a375337d51"><div class="ttname"><a href="functions_8h.html#aa06eedd6f738a415870e97a375337d51">ASSERT</a></div><div class="ttdeci">#define ASSERT(condition, message)</div><div class="ttdoc">Проверка на то, какой из режимов используется в данный момент (debug или release)</div><div class="ttdef"><b>Definition:</b> functions.h:34</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_abd93af2b68471986f93b4909c04ba4c0"><div class="ttname"><a href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a></div><div class="ttdeci">const QString SQL_DATETIME_FORMAT</div><div class="ttdoc">Формат даты и времени, который используется везде по программе (т.к. он используется SQL)</div><div class="ttdef"><b>Definition:</b> user.h:11</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a0acea0d0e2de9c9b3d82f5241d5678e1"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a0acea0d0e2de9c9b3d82f5241d5678e1">Mafia::Database::ENDING_TIME</a></div><div class="ttdeci">const QDateTime ENDING_TIME</div><div class="ttdoc">Время, которое мы считаем 'самым концом' (позже него не может быть ничего)</div><div class="ttdef"><b>Definition:</b> user.h:15</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html">Mafia::Database::DatabaseManager</a></div><div class="ttdoc">Базовый класс, от которого наследуются все классы для работы с конкретными БД</div><div class="ttdef"><b>Definition:</b> databasemanager.h:11</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a729b70e8feb11b7f1d338f870b47150a"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a729b70e8feb11b7f1d338f870b47150a">Mafia::Database::BEGINNING_TIME</a></div><div class="ttdeci">const QDateTime BEGINNING_TIME</div><div class="ttdoc">Время, которое мы считаем 'самым началом' (раньше него не может быть ничего)</div><div class="ttdef"><b>Definition:</b> user.h:13</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_game_database_manager_html_a2c60aff89a1a84a42e4db0cb9311f78d"><div class="ttname"><a href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">Mafia::Database::GameDatabaseManager::get_games_with</a></div><div class="ttdeci">MafiaList&lt; Gameplay::Game &gt; get_games_with(MafiaList&lt; UserIdType &gt; participants=MafiaList&lt; UserIdType &gt;(), FilterType participantsFilter=FilterType_NONE, MafiaList&lt; Gameplay::Role &gt; roles=MafiaList&lt; Gameplay::Role &gt;(), FilterType rolesFilter=FilterType_NONE, MafiaList&lt; Gameplay::GameResult &gt; outcomes=MafiaList&lt; Gameplay::GameResult &gt;(), QDateTime beginAfter=BEGINNING_TIME, QDateTime endBefore=ENDING_TIME)</div><div class="ttdoc">Функция для получения игр по фильтру. Ищет все игры, удовлетворяющие условию</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.cpp:118</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a7c37aa14c5d50e037727e714ad75e004a123ab34e31a0a17f1340d59ab090b8df"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a123ab34e31a0a17f1340d59ab090b8df">Mafia::Database::FilterType_OR</a></div><div class="ttdeci">@ FilterType_OR</div><div class="ttdoc">Тип ИЛИ</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.h:16</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a01862e5fdbcad75efcd13771b700ea2c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a></div><div class="ttdeci">const QString dbName</div><div class="ttdoc">Имя таблицы</div><div class="ttdef"><b>Definition:</b> databasemanager.h:24</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:9</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_game_database_manager_html_ac453b5931bb53d12c4cdb9ba042156ef"><div class="ttname"><a href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">Mafia::Database::GameDatabaseManager::add_game</a></div><div class="ttdeci">GameIdType add_game(Gameplay::Game &amp;game)</div><div class="ttdoc">Функция для добавления новой игры в БД</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.cpp:76</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_a60e4f5c241d677a0388e353c68ab6a70"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#a60e4f5c241d677a0388e353c68ab6a70">Mafia::Gameplay::Game::endingDT</a></div><div class="ttdeci">QDateTime endingDT</div><div class="ttdoc">Дата и время окончания игры</div><div class="ttdef"><b>Definition:</b> game_s.h:24</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_game_database_manager_html_ab6f44302bf173245ddec9c07a6f3b31f"><div class="ttname"><a href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">Mafia::Database::GameDatabaseManager::get_game_data</a></div><div class="ttdeci">Gameplay::Game get_game_data(GameIdType id)</div><div class="ttdoc">Получение всей информации об одной игре</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.cpp:45</div></div>
+<div class="ttc" id="afunctions_8h_html"><div class="ttname"><a href="functions_8h.html">functions.h</a></div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a6e041aefe606967592bbf114f7ab259e"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a6e041aefe606967592bbf114f7ab259e">Mafia::Gameplay::MAXIMUM_USERS_IN_GAME</a></div><div class="ttdeci">const int MAXIMUM_USERS_IN_GAME</div><div class="ttdoc">Максимальное количество игроков в одной игре</div><div class="ttdef"><b>Definition:</b> game_s.h:9</div></div>
+<div class="ttc" id="agamedatabasemanager_8h_html"><div class="ttname"><a href="gamedatabasemanager_8h.html">gamedatabasemanager.h</a></div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a7c37aa14c5d50e037727e714ad75e004"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004">Mafia::Database::FilterType</a></div><div class="ttdeci">FilterType</div><div class="ttdoc">Тип фильтра (используется для выбора нескольких объектов из БД). Например, можно выбирать все игры,...</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.h:12</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27a6f8616cc7b8b8b1f8b5c8b9820fa8eb7"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a6f8616cc7b8b8b1f8b5c8b9820fa8eb7">Mafia::Exceptions::DatabaseWorkingExceptionId_UnknownFilterType</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_UnknownFilterType</div><div class="ttdoc">Исключение, вызываемое при получении в качестве фильтра неизвестного значеня</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:51</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a7df3cb1cc851c6eb410294016647a29c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a></div><div class="ttdeci">DatabaseWorker * dbWorker</div><div class="ttdoc">Указатель на объект для работы с базой данных</div><div class="ttdef"><b>Definition:</b> databasemanager.h:20</div></div>
+<div class="ttc" id="adatabasehelper_8h_html"><div class="ttname"><a href="databasehelper_8h.html">databasehelper.h</a></div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_game_database_manager_html"><div class="ttname"><a href="class_mafia_1_1_database_1_1_game_database_manager.html">Mafia::Database::GameDatabaseManager</a></div><div class="ttdoc">Основной класс для работы с БД с играми</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.h:23</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html">Mafia::Database::DatabaseWorker</a></div><div class="ttdoc">Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных</div><div class="ttdef"><b>Definition:</b> databaseworker.h:19</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_a7f3b461324ee28d649c50da5fa118eac"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#a7f3b461324ee28d649c50da5fa118eac">Mafia::Gameplay::Game::beginningDT</a></div><div class="ttdeci">QDateTime beginningDT</div><div class="ttdoc">Дата и время начала игры</div><div class="ttdef"><b>Definition:</b> game_s.h:22</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html">Mafia::Gameplay::Game</a></div><div class="ttdoc">Структура для хранения информации об игре</div><div class="ttdef"><b>Definition:</b> game_s.h:12</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_gameplay_html_a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c"><div class="ttname"><a href="namespace_mafia_1_1_gameplay.html#a20924101a95d2043259c26dd92505d8daea208b188ab26865117acdb8c3eda41c">Mafia::Gameplay::Role_None</a></div><div class="ttdeci">@ Role_None</div><div class="ttdoc">Отсутствие роли</div><div class="ttdef"><b>Definition:</b> gameitems.h:17</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_game_database_manager_html_a5815003ca059e09633adc44ee73b8bf3"><div class="ttname"><a href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager</a></div><div class="ttdeci">GameDatabaseManager(DatabaseWorker *databaseWorker)</div><div class="ttdoc">Основной конструктор, который создает, если надо, и связывается с таблицей в БД</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.cpp:8</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_aeb0924401346b7ecd45940ca6e24c61b"><div class="ttname"><a href="namespace_mafia_1_1_database.html#aeb0924401346b7ecd45940ca6e24c61b">Mafia::Database::GameIdType</a></div><div class="ttdeci">int GameIdType</div><div class="ttdoc">Тип, использующийся для хранения id игр в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:25</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html">Mafia::System::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:13</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_aeb042a400a48015045272513c8f3065c"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#aeb042a400a48015045272513c8f3065c">Mafia::Gameplay::Game::id</a></div><div class="ttdeci">Database::GameIdType id</div><div class="ttdoc">id игры</div><div class="ttdef"><b>Definition:</b> game_s.h:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a77bf26edac421999293650a9d6a5c302"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query</a></div><div class="ttdeci">QSqlQuery * run_query(QString request)</div><div class="ttdoc">Функция, выполняющая строковой Sql запрос</div><div class="ttdef"><b>Definition:</b> databaseworker.cpp:49</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27a21916a07bbb3a50c35a3380ef7bacafe"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a21916a07bbb3a50c35a3380ef7bacafe">Mafia::Exceptions::DatabaseWorkingExceptionId_ArraySizeMismatch</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_ArraySizeMismatch</div><div class="ttdoc">Исключение, вызываемое в случае, если два массива, у которых должны совпадать размеры,...</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:61</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_a3bde1bc6de54e2c57be560631811c949"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#a3bde1bc6de54e2c57be560631811c949">Mafia::Gameplay::Game::roles</a></div><div class="ttdeci">MafiaList&lt; Role &gt; roles</div><div class="ttdoc">Список ролей пользователей</div><div class="ttdef"><b>Definition:</b> game_s.h:20</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_SQlQuery</div><div class="ttdoc">Исключение, вызываемое при ошибке в sql-запросе</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:39</div></div>
+<div class="ttc" id="adatabaseworkingexception_8h_html"><div class="ttname"><a href="databaseworkingexception_8h.html">databaseworkingexception.h</a></div></div>
+<div class="ttc" id="adatabaseworker_8h_html_a294410b213914d2cacf150fe37098733"><div class="ttname"><a href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a></div><div class="ttdeci">#define NOT_NULL</div><div class="ttdoc">Sql команда для обозначения переменной, которой нельзя присвоить неинициализированное значение</div><div class="ttdef"><b>Definition:</b> databaseworker.h:8</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html">Mafia::Exceptions::Exception</a></div><div class="ttdoc">Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться ...</div><div class="ttdef"><b>Definition:</b> exception.h:15</div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_a9c554766a373f65f86afc5139630c1ef"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#a9c554766a373f65f86afc5139630c1ef">Mafia::Gameplay::Game::users</a></div><div class="ttdeci">MafiaList&lt; Database::UserIdType &gt; users</div><div class="ttdoc">Список всех пользователей, учавствовавших и наблюдавших за игрой</div><div class="ttdef"><b>Definition:</b> game_s.h:18</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a2c23e550af9a0f95f338982a73eb437c"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">Mafia::Database::get_sql_type</a></div><div class="ttdeci">QString get_sql_type(int maxListCount=0, T val=T())</div><div class="ttdoc">Функция получения строки с sql названием типа данных, переданного в функцию</div><div class="ttdef"><b>Definition:</b> databasehelper.h:28</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_aa13b69aad45b421508d39b09e48a2ef4"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id</a></div><div class="ttdeci">virtual ExceptionIdType get_id()</div><div class="ttdoc">Взятие параметра id.</div><div class="ttdef"><b>Definition:</b> exception.cpp:27</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a7c37aa14c5d50e037727e714ad75e004a1136d8462e9c0e7e8f685b298836c4b4">Mafia::Database::FilterType_NONE</a></div><div class="ttdeci">@ FilterType_NONE</div><div class="ttdoc">Отсутствие фильтра</div><div class="ttdef"><b>Definition:</b> gamedatabasemanager.h:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_database_working_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Mafia::Exceptions::DatabaseWorkingException</a></div><div class="ttdoc">Класс для описания исключений работы с БД</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:12</div></div>
+<div class="ttc" id="adatabasemanager_8h_html"><div class="ttname"><a href="databasemanager_8h.html">databasemanager.h</a></div></div>
+<div class="ttc" id="astruct_mafia_1_1_gameplay_1_1_game_html_a5faf232b6f8d0740ffd3ccc88773670c"><div class="ttname"><a href="struct_mafia_1_1_gameplay_1_1_game.html#a5faf232b6f8d0740ffd3ccc88773670c">Mafia::Gameplay::Game::result</a></div><div class="ttdeci">GameResult result</div><div class="ttdoc">Глобальный результат игры</div><div class="ttdef"><b>Definition:</b> game_s.h:16</div></div>
+<div class="ttc" id="agame__s_8h_html"><div class="ttname"><a href="game__s_8h.html">game_s.h</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

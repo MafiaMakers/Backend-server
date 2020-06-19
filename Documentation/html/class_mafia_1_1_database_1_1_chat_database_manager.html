@@ -1,0 +1,1035 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Database::ChatDatabaseManager</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html">ChatDatabaseManager</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">Сигналы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pri-methods">Закрытые члены</a> &#124;
+<a href="#pri-static-attribs">Закрытые статические данные</a> &#124;
+<a href="class_mafia_1_1_database_1_1_chat_database_manager-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Database::ChatDatabaseManager</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Основной класс для работы с базой данных сообщений чатов  
+ <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="chatdatabasemanager_8h_source.html">chatdatabasemanager.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::Database::ChatDatabaseManager:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_database_1_1_chat_database_manager.png" usemap="#Mafia::Database::ChatDatabaseManager_map" alt=""/>
+  <map id="Mafia::Database::ChatDatabaseManager_map" name="Mafia::Database::ChatDatabaseManager_map">
+<area href="class_mafia_1_1_database_1_1_database_manager.html" title="Базовый класс, от которого наследуются все классы для работы с конкретными БД" alt="Mafia::Database::DatabaseManager" shape="rect" coords="249,0,488,24"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Сигналы</h2></td></tr>
+<tr class="memitem:aee7453e48da460e16238a7725ac4a595"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aee7453e48da460e16238a7725ac4a595">on_message_sent</a> (<a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> sentMessage)</td></tr>
+<tr class="memdesc:aee7453e48da460e16238a7725ac4a595"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при успешном добавлении сообщения в БД  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aee7453e48da460e16238a7725ac4a595">Подробнее...</a><br /></td></tr>
+<tr class="separator:aee7453e48da460e16238a7725ac4a595"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44a3e79cc165d5953f6bcd28c95f288e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a3e79cc165d5953f6bcd28c95f288e">on_message_edited</a> (<a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> editedMessage)</td></tr>
+<tr class="memdesc:a44a3e79cc165d5953f6bcd28c95f288e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при успешном изменении сообщения  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a3e79cc165d5953f6bcd28c95f288e">Подробнее...</a><br /></td></tr>
+<tr class="separator:a44a3e79cc165d5953f6bcd28c95f288e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbfaeb1af2eeb87687efead93eb6c24e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#afbfaeb1af2eeb87687efead93eb6c24e">on_message_deleted</a> (<a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> deletedId, <a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chatId)</td></tr>
+<tr class="memdesc:afbfaeb1af2eeb87687efead93eb6c24e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при удалении сообщения  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#afbfaeb1af2eeb87687efead93eb6c24e">Подробнее...</a><br /></td></tr>
+<tr class="separator:afbfaeb1af2eeb87687efead93eb6c24e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0d8362615a3cd602fcf2b3fc0c10549"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ae0d8362615a3cd602fcf2b3fc0c10549">on_message_read</a> (<a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> messageRead, <a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> user, <a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chat)</td></tr>
+<tr class="memdesc:ae0d8362615a3cd602fcf2b3fc0c10549"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при прочтении кем-либо сообщения  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#ae0d8362615a3cd602fcf2b3fc0c10549">Подробнее...</a><br /></td></tr>
+<tr class="separator:ae0d8362615a3cd602fcf2b3fc0c10549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:af89cb35760ec838e92ba604d5547278b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">ChatDatabaseManager</a> (<a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *databaseWorker, QObject *parent=nullptr)</td></tr>
+<tr class="memdesc:af89cb35760ec838e92ba604d5547278b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, создающий БД, если ее нет, и подключающийся к ней, если она уже есть  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Подробнее...</a><br /></td></tr>
+<tr class="separator:af89cb35760ec838e92ba604d5547278b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac297f573c34d9cefe4e7de3343b4ec79"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">get_last_messages</a> (<a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chatId, int messagesCount=<a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a411365c01864de918999694c222fd">MESSAGES_TO_UPLOAD_DEFAULT</a>)</td></tr>
+<tr class="memdesc:ac297f573c34d9cefe4e7de3343b4ec79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения нескольких последних сообщений данного чата  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac297f573c34d9cefe4e7de3343b4ec79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac064490df3e516a3bfddfc618658339f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">add_message</a> (<a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> message)</td></tr>
+<tr class="memdesc:ac064490df3e516a3bfddfc618658339f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для добавления сообщения в БД сообщений  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">Подробнее...</a><br /></td></tr>
+<tr class="separator:ac064490df3e516a3bfddfc618658339f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a50e0c12d1523b5c3ccf5a8a2ac89f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">delete_message</a> (<a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> id)</td></tr>
+<tr class="memdesc:aa4a50e0c12d1523b5c3ccf5a8a2ac89f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция удаления сообщения  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa4a50e0c12d1523b5c3ccf5a8a2ac89f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cce296d262d3a979fe287bb0faf6f9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">edit_message</a> (<a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> message)</td></tr>
+<tr class="memdesc:a3cce296d262d3a979fe287bb0faf6f9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для редактирования сообщения.  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3cce296d262d3a979fe287bb0faf6f9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ee84e72a2c3ce18f749193053821a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">message_read</a> (<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a> id, <a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> readUser)</td></tr>
+<tr class="memdesc:ab2ee84e72a2c3ce18f749193053821a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция для помечения сообщения как прочитанного кем-либо  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">Подробнее...</a><br /></td></tr>
+<tr class="separator:ab2ee84e72a2c3ce18f749193053821a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa16a5be40843f128ccd32c749dd97aca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">get_messages</a> (<a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> &gt; fromChats=<a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> &gt;(), <a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> &gt; possibleSenders=<a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> &gt;(), <a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a> &gt; features=<a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a> &gt;(), QString containsData=&quot;&quot;, QDateTime sentAfter=<a class="el" href="namespace_mafia_1_1_database.html#a729b70e8feb11b7f1d338f870b47150a">BEGINNING_TIME</a>, QDateTime sentBefore=<a class="el" href="namespace_mafia_1_1_database.html#a0acea0d0e2de9c9b3d82f5241d5678e1">ENDING_TIME</a>)</td></tr>
+<tr class="memdesc:aa16a5be40843f128ccd32c749dd97aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения сообщений по фильтру  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa16a5be40843f128ccd32c749dd97aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:aeeb325963c5cfc3010d2b9e70e6c4049"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aeeb325963c5cfc3010d2b9e70e6c4049">get_query_messages</a> (QSqlQuery *query)</td></tr>
+<tr class="memdesc:aeeb325963c5cfc3010d2b9e70e6c4049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получение сообщений по полученному ответу на sql-запрос  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aeeb325963c5cfc3010d2b9e70e6c4049">Подробнее...</a><br /></td></tr>
+<tr class="separator:aeeb325963c5cfc3010d2b9e70e6c4049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Закрытые статические данные</h2></td></tr>
+<tr class="memitem:a44a411365c01864de918999694c222fd"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a411365c01864de918999694c222fd">MESSAGES_TO_UPLOAD_DEFAULT</a> = 20</td></tr>
+<tr class="memdesc:a44a411365c01864de918999694c222fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Количество сообщений, которые загружаются стандартно. В вызове функции get_last_messages. То есть если не указано значение, то будет загружено ровно столько сообщений (или меньше, если их всего меньше)  <a href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a411365c01864de918999694c222fd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a44a411365c01864de918999694c222fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Дополнительные унаследованные члены</h2></td></tr>
+<tr class="inherit_header pro_methods_class_mafia_1_1_database_1_1_database_manager"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_mafia_1_1_database_1_1_database_manager')"><img src="closed.png" alt="-"/>&#160;Защищенные члены унаследованные от <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html">Mafia::Database::DatabaseManager</a></td></tr>
+<tr class="memitem:a67d37c10ee6291fe6e4b849010c19b7f inherit pro_methods_class_mafia_1_1_database_1_1_database_manager"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">DatabaseManager</a> (<a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *databaseWorker, QString name)</td></tr>
+<tr class="memdesc:a67d37c10ee6291fe6e4b849010c19b7f inherit pro_methods_class_mafia_1_1_database_1_1_database_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной и единственный конструктор, который связывается с БД и конкретной таблицей  <a href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">Подробнее...</a><br /></td></tr>
+<tr class="separator:a67d37c10ee6291fe6e4b849010c19b7f inherit pro_methods_class_mafia_1_1_database_1_1_database_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_mafia_1_1_database_1_1_database_manager')"><img src="closed.png" alt="-"/>&#160;Защищенные данные унаследованные от <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html">Mafia::Database::DatabaseManager</a></td></tr>
+<tr class="memitem:a7df3cb1cc851c6eb410294016647a29c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a></td></tr>
+<tr class="memdesc:a7df3cb1cc851c6eb410294016647a29c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Указатель на объект для работы с базой данных  <a href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a7df3cb1cc851c6eb410294016647a29c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31d0a66a2bc96dd477c37f0dcc1ec0ce inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a31d0a66a2bc96dd477c37f0dcc1ec0ce">localParameter</a> = &quot;Par@!A#$^%&amp;*()-_=+/\\MeTerLOCal&quot;</td></tr>
+<tr class="memdesc:a31d0a66a2bc96dd477c37f0dcc1ec0ce inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Локальный параметр хеширования  <a href="class_mafia_1_1_database_1_1_database_manager.html#a31d0a66a2bc96dd477c37f0dcc1ec0ce">Подробнее...</a><br /></td></tr>
+<tr class="separator:a31d0a66a2bc96dd477c37f0dcc1ec0ce inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01862e5fdbcad75efcd13771b700ea2c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a></td></tr>
+<tr class="memdesc:a01862e5fdbcad75efcd13771b700ea2c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя таблицы  <a href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a01862e5fdbcad75efcd13771b700ea2c inherit pro_attribs_class_mafia_1_1_database_1_1_database_manager"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Основной класс для работы с базой данных сообщений чатов </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="af89cb35760ec838e92ba604d5547278b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af89cb35760ec838e92ba604d5547278b">&#9670;&nbsp;</a></span>ChatDatabaseManager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChatDatabaseManager::ChatDatabaseManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a> *&#160;</td>
+          <td class="paramname"><em>databaseWorker</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>nullptr</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, создающий БД, если ее нет, и подключающийся к ней, если она уже есть </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">databaseWorker</td><td>Указатель на объект для работы с БД </td></tr>
+    <tr><td class="paramname">parent</td><td>Qt-шная фигня, которая равна nullptr </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    : QObject(parent), <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">DatabaseManager</a>(databaseWorker, <span class="stringliteral">&quot;messages_db&quot;</span>)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(<span class="stringliteral">&quot;SELECT * FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>:{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            QString request = <span class="stringliteral">&quot;CREATE TABLE &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot;(&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                    <span class="stringliteral">&quot;ID &quot;</span> + get_sql_type&lt;MessageIdType&gt;() + <span class="stringliteral">&quot; PRIMARY KEY&quot;</span> + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                    <span class="stringliteral">&quot;SENDER &quot;</span> + get_sql_type&lt;UserIdType&gt;() + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                    <span class="stringliteral">&quot;TO_CHAT &quot;</span> + get_sql_type&lt;ChatIdType&gt;() + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                    <span class="stringliteral">&quot;DATA &quot;</span> + get_sql_type&lt;QString&gt;() + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                    <span class="stringliteral">&quot;TIMESTAMP &quot;</span> + get_sql_type&lt;QDateTime&gt;() + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                    <span class="stringliteral">&quot;FEATURE &quot;</span> + get_sql_type&lt;ChatFeature&gt;() + <a class="code" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a> + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                    <span class="stringliteral">&quot;ANSWER_FOR &quot;</span> + get_sql_type&lt;MafiaList&lt;MessageIdType&gt;&gt;(<a class="code" href="namespace_mafia_1_1_database.html#a5fe3cf6dc28b9a727e2ee52604218583">MAX_ANSWER_MESSAGE_COUNT</a>) + <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                    <span class="stringliteral">&quot;READ_USERS &quot;</span> + <a class="code" href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">get_sql_type</a>&lt;MafiaList&lt;UserIdType&gt;&gt;(<a class="code" href="namespace_mafia_1_1_database.html#a989716110efc5cdc5b286058a04e3990">MAX_USERS_IN_CHAT</a>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">Mafia::Database::get_sql_type()</a>, <a class="el" href="namespace_mafia_1_1_database.html#a5fe3cf6dc28b9a727e2ee52604218583">Mafia::Database::MAX_ANSWER_MESSAGE_COUNT</a>, <a class="el" href="namespace_mafia_1_1_database.html#a989716110efc5cdc5b286058a04e3990">Mafia::Database::MAX_USERS_IN_CHAT</a>, <a class="el" href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a> и <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="ac064490df3e516a3bfddfc618658339f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac064490df3e516a3bfddfc618658339f">&#9670;&nbsp;</a></span>add_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> ChatDatabaseManager::add_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция для добавления сообщения в БД сообщений </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение, которое надо добавить (у него могут быть не инициализированы поля: id, timestamp и readUsers - они будут инициализированы автоматически) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>id добавленного сообщения </dd></dl>
+<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    QString request = <span class="stringliteral">&quot;INSERT INTO &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; (ID, SENDER, TO_CHAT, TIMESTAMP, FEATURE, READ_USERS, ANSWER_FOR, DATA) VALUES (%1, %2, %3, %4, %5, %6, %7, %8)&quot;</span>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    QString idRequest = <span class="stringliteral">&quot;SELECT COALESCE(MAX(ID), 0) FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        QSqlQuery* idQuery = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(idRequest);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">if</span>(idQuery-&gt;next()){</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> <span class="keywordtype">id</span> = query_value_to_variable&lt;MessageIdType&gt;(idQuery-&gt;value(0)) + 1;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a> = id;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a> = MafiaList&lt;UserIdType&gt;();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a> = QDateTime::currentDateTimeUtc();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            request = request.arg(QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            request = request.arg(QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a>));</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            request = request.arg(QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a>));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            request = request.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a>.toString(<a class="code" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">SQL_DATETIME_FORMAT</a>) + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            request = request.arg(QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a>));</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            request = request.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + QString::fromStdString(qbytearray_from_qlist&lt;UserIdType&gt;(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a>).toStdString()) + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            request = request.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + QString::fromStdString(qbytearray_from_qlist&lt;MessageIdType&gt;(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a>).toStdString()) + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            request = request.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">data</a> + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            emit <a class="code" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aee7453e48da460e16238a7725ac4a595">on_message_sent</a>(message);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">return</span> message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Null sql answer&quot;</span>), <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        }</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="keywordflow">return</span> -1;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aee7453e48da460e16238a7725ac4a595">on_message_sent()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a>, <a class="el" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a> и <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_main_server_manager.html#a08920a5fb6316edff2308467c69f42c0">Mafia::MainServerManager::_database_test()</a>.</p>
+
+</div>
+</div>
+<a id="aa4a50e0c12d1523b5c3ccf5a8a2ac89f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">&#9670;&nbsp;</a></span>delete_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatDatabaseManager::delete_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция удаления сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>id сообщения, которое следует удалить </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        QString infoRequest = <span class="stringliteral">&quot;SELECT TO_CHAT FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (ID = &quot;</span> + QString::number(<span class="keywordtype">id</span>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        QSqlQuery* infoQuery = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(infoRequest);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordflow">if</span>(infoQuery-&gt;next()){</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chatId = query_value_to_variable&lt;ChatIdType&gt;(infoQuery-&gt;value(0));</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            QString request = <span class="stringliteral">&quot;DELETE FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (ID = &quot;</span> + QString::number(<span class="keywordtype">id</span>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            emit <a class="code" href="class_mafia_1_1_database_1_1_chat_database_manager.html#afbfaeb1af2eeb87687efead93eb6c24e">on_message_deleted</a>(<span class="keywordtype">id</span>, chatId);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Null request answer for this id&quot;</span>),</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                                                           <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        }</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#afbfaeb1af2eeb87687efead93eb6c24e">on_message_deleted()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a>.</p>
+
+</div>
+</div>
+<a id="a3cce296d262d3a979fe287bb0faf6f9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cce296d262d3a979fe287bb0faf6f9d">&#9670;&nbsp;</a></span>edit_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatDatabaseManager::edit_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция для редактирования сообщения. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение, которое следует изменить. Поля readUsers и timestamp нинициализируются автоматически </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;{</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    QString request = <span class="stringliteral">&quot;SELECT * FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (ID = &quot;</span> + QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        QSqlQuery* query = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> oldVersion = <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        QSqlRecord record = query-&gt;record();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordflow">if</span>(query-&gt;next()){</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a> = query_value_to_variable&lt;MessageIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ID&quot;</span>)));</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a> = query_value_to_variable&lt;UserIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;SENDER&quot;</span>)));</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a> = query_value_to_variable&lt;ChatIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TO_CHAT&quot;</span>)));</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a> = query_value_to_variable&lt;ChatFeature&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;FEATURE&quot;</span>)));</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a> = query_value_to_variable&lt;MafiaList&lt;MessageIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ANSWER_FOR&quot;</span>)));</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a> = query_value_to_variable&lt;MafiaList&lt;UserIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;READ_USERS&quot;</span>)));</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a> = query_value_to_variable&lt;QDateTime&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TIMESTAMP&quot;</span>)));</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            <span class="keywordflow">if</span>(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a> != oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>){</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Some impossible thing happened!!!&quot;</span>),</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                                                               <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e">Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch</a>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;            }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            <span class="keywordflow">if</span>(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a> != oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a>){</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Sender in edited message is different!!&quot;</span>),</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                                                               <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e">Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch</a>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <span class="keywordflow">if</span>(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a> != oldVersion.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a>){</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Destination chat differs in edited and old messages!&quot;</span>),</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                                                               <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e">Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch</a>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;            QString updateRequest = <span class="stringliteral">&quot;UPDATE &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot;\nSET &quot;</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                    <span class="stringliteral">&quot;TIMESTAMP = %1, &quot;</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <span class="stringliteral">&quot;FEATURE = %2, &quot;</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    <span class="stringliteral">&quot;ANSWER_FOR = %3, &quot;</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    <span class="stringliteral">&quot;READ_USERS = \&#39;\&#39;, &quot;</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    <span class="stringliteral">&quot;DATA = %4&quot;</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                    <span class="stringliteral">&quot;\nWHERE (ID = &quot;</span> + QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>) + <span class="stringliteral">&quot;)&quot;</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    ;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160; </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a> = QDateTime::currentDateTimeUtc();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a> = MafiaList&lt;UserIdType&gt;();</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            updateRequest = updateRequest.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a>.toString(<a class="code" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">SQL_DATETIME_FORMAT</a>) + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            updateRequest = updateRequest.arg(QString::number(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a>));</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            updateRequest = updateRequest.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + QString::fromStdString(qbytearray_from_qlist&lt;MessageIdType&gt;(message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a>).toStdString()) + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;            updateRequest = updateRequest.arg(<span class="stringliteral">&quot;\&#39;&quot;</span> + message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">data</a> + <span class="stringliteral">&quot;\&#39;&quot;</span>);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(updateRequest);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160; </div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            emit <a class="code" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a3e79cc165d5953f6bcd28c95f288e">on_message_edited</a>(message);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Not message with such ID&quot;</span>),</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                                                           <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        }</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        }</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e">Mafia::Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a3e79cc165d5953f6bcd28c95f288e">on_message_edited()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a>, <a class="el" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a> и <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_main_server_manager.html#a08920a5fb6316edff2308467c69f42c0">Mafia::MainServerManager::_database_test()</a>.</p>
+
+</div>
+</div>
+<a id="ac297f573c34d9cefe4e7de3343b4ec79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac297f573c34d9cefe4e7de3343b4ec79">&#9670;&nbsp;</a></span>get_last_messages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt; ChatDatabaseManager::get_last_messages </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a>&#160;</td>
+          <td class="paramname"><em>chatId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>messagesCount</em> = <code><a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a411365c01864de918999694c222fd">MESSAGES_TO_UPLOAD_DEFAULT</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция получения нескольких последних сообщений данного чата </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">chatId</td><td>id чата, из которого необходимо получить сообщения </td></tr>
+    <tr><td class="paramname">messagesCount</td><td>Количество сообщений, которое необходимо получить. Стандартно равно <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a411365c01864de918999694c222fd">Mafia::Database::ChatDatabaseManager::MESSAGES_TO_UPLOAD_DEFAULT</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Список из сообщений </dd></dl>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    QString request = <span class="stringliteral">&quot;SELECT * FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (TO_CHAT = &quot;</span> + QString::number(chatId) + <span class="stringliteral">&quot;) ORDER BY ID DESC&quot;</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        QSqlQuery* query = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        QSqlRecord record = query-&gt;record();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        MafiaList&lt;ChatMessage&gt; messages = MafiaList&lt;ChatMessage&gt;();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordflow">while</span>(query-&gt;next() &amp;&amp; (messages.length() &lt; messagesCount)){</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> message = <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a> = query_value_to_variable&lt;MessageIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ID&quot;</span>)));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a> = query_value_to_variable&lt;UserIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;SENDER&quot;</span>)));</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a> = query_value_to_variable&lt;ChatIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TO_CHAT&quot;</span>)));</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a> = query_value_to_variable&lt;ChatFeature&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;FEATURE&quot;</span>)));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a> = query_value_to_variable&lt;QDateTime&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TIMESTAMP&quot;</span>)));</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a> = query_value_to_variable&lt;MafiaList&lt;MessageIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ANSWER_FOR&quot;</span>)));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a> = query_value_to_variable&lt;MafiaList&lt;UserIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;READ_USERS&quot;</span>)));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            message.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">data</a> = query_value_to_variable&lt;QString&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;DATA&quot;</span>)));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            messages.append(message);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> messages;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordflow">return</span> MafiaList&lt;ChatMessage&gt;();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a> и <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a>.</p>
+
+</div>
+</div>
+<a id="aa16a5be40843f128ccd32c749dd97aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa16a5be40843f128ccd32c749dd97aca">&#9670;&nbsp;</a></span>get_messages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt; ChatDatabaseManager::get_messages </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> &gt;&#160;</td>
+          <td class="paramname"><em>fromChats</em> = <code><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt;<a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a>&gt;()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> &gt;&#160;</td>
+          <td class="paramname"><em>possibleSenders</em> = <code><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt;<a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a>&gt;()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a> &gt;&#160;</td>
+          <td class="paramname"><em>features</em> = <code><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt;<a class="el" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a>&gt;()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>containsData</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QDateTime&#160;</td>
+          <td class="paramname"><em>sentAfter</em> = <code><a class="el" href="namespace_mafia_1_1_database.html#a729b70e8feb11b7f1d338f870b47150a">BEGINNING_TIME</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QDateTime&#160;</td>
+          <td class="paramname"><em>sentBefore</em> = <code><a class="el" href="namespace_mafia_1_1_database.html#a0acea0d0e2de9c9b3d82f5241d5678e1">ENDING_TIME</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция получения сообщений по фильтру </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fromChats</td><td>Чаты, из которых будут взяты сообщения (если не назначить, то поиск будет по всем чатам) </td></tr>
+    <tr><td class="paramname">possibleSenders</td><td>Сообщения только этих пользователей будут возвращены (если не назначить, то поиск будет по всем отправителям) </td></tr>
+    <tr><td class="paramname">features</td><td>Возможные доп. параметры сообщений (если не назначить, то подойдут любые параметры) </td></tr>
+    <tr><td class="paramname">containsData</td><td>Сообщение должно содержать в себе данную подстроку </td></tr>
+    <tr><td class="paramname">sentAfter</td><td>Сообщение должно быть отправлено после данного времени </td></tr>
+    <tr><td class="paramname">sentBefore</td><td>Сообщение должно быть отправлено до данного времени </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Список сообщений, удовлетворяющих условиям (например, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca" title="Функция получения сообщений по фильтру">get_messages()</a> - это получение всех сообщений) </dd></dl>
+<div class="fragment"><div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;{</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    QString request = <span class="stringliteral">&quot;SELECT * FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (TRUE&quot;</span>;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">if</span>(fromChats.length() != 0){</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        request += <span class="stringliteral">&quot; AND (&quot;</span>;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; fromChats.length(); i++){</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;            request += <span class="stringliteral">&quot;TO_CHAT = &quot;</span> + QString::number(fromChats[i]);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;            <span class="keywordflow">if</span>(i != fromChats.length() - 1){</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                request += <span class="stringliteral">&quot; OR &quot;</span>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                request += <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            }</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        }</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    }</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordflow">if</span>(possibleSenders.length() != 0){</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        request += <span class="stringliteral">&quot; AND (&quot;</span>;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; possibleSenders.length(); i++){</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            request += <span class="stringliteral">&quot;SENDER = &quot;</span> + QString::number(possibleSenders[i]);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160; </div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            <span class="keywordflow">if</span>(i != possibleSenders.length() - 1){</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;                request += <span class="stringliteral">&quot; OR &quot;</span>;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;            } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;                request += <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            }</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        }</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    }</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <span class="keywordflow">if</span>(features.length() != 0){</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;        request += <span class="stringliteral">&quot; AND (&quot;</span>;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; features.length(); i++){</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            request += <span class="stringliteral">&quot;FEATURE = &quot;</span> + QString::number(features[i]);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            <span class="keywordflow">if</span>(i != features.length() - 1){</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                request += <span class="stringliteral">&quot; OR &quot;</span>;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                request += <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;            }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    }</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    <span class="keywordflow">if</span>(containsData != <span class="stringliteral">&quot;&quot;</span>){</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        request += <span class="stringliteral">&quot; AND (CONTAINS(DATA, \&#39;&quot;</span> + containsData + <span class="stringliteral">&quot;\&#39;)&quot;</span>;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    request += <span class="stringliteral">&quot; AND (TIMESTAMP &gt;= \&#39;&quot;</span> + sentAfter.toString(<a class="code" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">SQL_DATETIME_FORMAT</a>) + <span class="stringliteral">&quot;\&#39;)&quot;</span>;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    request += <span class="stringliteral">&quot; AND (TIMESTAMP &lt;= \&#39;&quot;</span> + sentBefore.toString(<a class="code" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">SQL_DATETIME_FORMAT</a>) + <span class="stringliteral">&quot;\&#39;)&quot;</span>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    request += <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;        QSqlQuery* query = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(request);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160; </div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aeeb325963c5cfc3010d2b9e70e6c4049">get_query_messages</a>(query);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        }</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        }</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aeeb325963c5cfc3010d2b9e70e6c4049">get_query_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a> и <a class="el" href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_main_server_manager.html#a336f3e23aa04cfc87713e2cb20911341">Mafia::MainServerManager::_database_get_all()</a>.</p>
+
+</div>
+</div>
+<a id="aeeb325963c5cfc3010d2b9e70e6c4049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeb325963c5cfc3010d2b9e70e6c4049">&#9670;&nbsp;</a></span>get_query_messages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QList&lt; <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> &gt; ChatDatabaseManager::get_query_messages </td>
+          <td>(</td>
+          <td class="paramtype">QSqlQuery *&#160;</td>
+          <td class="paramname"><em>query</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Получение сообщений по полученному ответу на sql-запрос </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>sql-запрос, содержащий ответ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Список из сообщений </dd></dl>
+<div class="fragment"><div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;{</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    MafiaList&lt;ChatMessage&gt; messages = MafiaList&lt;ChatMessage&gt;();</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160; </div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    QSqlRecord record = query-&gt;record();</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">while</span> (query-&gt;next()) {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a> mes = <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>();</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a> = query_value_to_variable&lt;MessageIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ID&quot;</span>)));</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">data</a> = query_value_to_variable&lt;QString&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;DATA&quot;</span>)));</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a> = query_value_to_variable&lt;UserIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;SENDER&quot;</span>)));</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a> = query_value_to_variable&lt;ChatIdType&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TO_CHAT&quot;</span>)));</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a> = query_value_to_variable&lt;ChatFeature&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;FEATURE&quot;</span>)));</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a> = query_value_to_variable&lt;MafiaList&lt;MessageIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;ANSWER_FOR&quot;</span>)));</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a> = query_value_to_variable&lt;MafiaList&lt;UserIdType&gt;&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;READ_USERS&quot;</span>)));</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        mes.<a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a> = query_value_to_variable&lt;QDateTime&gt;(query-&gt;value(record.indexOf(<span class="stringliteral">&quot;TIMESTAMP&quot;</span>)));</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160; </div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        messages.append(mes);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    }</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160; </div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordflow">return</span> messages;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a>, <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a> и <a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">get_messages()</a>.</p>
+
+</div>
+</div>
+<a id="ab2ee84e72a2c3ce18f749193053821a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ee84e72a2c3ce18f749193053821a6">&#9670;&nbsp;</a></span>message_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatDatabaseManager::message_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a>&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a>&#160;</td>
+          <td class="paramname"><em>readUser</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция для помечения сообщения как прочитанного кем-либо </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>id сообщения, которое прочитанно </td></tr>
+    <tr><td class="paramname">readUser</td><td>id пользователя, который его прочитал </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        QString infoRequest = <span class="stringliteral">&quot;SELECT READ_USERS, TO_CHAT FROM &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot; WHERE (ID = &quot;</span> + QString::number(<span class="keywordtype">id</span>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        QSqlQuery* infoQuery = <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(infoRequest);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordflow">if</span>(infoQuery-&gt;next()){</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;            QSqlRecord record = infoQuery-&gt;record();</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;            MafiaList&lt;UserIdType&gt; readUsers = query_value_to_variable&lt;MafiaList&lt;UserIdType&gt;&gt;(infoQuery-&gt;value(record.indexOf(<span class="stringliteral">&quot;READ_USERS&quot;</span>)));</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> chat = query_value_to_variable&lt;ChatIdType&gt;(infoQuery-&gt;value(record.indexOf(<span class="stringliteral">&quot;TO_CHAT&quot;</span>)));</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;            readUsers.append(readUser);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;            QString updateRequest = <span class="stringliteral">&quot;UPDATE &quot;</span> + <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">dbName</a> + <span class="stringliteral">&quot;\nSET READ_USERS = \&#39;&quot;</span> +</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                    QString::fromStdString(qbytearray_from_qlist&lt;UserIdType&gt;(readUsers).toStdString()) + <span class="stringliteral">&quot;\&#39;\nWHERE (ID = &quot;</span> +</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                    QString::number(<span class="keywordtype">id</span>) + <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160; </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <a class="code" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">dbWorker</a>-&gt;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a>(updateRequest);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;            emit <a class="code" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ae0d8362615a3cd602fcf2b3fc0c10549">on_message_read</a>(<span class="keywordtype">id</span>, readUser, chat);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;No messages of such ID&quot;</span>),</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                                                           <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        }</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160; </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        <span class="keywordflow">switch</span> (exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">get_id</a>()) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">throw</span> exception;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ae0d8362615a3cd602fcf2b3fc0c10549">on_message_read()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query()</a>.</p>
+
+</div>
+</div>
+<a id="afbfaeb1af2eeb87687efead93eb6c24e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbfaeb1af2eeb87687efead93eb6c24e">&#9670;&nbsp;</a></span>on_message_deleted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Database::ChatDatabaseManager::on_message_deleted </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a>&#160;</td>
+          <td class="paramname"><em>deletedId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a>&#160;</td>
+          <td class="paramname"><em>chatId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при удалении сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deletedId</td><td>id удаленного сообщения </td></tr>
+    <tr><td class="paramname">chatId</td><td>id чата, из которого было удалено сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">delete_message()</a>.</p>
+
+</div>
+</div>
+<a id="a44a3e79cc165d5953f6bcd28c95f288e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a3e79cc165d5953f6bcd28c95f288e">&#9670;&nbsp;</a></span>on_message_edited</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Database::ChatDatabaseManager::on_message_edited </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>&#160;</td>
+          <td class="paramname"><em>editedMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при успешном изменении сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">editedMessage</td><td>Сообщение, которое было изменено </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">edit_message()</a>.</p>
+
+</div>
+</div>
+<a id="ae0d8362615a3cd602fcf2b3fc0c10549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0d8362615a3cd602fcf2b3fc0c10549">&#9670;&nbsp;</a></span>on_message_read</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Database::ChatDatabaseManager::on_message_read </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a>&#160;</td>
+          <td class="paramname"><em>messageRead</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a>&#160;</td>
+          <td class="paramname"><em>user</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a>&#160;</td>
+          <td class="paramname"><em>chat</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при прочтении кем-либо сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">messageRead</td><td>id сообщения, которое было прочитано </td></tr>
+    <tr><td class="paramname">user</td><td>пользователь, который прочитал это сообщение </td></tr>
+    <tr><td class="paramname">chat</td><td>чат, в котором находится это сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">message_read()</a>.</p>
+
+</div>
+</div>
+<a id="aee7453e48da460e16238a7725ac4a595"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee7453e48da460e16238a7725ac4a595">&#9670;&nbsp;</a></span>on_message_sent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Database::ChatDatabaseManager::on_message_sent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>&#160;</td>
+          <td class="paramname"><em>sentMessage</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при успешном добавлении сообщения в БД </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sentMessage</td><td>Сообщение, которое было добавлено </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">add_message()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a44a411365c01864de918999694c222fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44a411365c01864de918999694c222fd">&#9670;&nbsp;</a></span>MESSAGES_TO_UPLOAD_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Database::ChatDatabaseManager::MESSAGES_TO_UPLOAD_DEFAULT = 20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Количество сообщений, которые загружаются стандартно. В вызове функции get_last_messages. То есть если не указано значение, то будет загружено ровно столько сообщений (или меньше, если их всего меньше) </p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Database/<a class="el" href="chatdatabasemanager_8h_source.html">chatdatabasemanager.h</a></li>
+<li>Database/<a class="el" href="chatdatabasemanager_8cpp.html">chatdatabasemanager.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_a26505358738862d28c8fd6bcd701ec11"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show</a></div><div class="ttdeci">virtual void show()</div><div class="ttdoc">Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.</div><div class="ttdef"><b>Definition:</b> exception.cpp:12</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_abd93af2b68471986f93b4909c04ba4c0"><div class="ttname"><a href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a></div><div class="ttdeci">const QString SQL_DATETIME_FORMAT</div><div class="ttdoc">Формат даты и времени, который используется везде по программе (т.к. он используется SQL)</div><div class="ttdef"><b>Definition:</b> user.h:11</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a245b54cad071a8a7f0c3a468268a8c8e"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a></div><div class="ttdeci">QDateTime timestamp</div><div class="ttdoc">Время, когда было отправлено сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:32</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a32d9adb766390ac90c582664f496c524"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">Mafia::Database::ChatIdType</a></div><div class="ttdeci">int ChatIdType</div><div class="ttdoc">Тип, использующийся для id чатов в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:21</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a64fa3f0382095cbe102981ea58797adf"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a></div><div class="ttdeci">MessageIdType id</div><div class="ttdoc">id сообщения</div><div class="ttdef"><b>Definition:</b> chatmessage.h:24</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_chat_database_manager_html_a44a3e79cc165d5953f6bcd28c95f288e"><div class="ttname"><a href="class_mafia_1_1_database_1_1_chat_database_manager.html#a44a3e79cc165d5953f6bcd28c95f288e">Mafia::Database::ChatDatabaseManager::on_message_edited</a></div><div class="ttdeci">void on_message_edited(ChatMessage editedMessage)</div><div class="ttdoc">Сигнал, вызываемый при успешном изменении сообщения</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a72b0e8f0b310f03c215f8b9d1856d6c3"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a></div><div class="ttdeci">ChatIdType toChat</div><div class="ttdoc">id чата, в который отправлено сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:30</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a3a7acb2ad2a553c7891627f9df1dae4e">Mafia::Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_MessageParameterMismatch</div><div class="ttdoc">Исключение, вызываемое при несовпадении параметров изменяемого и нового сообщения (например,...</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:54</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a67d37c10ee6291fe6e4b849010c19b7f"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a67d37c10ee6291fe6e4b849010c19b7f">Mafia::Database::DatabaseManager::DatabaseManager</a></div><div class="ttdeci">DatabaseManager(DatabaseWorker *databaseWorker, QString name)</div><div class="ttdoc">Основной и единственный конструктор, который связывается с БД и конкретной таблицей</div><div class="ttdef"><b>Definition:</b> databasemanager.cpp:6</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a01862e5fdbcad75efcd13771b700ea2c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a01862e5fdbcad75efcd13771b700ea2c">Mafia::Database::DatabaseManager::dbName</a></div><div class="ttdeci">const QString dbName</div><div class="ttdoc">Имя таблицы</div><div class="ttdef"><b>Definition:</b> databasemanager.h:24</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_af08e149c6263a2d4c98f6ccd1be28dbe"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a></div><div class="ttdeci">QString data</div><div class="ttdoc">Само сообщение (текст)</div><div class="ttdef"><b>Definition:</b> chatmessage.h:26</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_chat_database_manager_html_afbfaeb1af2eeb87687efead93eb6c24e"><div class="ttname"><a href="class_mafia_1_1_database_1_1_chat_database_manager.html#afbfaeb1af2eeb87687efead93eb6c24e">Mafia::Database::ChatDatabaseManager::on_message_deleted</a></div><div class="ttdeci">void on_message_deleted(MessageIdType deletedId, ChatIdType chatId)</div><div class="ttdoc">Сигнал, вызываемый при удалении сообщения</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_chat_database_manager_html_aeeb325963c5cfc3010d2b9e70e6c4049"><div class="ttname"><a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aeeb325963c5cfc3010d2b9e70e6c4049">Mafia::Database::ChatDatabaseManager::get_query_messages</a></div><div class="ttdeci">MafiaList&lt; ChatMessage &gt; get_query_messages(QSqlQuery *query)</div><div class="ttdoc">Получение сообщений по полученному ответу на sql-запрос</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.cpp:318</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a9f49bfd36fbd2959a5c079916b8e1d66"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a></div><div class="ttdeci">MafiaList&lt; MessageIdType &gt; answerFor</div><div class="ttdoc">Список сообщений, на которые отвечает данное сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:36</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a52d623a22d79942cbcd0217a91b6f816"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">Mafia::Database::MessageIdType</a></div><div class="ttdeci">int MessageIdType</div><div class="ttdoc">Тип, используемый для обозначения id сообщений чата</div><div class="ttdef"><b>Definition:</b> chatmessage.h:19</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_manager_html_a7df3cb1cc851c6eb410294016647a29c"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_manager.html#a7df3cb1cc851c6eb410294016647a29c">Mafia::Database::DatabaseManager::dbWorker</a></div><div class="ttdeci">DatabaseWorker * dbWorker</div><div class="ttdoc">Указатель на объект для работы с базой данных</div><div class="ttdef"><b>Definition:</b> databasemanager.h:20</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a5fe3cf6dc28b9a727e2ee52604218583"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a5fe3cf6dc28b9a727e2ee52604218583">Mafia::Database::MAX_ANSWER_MESSAGE_COUNT</a></div><div class="ttdeci">const int MAX_ANSWER_MESSAGE_COUNT</div><div class="ttdoc">Максимальное количество сообщений, на которые можно ответить одним сообщением</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:12</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html">Mafia::Database::ChatMessage</a></div><div class="ttdoc">Структура для хранения в БД и работы с сообщениями чата</div><div class="ttdef"><b>Definition:</b> chatmessage.h:22</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a54be88ba6ba22f0f4fb6d650ca2ea57b"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a></div><div class="ttdeci">UserIdType from</div><div class="ttdoc">id пользователя-отправителя</div><div class="ttdef"><b>Definition:</b> chatmessage.h:28</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_chat_database_manager_html_ae0d8362615a3cd602fcf2b3fc0c10549"><div class="ttname"><a href="class_mafia_1_1_database_1_1_chat_database_manager.html#ae0d8362615a3cd602fcf2b3fc0c10549">Mafia::Database::ChatDatabaseManager::on_message_read</a></div><div class="ttdeci">void on_message_read(MessageIdType messageRead, UserIdType user, ChatIdType chat)</div><div class="ttdoc">Сигнал, вызываемый при прочтении кем-либо сообщения</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a989716110efc5cdc5b286058a04e3990"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a989716110efc5cdc5b286058a04e3990">Mafia::Database::MAX_USERS_IN_CHAT</a></div><div class="ttdeci">const int MAX_USERS_IN_CHAT</div><div class="ttdoc">Максимальное количество пользователей в одном чате</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:14</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html">Mafia::System::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:13</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a70101a0c4e6dfd4aa3be469cd4943ea3"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a></div><div class="ttdeci">ChatFeature feature</div><div class="ttdoc">Дополнительный параметр сообщения (см. Mafia::Database::ChatFeature)</div><div class="ttdef"><b>Definition:</b> chatmessage.h:34</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a77bf26edac421999293650a9d6a5c302"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Mafia::Database::DatabaseWorker::run_query</a></div><div class="ttdeci">QSqlQuery * run_query(QString request)</div><div class="ttdoc">Функция, выполняющая строковой Sql запрос</div><div class="ttdef"><b>Definition:</b> databaseworker.cpp:49</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_SQlQuery</div><div class="ttdoc">Исключение, вызываемое при ошибке в sql-запросе</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:39</div></div>
+<div class="ttc" id="adatabaseworker_8h_html_a294410b213914d2cacf150fe37098733"><div class="ttname"><a href="databaseworker_8h.html#a294410b213914d2cacf150fe37098733">NOT_NULL</a></div><div class="ttdeci">#define NOT_NULL</div><div class="ttdoc">Sql команда для обозначения переменной, которой нельзя присвоить неинициализированное значение</div><div class="ttdef"><b>Definition:</b> databaseworker.h:8</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html">Mafia::Exceptions::Exception</a></div><div class="ttdoc">Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться ...</div><div class="ttdef"><b>Definition:</b> exception.h:15</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a2c23e550af9a0f95f338982a73eb437c"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">Mafia::Database::get_sql_type</a></div><div class="ttdeci">QString get_sql_type(int maxListCount=0, T val=T())</div><div class="ttdoc">Функция получения строки с sql названием типа данных, переданного в функцию</div><div class="ttdef"><b>Definition:</b> databasehelper.h:28</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a72efaec1080683fda0394bb19f623cb7"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a></div><div class="ttdeci">MafiaList&lt; UserIdType &gt; readUsers</div><div class="ttdoc">Список пользователей, которые прочитали это сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:38</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_aa13b69aad45b421508d39b09e48a2ef4"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#aa13b69aad45b421508d39b09e48a2ef4">Mafia::Exceptions::Exception::get_id</a></div><div class="ttdeci">virtual ExceptionIdType get_id()</div><div class="ttdoc">Взятие параметра id.</div><div class="ttdef"><b>Definition:</b> exception.cpp:27</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_database_working_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Mafia::Exceptions::DatabaseWorkingException</a></div><div class="ttdoc">Класс для описания исключений работы с БД</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:12</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_chat_database_manager_html_aee7453e48da460e16238a7725ac4a595"><div class="ttname"><a href="class_mafia_1_1_database_1_1_chat_database_manager.html#aee7453e48da460e16238a7725ac4a595">Mafia::Database::ChatDatabaseManager::on_message_sent</a></div><div class="ttdeci">void on_message_sent(ChatMessage sentMessage)</div><div class="ttdoc">Сигнал, вызываемый при успешном добавлении сообщения в БД</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

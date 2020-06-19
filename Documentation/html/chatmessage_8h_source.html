@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл Database/chatmessage.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d00f5e20d7b27686287f9c84bc9112f8.html">Database</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">chatmessage.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="chatmessage_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CHATMESSAGE_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CHATMESSAGE_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="user_8h.html">user.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keyword">namespace </span>Database {</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">    9</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6aaeddbd4df1f4a02b3ad65db6fc1be02c">   11</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6aaeddbd4df1f4a02b3ad65db6fc1be02c">ChatFeature_None</a>,</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a5a35d2112f27d2984bd9a6773d583771">   13</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a5a35d2112f27d2984bd9a6773d583771">ChatFeature_Edited</a>,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a4623064672365c2d1582af21c61565d2">ChatFeature_Marked</a></div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a4623064672365c2d1582af21c61565d2">   16</a></span>&#160;        };</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">   19</a></span>&#160;        <span class="keyword">typedef</span> <span class="keywordtype">int</span> <a class="code" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html">   22</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html">ChatMessage</a>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">   24</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">MessageIdType</a> <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">id</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">   26</a></span>&#160;            QString <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">data</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">   28</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">UserIdType</a> <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">from</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">   30</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">ChatIdType</a> <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">toChat</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">   32</a></span>&#160;            QDateTime <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">timestamp</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">   34</a></span>&#160;            <a class="code" href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">ChatFeature</a> <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">feature</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">   36</a></span>&#160;            MafiaList&lt;MessageIdType&gt; <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">answerFor</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">   38</a></span>&#160;            MafiaList&lt;UserIdType&gt; <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">readUsers</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="struct_mafia_1_1_database_1_1_chat_message.html#acf767b88ab2faed309887e7709d762ba">show</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // CHATMESSAGE_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a18a8a60221c326cec9b2f9c19480a4e6aaeddbd4df1f4a02b3ad65db6fc1be02c"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6aaeddbd4df1f4a02b3ad65db6fc1be02c">Mafia::Database::ChatFeature_None</a></div><div class="ttdeci">@ ChatFeature_None</div><div class="ttdoc">Никакого параметра</div><div class="ttdef"><b>Definition:</b> chatmessage.h:11</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_abd93af2b68471986f93b4909c04ba4c0"><div class="ttname"><a href="namespace_mafia_1_1_database.html#abd93af2b68471986f93b4909c04ba4c0">Mafia::Database::SQL_DATETIME_FORMAT</a></div><div class="ttdeci">const QString SQL_DATETIME_FORMAT</div><div class="ttdoc">Формат даты и времени, который используется везде по программе (т.к. он используется SQL)</div><div class="ttdef"><b>Definition:</b> user.h:11</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a245b54cad071a8a7f0c3a468268a8c8e"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a245b54cad071a8a7f0c3a468268a8c8e">Mafia::Database::ChatMessage::timestamp</a></div><div class="ttdeci">QDateTime timestamp</div><div class="ttdoc">Время, когда было отправлено сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:32</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a32d9adb766390ac90c582664f496c524"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a32d9adb766390ac90c582664f496c524">Mafia::Database::ChatIdType</a></div><div class="ttdeci">int ChatIdType</div><div class="ttdoc">Тип, использующийся для id чатов в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:21</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a64fa3f0382095cbe102981ea58797adf"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a64fa3f0382095cbe102981ea58797adf">Mafia::Database::ChatMessage::id</a></div><div class="ttdeci">MessageIdType id</div><div class="ttdoc">id сообщения</div><div class="ttdef"><b>Definition:</b> chatmessage.h:24</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a72b0e8f0b310f03c215f8b9d1856d6c3"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a72b0e8f0b310f03c215f8b9d1856d6c3">Mafia::Database::ChatMessage::toChat</a></div><div class="ttdeci">ChatIdType toChat</div><div class="ttdoc">id чата, в который отправлено сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:30</div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:9</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_af08e149c6263a2d4c98f6ccd1be28dbe"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#af08e149c6263a2d4c98f6ccd1be28dbe">Mafia::Database::ChatMessage::data</a></div><div class="ttdeci">QString data</div><div class="ttdoc">Само сообщение (текст)</div><div class="ttdef"><b>Definition:</b> chatmessage.h:26</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a9f49bfd36fbd2959a5c079916b8e1d66"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a9f49bfd36fbd2959a5c079916b8e1d66">Mafia::Database::ChatMessage::answerFor</a></div><div class="ttdeci">MafiaList&lt; MessageIdType &gt; answerFor</div><div class="ttdoc">Список сообщений, на которые отвечает данное сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:36</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a52d623a22d79942cbcd0217a91b6f816"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a52d623a22d79942cbcd0217a91b6f816">Mafia::Database::MessageIdType</a></div><div class="ttdeci">int MessageIdType</div><div class="ttdoc">Тип, используемый для обозначения id сообщений чата</div><div class="ttdef"><b>Definition:</b> chatmessage.h:19</div></div>
+<div class="ttc" id="adatabasehelper_8h_html"><div class="ttname"><a href="databasehelper_8h.html">databasehelper.h</a></div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html">Mafia::Database::ChatMessage</a></div><div class="ttdoc">Структура для хранения в БД и работы с сообщениями чата</div><div class="ttdef"><b>Definition:</b> chatmessage.h:22</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a54be88ba6ba22f0f4fb6d650ca2ea57b"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a54be88ba6ba22f0f4fb6d650ca2ea57b">Mafia::Database::ChatMessage::from</a></div><div class="ttdeci">UserIdType from</div><div class="ttdoc">id пользователя-отправителя</div><div class="ttdef"><b>Definition:</b> chatmessage.h:28</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a18a8a60221c326cec9b2f9c19480a4e6"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6">Mafia::Database::ChatFeature</a></div><div class="ttdeci">ChatFeature</div><div class="ttdoc">Перечисление возможных параметров сообщения</div><div class="ttdef"><b>Definition:</b> chatmessage.h:9</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a18a8a60221c326cec9b2f9c19480a4e6a5a35d2112f27d2984bd9a6773d583771"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a5a35d2112f27d2984bd9a6773d583771">Mafia::Database::ChatFeature_Edited</a></div><div class="ttdeci">@ ChatFeature_Edited</div><div class="ttdoc">Измененное сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:13</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_ab42c0ff51241aae191094adfd24334d1"><div class="ttname"><a href="namespace_mafia_1_1_database.html#ab42c0ff51241aae191094adfd24334d1">Mafia::Database::UserIdType</a></div><div class="ttdeci">int UserIdType</div><div class="ttdoc">Тип, использующийся для id пользователей в базе данных</div><div class="ttdef"><b>Definition:</b> user.h:19</div></div>
+<div class="ttc" id="auser_8h_html"><div class="ttname"><a href="user_8h.html">user.h</a></div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a70101a0c4e6dfd4aa3be469cd4943ea3"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a70101a0c4e6dfd4aa3be469cd4943ea3">Mafia::Database::ChatMessage::feature</a></div><div class="ttdeci">ChatFeature feature</div><div class="ttdoc">Дополнительный параметр сообщения (см. Mafia::Database::ChatFeature)</div><div class="ttdef"><b>Definition:</b> chatmessage.h:34</div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_acf767b88ab2faed309887e7709d762ba"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#acf767b88ab2faed309887e7709d762ba">Mafia::Database::ChatMessage::show</a></div><div class="ttdeci">void show()</div><div class="ttdoc">Метод для вывода информации о сообщении (всех его полей)</div><div class="ttdef"><b>Definition:</b> chatmessage.cpp:6</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_database_html_a18a8a60221c326cec9b2f9c19480a4e6a4623064672365c2d1582af21c61565d2"><div class="ttname"><a href="namespace_mafia_1_1_database.html#a18a8a60221c326cec9b2f9c19480a4e6a4623064672365c2d1582af21c61565d2">Mafia::Database::ChatFeature_Marked</a></div><div class="ttdeci">@ ChatFeature_Marked</div><div class="ttdoc">Помеченное сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:15</div></div>
+<div class="ttc" id="achatmessage_8h_html"><div class="ttname"><a href="chatmessage_8h.html">chatmessage.h</a></div></div>
+<div class="ttc" id="astruct_mafia_1_1_database_1_1_chat_message_html_a72efaec1080683fda0394bb19f623cb7"><div class="ttname"><a href="struct_mafia_1_1_database_1_1_chat_message.html#a72efaec1080683fda0394bb19f623cb7">Mafia::Database::ChatMessage::readUsers</a></div><div class="ttdeci">MafiaList&lt; UserIdType &gt; readUsers</div><div class="ttdoc">Список пользователей, которые прочитали это сообщение</div><div class="ttdef"><b>Definition:</b> chatmessage.h:38</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

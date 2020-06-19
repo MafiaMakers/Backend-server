@@ -1,0 +1,2 @@
+#include "mainservermanager.h"
+using namespace Mafia;

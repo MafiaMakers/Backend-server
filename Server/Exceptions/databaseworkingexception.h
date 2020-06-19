@@ -47,8 +47,20 @@ namespace Mafia {
             DatabaseWorkingExceptionId_TimeLimit = 506,
             //! \brief Исключение, вызываемое при передаче неизвестного sql типа данных
             DatabaseWorkingExceptionId_UnknownType = 507,
+            //! \brief Исключение, вызываемое при получении в качестве фильтра неизвестного значеня
+            DatabaseWorkingExceptionId_UnknownFilterType = 508,
+            //! \brief Исключение, вызываемое при несовпадении параметров изменяемого и нового сообщения
+            //! (например, если по какой-то причине мы хотим при изменении сообщения поменять его автора)
+            DatabaseWorkingExceptionId_MessageParameterMismatch = 509,
+            //! \brief Исключение, вызываемое при попытке удалить пользователя из чата, в котором он не состоит
+            DatabaseWorkingExceptionId_DeleteMissedItemAttempt = 510,
+            //! \brief Исключение, вызываемое при попытке добавить пользователя в чат, в котором он уже состоит
+            DatabaseWorkingExceptionId_DoubleAddingItemAttempt = 511,
+            //! \brief Исключение, вызываемое в случае, если два массива, у которых должны совпадать размеры, не совпадают по размеру
+            //! (например, если в чате количество пользователей и количество их ролей не совпадают)
+            DatabaseWorkingExceptionId_ArraySizeMismatch = 512,
             //! \brief Верхняя граница id исключений работы с БД (см. \ref Mafia::Database::Status_First)
-            DatabaseWorkingExceptionId_Last = 508
+            DatabaseWorkingExceptionId_Last = 513
         };
     }
 }

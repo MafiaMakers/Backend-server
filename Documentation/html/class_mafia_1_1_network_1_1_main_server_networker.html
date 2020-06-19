@@ -1,0 +1,932 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Network::MainServerNetworker</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_network.html">Network</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html">MainServerNetworker</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#signals">Сигналы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pri-slots">Закрытые слоты</a> &#124;
+<a href="#pri-methods">Закрытые члены</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
+<a href="#pri-static-attribs">Закрытые статические данные</a> &#124;
+<a href="class_mafia_1_1_network_1_1_main_server_networker-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Network::MainServerNetworker</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Основной класс отправки и получения сообщений для основного сервера  
+ <a href="class_mafia_1_1_network_1_1_main_server_networker.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="mainservernetworker_8h_source.html">mainservernetworker.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:Mafia::Network::MainServerNetworker:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_mafia_1_1_network_1_1_main_server_networker.png" alt=""/>
+ </div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Сигналы</h2></td></tr>
+<tr class="memitem:a4d9a5c376099ec5385b29e7d2804f1f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a4d9a5c376099ec5385b29e7d2804f1f8">request_answer</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a4d9a5c376099ec5385b29e7d2804f1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a4d9a5c376099ec5385b29e7d2804f1f8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4d9a5c376099ec5385b29e7d2804f1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8890be7bac78bd34241da31467dc2766"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8890be7bac78bd34241da31467dc2766">on_subserver_api_message_received</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a8890be7bac78bd34241da31467dc2766"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сигнал, вызываемый при получении сообщения от api субсервера  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a8890be7bac78bd34241da31467dc2766">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8890be7bac78bd34241da31467dc2766"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker</a> (int port)</td></tr>
+<tr class="memdesc:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конструктор, инициализирует сервер на указанном порте  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">Подробнее...</a><br /></td></tr>
+<tr class="separator:ad4d86b737c89eb1a03aaf04ba4968ab8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809fe51085cf50cf95cb07315dbb1042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a809fe51085cf50cf95cb07315dbb1042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправления сообщения  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">Подробнее...</a><br /></td></tr>
+<tr class="separator:a809fe51085cf50cf95cb07315dbb1042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
+Закрытые слоты</h2></td></tr>
+<tr class="memitem:a8dba1c5ee332ccb7789f5f503abdd627"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message</a> ()</td></tr>
+<tr class="memdesc:a8dba1c5ee332ccb7789f5f503abdd627"><td class="mdescLeft">&#160;</td><td class="mdescRight">слот для получения сообщения. Вызывается автоматически  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8dba1c5ee332ccb7789f5f503abdd627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c96b5fcfaf58b35e3b88d81230caf64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1c96b5fcfaf58b35e3b88d81230caf64">show_message</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> mes)</td></tr>
+<tr class="memdesc:a1c96b5fcfaf58b35e3b88d81230caf64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция вывода всей информации о сообщении  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a1c96b5fcfaf58b35e3b88d81230caf64">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1c96b5fcfaf58b35e3b88d81230caf64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:aaa8fa82df18d804ebd27ee43ae80160b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message</a> (char *data, int size, QHostAddress client, int port)</td></tr>
+<tr class="memdesc:aaa8fa82df18d804ebd27ee43ae80160b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправка сообщения  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">Подробнее...</a><br /></td></tr>
+<tr class="separator:aaa8fa82df18d804ebd27ee43ae80160b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5452ebbbe9acf00ecbd5347f80f90302"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> message)</td></tr>
+<tr class="memdesc:a5452ebbbe9acf00ecbd5347f80f90302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработка сообщения  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">Подробнее...</a><br /></td></tr>
+<tr class="separator:a5452ebbbe9acf00ecbd5347f80f90302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6933425e756864ceb1f5677cacd787ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">_resend_not_confirmed_messages</a> ()</td></tr>
+<tr class="memdesc:a6933425e756864ceb1f5677cacd787ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка и отправка всех неподтвержденных сообщений  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6933425e756864ceb1f5677cacd787ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f128eda9c849d9120ab0ad478fe2742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a0f128eda9c849d9120ab0ad478fe2742">late_send_message</a> (<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> message, int delay)</td></tr>
+<tr class="memdesc:a0f128eda9c849d9120ab0ad478fe2742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправка сообщения с задержкой  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a0f128eda9c849d9120ab0ad478fe2742">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0f128eda9c849d9120ab0ad478fe2742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:a1cbace6fdbfe698167485cb0b7867e82"><td class="memItemLeft" align="right" valign="top">QUdpSocket *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a></td></tr>
+<tr class="memdesc:a1cbace6fdbfe698167485cb0b7867e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">сокет сервера  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1cbace6fdbfe698167485cb0b7867e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f32e1fbcbe5f9721986423fd6926ebe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a></td></tr>
+<tr class="memdesc:a3f32e1fbcbe5f9721986423fd6926ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">порт сервера  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3f32e1fbcbe5f9721986423fd6926ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27dcd127e416f72e0ed1ef4e12075021"><td class="memItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; <a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a></td></tr>
+<tr class="memdesc:a27dcd127e416f72e0ed1ef4e12075021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сообщения, ожидающие подтверждения  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">Подробнее...</a><br /></td></tr>
+<tr class="separator:a27dcd127e416f72e0ed1ef4e12075021"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9358d8e2c953daca853c398e93afa8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a> = (<a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>)0</td></tr>
+<tr class="memdesc:af9358d8e2c953daca853c398e93afa8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">id сообщения, которое на данный момент максимальное  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">Подробнее...</a><br /></td></tr>
+<tr class="separator:af9358d8e2c953daca853c398e93afa8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Закрытые статические данные</h2></td></tr>
+<tr class="memitem:a088e822e44a9c82e84474451b07adaa1"><td class="memItemLeft" align="right" valign="top">static const QSet&lt; <a class="el" href="namespace_mafia_1_1_network.html#aaeb5d3d901b3d40316f65db2ae1b1ecf">MessageTypeType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">needConfirmation</a></td></tr>
+<tr class="memdesc:a088e822e44a9c82e84474451b07adaa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Множество типов сообщений, которым необходимо подтверждение  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">Подробнее...</a><br /></td></tr>
+<tr class="separator:a088e822e44a9c82e84474451b07adaa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3151ba20ef7dd1839b004500cb55e994"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3151ba20ef7dd1839b004500cb55e994">timeToResend</a> = 500</td></tr>
+<tr class="memdesc:a3151ba20ef7dd1839b004500cb55e994"><td class="mdescLeft">&#160;</td><td class="mdescRight">Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a3151ba20ef7dd1839b004500cb55e994">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3151ba20ef7dd1839b004500cb55e994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e03d6a8da60b76287425537b2e0797a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a4e03d6a8da60b76287425537b2e0797a">maxResendCount</a> = 100</td></tr>
+<tr class="memdesc:a4e03d6a8da60b76287425537b2e0797a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальное количество повторных отправок  <a href="class_mafia_1_1_network_1_1_main_server_networker.html#a4e03d6a8da60b76287425537b2e0797a">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4e03d6a8da60b76287425537b2e0797a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Основной класс отправки и получения сообщений для основного сервера </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="ad4d86b737c89eb1a03aaf04ba4968ab8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4d86b737c89eb1a03aaf04ba4968ab8">&#9670;&nbsp;</a></span>MainServerNetworker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MainServerNetworker::MainServerNetworker </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Конструктор, инициализирует сервер на указанном порте </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>порт, на котором инициализировать сервер </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a> = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a> = <span class="keyword">new</span> QUdpSocket(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a> = port;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>-&gt;bind(QHostAddress::Any, this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    this-&gt;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a> = MafiaList&lt;Message&gt;();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::thread resendingThread(&amp;<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">MainServerNetworker::_resend_not_confirmed_messages</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    resendingThread.detach();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    connect(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>, SIGNAL(readyRead()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message</a>()));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">_resend_not_confirmed_messages()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a5452ebbbe9acf00ecbd5347f80f90302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5452ebbbe9acf00ecbd5347f80f90302">&#9670;&nbsp;</a></span>_process_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::_process_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Обработка сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;{    </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">//show_message(message);</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">if</span>(message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>.<a class="code" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">ip</a> == (<span class="keywordtype">int</span>)QHostAddress(<span class="stringliteral">&quot;127.0.0.1&quot;</span>).toIPv4Address()){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        emit <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8890be7bac78bd34241da31467dc2766">on_subserver_api_message_received</a>(message);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">switch</span> (message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">type</a>) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a>:{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">//show_message(message);</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a>:{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">//show_message(message);</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a>:{</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.length(); i++){</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="keywordflow">if</span>(((<a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>)<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>[i]).<span class="keywordtype">id</span> == message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a>){</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.removeAt(i);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a>:{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        emit <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a4d9a5c376099ec5385b29e7d2804f1f8">request_answer</a>(message);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">case</span> <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a>:{</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">int</span> answer = 42;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message</a>(<a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>(<a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a>, (<a class="code" href="namespace_mafia_1_1_network.html#a6654e51420f294cd8e25b5af4ea74804">SymbolType</a>*)&amp;answer, 4 / <span class="keyword">sizeof</span>(<a class="code" href="namespace_mafia_1_1_network.html#a6654e51420f294cd8e25b5af4ea74804">SymbolType</a>), message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>, message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a>));</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">// Тут еще надо код со всякими emit...</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">default</span>:{</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html">Exceptions::MessageProcessingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;unknown message type received&quot;</span>), <a class="code" href="namespace_mafia_1_1_exceptions.html#aacfa1be0eb09051f8d786f484da86a31abbaaebebc47f4c0387dbae1f7bb435a2">Exceptions::MessageProcessingExceptionId_UnknownMessageType</a>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">needConfirmation</a>.contains(message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">type</a>)){</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="comment">//std::cout &lt;&lt; &quot;Need confirmation&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a> confirmationMessage = <a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        confirmationMessage.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">type</a> = <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        confirmationMessage.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a> = message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        confirmationMessage.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a3ab5f8ad03bbf651681dba17005280f6">data</a> = (<a class="code" href="namespace_mafia_1_1_network.html#a6654e51420f294cd8e25b5af4ea74804">SymbolType</a>*)<span class="stringliteral">&quot;Message received!&quot;</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        confirmationMessage.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#ad8c8bc8f8248fe37a1e39702bbb0a29a">size</a> = 18;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        confirmationMessage.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a> = message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message</a>(confirmationMessage);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">Mafia::Network::Message::client</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a3ab5f8ad03bbf651681dba17005280f6">Mafia::Network::Message::data</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">Mafia::Network::Message::id</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">Mafia::Network::Client::ip</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#aacfa1be0eb09051f8d786f484da86a31abbaaebebc47f4c0387dbae1f7bb435a2">Mafia::Exceptions::MessageProcessingExceptionId_UnknownMessageType</a>, <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a>, <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a>, <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a>, <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a>, <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">needConfirmation</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8890be7bac78bd34241da31467dc2766">on_subserver_api_message_received()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a4d9a5c376099ec5385b29e7d2804f1f8">request_answer()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#ad8c8bc8f8248fe37a1e39702bbb0a29a">Mafia::Network::Message::size</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">Mafia::Network::Message::type</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message()</a>.</p>
+
+</div>
+</div>
+<a id="a6933425e756864ceb1f5677cacd787ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6933425e756864ceb1f5677cacd787ad">&#9670;&nbsp;</a></span>_resend_not_confirmed_messages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::_resend_not_confirmed_messages </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Проверка и отправка всех неподтвержденных сообщений </p>
+<div class="fragment"><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;{</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3151ba20ef7dd1839b004500cb55e994">timeToResend</a>));</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.length(); i++){</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;            <span class="comment">//std::cout &lt;&lt; &quot;resending...&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a> mes = <a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                mes = <a class="code" href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Crypto::wrap_message</a>((<a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>)<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>[i]);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message</a>(mes.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, mes.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>, QHostAddress(((<a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>)<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>[i]).client.ip), ((<a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a>)<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>[i]).client.port);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message()</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show()</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3151ba20ef7dd1839b004500cb55e994">timeToResend</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a> и <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Mafia::Network::Crypto::wrap_message()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a>.</p>
+
+</div>
+</div>
+<a id="aaa8fa82df18d804ebd27ee43ae80160b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa8fa82df18d804ebd27ee43ae80160b">&#9670;&nbsp;</a></span>_send_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::_send_message </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QHostAddress&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Отправка сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>массив символов, сообщение </td></tr>
+    <tr><td class="paramname">size</td><td>размер сообщения в байтах </td></tr>
+    <tr><td class="paramname">client</td><td>клиент, которому необходимо послать сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                                                                                           {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//std::cout &lt;&lt; &quot;Sent &quot; &lt;&lt; data &lt;&lt; &quot; of size &quot; &lt;&lt; size &lt;&lt; &quot; to client with ip &quot; &lt;&lt; client.toString().toStdString() &lt;&lt; &quot; to port &quot; &lt;&lt; port &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>-&gt;writeDatagram(data, size, client, port);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">_resend_not_confirmed_messages()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>.</p>
+
+</div>
+</div>
+<a id="a0f128eda9c849d9120ab0ad478fe2742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f128eda9c849d9120ab0ad478fe2742">&#9670;&nbsp;</a></span>late_send_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::late_send_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delay</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Отправка сообщения с задержкой </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение </td></tr>
+    <tr><td class="paramname">delay</td><td>Задержка (мс) </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    std::this_thread::sleep_for(std::chrono::milliseconds(delay));</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message</a>(message);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>.</p>
+
+</div>
+</div>
+<a id="a8890be7bac78bd34241da31467dc2766"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8890be7bac78bd34241da31467dc2766">&#9670;&nbsp;</a></span>on_subserver_api_message_received</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Network::MainServerNetworker::on_subserver_api_message_received </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при получении сообщения от api субсервера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Пришедшее сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a>.</p>
+
+</div>
+</div>
+<a id="a8dba1c5ee332ccb7789f5f503abdd627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dba1c5ee332ccb7789f5f503abdd627">&#9670;&nbsp;</a></span>receive_message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::receive_message </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>слот для получения сообщения. Вызывается автоматически </p>
+<div class="fragment"><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                                          {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">//std::cout &lt;&lt; &quot;Received some message&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    QByteArray datagram;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    datagram.resize(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>-&gt;pendingDatagramSize());</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    QHostAddress *address = <span class="keyword">new</span> QHostAddress();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    quint16 port;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    <span class="keyword">auto</span> s = <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>-&gt;readDatagram(datagram.data(), datagram.size(), address, &amp;port);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">if</span>(s &gt; 0){</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="struct_mafia_1_1_network_1_1_message.html">Message</a> trueData;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            trueData = <a class="code" href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Crypto::parse_data</a>(datagram.data(), datagram.size());</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a>();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        trueData.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>.<a class="code" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">ip</a> = address-&gt;toIPv4Address();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        trueData.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>.<a class="code" href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">port</a> = port;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keywordflow">if</span>(trueData.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a> &gt; <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>){</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a> = trueData.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message</a>(trueData);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">Mafia::Network::Message::client</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">Mafia::Network::Message::id</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">Mafia::Network::Client::ip</a>, <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Mafia::Network::Crypto::parse_data()</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">Mafia::Network::Client::port</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">socket</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a>.</p>
+
+</div>
+</div>
+<a id="a4d9a5c376099ec5385b29e7d2804f1f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d9a5c376099ec5385b29e7d2804f1f8">&#9670;&nbsp;</a></span>request_answer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mafia::Network::MainServerNetworker::request_answer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Пришедшее сообщение с ответом </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a>.</p>
+
+</div>
+</div>
+<a id="a809fe51085cf50cf95cb07315dbb1042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a809fe51085cf50cf95cb07315dbb1042">&#9670;&nbsp;</a></span>send_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a> MainServerNetworker::send_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отправления сообщения </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Сообщение для отправки. Должно быть инициализированно во всех полях. Если id сообщения не фиксированно, то следует в поле id указать 0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a> mes = <a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">if</span>(message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a> == (<a class="code" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>)(0)){</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>++;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a> = <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        mes = <a class="code" href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Crypto::wrap_message</a>(message);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    } <span class="keywordflow">catch</span> (<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html">Exceptions::Exception</a>* exception) {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        exception-&gt;<a class="code" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">show</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">return</span> -2;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">needConfirmation</a>.contains(message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">type</a>)){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a>.append(message);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message</a>(mes.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, mes.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>, QHostAddress(message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>.<a class="code" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">ip</a>), message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">client</a>.<a class="code" href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">port</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> message.<a class="code" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">id</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">//std::cout &lt;&lt; &quot;Sent a message&quot; &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message()</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">Mafia::Network::Message::client</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">currentMaxId</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">Mafia::Network::Message::id</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">Mafia::Network::Client::ip</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">needConfirmation</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">Mafia::Network::Client::port</a>, <a class="el" href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show()</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">Mafia::Network::Message::type</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">waitingForConfirmation</a> и <a class="el" href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Mafia::Network::Crypto::wrap_message()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a53c7fa0389178cbb806ebfe38931deba">Mafia::Subservers::SubserverObject::_check_subserver_respond()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a>, <a class="el" href="class_mafia_1_1_subservers_1_1_backup_subserver_object.html#a18e0bd0342f02bd2897d74d7ac25fb1c">Mafia::Subservers::BackupSubserverObject::check_connection()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a0f128eda9c849d9120ab0ad478fe2742">late_send_message()</a> и <a class="el" href="class_mafia_1_1_subservers_1_1_subserver_object.html#a35fa4b6547370650b5a30c1d5ab2f4f2">Mafia::Subservers::SubserverObject::send_message_to_subserver()</a>.</p>
+
+</div>
+</div>
+<a id="a1c96b5fcfaf58b35e3b88d81230caf64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c96b5fcfaf58b35e3b88d81230caf64">&#9670;&nbsp;</a></span>show_message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainServerNetworker::show_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&#160;</td>
+          <td class="paramname"><em>mes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Функция вывода всей информации о сообщении </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mes</td><td>Сообщение </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;{</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;[on port &quot;</span> &lt;&lt; <a class="code" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a> &lt;&lt; <span class="stringliteral">&quot;]\n&quot;</span>;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Received a message&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Message : \n&quot;</span> &lt;&lt; <span class="stringliteral">&quot;    id : &quot;</span> &lt;&lt; message.id &lt;&lt; <span class="stringliteral">&quot;\n    type : &quot;</span> &lt;&lt; message.type &lt;&lt; <span class="stringliteral">&quot;\n    size : &quot;</span> &lt;&lt; message.size &lt;&lt; <span class="stringliteral">&quot;\n    data : &quot;</span>;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; message.size; i++){</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        std::cout &lt;&lt; message.data[i];</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">//std::cout &lt;&lt; datagram.data() &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>* ip_char = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)&amp;message.client.ip;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;from &quot;</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; 4; i++){</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        std::cout &lt;&lt; (int)ip_char[3-i];</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">if</span>(i &lt; 3){</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;.&quot;</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    std::cout &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;port &quot;</span> &lt;&lt; message.client.port &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">Mafia::Network::Message::client</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a3ab5f8ad03bbf651681dba17005280f6">Mafia::Network::Message::data</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">Mafia::Network::Message::id</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">Mafia::Network::Client::ip</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">myPort</a>, <a class="el" href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">Mafia::Network::Client::port</a>, <a class="el" href="struct_mafia_1_1_network_1_1_message.html#ad8c8bc8f8248fe37a1e39702bbb0a29a">Mafia::Network::Message::size</a> и <a class="el" href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">Mafia::Network::Message::type</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="af9358d8e2c953daca853c398e93afa8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9358d8e2c953daca853c398e93afa8c">&#9670;&nbsp;</a></span>currentMaxId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a> Mafia::Network::MainServerNetworker::currentMaxId = (<a class="el" href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">MessageIdType</a>)0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>id сообщения, которое на данный момент максимальное </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>.</p>
+
+</div>
+</div>
+<a id="a4e03d6a8da60b76287425537b2e0797a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e03d6a8da60b76287425537b2e0797a">&#9670;&nbsp;</a></span>maxResendCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int MainServerNetworker::maxResendCount = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Максимальное количество повторных отправок </p>
+
+</div>
+</div>
+<a id="a3f32e1fbcbe5f9721986423fd6926ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f32e1fbcbe5f9721986423fd6926ebe">&#9670;&nbsp;</a></span>myPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Mafia::Network::MainServerNetworker::myPort</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>порт сервера </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a1c96b5fcfaf58b35e3b88d81230caf64">show_message()</a>.</p>
+
+</div>
+</div>
+<a id="a088e822e44a9c82e84474451b07adaa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a088e822e44a9c82e84474451b07adaa1">&#9670;&nbsp;</a></span>needConfirmation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QSet&lt; <a class="el" href="namespace_mafia_1_1_network.html#aaeb5d3d901b3d40316f65db2ae1b1ecf">MessageTypeType</a> &gt; MainServerNetworker::needConfirmation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Инициализатор</b><div class="fragment"><div class="line">= QSet&lt;MessageTypeType&gt;()</div>
+<div class="line">        &lt;&lt; <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a></div>
+<div class="line">        &lt;&lt; <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a></div>
+<div class="line">        &lt;&lt; <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a></div>
+<div class="line">        &lt;&lt; <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48">MessageType_PassClientRequest</a></div>
+</div><!-- fragment -->
+<p>Множество типов сообщений, которым необходимо подтверждение </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>.</p>
+
+</div>
+</div>
+<a id="a1cbace6fdbfe698167485cb0b7867e82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cbace6fdbfe698167485cb0b7867e82">&#9670;&nbsp;</a></span>socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QUdpSocket* Mafia::Network::MainServerNetworker::socket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>сокет сервера </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">_send_message()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">receive_message()</a>.</p>
+
+</div>
+</div>
+<a id="a3151ba20ef7dd1839b004500cb55e994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3151ba20ef7dd1839b004500cb55e994">&#9670;&nbsp;</a></span>timeToResend</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int MainServerNetworker::timeToResend = 500</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">_resend_not_confirmed_messages()</a>.</p>
+
+</div>
+</div>
+<a id="a27dcd127e416f72e0ed1ef4e12075021"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27dcd127e416f72e0ed1ef4e12075021">&#9670;&nbsp;</a></span>waitingForConfirmation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt;<a class="el" href="struct_mafia_1_1_network_1_1_message.html">Message</a>&gt; Mafia::Network::MainServerNetworker::waitingForConfirmation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Сообщения, ожидающие подтверждения </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">_process_message()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">_resend_not_confirmed_messages()</a>, <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8">MainServerNetworker()</a> и <a class="el" href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">send_message()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Network/<a class="el" href="mainservernetworker_8h_source.html">mainservernetworker.h</a></li>
+<li>Network/<a class="el" href="mainservernetworker_8cpp.html">mainservernetworker.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html_a26505358738862d28c8fd6bcd701ec11"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html#a26505358738862d28c8fd6bcd701ec11">Mafia::Exceptions::Exception::show</a></div><div class="ttdeci">virtual void show()</div><div class="ttdoc">Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.</div><div class="ttdef"><b>Definition:</b> exception.cpp:12</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html_a009c92c6ff33048bc61f284157170f98"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html#a009c92c6ff33048bc61f284157170f98">Mafia::Network::Message::id</a></div><div class="ttdeci">MessageIdType id</div><div class="ttdoc">id сообщения (используется для проверки повторных отправок и прочих сбоев)</div><div class="ttdef"><b>Definition:</b> message.h:88</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a4d9a5c376099ec5385b29e7d2804f1f8"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a4d9a5c376099ec5385b29e7d2804f1f8">Mafia::Network::MainServerNetworker::request_answer</a></div><div class="ttdeci">void request_answer(Message message)</div><div class="ttdoc">Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятс...</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_aaa8fa82df18d804ebd27ee43ae80160b"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#aaa8fa82df18d804ebd27ee43ae80160b">Mafia::Network::MainServerNetworker::_send_message</a></div><div class="ttdeci">void _send_message(char *data, int size, QHostAddress client, int port)</div><div class="ttdoc">Отправка сообщения</div><div class="ttdef"><b>Definition:</b> mainservernetworker.cpp:58</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a1cbace6fdbfe698167485cb0b7867e82"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a1cbace6fdbfe698167485cb0b7867e82">Mafia::Network::MainServerNetworker::socket</a></div><div class="ttdeci">QUdpSocket * socket</div><div class="ttdoc">сокет сервера</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:77</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html_ad03f3bfe002ffa2e05bc4759ea03a5ff"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html#ad03f3bfe002ffa2e05bc4759ea03a5ff">Mafia::Network::Message::type</a></div><div class="ttdeci">MessageTypeType type</div><div class="ttdoc">тип сообщения</div><div class="ttdef"><b>Definition:</b> message.h:90</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_network_html_a6654e51420f294cd8e25b5af4ea74804"><div class="ttname"><a href="namespace_mafia_1_1_network.html#a6654e51420f294cd8e25b5af4ea74804">Mafia::Network::SymbolType</a></div><div class="ttdeci">char SymbolType</div><div class="ttdoc">Тип, в котором передаются символы (может быть заменен на wchar_t или qchar16 или еще на что-нибудь по...</div><div class="ttdef"><b>Definition:</b> message.h:17</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html_a3ab5f8ad03bbf651681dba17005280f6"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html#a3ab5f8ad03bbf651681dba17005280f6">Mafia::Network::Message::data</a></div><div class="ttdeci">SymbolType * data</div><div class="ttdoc">данные сообщения</div><div class="ttdef"><b>Definition:</b> message.h:92</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a></div><div class="ttdeci">@ MessageType_RequestAnswer</div><div class="ttdoc">Сообщение с ответом на запрос</div><div class="ttdef"><b>Definition:</b> messageTypes.h:15</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_aacfa1be0eb09051f8d786f484da86a31abbaaebebc47f4c0387dbae1f7bb435a2"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#aacfa1be0eb09051f8d786f484da86a31abbaaebebc47f4c0387dbae1f7bb435a2">Mafia::Exceptions::MessageProcessingExceptionId_UnknownMessageType</a></div><div class="ttdeci">@ MessageProcessingExceptionId_UnknownMessageType</div><div class="ttdoc">Исключение, вызываемое при получении сообщения неизвестного типа</div><div class="ttdef"><b>Definition:</b> messageprocessingexception.h:24</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_af9358d8e2c953daca853c398e93afa8c"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#af9358d8e2c953daca853c398e93afa8c">Mafia::Network::MainServerNetworker::currentMaxId</a></div><div class="ttdeci">MessageIdType currentMaxId</div><div class="ttdoc">id сообщения, которое на данный момент максимальное</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:83</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_client_html_a9359084589fdcae6238e4f8c92fc329a"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_client.html#a9359084589fdcae6238e4f8c92fc329a">Mafia::Network::Client::port</a></div><div class="ttdeci">int port</div><div class="ttdoc">порт, с которого было отправлено сообщение</div><div class="ttdef"><b>Definition:</b> message.h:55</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a19d0386685bf2b9403ffcc0ecd4e1b12"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">длина массива данных</div><div class="ttdef"><b>Definition:</b> simplestring.h:61</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html_ad8c8bc8f8248fe37a1e39702bbb0a29a"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html#ad8c8bc8f8248fe37a1e39702bbb0a29a">Mafia::Network::Message::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">размер данных сообщения</div><div class="ttdef"><b>Definition:</b> message.h:94</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a></div><div class="ttdeci">@ MessageType_AbstractRequest</div><div class="ttdoc">Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов</div><div class="ttdef"><b>Definition:</b> messageTypes.h:17</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a5452ebbbe9acf00ecbd5347f80f90302"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a5452ebbbe9acf00ecbd5347f80f90302">Mafia::Network::MainServerNetworker::_process_message</a></div><div class="ttdeci">void _process_message(Message message)</div><div class="ttdoc">Обработка сообщения</div><div class="ttdef"><b>Definition:</b> mainservernetworker.cpp:63</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a3151ba20ef7dd1839b004500cb55e994"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a3151ba20ef7dd1839b004500cb55e994">Mafia::Network::MainServerNetworker::timeToResend</a></div><div class="ttdeci">static const int timeToResend</div><div class="ttdoc">Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:87</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48">MessageType_PassClientRequest</a></div><div class="ttdeci">@ MessageType_PassClientRequest</div><div class="ttdoc">Сообщение для передачи субсерверу клиента</div><div class="ttdef"><b>Definition:</b> messageTypes.h:19</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_crypto_html_a76f9a33d422159cba94f2b65e9ea4c4c"><div class="ttname"><a href="class_mafia_1_1_network_1_1_crypto.html#a76f9a33d422159cba94f2b65e9ea4c4c">Mafia::Network::Crypto::parse_data</a></div><div class="ttdeci">static Message parse_data(char *data, int size)</div><div class="ttdoc">Метод для распаковки сообщения</div><div class="ttdef"><b>Definition:</b> crypto.cpp:22</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a809fe51085cf50cf95cb07315dbb1042"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a809fe51085cf50cf95cb07315dbb1042">Mafia::Network::MainServerNetworker::send_message</a></div><div class="ttdeci">MessageIdType send_message(Message message)</div><div class="ttdoc">Отправления сообщения</div><div class="ttdef"><b>Definition:</b> mainservernetworker.cpp:35</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a8890be7bac78bd34241da31467dc2766"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a8890be7bac78bd34241da31467dc2766">Mafia::Network::MainServerNetworker::on_subserver_api_message_received</a></div><div class="ttdeci">void on_subserver_api_message_received(Message message)</div><div class="ttdoc">Сигнал, вызываемый при получении сообщения от api субсервера</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_message_processing_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_message_processing_exception.html">Mafia::Exceptions::MessageProcessingException</a></div><div class="ttdoc">Класс исключений, произошедших при обработке сообщения</div><div class="ttdef"><b>Definition:</b> messageprocessingexception.h:9</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a></div><div class="ttdeci">@ MessageType_NoConfirmText</div><div class="ttdoc">Текстовое сообщение, не требующее подтверждения</div><div class="ttdef"><b>Definition:</b> messageTypes.h:11</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a27dcd127e416f72e0ed1ef4e12075021"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a27dcd127e416f72e0ed1ef4e12075021">Mafia::Network::MainServerNetworker::waitingForConfirmation</a></div><div class="ttdeci">MafiaList&lt; Message &gt; waitingForConfirmation</div><div class="ttdoc">Сообщения, ожидающие подтверждения</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:81</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a></div><div class="ttdeci">@ MessageType_Confirmation</div><div class="ttdoc">Подтверждающее сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:13</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html">Mafia::System::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:13</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a6933425e756864ceb1f5677cacd787ad"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a6933425e756864ceb1f5677cacd787ad">Mafia::Network::MainServerNetworker::_resend_not_confirmed_messages</a></div><div class="ttdeci">void _resend_not_confirmed_messages()</div><div class="ttdoc">Проверка и отправка всех неподтвержденных сообщений</div><div class="ttdef"><b>Definition:</b> mainservernetworker.cpp:117</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a></div><div class="ttdeci">@ MessageType_Text</div><div class="ttdoc">Просто текстовое сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:9</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a3f32e1fbcbe5f9721986423fd6926ebe"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a3f32e1fbcbe5f9721986423fd6926ebe">Mafia::Network::MainServerNetworker::myPort</a></div><div class="ttdeci">int myPort</div><div class="ttdoc">порт сервера</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:79</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_exception.html">Mafia::Exceptions::Exception</a></div><div class="ttdoc">Базовый класс для ошибок. Его экземпляры создавать нельзя, но все классы ошибок должны наследоваться ...</div><div class="ttdef"><b>Definition:</b> exception.h:15</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_crypto_html_a902ba51f2a3987eedd669ac5516d1187"><div class="ttname"><a href="class_mafia_1_1_network_1_1_crypto.html#a902ba51f2a3987eedd669ac5516d1187">Mafia::Network::Crypto::wrap_message</a></div><div class="ttdeci">static System::String wrap_message(Message mes)</div><div class="ttdoc">Оборачивает сообщение в необходимую оболочку и подготавливает его к отправке по сети</div><div class="ttdef"><b>Definition:</b> crypto.cpp:107</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html_a5d06618f0ae2a1471a6f0228b8bcf60f"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html#a5d06618f0ae2a1471a6f0228b8bcf60f">Mafia::Network::Message::client</a></div><div class="ttdeci">Client client</div><div class="ttdoc">Клиент-отправитель</div><div class="ttdef"><b>Definition:</b> message.h:96</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a088e822e44a9c82e84474451b07adaa1"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a088e822e44a9c82e84474451b07adaa1">Mafia::Network::MainServerNetworker::needConfirmation</a></div><div class="ttdeci">static const QSet&lt; MessageTypeType &gt; needConfirmation</div><div class="ttdoc">Множество типов сообщений, которым необходимо подтверждение</div><div class="ttdef"><b>Definition:</b> mainservernetworker.h:85</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_network_html_a31aa2ca8ac24b057e9f3e6ecda66b849"><div class="ttname"><a href="namespace_mafia_1_1_network.html#a31aa2ca8ac24b057e9f3e6ecda66b849">Mafia::Network::MessageIdType</a></div><div class="ttdeci">int MessageIdType</div><div class="ttdoc">Тип, в котором хранится id сообщения</div><div class="ttdef"><b>Definition:</b> message.h:9</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_client_html_aefbe9ee0f92a1963ca1e65a526ad0e6e"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_client.html#aefbe9ee0f92a1963ca1e65a526ad0e6e">Mafia::Network::Client::ip</a></div><div class="ttdeci">int ip</div><div class="ttdoc">ip отправителя сообщения</div><div class="ttdef"><b>Definition:</b> message.h:53</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a0d37741c5de5c575cd7de8248a81aa96"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a></div><div class="ttdeci">char * data</div><div class="ttdoc">массив данных строки</div><div class="ttdef"><b>Definition:</b> simplestring.h:59</div></div>
+<div class="ttc" id="astruct_mafia_1_1_network_1_1_message_html"><div class="ttname"><a href="struct_mafia_1_1_network_1_1_message.html">Mafia::Network::Message</a></div><div class="ttdoc">Основная структура для сообщений</div><div class="ttdef"><b>Definition:</b> message.h:61</div></div>
+<div class="ttc" id="aclass_mafia_1_1_network_1_1_main_server_networker_html_a8dba1c5ee332ccb7789f5f503abdd627"><div class="ttname"><a href="class_mafia_1_1_network_1_1_main_server_networker.html#a8dba1c5ee332ccb7789f5f503abdd627">Mafia::Network::MainServerNetworker::receive_message</a></div><div class="ttdeci">void receive_message()</div><div class="ttdoc">слот для получения сообщения. Вызывается автоматически</div><div class="ttdef"><b>Definition:</b> mainservernetworker.cpp:141</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

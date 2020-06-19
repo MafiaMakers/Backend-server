@@ -6,7 +6,7 @@
 #include <QSet>
 #include "messageTypes.h"
 #include "Exceptions/messageprocessingexception.h"
-
+#include "System/functions.h"
 
 using namespace Mafia;
 using namespace Network;
@@ -26,7 +26,7 @@ MainServerNetworker::MainServerNetworker(int port)
     this->socket = new QUdpSocket(this);
     this->myPort = port;
     this->socket->bind(QHostAddress::Any, this->myPort);
-    this->waitingForConfirmation = QList<Message>();
+    this->waitingForConfirmation = MafiaList<Message>();
     std::thread resendingThread(&MainServerNetworker::_resend_not_confirmed_messages, this);
     resendingThread.detach();
     connect(socket, SIGNAL(readyRead()), this, SLOT(receive_message()));

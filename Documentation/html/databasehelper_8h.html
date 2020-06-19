@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Файл Database/databasehelper.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d00f5e20d7b27686287f9c84bc9112f8.html">Database</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Пространства имен</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл databasehelper.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;QString&gt;</code><br />
+<code>#include &lt;QDateTime&gt;</code><br />
+<code>#include &lt;QList&gt;</code><br />
+<code>#include &quot;<a class="el" href="user_8h_source.html">user.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="databaseworkingexception_8h_source.html">Exceptions/databaseworkingexception.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="chatsettingsdatabasemanager_8h_source.html">chatsettingsdatabasemanager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="chatdatabasemanager_8h_source.html">chatdatabasemanager.h</a>&quot;</code><br />
+<code>#include &lt;QVariant&gt;</code><br />
+</div>
+<p><a href="databasehelper_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Пространства имен</h2></td></tr>
+<tr class="memitem:namespace_mafia"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia.html">Mafia</a></td></tr>
+<tr class="memdesc:namespace_mafia"><td class="mdescLeft">&#160;</td><td class="mdescRight">Набор системных функций для запуска и завершения программ <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespace_mafia_1_1_database"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html">Mafia::Database</a></td></tr>
+<tr class="memdesc:namespace_mafia_1_1_database"><td class="mdescLeft">&#160;</td><td class="mdescRight">Пространство имен, используемое для работы с базами данных <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a2c23e550af9a0f95f338982a73eb437c"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a2c23e550af9a0f95f338982a73eb437c"><td class="memTemplItemLeft" align="right" valign="top">QString&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">Mafia::Database::get_sql_type</a> (int maxListCount=0, T val=T())</td></tr>
+<tr class="memdesc:a2c23e550af9a0f95f338982a73eb437c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция получения строки с sql названием типа данных, переданного в функцию  <a href="namespace_mafia_1_1_database.html#a2c23e550af9a0f95f338982a73eb437c">Подробнее...</a><br /></td></tr>
+<tr class="separator:a2c23e550af9a0f95f338982a73eb437c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fd33690768b5371266d0720e03daa3b"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#a9fd33690768b5371266d0720e03daa3b">Mafia::Database::generate_salt</a> ()</td></tr>
+<tr class="memdesc:a9fd33690768b5371266d0720e03daa3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция случайной генерации соли для хеширования пароля  <a href="namespace_mafia_1_1_database.html#a9fd33690768b5371266d0720e03daa3b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a9fd33690768b5371266d0720e03daa3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7b2a6b71bf9fc1352119feedc5b339"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aed7b2a6b71bf9fc1352119feedc5b339"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#aed7b2a6b71bf9fc1352119feedc5b339">Mafia::Database::qlist_from_byte_array</a> (QByteArray data)</td></tr>
+<tr class="memdesc:aed7b2a6b71bf9fc1352119feedc5b339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция преобразования QByteArray, полученного из БД в QList&lt;T&gt;  <a href="namespace_mafia_1_1_database.html#aed7b2a6b71bf9fc1352119feedc5b339">Подробнее...</a><br /></td></tr>
+<tr class="separator:aed7b2a6b71bf9fc1352119feedc5b339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b85ea4a6149f989b47b8283d01de2cd"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:a4b85ea4a6149f989b47b8283d01de2cd"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#a4b85ea4a6149f989b47b8283d01de2cd">Mafia::Database::query_value_to_variable</a> (QVariant data)</td></tr>
+<tr class="memdesc:a4b85ea4a6149f989b47b8283d01de2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Перевод из данных, полученных в ответе на sql-запрос в нормальный тип данных T.  <a href="namespace_mafia_1_1_database.html#a4b85ea4a6149f989b47b8283d01de2cd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a4b85ea4a6149f989b47b8283d01de2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa00410fdda70f47f0a6365caa67676da"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aa00410fdda70f47f0a6365caa67676da"><td class="memTemplItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#aa00410fdda70f47f0a6365caa67676da">Mafia::Database::qbytearray_from_qlist</a> (<a class="el" href="functions_8h.html#ab4efcfd97cc77fa5509a15b550dbf612">MafiaList</a>&lt; T &gt; data)</td></tr>
+<tr class="memdesc:aa00410fdda70f47f0a6365caa67676da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция преобразования QList&lt;T&gt;, полученного из программы в QByteArray для записи в БД  <a href="namespace_mafia_1_1_database.html#aa00410fdda70f47f0a6365caa67676da">Подробнее...</a><br /></td></tr>
+<tr class="separator:aa00410fdda70f47f0a6365caa67676da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a70ee03ae54fdf919bf28dc9467b6d4ec"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_mafia_1_1_database.html#a70ee03ae54fdf919bf28dc9467b6d4ec">Mafia::Database::STRING_SIZE</a> = 256</td></tr>
+<tr class="memdesc:a70ee03ae54fdf919bf28dc9467b6d4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Размер строки для хранения в БД  <a href="namespace_mafia_1_1_database.html#a70ee03ae54fdf919bf28dc9467b6d4ec">Подробнее...</a><br /></td></tr>
+<tr class="separator:a70ee03ae54fdf919bf28dc9467b6d4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

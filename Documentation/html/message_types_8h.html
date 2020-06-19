@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Файл Network/messageTypes.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_356d85c7fe3a31f6238a1e4b453e8aed.html">Network</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#enum-members">Перечисления</a>  </div>
+  <div class="headertitle">
+<div class="title">Файл messageTypes.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="message_8h_source.html">message.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="functions_8h_source.html">System/functions.h</a>&quot;</code><br />
+</div>
+<p><a href="message_types_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:ac6606ebe91c8ac66a2c314c79f5ab013"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a> { <br />
+&#160;&#160;<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8ce448b9d6fad77bc590edfa9ffdc83e">MessageType_First</a> = 1, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a> = 1, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a> = 2, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a> = 4, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a> = 5, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48">MessageType_PassClientRequest</a> = 6, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a008173958fdc3d13eaf23282f1ef7fa1">MessageType_CheckConnection</a> = 7, 
+<br />
+&#160;&#160;<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a38fe2062362e891966166cfa3f6707e5">MessageType_CheckConnectionServer</a> = 8, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0e537b4fa206de888d86fbdb6604c7c">MessageType_SendChatMessage</a> = 9, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ab7689dc95ba72f040b6a37ce21cf45b7">MessageType_EditChatMessage</a> = 10, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a7e33e42cef3ecf69987a5628883a172e">MessageType_DeleteChatMessage</a> = 11, 
+<br />
+&#160;&#160;<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad27f7b84dc38179ff2b17d975ad39dd7">MessageType_ReadChatMessage</a> = 12, 
+<a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013af77c900a71f71614d07d2fc9ea70723b">MessageType_Last</a> = 13
+<br />
+ }</td></tr>
+<tr class="separator:ac6606ebe91c8ac66a2c314c79f5ab013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Перечисления</h2>
+<a id="ac6606ebe91c8ac66a2c314c79f5ab013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6606ebe91c8ac66a2c314c79f5ab013">&#9670;&nbsp;</a></span>MessageType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a8ce448b9d6fad77bc590edfa9ffdc83e"></a>MessageType_First&#160;</td><td class="fielddoc"><p>Нижняя граница типов сообщений </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c"></a>MessageType_Text&#160;</td><td class="fielddoc"><p>Просто текстовое сообщение </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1"></a>MessageType_NoConfirmText&#160;</td><td class="fielddoc"><p>Текстовое сообщение, не требующее подтверждения </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781"></a>MessageType_Confirmation&#160;</td><td class="fielddoc"><p>Подтверждающее сообщение </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2"></a>MessageType_RequestAnswer&#160;</td><td class="fielddoc"><p>Сообщение с ответом на запрос </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920"></a>MessageType_AbstractRequest&#160;</td><td class="fielddoc"><p>Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48"></a>MessageType_PassClientRequest&#160;</td><td class="fielddoc"><p>Сообщение для передачи субсерверу клиента </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a008173958fdc3d13eaf23282f1ef7fa1"></a>MessageType_CheckConnection&#160;</td><td class="fielddoc"><p>Сообщение для проверки соединения (с субсерверами и с клиентами) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a38fe2062362e891966166cfa3f6707e5"></a>MessageType_CheckConnectionServer&#160;</td><td class="fielddoc"><p>Сообщение для проверки соединения с основным сервером (отправляется субсервером-восстановителем) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ad0e537b4fa206de888d86fbdb6604c7c"></a>MessageType_SendChatMessage&#160;</td><td class="fielddoc"><p>Сообщение для отправки сообщения в чат </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ab7689dc95ba72f040b6a37ce21cf45b7"></a>MessageType_EditChatMessage&#160;</td><td class="fielddoc"><p>Сообщение для изменения сообщения в чате </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013a7e33e42cef3ecf69987a5628883a172e"></a>MessageType_DeleteChatMessage&#160;</td><td class="fielddoc"><p>Сообщение для удаления сообщения из чата </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013ad27f7b84dc38179ff2b17d975ad39dd7"></a>MessageType_ReadChatMessage&#160;</td><td class="fielddoc"><p>Сообщение для уведомление о том, что игрок прочитал сообщение </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac6606ebe91c8ac66a2c314c79f5ab013af77c900a71f71614d07d2fc9ea70723b"></a>MessageType_Last&#160;</td><td class="fielddoc"><p>Верхняя граница типов сообщений </p>
+</td></tr>
+</table>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;                {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8ce448b9d6fad77bc590edfa9ffdc83e">MessageType_First</a> = 1,</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a> = 1,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a> = 2,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a> = 3,</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a> = 4,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a> = 5,</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48">MessageType_PassClientRequest</a> = 6,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a008173958fdc3d13eaf23282f1ef7fa1">MessageType_CheckConnection</a> = 7,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a38fe2062362e891966166cfa3f6707e5">MessageType_CheckConnectionServer</a> = 8,</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0e537b4fa206de888d86fbdb6604c7c">MessageType_SendChatMessage</a> = 9,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ab7689dc95ba72f040b6a37ce21cf45b7">MessageType_EditChatMessage</a> = 10,</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a7e33e42cef3ecf69987a5628883a172e">MessageType_DeleteChatMessage</a> = 11,</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad27f7b84dc38179ff2b17d975ad39dd7">MessageType_ReadChatMessage</a> = 12,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013af77c900a71f71614d07d2fc9ea70723b">MessageType_Last</a> = 13</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ab7689dc95ba72f040b6a37ce21cf45b7"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ab7689dc95ba72f040b6a37ce21cf45b7">MessageType_EditChatMessage</a></div><div class="ttdeci">@ MessageType_EditChatMessage</div><div class="ttdoc">Сообщение для изменения сообщения в чате</div><div class="ttdef"><b>Definition:</b> messageTypes.h:27</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ad0e537b4fa206de888d86fbdb6604c7c"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0e537b4fa206de888d86fbdb6604c7c">MessageType_SendChatMessage</a></div><div class="ttdeci">@ MessageType_SendChatMessage</div><div class="ttdoc">Сообщение для отправки сообщения в чат</div><div class="ttdef"><b>Definition:</b> messageTypes.h:25</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae8dfab7a54e7377836ee0721c918a9e2">MessageType_RequestAnswer</a></div><div class="ttdeci">@ MessageType_RequestAnswer</div><div class="ttdoc">Сообщение с ответом на запрос</div><div class="ttdef"><b>Definition:</b> messageTypes.h:15</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a7e33e42cef3ecf69987a5628883a172e"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a7e33e42cef3ecf69987a5628883a172e">MessageType_DeleteChatMessage</a></div><div class="ttdeci">@ MessageType_DeleteChatMessage</div><div class="ttdoc">Сообщение для удаления сообщения из чата</div><div class="ttdef"><b>Definition:</b> messageTypes.h:29</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a6ddfbae0f879bcc0711c80075f1d0920">MessageType_AbstractRequest</a></div><div class="ttdeci">@ MessageType_AbstractRequest</div><div class="ttdoc">Сообщение с абстрактным (каким-то) запросом. Пока сделано просто для тестов</div><div class="ttdef"><b>Definition:</b> messageTypes.h:17</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013af77c900a71f71614d07d2fc9ea70723b"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013af77c900a71f71614d07d2fc9ea70723b">MessageType_Last</a></div><div class="ttdeci">@ MessageType_Last</div><div class="ttdoc">Верхняя граница типов сообщений</div><div class="ttdef"><b>Definition:</b> messageTypes.h:33</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad174c0c24e98cdaab1f4a59a65badd48">MessageType_PassClientRequest</a></div><div class="ttdeci">@ MessageType_PassClientRequest</div><div class="ttdoc">Сообщение для передачи субсерверу клиента</div><div class="ttdef"><b>Definition:</b> messageTypes.h:19</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ae57ea1d083536bdec2ff8b4b7e5e6cd1">MessageType_NoConfirmText</a></div><div class="ttdeci">@ MessageType_NoConfirmText</div><div class="ttdoc">Текстовое сообщение, не требующее подтверждения</div><div class="ttdef"><b>Definition:</b> messageTypes.h:11</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8262b329cd8f255fe6ff32b42b7dc781">MessageType_Confirmation</a></div><div class="ttdeci">@ MessageType_Confirmation</div><div class="ttdoc">Подтверждающее сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:13</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a008173958fdc3d13eaf23282f1ef7fa1"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a008173958fdc3d13eaf23282f1ef7fa1">MessageType_CheckConnection</a></div><div class="ttdeci">@ MessageType_CheckConnection</div><div class="ttdoc">Сообщение для проверки соединения (с субсерверами и с клиентами)</div><div class="ttdef"><b>Definition:</b> messageTypes.h:21</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a8ce448b9d6fad77bc590edfa9ffdc83e"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a8ce448b9d6fad77bc590edfa9ffdc83e">MessageType_First</a></div><div class="ttdeci">@ MessageType_First</div><div class="ttdoc">Нижняя граница типов сообщений</div><div class="ttdef"><b>Definition:</b> messageTypes.h:7</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a614a3cdd44de877b61e49a469c220a3c">MessageType_Text</a></div><div class="ttdeci">@ MessageType_Text</div><div class="ttdoc">Просто текстовое сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:9</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013ad27f7b84dc38179ff2b17d975ad39dd7"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad27f7b84dc38179ff2b17d975ad39dd7">MessageType_ReadChatMessage</a></div><div class="ttdeci">@ MessageType_ReadChatMessage</div><div class="ttdoc">Сообщение для уведомление о том, что игрок прочитал сообщение</div><div class="ttdef"><b>Definition:</b> messageTypes.h:31</div></div>
+<div class="ttc" id="amessage_types_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a38fe2062362e891966166cfa3f6707e5"><div class="ttname"><a href="message_types_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a38fe2062362e891966166cfa3f6707e5">MessageType_CheckConnectionServer</a></div><div class="ttdeci">@ MessageType_CheckConnectionServer</div><div class="ttdoc">Сообщение для проверки соединения с основным сервером (отправляется субсервером-восстановителем)</div><div class="ttdef"><b>Definition:</b> messageTypes.h:23</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

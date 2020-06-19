@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Исходный файл System/runprogram.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_9af51e3826d4f9e80d9103b2de543e84.html">System</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">runprogram.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="runprogram_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef RUNPROGRAM_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define RUNPROGRAM_H</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;windows.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QList&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="functions_8h.html">System/functions.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="simplestring_8h.html">simplestring.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_mafia.html">Mafia</a> {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">namespace </span>System {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="namespace_mafia_1_1_system.html#a0f9351bf22024d2d63af27868764b129">run_app</a>(<span class="keyword">const</span> String path, <span class="keyword">const</span> String name, <span class="keyword">const</span> String args = String(<span class="stringliteral">&quot;&quot;</span>));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        std::string <a class="code" href="namespace_mafia_1_1_system.html#acf5f5228ed026312588b8ffdd5dd3514">exec</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* cmd);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        MafiaList&lt;int&gt; <a class="code" href="namespace_mafia_1_1_system.html#a1353bd00503b8ed199a9403b8b18940c">get_all_pids_by_name</a>(<span class="keyword">const</span> String name);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="namespace_mafia_1_1_system.html#a2da36eeabfc82fb05dd3e71553cad31c">kill</a>(<span class="keywordtype">int</span> pid);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // RUNPROGRAM_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="arunprogram_8h_html"><div class="ttname"><a href="runprogram_8h.html">runprogram.h</a></div></div>
+<div class="ttc" id="asimplestring_8h_html"><div class="ttname"><a href="simplestring_8h.html">simplestring.h</a></div></div>
+<div class="ttc" id="anamespace_mafia_html"><div class="ttname"><a href="namespace_mafia.html">Mafia</a></div><div class="ttdoc">Набор системных функций для запуска и завершения программ</div><div class="ttdef"><b>Definition:</b> chatdatabasemanager.h:9</div></div>
+<div class="ttc" id="afunctions_8h_html"><div class="ttname"><a href="functions_8h.html">functions.h</a></div></div>
+<div class="ttc" id="anamespace_mafia_1_1_system_html_a2da36eeabfc82fb05dd3e71553cad31c"><div class="ttname"><a href="namespace_mafia_1_1_system.html#a2da36eeabfc82fb05dd3e71553cad31c">Mafia::System::kill</a></div><div class="ttdeci">void kill(int pid)</div><div class="ttdoc">Завершение процесса с указанным PID.</div><div class="ttdef"><b>Definition:</b> runprogram.cpp:98</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_system_html_a0f9351bf22024d2d63af27868764b129"><div class="ttname"><a href="namespace_mafia_1_1_system.html#a0f9351bf22024d2d63af27868764b129">Mafia::System::run_app</a></div><div class="ttdeci">int run_app(const String path, const String name, const String args=String(&quot;&quot;))</div><div class="ttdoc">Запускает указанную программу</div><div class="ttdef"><b>Definition:</b> runprogram.cpp:7</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a19d0386685bf2b9403ffcc0ecd4e1b12"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">длина массива данных</div><div class="ttdef"><b>Definition:</b> simplestring.h:61</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_system_html_acf5f5228ed026312588b8ffdd5dd3514"><div class="ttname"><a href="namespace_mafia_1_1_system.html#acf5f5228ed026312588b8ffdd5dd3514">Mafia::System::exec</a></div><div class="ttdeci">std::string exec(const char *cmd)</div><div class="ttdoc">Выполнение cmd-команды. (На самом деле эту функцию я просто со stackoverflow скопипастил и не разобра...</div><div class="ttdef"><b>Definition:</b> runprogram.cpp:44</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html">Mafia::System::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:13</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_system_html_a1353bd00503b8ed199a9403b8b18940c"><div class="ttname"><a href="namespace_mafia_1_1_system.html#a1353bd00503b8ed199a9403b8b18940c">Mafia::System::get_all_pids_by_name</a></div><div class="ttdeci">MafiaList&lt; int &gt; get_all_pids_by_name(const String name)</div><div class="ttdoc">Получение списка всех PID процессов с указанным именем</div><div class="ttdef"><b>Definition:</b> runprogram.cpp:58</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a0d37741c5de5c575cd7de8248a81aa96"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a></div><div class="ttdeci">char * data</div><div class="ttdoc">массив данных строки</div><div class="ttdef"><b>Definition:</b> simplestring.h:59</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

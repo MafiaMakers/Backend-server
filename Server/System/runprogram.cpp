@@ -1,12 +1,13 @@
 #include "runprogram.h"
 #include "sstream"
+#include "System/functions.h"
 using namespace Mafia;
 using namespace System;
 
 int Mafia::System::run_app(const String pathToFile, const String processName, const String args)
 {
 
-    QList<int> previousAppsPIDs = get_all_pids_by_name(processName);
+    MafiaList<int> previousAppsPIDs = get_all_pids_by_name(processName);
 
     std::string command = "start ";
     for(int i = 0; i < pathToFile.size; i++){
@@ -21,9 +22,9 @@ int Mafia::System::run_app(const String pathToFile, const String processName, co
 
     system(command.c_str());
 
-    QList<int> nowAppsPIDs = get_all_pids_by_name(processName);
+    MafiaList<int> nowAppsPIDs = get_all_pids_by_name(processName);
 
-    QList<int> difference = QList<int>();
+    MafiaList<int> difference = MafiaList<int>();
 
     for(int i = 0; i < nowAppsPIDs.length(); i++){
         if(!previousAppsPIDs.contains(nowAppsPIDs[i])){
@@ -54,7 +55,7 @@ std::string Mafia::System::exec(const char *cmd)
     return result;
 }
 
-QList<int> Mafia::System::get_all_pids_by_name(const String name)
+MafiaList<int> Mafia::System::get_all_pids_by_name(const String name)
 {
     std::string command = "tasklist /v /fo csv | findstr /i \"";
     for(int i = 0; i < name.size; i++){
@@ -66,7 +67,7 @@ QList<int> Mafia::System::get_all_pids_by_name(const String name)
 
     //std::cout << data << std::endl << std::endl;
 
-    QList<int> result = QList<int>();
+    MafiaList<int> result = MafiaList<int>();
     int indexInLine = 0;
     int lastIndex = -1;
     int firstLineIndex = 0;

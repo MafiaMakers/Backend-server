@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Main server: Класс Mafia::Database::DatabaseWorker</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Main server
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_mafia.html">Mafia</a></li><li class="navelem"><a class="el" href="namespace_mafia_1_1_database.html">Database</a></li><li class="navelem"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html">DatabaseWorker</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="#pri-methods">Закрытые члены</a> &#124;
+<a href="#pri-attribs">Закрытые данные</a> &#124;
+<a href="#pri-static-attribs">Закрытые статические данные</a> &#124;
+<a href="class_mafia_1_1_database_1_1_database_worker-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Класс Mafia::Database::DatabaseWorker</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных  
+ <a href="class_mafia_1_1_database_1_1_database_worker.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="databaseworker_8h_source.html">databaseworker.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a348c150ab28db74e1ebd692c73214636"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker</a> (<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> _path=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;&quot;), <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> _backupPath=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;D:\\&quot;), System::String _filename=<a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;MafiaDatabase.sqlite&quot;))</td></tr>
+<tr class="memdesc:a348c150ab28db74e1ebd692c73214636"><td class="mdescLeft">&#160;</td><td class="mdescRight">Основной конструктор, инициализирующий параметры базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">Подробнее...</a><br /></td></tr>
+<tr class="separator:a348c150ab28db74e1ebd692c73214636"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1832afc64d376c6a86399882f44bddde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready</a> ()</td></tr>
+<tr class="memdesc:a1832afc64d376c6a86399882f44bddde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция проверяющая готовность базы данных к работе с ней  <a href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">Подробнее...</a><br /></td></tr>
+<tr class="separator:a1832afc64d376c6a86399882f44bddde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ac6356d71ff81e472be1d969b8bfdb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#af0ac6356d71ff81e472be1d969b8bfdb">database_open</a> ()</td></tr>
+<tr class="memdesc:af0ac6356d71ff81e472be1d969b8bfdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция проверки открыта ли сейчас БД  <a href="class_mafia_1_1_database_1_1_database_worker.html#af0ac6356d71ff81e472be1d969b8bfdb">Подробнее...</a><br /></td></tr>
+<tr class="separator:af0ac6356d71ff81e472be1d969b8bfdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bf26edac421999293650a9d6a5c302"><td class="memItemLeft" align="right" valign="top">QSqlQuery *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query</a> (QString request)</td></tr>
+<tr class="memdesc:a77bf26edac421999293650a9d6a5c302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Функция, выполняющая строковой Sql запрос  <a href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">Подробнее...</a><br /></td></tr>
+<tr class="separator:a77bf26edac421999293650a9d6a5c302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9189655e4f744af5bb8a83735457d58c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a9189655e4f744af5bb8a83735457d58c">restore_database</a> ()</td></tr>
+<tr class="separator:a9189655e4f744af5bb8a83735457d58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Закрытые члены</h2></td></tr>
+<tr class="memitem:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup</a> ()</td></tr>
+<tr class="memdesc:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Выполняет во втором потоке резервное копирование базы данных для возможности восстановления  <a href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">Подробнее...</a><br /></td></tr>
+<tr class="separator:a3e19e99a86e1821dc8c8ec1bda67cebd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Закрытые данные</h2></td></tr>
+<tr class="memitem:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a></td></tr>
+<tr class="memdesc:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Переменная, отвечающая за то, находится ли прямо сейчас база данных в процессе резервного копирования  <a href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a6bf12e6fd12d0afb5a96cc694baee8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8303513198157415f9ef3bf7a991f6af"><td class="memItemLeft" align="right" valign="top">QSqlDatabase&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a></td></tr>
+<tr class="memdesc:a8303513198157415f9ef3bf7a991f6af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Интерфейс базы данных в виде QSqlDatabase.  <a href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8303513198157415f9ef3bf7a991f6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85607bef8b551b95e1986d7a694b1c50"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">backupInterval</a> = 10000</td></tr>
+<tr class="memdesc:a85607bef8b551b95e1986d7a694b1c50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Временной промежуток между двумя резервными копированиями (мс)  <a href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">Подробнее...</a><br /></td></tr>
+<tr class="separator:a85607bef8b551b95e1986d7a694b1c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a></td></tr>
+<tr class="memdesc:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к папке базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">Подробнее...</a><br /></td></tr>
+<tr class="separator:a0d247f6ae6460bbcc640a7e2c33b2b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a></td></tr>
+<tr class="memdesc:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Путь к папке резервной копии базы данных  <a href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">Подробнее...</a><br /></td></tr>
+<tr class="separator:a8d5c3f57c330a650b8f1fd0b8d0885d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53590b2924a2ec5e905213444334266b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a></td></tr>
+<tr class="memdesc:a53590b2924a2ec5e905213444334266b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Имя файла базы данных (в обеих файлах)  <a href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">Подробнее...</a><br /></td></tr>
+<tr class="separator:a53590b2924a2ec5e905213444334266b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Закрытые статические данные</h2></td></tr>
+<tr class="memitem:aba84ce575f4edb80d8a85e1a32927c7a"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">maxWaitingTime</a> = 2000</td></tr>
+<tr class="memdesc:aba84ce575f4edb80d8a85e1a32927c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимальное время ожидания готовности базы данных. Если это время превышается, будет выброшена ошибка о первышении времени ожидания  <a href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">Подробнее...</a><br /></td></tr>
+<tr class="separator:aba84ce575f4edb80d8a85e1a32927c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Класс, отвечающий за создание, поддержку резервное копирование и выполнение sql запросов базы данных </p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a348c150ab28db74e1ebd692c73214636"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348c150ab28db74e1ebd692c73214636">&#9670;&nbsp;</a></span>DatabaseWorker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DatabaseWorker::DatabaseWorker </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_path</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;&quot;)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_backupPath</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;D:\\&quot;)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>&#160;</td>
+          <td class="paramname"><em>_filename</em> = <code><a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(&quot;MafiaDatabase.sqlite&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Основной конструктор, инициализирующий параметры базы данных </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_path</td><td>Путь к папке базы данных (Стандартноое значение "") </td></tr>
+    <tr><td class="paramname">_backupPath</td><td>Путь к папке резервного копирования базы данных (Стандартное значение "D:\") </td></tr>
+    <tr><td class="paramname">_filename</td><td>Имя файла базы данных (Стандартное значение "MyDatabase.sqlite") </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    : <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>(_path), <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>(_backupPath), <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>(_filename)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a> = QSqlDatabase::addDatabase(<span class="stringliteral">&quot;QSQLITE&quot;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    QString fullPath;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a> &gt; 0){</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        fullPath = QString::fromStdString(std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>)) + <span class="charliteral">&#39;\\&#39;</span> +</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                QString::fromStdString(std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>));</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        fullPath = QString::fromStdString(std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.setDatabaseName(fullPath);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.setUserName(<span class="stringliteral">&quot;Admin&quot;</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.setPassword(<span class="stringliteral">&quot;admin&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.open()){</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Database could not be opened!\n&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    std::thread backupThread(&amp;<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">DatabaseWorker::_database_backup</a>, <span class="keyword">this</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    backupThread.detach();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a> и <a class="el" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a3e19e99a86e1821dc8c8ec1bda67cebd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e19e99a86e1821dc8c8ec1bda67cebd">&#9670;&nbsp;</a></span>_database_backup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseWorker::_database_backup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Выполняет во втором потоке резервное копирование базы данных для возможности восстановления </p>
+<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">while</span>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.isOpen()){</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">backupInterval</a>));</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;started backup&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        std::string fullSourcePath;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a> &gt; 0){</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            fullSourcePath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>) + <span class="charliteral">&#39;\\&#39;</span> + std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            fullSourcePath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        std::wstring w_fullSourcePath(fullSourcePath.begin(), fullSourcePath.end());</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        std::string fullBackupPath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>) + <span class="charliteral">&#39;\\&#39;</span> + std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        std::wstring w_fullBackupPath(fullBackupPath.begin(), fullBackupPath.end());</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        CopyFile(w_fullSourcePath.c_str(), w_fullBackupPath.c_str(), FALSE);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;ended backup&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">backupInterval</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a> и <a class="el" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker()</a>.</p>
+
+</div>
+</div>
+<a id="af0ac6356d71ff81e472be1d969b8bfdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0ac6356d71ff81e472be1d969b8bfdb">&#9670;&nbsp;</a></span>database_open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseWorker::database_open </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция проверки открыта ли сейчас БД </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если БД открыта (не путайте с 'готова к работе'), иначе - false) </dd></dl>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.isOpen();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#aa35f53e9225e4a551fd6fa22ef48dcb5">Mafia::Database::TransactionDatabaseManager::check_transaction_hashes()</a>.</p>
+
+</div>
+</div>
+<a id="a1832afc64d376c6a86399882f44bddde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1832afc64d376c6a86399882f44bddde">&#9670;&nbsp;</a></span>database_ready()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DatabaseWorker::database_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция проверяющая готовность базы данных к работе с ней </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true, если БД готова к работе, иначе false </dd></dl>
+<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>.isOpen() &amp;&amp; !<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query()</a>.</p>
+
+</div>
+</div>
+<a id="a9189655e4f744af5bb8a83735457d58c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9189655e4f744af5bb8a83735457d58c">&#9670;&nbsp;</a></span>restore_database()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DatabaseWorker::restore_database </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    std::string fullSourcePath;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a> &gt; 0){</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        fullSourcePath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>) + <span class="charliteral">&#39;\\&#39;</span> + std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    } <span class="keywordflow">else</span>{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        fullSourcePath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::wstring w_fullSourcePath(fullSourcePath.begin(), fullSourcePath.end());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    std::string fullBackupPath = std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>) + <span class="charliteral">&#39;\\&#39;</span> + std::string(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">data</a>, <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>.<a class="code" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">size</a>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::wstring w_fullBackupPath(fullBackupPath.begin(), fullBackupPath.end());</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    CopyFile(w_fullBackupPath.c_str(), w_fullSourcePath.c_str(), FALSE);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">backupPath</a>, <a class="el" href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">filename</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">isOnBackup</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">path</a> и <a class="el" href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae4f250a52ca9f1a1fe7abeb03bab7880">Mafia::Database::TransactionDatabaseManager::on_database_cracked()</a>.</p>
+
+</div>
+</div>
+<a id="a77bf26edac421999293650a9d6a5c302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77bf26edac421999293650a9d6a5c302">&#9670;&nbsp;</a></span>run_query()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSqlQuery * DatabaseWorker::run_query </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>request</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Функция, выполняющая строковой Sql запрос </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>Запрос, который следует выполнить </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полученный результат в виде QSqlQuery* </dd></dl>
+<dl class="exception"><dt>Исключения</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">DatabaseWorkingExceptionId_SQlQuery</td><td>в случае неудачного выполнения запроса </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">int</span> time = 0;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//std::cout &lt;&lt; request.toStdString() &lt;&lt; std::endl;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">while</span>(!<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready</a>()){</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        std::this_thread::sleep_for(std::chrono::milliseconds(10));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        time += 10;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span>(time &gt; <a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">maxWaitingTime</a>){</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(<span class="stringliteral">&quot;Too much waiting time&quot;</span>), <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a39456e56a37c25b9684a85b9245fe80d">Exceptions::DatabaseWorkingExceptionId_TimeLimit</a>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    QSqlQuery* query = <span class="keyword">new</span> QSqlQuery(<a class="code" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">bool</span> success = query-&gt;exec(request);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">if</span>(!success){</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::string exception = <span class="stringliteral">&quot;Unable to execute query\n&quot;</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        exception += query-&gt;lastError().text().toStdString();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        exception += <span class="stringliteral">&quot;\n&quot;</span> + request.toStdString();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">throw</span> <span class="keyword">new</span> <a class="code" href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Exceptions::DatabaseWorkingException</a>(<a class="code" href="class_mafia_1_1_system_1_1_string.html">System::String</a>(exception), <a class="code" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">return</span> query;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Перекрестные ссылки <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">dataBase</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready()</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a>, <a class="el" href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a39456e56a37c25b9684a85b9245fe80d">Mafia::Exceptions::DatabaseWorkingExceptionId_TimeLimit</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">maxWaitingTime</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#acaec544bdbbfe052e991ca566fadb694">Mafia::Database::UserDatabaseManager::add_achievement()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ac453b5931bb53d12c4cdb9ba042156ef">Mafia::Database::GameDatabaseManager::add_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac064490df3e516a3bfddfc618658339f">Mafia::Database::ChatDatabaseManager::add_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a655539012fa580510df277a684209c46">Mafia::Database::TransactionDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a186eb682e5f8a1ec982205793c7f6d6d">Mafia::Database::UserDatabaseManager::add_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aee07743b17bf7a6ace97818cb3b9865b">Mafia::Database::UserDatabaseManager::add_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#afbfaa0457c7139b7d3b012857c5bea1b">Mafia::Database::ChatSettingsDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7d549fb2eab44b531a907646eef9ec25">Mafia::Database::UserDatabaseManager::add_user_to_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a19e9e3d450f5de4fdcb9170da6b1c0f7">Mafia::Database::UserDatabaseManager::change_email()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5e3f228885359e95ffd5f1645183ddd4">Mafia::Database::UserDatabaseManager::change_nickname()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#ae2a66aa026cb447ecc29be1a242bd784">Mafia::Database::UserDatabaseManager::change_password()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#af89cb35760ec838e92ba604d5547278b">Mafia::Database::ChatDatabaseManager::ChatDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#ac2b0ba1aff7cec079ca8d97bbfdf28ae">Mafia::Database::ChatSettingsDatabaseManager::ChatSettingsDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a7bfaeb74b6be6910b3f3dc4cb59a6c6c">Mafia::Database::UserDatabaseManager::confirm_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a31b754c2045ce5554d3d1caa9240b842">Mafia::Database::ChatSettingsDatabaseManager::create_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa4a50e0c12d1523b5c3ccf5a8a2ac89f">Mafia::Database::ChatDatabaseManager::delete_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#a3cce296d262d3a979fe287bb0faf6f9d">Mafia::Database::ChatDatabaseManager::edit_message()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a5815003ca059e09633adc44ee73b8bf3">Mafia::Database::GameDatabaseManager::GameDatabaseManager()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa832d189f1c7ac747d0a860bda596572">Mafia::Database::ChatSettingsDatabaseManager::get_all_chats()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ae1d3a6574ea868afcbf1916380b44a42">Mafia::Database::TransactionDatabaseManager::get_all_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#aa0f2e962d6d81cf3ceaa52a23e98d0f0">Mafia::Database::ChatSettingsDatabaseManager::get_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#ab6f44302bf173245ddec9c07a6f3b31f">Mafia::Database::GameDatabaseManager::get_game_data()</a>, <a class="el" href="class_mafia_1_1_database_1_1_game_database_manager.html#a2c60aff89a1a84a42e4db0cb9311f78d">Mafia::Database::GameDatabaseManager::get_games_with()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a663db93379e88e30afcb29e583e3d156">Mafia::Database::UserDatabaseManager::get_id()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ac297f573c34d9cefe4e7de3343b4ec79">Mafia::Database::ChatDatabaseManager::get_last_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#aa16a5be40843f128ccd32c749dd97aca">Mafia::Database::ChatDatabaseManager::get_messages()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ac91e237790cb6ecb4cafb4d7f65a6205">Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#afc61bb5c35cdc92de86bace96e39edd3">Mafia::Database::TransactionDatabaseManager::get_transaction()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a89fd6c7e3163d07a093427b527d791ca">Mafia::Database::UserDatabaseManager::get_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#adbe3e0baab3495650f949c2896026233">Mafia::Database::UserDatabaseManager::get_users()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a93418cd4e490579b304ea9dd6a4e1de1">Mafia::Database::ChatSettingsDatabaseManager::get_users_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#a5874ef52a707346b358a816328ccaf87">Mafia::Database::TransactionDatabaseManager::get_users_transactions()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a0962c5d73710a73440305399431dbdda">Mafia::Database::UserDatabaseManager::login_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aea106242ecdea9f7ea90ef7ececa0707">Mafia::Database::UserDatabaseManager::logout_user()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6">Mafia::Database::ChatDatabaseManager::message_read()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#aa3a5557374f9f8de542d2e2eee2f84f7">Mafia::Database::UserDatabaseManager::register_game()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a53d1a7cf2f09e70b4c13ee038696abf0">Mafia::Database::ChatSettingsDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a8cf06a58e930dc95ddbda567a16c884e">Mafia::Database::UserDatabaseManager::remove_user_from_chat()</a>, <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a5f76787c1ee6bffbd7be706f173d2468">Mafia::Database::UserDatabaseManager::set_account_type()</a>, <a class="el" href="class_mafia_1_1_database_1_1_chat_settings_database_manager.html#a661e24b0ecc89a178f9c292ae399df71">Mafia::Database::ChatSettingsDatabaseManager::set_capability()</a>, <a class="el" href="class_mafia_1_1_database_1_1_transaction_database_manager.html#ad656f78044b12ee27f416383586558f4">Mafia::Database::TransactionDatabaseManager::TransactionDatabaseManager()</a> и <a class="el" href="class_mafia_1_1_database_1_1_user_database_manager.html#a224310e4f2a7611f40863a940fb34b86">Mafia::Database::UserDatabaseManager::UserDatabaseManager()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a85607bef8b551b95e1986d7a694b1c50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85607bef8b551b95e1986d7a694b1c50">&#9670;&nbsp;</a></span>backupInterval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Database::DatabaseWorker::backupInterval = 10000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Временной промежуток между двумя резервными копированиями (мс) </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>.</p>
+
+</div>
+</div>
+<a id="a8d5c3f57c330a650b8f1fd0b8d0885d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5c3f57c330a650b8f1fd0b8d0885d8">&#9670;&nbsp;</a></span>backupPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::backupPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Путь к папке резервной копии базы данных </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a9189655e4f744af5bb8a83735457d58c">restore_database()</a>.</p>
+
+</div>
+</div>
+<a id="a8303513198157415f9ef3bf7a991f6af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8303513198157415f9ef3bf7a991f6af">&#9670;&nbsp;</a></span>dataBase</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QSqlDatabase Mafia::Database::DatabaseWorker::dataBase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Интерфейс базы данных в виде QSqlDatabase. </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#af0ac6356d71ff81e472be1d969b8bfdb">database_open()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query()</a>.</p>
+
+</div>
+</div>
+<a id="a53590b2924a2ec5e905213444334266b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53590b2924a2ec5e905213444334266b">&#9670;&nbsp;</a></span>filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::filename</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Имя файла базы данных (в обеих файлах) </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a9189655e4f744af5bb8a83735457d58c">restore_database()</a>.</p>
+
+</div>
+</div>
+<a id="a6bf12e6fd12d0afb5a96cc694baee8a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bf12e6fd12d0afb5a96cc694baee8a8">&#9670;&nbsp;</a></span>isOnBackup</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mafia::Database::DatabaseWorker::isOnBackup</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Переменная, отвечающая за то, находится ли прямо сейчас база данных в процессе резервного копирования </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">database_ready()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a9189655e4f744af5bb8a83735457d58c">restore_database()</a>.</p>
+
+</div>
+</div>
+<a id="aba84ce575f4edb80d8a85e1a32927c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba84ce575f4edb80d8a85e1a32927c7a">&#9670;&nbsp;</a></span>maxWaitingTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int Mafia::Database::DatabaseWorker::maxWaitingTime = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Максимальное время ожидания готовности базы данных. Если это время превышается, будет выброшена ошибка о первышении времени ожидания </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a77bf26edac421999293650a9d6a5c302">run_query()</a>.</p>
+
+</div>
+</div>
+<a id="a0d247f6ae6460bbcc640a7e2c33b2b80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d247f6ae6460bbcc640a7e2c33b2b80">&#9670;&nbsp;</a></span>path</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_mafia_1_1_system_1_1_string.html">System::String</a> Mafia::Database::DatabaseWorker::path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Путь к папке базы данных </p>
+
+<p class="reference">Используется в <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">_database_backup()</a>, <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a348c150ab28db74e1ebd692c73214636">DatabaseWorker()</a> и <a class="el" href="class_mafia_1_1_database_1_1_database_worker.html#a9189655e4f744af5bb8a83735457d58c">restore_database()</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов классов находятся в файлах:<ul>
+<li>Database/<a class="el" href="databaseworker_8h_source.html">databaseworker.h</a></li>
+<li>Database/<a class="el" href="databaseworker_8cpp.html">databaseworker.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a1832afc64d376c6a86399882f44bddde"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a1832afc64d376c6a86399882f44bddde">Mafia::Database::DatabaseWorker::database_ready</a></div><div class="ttdeci">bool database_ready()</div><div class="ttdoc">Функция проверяющая готовность базы данных к работе с ней</div><div class="ttdef"><b>Definition:</b> databaseworker.cpp:39</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a85607bef8b551b95e1986d7a694b1c50"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a85607bef8b551b95e1986d7a694b1c50">Mafia::Database::DatabaseWorker::backupInterval</a></div><div class="ttdeci">const int backupInterval</div><div class="ttdoc">Временной промежуток между двумя резервными копированиями (мс)</div><div class="ttdef"><b>Definition:</b> databaseworker.h:69</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a0d247f6ae6460bbcc640a7e2c33b2b80"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a0d247f6ae6460bbcc640a7e2c33b2b80">Mafia::Database::DatabaseWorker::path</a></div><div class="ttdeci">const System::String path</div><div class="ttdoc">Путь к папке базы данных</div><div class="ttdef"><b>Definition:</b> databaseworker.h:74</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27a39456e56a37c25b9684a85b9245fe80d"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27a39456e56a37c25b9684a85b9245fe80d">Mafia::Exceptions::DatabaseWorkingExceptionId_TimeLimit</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_TimeLimit</div><div class="ttdoc">Исключение, вызываемое при превышении времени ожидания отклика БД</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:47</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a8d5c3f57c330a650b8f1fd0b8d0885d8"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a8d5c3f57c330a650b8f1fd0b8d0885d8">Mafia::Database::DatabaseWorker::backupPath</a></div><div class="ttdeci">const System::String backupPath</div><div class="ttdoc">Путь к папке резервной копии базы данных</div><div class="ttdef"><b>Definition:</b> databaseworker.h:79</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_aba84ce575f4edb80d8a85e1a32927c7a"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#aba84ce575f4edb80d8a85e1a32927c7a">Mafia::Database::DatabaseWorker::maxWaitingTime</a></div><div class="ttdeci">static const int maxWaitingTime</div><div class="ttdoc">Максимальное время ожидания готовности базы данных. Если это время превышается, будет выброшена ошибк...</div><div class="ttdef"><b>Definition:</b> databaseworker.h:90</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a8303513198157415f9ef3bf7a991f6af"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a8303513198157415f9ef3bf7a991f6af">Mafia::Database::DatabaseWorker::dataBase</a></div><div class="ttdeci">QSqlDatabase dataBase</div><div class="ttdoc">Интерфейс базы данных в виде QSqlDatabase.</div><div class="ttdef"><b>Definition:</b> databaseworker.h:64</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a3e19e99a86e1821dc8c8ec1bda67cebd"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a3e19e99a86e1821dc8c8ec1bda67cebd">Mafia::Database::DatabaseWorker::_database_backup</a></div><div class="ttdeci">void _database_backup()</div><div class="ttdoc">Выполняет во втором потоке резервное копирование базы данных для возможности восстановления</div><div class="ttdef"><b>Definition:</b> databaseworker.cpp:94</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a19d0386685bf2b9403ffcc0ecd4e1b12"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a19d0386685bf2b9403ffcc0ecd4e1b12">Mafia::System::String::size</a></div><div class="ttdeci">int size</div><div class="ttdoc">длина массива данных</div><div class="ttdef"><b>Definition:</b> simplestring.h:61</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html">Mafia::System::String</a></div><div class="ttdoc">The String class упрощенная строка (мне просто страшно использовать QString или std::string,...</div><div class="ttdef"><b>Definition:</b> simplestring.h:13</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a6bf12e6fd12d0afb5a96cc694baee8a8"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a6bf12e6fd12d0afb5a96cc694baee8a8">Mafia::Database::DatabaseWorker::isOnBackup</a></div><div class="ttdeci">bool isOnBackup</div><div class="ttdoc">Переменная, отвечающая за то, находится ли прямо сейчас база данных в процессе резервного копирования</div><div class="ttdef"><b>Definition:</b> databaseworker.h:59</div></div>
+<div class="ttc" id="anamespace_mafia_1_1_exceptions_html_adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96"><div class="ttname"><a href="namespace_mafia_1_1_exceptions.html#adb5aef3f5d6c5e255f7a75e6fabbfe27ad335c49f5fc40222776e8c5bef642d96">Mafia::Exceptions::DatabaseWorkingExceptionId_SQlQuery</a></div><div class="ttdeci">@ DatabaseWorkingExceptionId_SQlQuery</div><div class="ttdoc">Исключение, вызываемое при ошибке в sql-запросе</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:39</div></div>
+<div class="ttc" id="aclass_mafia_1_1_database_1_1_database_worker_html_a53590b2924a2ec5e905213444334266b"><div class="ttname"><a href="class_mafia_1_1_database_1_1_database_worker.html#a53590b2924a2ec5e905213444334266b">Mafia::Database::DatabaseWorker::filename</a></div><div class="ttdeci">const System::String filename</div><div class="ttdoc">Имя файла базы данных (в обеих файлах)</div><div class="ttdef"><b>Definition:</b> databaseworker.h:84</div></div>
+<div class="ttc" id="aclass_mafia_1_1_exceptions_1_1_database_working_exception_html"><div class="ttname"><a href="class_mafia_1_1_exceptions_1_1_database_working_exception.html">Mafia::Exceptions::DatabaseWorkingException</a></div><div class="ttdoc">Класс для описания исключений работы с БД</div><div class="ttdef"><b>Definition:</b> databaseworkingexception.h:12</div></div>
+<div class="ttc" id="aclass_mafia_1_1_system_1_1_string_html_a0d37741c5de5c575cd7de8248a81aa96"><div class="ttname"><a href="class_mafia_1_1_system_1_1_string.html#a0d37741c5de5c575cd7de8248a81aa96">Mafia::System::String::data</a></div><div class="ttdeci">char * data</div><div class="ttdoc">массив данных строки</div><div class="ttdef"><b>Definition:</b> simplestring.h:59</div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.18
+</small></address>
+</body>
+</html>

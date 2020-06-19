@@ -4,8 +4,6 @@
 #include "System/simplestring.h"
 #include <QtSql>
 
-//! \brief Размер строки для хранения в БД
-#define STRING_SIZE 256
 //! \brief Sql команда для обозначения переменной, которой нельзя присвоить неинициализированное значение
 #define NOT_NULL " NOT NULL"
 //! \brief Sql команда для обозначения основной переменной
@@ -28,13 +26,16 @@ namespace Mafia {
              */
             DatabaseWorker(System::String _path = System::String(""),
                            System::String _backupPath = System::String("D:\\"),
-                           System::String _filename = System::String("MyDatabase.sqlite"));
+                           System::String _filename = System::String("MafiaDatabase.sqlite"));
 
             /*!
              * \brief Функция проверяющая готовность базы данных к работе с ней
              * \return true, если БД готова к работе, иначе false
              */
             bool database_ready();
+            //! \brief Функция проверки открыта ли сейчас БД
+            //! \return true, если БД открыта (не путайте с 'готова к работе'), иначе - false)
+            bool database_open();
 
             /*!
              * \brief Функция, выполняющая строковой Sql запрос
@@ -44,14 +45,7 @@ namespace Mafia {
              */
             QSqlQuery* run_query(QString request);
 
-            /*!
-             * \brief Преобразует typeid(T).hash_code в Sql тип
-             * \param type_hashcode хэш типа данных (можно получить через typeid(T).hash_code())
-             * \param maxListSize Если передается список, то необходимо также передать максимальный размер этого списка
-             * \return Sql тип данных, в виде строки
-             */
-            static QString get_sql_type(size_t type_hashcode, int maxListSize = 0);
-
+            void restore_database();
 
         private:
             /*!

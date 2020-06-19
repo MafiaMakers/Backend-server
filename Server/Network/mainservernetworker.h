@@ -27,6 +27,7 @@ namespace Mafia {
              */
             MessageIdType send_message(Message message);
         signals:
+
             /*!
              * \brief Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов
              * \param message Пришедшее сообщение с ответом
@@ -77,7 +78,7 @@ namespace Mafia {
             //! порт сервера
             int myPort;
             //! Сообщения, ожидающие подтверждения
-            QList<Message> waitingForConfirmation;
+            MafiaList<Message> waitingForConfirmation;
             //! id сообщения, которое на данный момент максимальное
             MessageIdType currentMaxId = (MessageIdType)0;
             //! Множество типов сообщений, которым необходимо подтверждение

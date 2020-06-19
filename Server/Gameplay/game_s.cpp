@@ -44,3 +44,18 @@ Mafia::Gameplay::GamePersonalResult Mafia::Gameplay::result_by_role_and_res(Mafi
     }
     }
 }
+
+void Game::show()
+{
+    std::cout << "-------------------------\nGAME" <<
+                 "\nid = " << this->id <<
+                 "\nstart = " << this->beginningDT.toString(Database::SQL_DATETIME_FORMAT).toStdString() <<
+                 "\nend = " << this->endingDT.toString(Database::SQL_DATETIME_FORMAT).toStdString() <<
+                 "\noutcome = " << this->result <<
+                 "\nplayers:";
+    for(int j = 0; j < this->users.length(); j++){
+        std::cout << "\n    id = " << this->users[j] <<
+                     "\n    role = " << this->roles[j];
+    }
+    std::cout << std::endl;
+}

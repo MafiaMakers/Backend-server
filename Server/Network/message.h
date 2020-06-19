@@ -1,10 +1,6 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-
-
-
-
 namespace Mafia {
     namespace Network {
         /*!

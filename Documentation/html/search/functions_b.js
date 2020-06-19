@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['main_684',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['mainservermanager_685',['MainServerManager',['../class_mafia_1_1_main_server_manager.html#ab526a733674ada1f4527fdeb9e74dafb',1,'Mafia::MainServerManager']]],
+  ['mainservernetworker_686',['MainServerNetworker',['../class_mafia_1_1_network_1_1_main_server_networker.html#ad4d86b737c89eb1a03aaf04ba4968ab8',1,'Mafia::Network::MainServerNetworker']]],
+  ['message_687',['Message',['../struct_mafia_1_1_network_1_1_message.html#ab7aed88aebc477305ea165401ab9646a',1,'Mafia::Network::Message::Message()'],['../struct_mafia_1_1_network_1_1_message.html#abf81f0815551d1f3ecde84835b48cc67',1,'Mafia::Network::Message::Message(MessageTypeType type, SymbolType *data, int size, Client client, MessageIdType id=0)']]],
+  ['message_5ffrom_5fserver_688',['message_from_server',['../class_mafia_1_1_subservers_1_1_backup_subserver_object.html#a6a182f40bf221a60f7303f6df4e4a188',1,'Mafia::Subservers::BackupSubserverObject::message_from_server()'],['../class_mafia_1_1_subservers_1_1_subserver_object.html#a10949f1bdc457f495bb0bb52f9434dfa',1,'Mafia::Subservers::SubserverObject::message_from_server()']]],
+  ['message_5fread_689',['message_read',['../class_mafia_1_1_database_1_1_chat_database_manager.html#ab2ee84e72a2c3ce18f749193053821a6',1,'Mafia::Database::ChatDatabaseManager']]],
+  ['messageparsingexception_690',['MessageParsingException',['../class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#ac14339425ffc40e1c56cb5666f4543d4',1,'Mafia::Exceptions::MessageParsingException::MessageParsingException()'],['../class_mafia_1_1_exceptions_1_1_message_parsing_exception.html#a0211a8c33deb63b82c868f9f1bbfb158',1,'Mafia::Exceptions::MessageParsingException::MessageParsingException(System::String data, ExceptionIdType id)']]],
+  ['messageprocessingexception_691',['MessageProcessingException',['../class_mafia_1_1_exceptions_1_1_message_processing_exception.html#a7ea0f427e65a041913f00427fb3be078',1,'Mafia::Exceptions::MessageProcessingException::MessageProcessingException()'],['../class_mafia_1_1_exceptions_1_1_message_processing_exception.html#a21156e1fd9a5fed555f22bf60dfed1b6',1,'Mafia::Exceptions::MessageProcessingException::MessageProcessingException(System::String data, ExceptionIdType id)']]]
+];

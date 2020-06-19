@@ -11,7 +11,7 @@
 #include <string>
 #include <array>
 #include <QList>
-
+#include "System/functions.h"
 #include "simplestring.h"
 
 namespace Mafia {
@@ -42,7 +42,7 @@ namespace Mafia {
          * \param name имя процесса
          * \return список PID всех процессов, у которых имя совпадает с переданным именем
          */
-        QList<int> get_all_pids_by_name(const String name);
+        MafiaList<int> get_all_pids_by_name(const String name);
 
         /*!
          * \brief Завершение процесса с указанным PID
