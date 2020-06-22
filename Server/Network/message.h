@@ -49,6 +49,15 @@ namespace Mafia {
                 return(a.ip == this->ip && a.port == this->port);
             }
 
+            /*!
+             * \brief Тоже оператор сравнения, но только обратный
+             * \param a второй объект клиент
+             * \return true, если объекты не совпадают хоть в чем-то (ip или port), false, если объекты абсолютно идентичны
+             */
+            bool operator != (Client a){
+                return !(*this == a);
+            }
+
             //! \brief ip отправителя сообщения
             int ip;
             //! \brief порт, с которого было отправлено сообщение
@@ -67,6 +76,8 @@ namespace Mafia {
                 type = MessageTypeType();
                 data = 0;
                 size = 0;
+                partIndex = 0;
+                partsCount = 1;
                 client = Client();
             }
             /*!
@@ -77,15 +88,33 @@ namespace Mafia {
              * \param size размер массива данных
              * \param client клиент
              */
-            Message(MessageTypeType type, SymbolType* data, int size, Client client, MessageIdType id = 0){
+            Message(MessageTypeType type, SymbolType* data, int size, Client client, MessageIdType id = 0, int partsCount = 1, int partIndex = 0){
                 this->id = id;
                 this->data = data;
                 this->size = size;
                 this->type = type;
                 this->client = client;
+                this->partIndex = partIndex;
+                this->partsCount = partsCount;
             }
+
+            Message operator = (Message mes){
+                this->id = mes.id;
+                this->data = mes.data;
+                this->size = mes.size;
+                this->type = mes.type;
+                this->client = mes.client;
+                this->partIndex = mes.partIndex;
+                this->partsCount = mes.partsCount;
+                return mes;
+            }
+
             //! id сообщения (используется для проверки повторных отправок и прочих сбоев)
             MessageIdType id;
+            //! \brief Количество частей, на которые разбито большое сообщение
+            int partsCount;
+            //! \brief Индекс конкретно этой части, передаваемой в этом сообщении
+            int partIndex;
             //! тип сообщения
             MessageTypeType type;
              //! данные сообщения

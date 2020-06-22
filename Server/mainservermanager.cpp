@@ -24,7 +24,7 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
 
         _networker_test();
         //_database_test();
-        _database_get_all();
+        //_database_get_all();
     } catch (Exceptions::Exception* exception) {
         exception->show();
     }
@@ -162,8 +162,8 @@ void MainServerManager::_networker_test()
     try {
         myTestRequest = new Requests::NetworkRequest(networker,
                                               Message(MessageType_AbstractRequest,
-                                                      (char*)"Some ask",
-                                                      9,
+                                                      (char*)"To be or not to be... That is the question!",
+                                                      44,
                                                 Client(QHostAddress("192.168.1.66").toIPv4Address(),
                                                        10000)));
 

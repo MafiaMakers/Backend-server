@@ -10,8 +10,8 @@
 
 using namespace Mafia;
 using namespace Network;
-const int MainServerNetworker::timeToResend = 500;
-const int MainServerNetworker::maxResendCount = 100;
+const int MainServerNetworker::TIME_TO_RESEND = 500;
+const int MainServerNetworker::MAX_RESEND_COUNT = 100;
 //const int MainServerNetworker::idsForClient = 1000;
 
 const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<MessageTypeType>()
@@ -22,6 +22,7 @@ const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<Message
 
 MainServerNetworker::MainServerNetworker(int port)
 {
+    this->waitingToFillMessages = MafiaList<MafiaList<Message>>();
     this->currentMaxId = 0;
     this->socket = new QUdpSocket(this);
     this->myPort = port;
@@ -39,18 +40,37 @@ MessageIdType MainServerNetworker::send_message(Message message)
         currentMaxId++;
         message.id = currentMaxId;
     }
-    try {
-        mes = Crypto::wrap_message(message);
-    } catch (Exceptions::Exception* exception) {
-        exception->show();
-        return -2;
+
+    int standartSize = (MAX_MESSAGE_SIZE / sizeof(SymbolType));
+
+    message.partsCount = (message.size / standartSize) + 1;
+
+
+
+    for(int i = 0; i < message.partsCount; i++){
+        Message partMes = message;
+        partMes.partIndex = i;
+        partMes.data = &(message.data[i * standartSize]);
+        if(i == message.partsCount - 1){
+            partMes.size = message.size - (message.partsCount - 1) * standartSize;
+        } else{
+            partMes.size = standartSize;
+        }
+        try {
+            mes = Crypto::wrap_message(partMes);
+        } catch (Exceptions::Exception* exception) {
+            exception->show();
+            return -2;
+        }
+
+        _send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 
     if(needConfirmation.contains(message.type)){
         waitingForConfirmation.append(message);
     }
 
-    _send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
     return message.id;
     //std::cout << "Sent a message" << std::endl;
 }
@@ -69,11 +89,11 @@ void MainServerNetworker::_process_message(Message message)
 
     switch (message.type) {
     case MessageType_Text:{
-        //show_message(message);
+        show_message(message);
         break;
     }
     case MessageType_NoConfirmText:{
-        //show_message(message);
+        show_message(message);
         break;
     }
     case MessageType_Confirmation:{
@@ -117,7 +137,7 @@ void MainServerNetworker::_process_message(Message message)
 void MainServerNetworker::_resend_not_confirmed_messages()
 {
     while (true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(timeToResend));
+        std::this_thread::sleep_for(std::chrono::milliseconds(TIME_TO_RESEND));
         for(int i = 0; i < waitingForConfirmation.length(); i++){
             //std::cout << "resending..." << std::endl;
             System::String mes = System::String();
@@ -136,6 +156,122 @@ void MainServerNetworker::late_send_message(Message message, int delay)
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
     send_message(message);
+}
+
+bool MainServerNetworker::check_message_full(MessageIdType id)
+{
+    int listIndex = get_list_index(id);
+
+    if(listIndex == -1){
+        throw new Exceptions::MessageProcessingException(System::String("No such exception id in list"),
+                                                         Exceptions::MessageProcessingExceptionId_MissingMessageId);
+        return false;
+    }
+
+    for(int i = 0; i < waitingToFillMessages[listIndex].length(); i++){
+        if(waitingToFillMessages[listIndex][i].id != id){
+            return false;
+        }
+    }
+    return true;
+}
+
+int MainServerNetworker::get_list_index(MessageIdType id)
+{
+    for(int i = 0; i < waitingToFillMessages.length(); i++){
+        if(waitingToFillMessages[i][0].id == id){
+            return i;
+        }
+    }
+    return  -1;
+}
+
+void MainServerNetworker::add_received_message(Message message)
+{
+    int listIndex = get_list_index(message.id);
+
+    if(listIndex == -1){
+        listIndex = waitingToFillMessages.length();
+        waitingToFillMessages.append(MafiaList<Message>());
+
+        Message base = Message();
+        base.id = message.id;
+        base.type = message.type;
+        base.client = message.client;
+        base.partsCount = message.partsCount;
+
+        waitingToFillMessages[listIndex].append(base);
+
+        for(int i = 0; i < message.partsCount; i++){
+            waitingToFillMessages[listIndex].append(Message());
+        }
+    }
+    try {
+        if(message.partIndex < waitingToFillMessages[listIndex].length() - 1 && message_matches(message)){
+            waitingToFillMessages[listIndex][message.partIndex + 1] = message;
+        } else{
+            throw new Exceptions::MessageProcessingException(System::String("Message parts data mismatch"),
+                                                             Exceptions::MessageProcessingExceptionId_MessagePartsMismatch);
+        }
+
+        if(check_message_full(message.id)){
+            Message wholeMessage = Message();
+            wholeMessage.id = message.id;
+            wholeMessage.type = message.type;
+            wholeMessage.client = message.client;
+            wholeMessage.partsCount = 1;
+            wholeMessage.partIndex = 0;
+            wholeMessage.size = 0;
+
+            for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
+                wholeMessage.size += waitingToFillMessages[listIndex][i].size;
+            }
+
+            wholeMessage.data = new SymbolType[wholeMessage.size];
+            int currentInd = 0;
+            for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
+                for(int j = 0; j < waitingToFillMessages[listIndex][i].size; j++){
+                    wholeMessage.data[currentInd] = waitingToFillMessages[listIndex][i].data[j];
+                    currentInd++;
+                }
+            }
+
+            waitingToFillMessages.removeAt(listIndex);
+
+            _process_message(wholeMessage);
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
+}
+
+bool MainServerNetworker::message_matches(Message message)
+{
+    int index = get_list_index(message.id);
+
+    if(index == -1){
+        throw new Exceptions::MessageProcessingException(System::String("No such message id in list"),
+                                                         Exceptions::MessageProcessingExceptionId_MissingMessageId);
+        return false;
+    }
+
+    if(message.type != waitingToFillMessages[index][0].type){
+        return false;
+    }
+
+    if(message.client != waitingToFillMessages[index][0].client){
+        return false;
+    }
+
+    if(message.partsCount != waitingToFillMessages[index][0].partsCount){
+        return false;
+    }
+
+    return true;
 }
 
 void MainServerNetworker::receive_message() {
@@ -161,8 +297,8 @@ void MainServerNetworker::receive_message() {
         if(trueData.id > currentMaxId){
             currentMaxId = trueData.id;
         }
-
-        _process_message(trueData);
+        //show_message(trueData);
+        add_received_message(trueData);
     }
 
 }

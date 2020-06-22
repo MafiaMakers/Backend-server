@@ -300,8 +300,6 @@ UserIdType UserDatabaseManager::get_id(QString email)
             return -1;
         }
 
-
-
     } catch (Exceptions::Exception * exception) {
         switch (exception->get_id()) {
         default:{
@@ -310,8 +308,6 @@ UserIdType UserDatabaseManager::get_id(QString email)
         }
         }
     }
-
-
 }
 
 void UserDatabaseManager::add_achievement(UserIdType id, Achievement achievement)
@@ -328,7 +324,6 @@ void UserDatabaseManager::add_achievement(UserIdType id, Achievement achievement
         }
         }
     }
-
 }
 
 void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
@@ -356,7 +351,6 @@ void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
         }
         }
     }
-
 }
 
 void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType chatId)

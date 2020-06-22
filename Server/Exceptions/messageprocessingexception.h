@@ -22,8 +22,13 @@ namespace Mafia {
             MessageProcessingExceptionId_Default = 200,
             //! \brief Исключение, вызываемое при получении сообщения неизвестного типа
             MessageProcessingExceptionId_UnknownMessageType = 201,
+            //! \brief Исключение, вызываемое при несовпадении какого-либо параметра сообщений, которые должны быть частями одного сообщения
+            MessageProcessingExceptionId_MessagePartsMismatch = 202,
+            //! \brief Исключение, вызываемое при попытке добавить часть сообщения, id которого незарегистрировано
+            //! (например, его еще не было, а вы пытаетесь без создания сразу изменять)
+            MessageProcessingExceptionId_MissingMessageId = 203,
             //! \brief Верхняя граница id исключений обработки сообщений (см. \ref Mafia::Database::Status_First)
-            MessageProcessingExceptionId_Last = 202
+            MessageProcessingExceptionId_Last = 204
         };
     }
 }

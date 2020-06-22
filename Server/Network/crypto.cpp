@@ -35,7 +35,7 @@ Message Crypto::parse_data(char *data, int size){
         }
     }
 
-    int othersCount = tData.size - (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType));
+    int othersCount = tData.size - (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType) + sizeof(Message::partIndex) + sizeof (Message::partsCount));
 
     if(othersCount < 0){
         throw new Exceptions::MessageParsingException(System::String("decrypted data size is too small"), Exceptions::MessageParsingExceptionId_ShortMessage);
@@ -59,6 +59,21 @@ Message Crypto::parse_data(char *data, int size){
     }
 
     result.type = *(MessageTypeType*)mesTypeChar;
+
+    char* mesPartIdxChar = new char[sizeof (Message::partIndex)];
+    for(unsigned int i = 0; i < sizeof (Message::partIndex); i++){
+        mesPartIdxChar[i] = tData.data[currentInd];
+        currentInd++;
+    }
+    result.partIndex = *(int*)mesPartIdxChar;
+
+    char* mesPartsCount = new char[sizeof (Message::partsCount)];
+    for(unsigned int i = 0; i < sizeof (Message::partsCount); i++){
+        mesPartsCount[i] = tData.data[currentInd];
+        currentInd++;
+    }
+    result.partsCount = *(int*)mesPartsCount;
+
     char* controlSumChar = new char[sizeof (ControlSumType)];
     for(unsigned int i = 0; i < sizeof(ControlSumType); i++){
         controlSumChar[i] = tData.data[currentInd];
@@ -105,7 +120,12 @@ Message Crypto::parse_data(System::String data){
 }
 
 System::String Crypto::wrap_message(Message mes){
-    unsigned int size = (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType))+ mes.size * sizeof (SymbolType);
+    unsigned int size = (sizeof(MessageIdType) +
+                         sizeof (MessageTypeType) +
+                         sizeof (ControlSumType)) +
+                         mes.size * sizeof (SymbolType) +
+                         sizeof (mes.partIndex) +
+                         sizeof(mes.partsCount);
 
     System::String resultData = System::String(new char[size], size);
 
@@ -117,6 +137,16 @@ System::String Crypto::wrap_message(Message mes){
 
     for(unsigned int i = 0; i < sizeof(MessageTypeType); i++){
         resultData.data[currentInd] = ((char*)(&(mes.type)))[i];
+        currentInd++;
+    }
+
+    for(unsigned int i = 0; i < sizeof(mes.partIndex); i++){
+        resultData.data[currentInd] = ((char*)(&(mes.partIndex)))[i];
+        currentInd++;
+    }
+
+    for(unsigned int i = 0; i < sizeof(mes.partsCount); i++){
+        resultData.data[currentInd] = ((char*)(&(mes.partsCount)))[i];
         currentInd++;
     }
 
@@ -132,7 +162,7 @@ System::String Crypto::wrap_message(Message mes){
     }
 
     for(unsigned int i = 0; i < sizeof (ControlSumType); i++){
-        resultData.data[sizeof(MessageIdType) + sizeof(MessageTypeType) + i] = ((char*)&controlSum)[i];
+        resultData.data[sizeof(MessageIdType) + sizeof(MessageTypeType) + sizeof(mes.partIndex) + sizeof (mes.partsCount) + i] = ((char*)&controlSum)[i];
     }
 
     System::String result;
