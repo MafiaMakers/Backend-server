@@ -119,3 +119,79 @@ MafiaList<ChatCapability> Mafia::Database::query_value_to_variable(QVariant data
 {
     return qlist_from_byte_array<ChatCapability>(data.toByteArray());
 }
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, int val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, QString val){
+    return "VARCHAR(" + QString::number(STRING_SIZE) + ")";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, bool val){
+    return "BIT";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<int> val){
+    return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, QDateTime val){
+    return "DATETIME";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, Status val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, Achievement val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, AccountType val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, Gameplay::Role val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, Gameplay::GameResult val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<Gameplay::Role> val){
+    return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<ChatCapability> val){
+    return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, ChatFeature val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, TransactionType val){
+    return "integer";
+}
+
+template<>
+QString Mafia::Database::get_sql_type(int maxListCount, AuthorizedStatus val){
+    return "integer";
+}
+

@@ -62,7 +62,7 @@ MessageIdType MainServerNetworker::send_message(Message message)
             exception->show();
             return -2;
         }
-
+        std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
         _send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }

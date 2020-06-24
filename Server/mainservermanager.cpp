@@ -31,6 +31,259 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
 
 }
 
+void MainServerManager::on_message_received(Message message)
+{
+
+}
+
+void MainServerManager::create_user(QString nickname, QString email, QString password, Client client)
+{
+    try {
+        Database::UserIdType newUserId = usersDb->add_user(nickname, email, password);
+        if(clients.contains(client)){
+            int index = clients.indexOf(client);
+            if(users[index] != nullUser){
+                usersDb->logout_user(users[index]);
+                networker->send_message(Message(MessageType_LoggedOut, (SymbolType*)"", 1, client));
+            }
+            users[index] = newUserId;
+        } else{
+            clients.append(client);
+            users.append(newUserId);
+        }
+
+        char* messageData = new SymbolType[sizeof(Database::UserIdType) + email.length()];
+
+        for(unsigned int i = 0; i < sizeof (Database::UserIdType); i++){
+            messageData[i] = ((char*)&newUserId)[i];
+        }
+
+        std::string data = email.toStdString();
+
+        for(int i = 0; i < email.length(); i++){
+            messageData[i + sizeof (Database::UserIdType)] = data[i];
+        }
+
+        networker->send_message(Message(MessageType_LoggedIn, (SymbolType*)messageData, sizeof(Database::UserIdType) + email.length(),
+                                        client));
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
+            networker->send_message(Message(MessageType_UnableToCreateUser, (SymbolType*)"", 1, client));
+            break;
+        }
+        default:{
+            exception->show();
+            break;
+        }
+        }
+    }
+}
+
+void MainServerManager::send_chat_message(Database::UserIdType sender, Database::ChatIdType toChat, QString data,
+                                          QList<Database::MessageIdType> answerFor, Database::ChatFeature feature)
+{
+    try {
+        Database::ChatMessage message = Database::ChatMessage();
+        message.data = data;
+        message.from = sender;
+        message.toChat = toChat;
+        message.feature = feature;
+        message.answerFor = answerFor;
+
+        if(chatSettingsDb->can_send_message(sender, toChat)){
+            chatsDb->add_message(message);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"", 1, get_client_by_user(sender)));
+        }
+
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+void MainServerManager::login_user(QString email, QString password, Client client)
+{
+    try {
+        Database::UserIdType userId = usersDb->get_id(email);
+        bool login = usersDb->login_user(userId, password);
+        if(login){
+            if(clients.contains(client)){
+                users[clients.indexOf(client)] = userId;
+            } else{
+                clients.append(client);
+                users.append(userId);
+            }
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"Invalid password or email", 26, client));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+void MainServerManager::create_chat(Database::UserIdType creator)
+{
+    try {
+        Database::ChatIdType newId = chatSettingsDb->create_chat();
+
+        chatSettingsDb->add_user_to_chat(creator, newId, Database::ChatCapabilities_Admin);
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+
+}
+
+void MainServerManager::get_last_messages(Database::UserIdType user, Database::ChatIdType chat, int messagesCount)
+{
+    try {
+        bool canGet = chatSettingsDb->can_read_message(user, chat);
+
+        if(canGet){
+            MafiaList<Database::ChatMessage> allMessages;
+            if(messagesCount == -1){
+                allMessages = chatsDb->get_last_messages(chat);
+            } else{
+                allMessages = chatsDb->get_last_messages(chat, messagesCount);
+            }
+
+            std::string data = System::Serializer::serialize<MafiaList<Database::ChatMessage>>(allMessages);
+
+            networker->send_message(Message(MessageType_GetChatMessages, (SymbolType*)data.c_str(), data.length(),
+                                            get_client_by_user(user)));
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't read messages from this chat", 39,
+                                            get_client_by_user(user)));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+void MainServerManager::get_users_chats(Database::UserIdType user, int chatsCount)
+{
+    MafiaList<Database::ChatIdType> usersChats = chatSettingsDb->get_chats_with(MafiaList<Database::ChatIdType>(),
+                                                                          MafiaList<Database::UserIdType>() << user);
+
+    MafiaList<Database::ChatMessage> messages = chatsDb->get_messages(usersChats);
+
+    MafiaList<Database::ChatIdType> chats = MafiaList<Database::ChatIdType>();
+    int index = 0;
+    while(chats.length() < usersChats.length() && chats.length() < chatsCount && index < messages.length()){
+        if(!chats.contains(messages[index].toChat)){
+            chats.append(messages[index].toChat);
+        }
+        index++;
+    }
+    int i = 0;
+    while(chats.length() < usersChats.length() && chats.length() < chatsCount){
+        if(!chats.contains(usersChats[i])){
+            chats.append(usersChats[i]);
+        }
+        i++;
+    }
+
+    std::string data = System::Serializer::serialize<MafiaList<Database::ChatIdType>>(chats);
+
+    networker->send_message(Message(MessageType_Chats, (SymbolType*)data.c_str(), data.length(), get_client_by_user(user)));
+}
+
+void MainServerManager::add_user_to_chat(Database::ChatIdType chat, Database::UserIdType user, Database::UserIdType initializer, Database::ChatCapability capability)
+{
+
+}
+
+void MainServerManager::remove_user_from_chat(Database::ChatIdType chat, Database::UserIdType user, Database::UserIdType initializer)
+{
+
+}
+
+void MainServerManager::change_users_chat_capability(Database::ChatIdType chat, Database::UserIdType user, Database::ChatCapability newCapability, Database::UserIdType initializer)
+{
+
+}
+
+void MainServerManager::create_game(Client creator)
+{
+
+}
+
+void MainServerManager::get_statistics(Database::UserIdType user, Database::UserIdType asker)
+{
+
+}
+
+void MainServerManager::add_game(Gameplay::Game game)
+{
+
+}
+
+void MainServerManager::logout_user(Database::UserIdType user)
+{
+
+}
+
+void MainServerManager::get_logs_data(QString data, Client sender)
+{
+
+}
+
+void MainServerManager::add_transaction(Database::Transaction transaction)
+{
+
+}
+
+void MainServerManager::change_nickname(Database::UserIdType user, QString newNickname)
+{
+
+}
+
+void MainServerManager::change_email(Database::UserIdType user, QString newEmail)
+{
+
+}
+
+void MainServerManager::change_achievement(Database::UserIdType user, Database::Achievement achievement)
+{
+
+}
+
+void MainServerManager::add_user_to_game(Client client, int gameId)
+{
+
+}
+
+void MainServerManager::delete_message(Database::UserIdType user, Database::MessageIdType message)
+{
+
+}
+
+void MainServerManager::edit_message(Database::UserIdType user, Database::ChatMessage message)
+{
+
+}
+
+void MainServerManager::read_message(Database::UserIdType user, Database::MessageIdType message)
+{
+
+}
+
 void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
 {
     if(req != 0){
@@ -179,4 +432,26 @@ void MainServerManager::_networker_test()
 
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();
+}
+
+Client MainServerManager::get_client_by_user(Database::UserIdType user)
+{
+    if(users.contains(user)){
+        return clients[users.indexOf(user)];
+    } else{
+        throw new Exceptions::MainServerException(System::String("No such user in users list!!!"),
+                                                  Exceptions::MainServerExceptionId_NoSuchUser);
+        return Client();
+    }
+}
+
+Database::UserIdType MainServerManager::get_user_by_client(Client client)
+{
+    if(clients.contains(client)){
+        return users[clients.indexOf(client)];
+    } else{
+        throw new Exceptions::MainServerException(System::String("No such client in clients list!!!"),
+                                                            Exceptions::MainServerExceptionId_NoSuchClient);
+        return Database::UserIdType();
+    }
 }

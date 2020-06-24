@@ -3,6 +3,7 @@
 
 #include "databasemanager.h"
 #include "user.h"
+#include "gamedatabasemanager.h"
 
 namespace Mafia {
     namespace Database {
@@ -18,8 +19,10 @@ namespace Mafia {
             ChatCapabilities_Editor = 2,
             //! \brief Админ (может добавлять, удалять, назначать должности разных пользователей)
             ChatCapabilities_Admin = 3,
+
+            ChatCapabilities_None = 4,
             //! \brief Индекс последнего элемента перечисления (см. )
-            ChatCapabilities_Last = 4
+            ChatCapabilities_Last = 5
         };
         //! \brief Структура для хранения данных чата
         struct Chat{
@@ -60,6 +63,12 @@ namespace Mafia {
              */
             void add_user_to_chat(UserIdType user, ChatIdType chat, ChatCapability usersCapability = ChatCapabilities_Speaker);
 
+            MafiaList<ChatIdType> get_chats_with(MafiaList<ChatIdType> ids = MafiaList<ChatIdType>(),
+                                                 MafiaList<UserIdType> users = MafiaList<UserIdType>(),
+                                                 FilterType usersFilter = FilterType_NONE,
+                                                 QDateTime createdAfter = BEGINNING_TIME,
+                                                 QDateTime createdBefore = ENDING_TIME);
+
             /*!
              * \brief Функция назначения новой должности пользователю
              * \param user Пользователь, которому следует назначить эту должность
@@ -94,6 +103,14 @@ namespace Mafia {
              * \return Все данные о чате
              */
             Chat get_chat(ChatIdType chat);
+
+            bool can_send_message(UserIdType user, ChatIdType chat);
+
+            bool can_read_message(UserIdType user, ChatIdType chat);
+
+            bool can_edit_users(UserIdType user, ChatIdType chat);
+
+            ChatCapability get_capability(UserIdType user, ChatIdType chat);
 
         private:
             /*!

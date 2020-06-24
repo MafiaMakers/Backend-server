@@ -6,7 +6,7 @@
 #include <QList>
 #include "user.h"
 #include "Exceptions/databaseworkingexception.h"
-#include "chatsettingsdatabasemanager.h"
+//#include "chatsettingsdatabasemanager.h"
 #include "chatdatabasemanager.h"
 #include <QVariant>
 
@@ -17,7 +17,7 @@ namespace Mafia{
         //! \brief Размер строки для хранения в БД
         const int STRING_SIZE = 256;
 
-        template<class T>
+
         /*!
          * \brief Функция получения строки с sql названием типа данных, переданного в функцию
          * \param T Тип, который надо преобразовать в sql-тип
@@ -25,45 +25,8 @@ namespace Mafia{
          * \param val Переменная-костыль... Просто забейте...
          * \return SQL-тип в виде строки
          */
-        QString get_sql_type(int maxListCount = 0, T val = T())
-        {
-            size_t type_hash = typeid (val).hash_code();
-            if(type_hash == typeid (int).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (QString).hash_code()){
-                return ("VARCHAR(" + QString::number(STRING_SIZE) + ")");
-            } else if(type_hash == typeid (bool).hash_code()){
-                return "BIT";
-            } else if(type_hash == typeid (MafiaList<int>).hash_code()){
-                return ("VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")");
-            } else if(type_hash == typeid (QDateTime).hash_code()){
-                return "DATETIME";
-            } else if(type_hash == typeid (Status).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (Achievement).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (AccountType).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (Gameplay::Role).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (GameIdType).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (Gameplay::GameResult).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (MafiaList<Gameplay::Role>).hash_code()){
-                return ("VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")");
-            } else if(type_hash == typeid (MafiaList<Database::ChatCapability>).hash_code()){
-                return ("VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")");
-            } else if(type_hash == typeid (ChatFeature).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (TransactionType).hash_code()){
-                return "integer";
-            } else if(type_hash == typeid (AuthorizedStatus).hash_code()){
-                return "integer";
-            } else{
-                throw new Exceptions::DatabaseWorkingException(System::String(("Type with unknown hash " + QString::number(type_hash)).toStdString()), Exceptions::DatabaseWorkingExceptionId_UnknownType);
-            }
-        }
+        template<class T>
+        QString get_sql_type(int maxListCount = 0, T val = T());
 
         /*!
          * \brief Функция случайной генерации соли для хеширования пароля

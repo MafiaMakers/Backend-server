@@ -29,8 +29,22 @@ enum MessageType{
     MessageType_DeleteChatMessage = 11,
     //! \brief Сообщение для уведомление о том, что игрок прочитал сообщение
     MessageType_ReadChatMessage = 12,
+
+    MessageType_UnableToCreateUser = 13,
+
+    MessageType_LoggedIn = 14,
+
+    MessageType_LoggedOut = 15,
+
+    MessageType_AccessDenied = 16,
+
+    MessageType_GetChatMessages = 17,
+
+    MessageType_LastChatMessages = 18,
+
+    MessageType_Chats = 19,
     //! \brief Верхняя граница типов сообщений
-    MessageType_Last = 13
+    MessageType_Last = 19
 };
 
 

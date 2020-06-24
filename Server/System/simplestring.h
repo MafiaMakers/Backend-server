@@ -55,6 +55,12 @@ namespace Mafia {
                 }
                 return source;
             }
+
+            void paste(String data, int index = 0){
+                for(int i = index; (i < index + data.size) && i < this->size; i++){
+                    this->data[i] = data.data[i - index];
+                }
+            }
             //! массив данных строки
             char* data;
             //! длина массива данных

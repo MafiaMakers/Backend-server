@@ -59,8 +59,10 @@ namespace Mafia {
             //! \brief Исключение, вызываемое в случае, если два массива, у которых должны совпадать размеры, не совпадают по размеру
             //! (например, если в чате количество пользователей и количество их ролей не совпадают)
             DatabaseWorkingExceptionId_ArraySizeMismatch = 512,
+
+            DatabaseWorkingExceptionId_UnknownChatCapability = 513,
             //! \brief Верхняя граница id исключений работы с БД (см. \ref Mafia::Database::Status_First)
-            DatabaseWorkingExceptionId_Last = 513
+            DatabaseWorkingExceptionId_Last = 514
         };
     }
 }

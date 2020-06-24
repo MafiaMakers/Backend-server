@@ -98,6 +98,11 @@ namespace Mafia {
                 this->partsCount = partsCount;
             }
 
+            /*!
+             * \brief Оператор присваивания
+             * \param mes другое сообщение
+             * \return Полученное присвоенное сообщение
+             */
             Message operator = (Message mes){
                 this->id = mes.id;
                 this->data = mes.data;

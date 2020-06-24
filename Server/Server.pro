@@ -32,6 +32,7 @@ SOURCES += \
         Exceptions/databaseworkingexception.cpp \
         Exceptions/exception.cpp \
         Exceptions/gameplayexception.cpp \
+        Exceptions/mainserverexception.cpp \
         Exceptions/messageparsingexception.cpp \
         Exceptions/messageprocessingexception.cpp \
         Exceptions/requestexception.cpp \
@@ -42,6 +43,7 @@ SOURCES += \
         System/SHA_256.cpp \
         System/functions.cpp \
         System/runprogram.cpp \
+        System/serializer.cpp \
         main.cpp \
         mainservermanager.cpp \
         Network/mainservernetworker.cpp \
@@ -68,6 +70,7 @@ HEADERS += \
     Exceptions/databaseworkingexception.h \
     Exceptions/exception.h \
     Exceptions/gameplayexception.h \
+    Exceptions/mainserverexception.h \
     Exceptions/messageparsingexception.h \
     Exceptions/messageprocessingexception.h \
     Exceptions/requestexception.h \
@@ -80,6 +83,7 @@ HEADERS += \
     System/functions.h \
     System/limitedqueue.h \
     System/runprogram.h \
+    System/serializer.h \
     mainservermanager.h \
     Network/mainservernetworker.h \
     Network/message.h \

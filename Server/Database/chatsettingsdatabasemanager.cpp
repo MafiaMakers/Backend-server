@@ -101,6 +101,80 @@ void ChatSettingsDatabaseManager::add_user_to_chat(UserIdType user, ChatIdType c
     }
 }
 
+MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<ChatIdType> ids, MafiaList<UserIdType> users,
+                                                                  FilterType usersFilter, QDateTime createdAfter, QDateTime createdBefore)
+{
+    QString request = "SELECT ID FROM " + dbName + " WHERE (TRUE";
+
+    if(ids.length() > 0){
+        request += " AND (";
+        for(int i = 0; i < ids.length(); i++){
+            request += "ID = " + QString::number(ids[i]);
+
+            if(i != ids.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    if(users.length() > 0){
+        request += " AND (";
+        MafiaList<UserIdType> oneUserList = MafiaList<UserIdType>() << users[0];
+        for(int i = 0; i < users.length(); i++){
+            oneUserList[0] = users[i];
+            request += "CONTAINS(USERS, " + QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUserList).toStdString());
+
+            if(i != ids.length() - 1){
+                switch (usersFilter) {
+                case FilterType_OR:{
+                    request += " OR ";
+                    break;
+                }
+                case FilterType_AND:{
+                    request += " AND ";
+                    break;
+                }
+                case FilterType_NONE:{
+                    throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
+                                                                   Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
+                        break;
+                    }
+                }
+
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    request += " AND (TIMESTAMP >= " + createdAfter.toString(SQL_DATETIME_FORMAT) + ")";
+    request += " AND (TIMESTAMP <= " + createdBefore.toString(SQL_DATETIME_FORMAT) + ")";
+    request += ")";
+
+    try {
+        QSqlQuery* query = dbWorker->run_query(request);
+
+        MafiaList<ChatIdType> result = MafiaList<ChatIdType>();
+
+        while(query->next()){
+            result.append(query_value_to_variable<ChatIdType>(query->value(0)));
+        }
+
+        return result;
+
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            return MafiaList<ChatIdType>();
+        }
+        }
+    }
+
+}
+
 void ChatSettingsDatabaseManager::set_capability(UserIdType user, ChatIdType chat, ChatCapability newCapability)
 {
     QString chatRequest = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
@@ -230,6 +304,139 @@ Chat ChatSettingsDatabaseManager::get_chat(ChatIdType chat)
         default:{
             throw exception;
             return Chat();
+        }
+        }
+    }
+}
+
+bool ChatSettingsDatabaseManager::can_send_message(UserIdType user, ChatIdType chat)
+{
+    try {
+        ChatCapability usersCapability = get_capability(user, chat);
+        switch (usersCapability) {
+        case ChatCapabilities_Admin:{
+            return true;
+        }
+        case ChatCapabilities_Editor:{
+            return true;
+        }
+        case ChatCapabilities_Speaker:{
+            return true;
+        }
+        case ChatCapabilities_Watcher:{
+            return false;
+        }
+        case ChatCapabilities_None:{
+            return false;
+        }
+        default:{
+            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+                                                           Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
+        }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+bool ChatSettingsDatabaseManager::can_read_message(UserIdType user, ChatIdType chat)
+{
+    try {
+        ChatCapability usersCapability = get_capability(user, chat);
+        switch (usersCapability) {
+        case ChatCapabilities_Admin:{
+            return true;
+        }
+        case ChatCapabilities_Editor:{
+            return true;
+        }
+        case ChatCapabilities_Speaker:{
+            return true;
+        }
+        case ChatCapabilities_Watcher:{
+            return true;
+        }
+        case ChatCapabilities_None:{
+            return false;
+        }
+        default:{
+            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+                                                           Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
+        }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+bool ChatSettingsDatabaseManager::can_edit_users(UserIdType user, ChatIdType chat)
+{
+    try {
+        ChatCapability usersCapability = get_capability(user, chat);
+        switch (usersCapability) {
+        case ChatCapabilities_Admin:{
+            return true;
+        }
+        case ChatCapabilities_Editor:{
+            return true;
+        }
+        case ChatCapabilities_Speaker:{
+            return false;
+        }
+        case ChatCapabilities_Watcher:{
+            return false;
+        }
+        case ChatCapabilities_None:{
+            return false;
+        }
+        default:{
+            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+                                                           Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
+        }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+ChatCapability ChatSettingsDatabaseManager::get_capability(UserIdType user, ChatIdType chat)
+{
+    QString request = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
+
+    try {
+        QSqlQuery* query = dbWorker->run_query(request);
+
+        if(query->next()){
+            MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(query->value(query->record().indexOf("USERS")));
+            MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(
+                                                     query->value(query->record().indexOf("CAPABILITIES")));
+
+            if(users.contains(user)){
+                return capabilities[users.indexOf(user)];
+            } else{
+                return ChatCapabilities_None;
+            }
+        } else{
+            throw new Exceptions::DatabaseWorkingException(System::String("Null query answer"),
+                                                           Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            return ChatCapabilities_None;
         }
         }
     }

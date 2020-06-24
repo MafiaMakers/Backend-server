@@ -301,6 +301,7 @@ MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> f
     request += " AND (TIMESTAMP >= \'" + sentAfter.toString(SQL_DATETIME_FORMAT) + "\')";
     request += " AND (TIMESTAMP <= \'" + sentBefore.toString(SQL_DATETIME_FORMAT) + "\')";
     request += ")";
+    request += " ORDER BY TIMESTAMP DESC";
 
     try {
         QSqlQuery* query = dbWorker->run_query(request);
