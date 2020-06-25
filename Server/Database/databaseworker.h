@@ -45,6 +45,9 @@ namespace Mafia {
              */
             QSqlQuery* run_query(QString request);
 
+            /*!
+             * \brief Функция, которая восстанавливает БД из резервной копии
+             */
             void restore_database();
 
         private:

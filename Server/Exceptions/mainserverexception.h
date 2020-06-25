@@ -6,8 +6,16 @@ namespace Mafia {
         class MainServerException : public Exception
         {
         public:
+            /*!
+             * \brief Пустой конструктор
+             */
             MainServerException();
 
+            /*!
+             * \brief Основной конструктор, наследуемый от \ref Mafia::Exceptions::Exception(System::String data, ExceptionIdType id)
+             * \param data Данные сообщения
+             * \param id id сообщения
+             */
             MainServerException(System::String data, ExceptionIdType id);
 
             //! \brief см. \ref Mafia::Exception::show()
@@ -16,11 +24,20 @@ namespace Mafia {
             ExceptionIdType get_base_exception_id() override;
         };
 
+        //! \brief Перечисление типов исключений, связанных с работой основного контроллера сервера
         enum MainServerExceptionId{
+            //! \brief Основной id исключений такого типа
             MainServerExceptionId_Default = 700,
+            //! \brief Исключение, вызываемое при попытке получить клиента, который авторизован под данным пользователем,
+            //! когда никто не авторизован под данным пользователем
             MainServerExceptionId_NoSuchUser = 701,
+            //! \brief Исключение, вызываемое при попытке получить пользователя, под которым авторизован данный клиент,
+            //! когда данный клиент не авторизован ни под каким пользователем (или не онлайн сейчас)
             MainServerExceptionId_NoSuchClient = 702,
-            MainServerExceptionId_Last = 703
+            //! \brief Исключение, вызываемое при получении транзакции неизвестного или неверного типа
+            MainServerExceptionId_UnknownTransactionType = 703,
+            //! \brief Максимальное id исключения (см. \ref Mafia::Database::Status_Last)
+            MainServerExceptionId_Last = 704
         };
     }
 }

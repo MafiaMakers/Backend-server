@@ -1,4 +1,5 @@
 #include "mainservermanager.h"
+#include "userstatistics.h"
 using namespace Mafia;
 
 
@@ -36,7 +37,7 @@ void MainServerManager::on_message_received(Message message)
 
 }
 
-void MainServerManager::create_user(QString nickname, QString email, QString password, Client client)
+void MainServerManager::create_user(QString nickname, QString email, QString password, Client client, Network::MessageIdType requestId)
 {
     try {
         Database::UserIdType newUserId = usersDb->add_user(nickname, email, password);
@@ -64,8 +65,8 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
             messageData[i + sizeof (Database::UserIdType)] = data[i];
         }
 
-        networker->send_message(Message(MessageType_LoggedIn, (SymbolType*)messageData, sizeof(Database::UserIdType) + email.length(),
-                                        client));
+        networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)messageData, sizeof(Database::UserIdType) + email.length(),
+                                        client, requestId));
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
@@ -106,7 +107,7 @@ void MainServerManager::send_chat_message(Database::UserIdType sender, Database:
     }
 }
 
-void MainServerManager::login_user(QString email, QString password, Client client)
+void MainServerManager::login_user(QString email, QString password, Client client, Network::MessageIdType requestId)
 {
     try {
         Database::UserIdType userId = usersDb->get_id(email);
@@ -119,7 +120,7 @@ void MainServerManager::login_user(QString email, QString password, Client clien
                 users.append(userId);
             }
         } else{
-            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"Invalid password or email", 26, client));
+            networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)"Invalid password or email", 26, client, requestId));
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -130,12 +131,14 @@ void MainServerManager::login_user(QString email, QString password, Client clien
     }
 }
 
-void MainServerManager::create_chat(Database::UserIdType creator)
+void MainServerManager::create_chat(Database::UserIdType creator, Network::MessageIdType requestId)
 {
     try {
         Database::ChatIdType newId = chatSettingsDb->create_chat();
 
         chatSettingsDb->add_user_to_chat(creator, newId, Database::ChatCapabilities_Admin);
+
+        networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)&newId, sizeof (newId), get_client_by_user(creator), requestId));
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         default:{
@@ -146,7 +149,7 @@ void MainServerManager::create_chat(Database::UserIdType creator)
 
 }
 
-void MainServerManager::get_last_messages(Database::UserIdType user, Database::ChatIdType chat, int messagesCount)
+void MainServerManager::get_last_messages(Database::UserIdType user, Database::ChatIdType chat, Network::MessageIdType requestId, int messagesCount)
 {
     try {
         bool canGet = chatSettingsDb->can_read_message(user, chat);
@@ -161,8 +164,8 @@ void MainServerManager::get_last_messages(Database::UserIdType user, Database::C
 
             std::string data = System::Serializer::serialize<MafiaList<Database::ChatMessage>>(allMessages);
 
-            networker->send_message(Message(MessageType_GetChatMessages, (SymbolType*)data.c_str(), data.length(),
-                                            get_client_by_user(user)));
+            networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)data.c_str(), data.length(),
+                                            get_client_by_user(user), requestId));
         } else{
             networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't read messages from this chat", 39,
                                             get_client_by_user(user)));
@@ -176,7 +179,7 @@ void MainServerManager::get_last_messages(Database::UserIdType user, Database::C
     }
 }
 
-void MainServerManager::get_users_chats(Database::UserIdType user, int chatsCount)
+void MainServerManager::get_users_chats(Database::UserIdType user, Network::MessageIdType requestId, int chatsCount)
 {
     MafiaList<Database::ChatIdType> usersChats = chatSettingsDb->get_chats_with(MafiaList<Database::ChatIdType>(),
                                                                           MafiaList<Database::UserIdType>() << user);
@@ -201,22 +204,87 @@ void MainServerManager::get_users_chats(Database::UserIdType user, int chatsCoun
 
     std::string data = System::Serializer::serialize<MafiaList<Database::ChatIdType>>(chats);
 
-    networker->send_message(Message(MessageType_Chats, (SymbolType*)data.c_str(), data.length(), get_client_by_user(user)));
+    networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)data.c_str(), data.length(), get_client_by_user(user), requestId));
 }
 
-void MainServerManager::add_user_to_chat(Database::ChatIdType chat, Database::UserIdType user, Database::UserIdType initializer, Database::ChatCapability capability)
+void MainServerManager::add_user_to_chat(Database::ChatIdType chat, Database::UserIdType user, Database::UserIdType initializer,
+                                         Database::ChatCapability capability)
 {
+    Client asker = get_client_by_user(initializer);
+    try{
 
+        bool ableToEdit = chatSettingsDb->can_edit_users(initializer, chat);
+        if(ableToEdit){
+            chatSettingsDb->add_user_to_chat(user, chat, capability);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit users in this chat", 33, asker));
+        }
+    }
+    catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        case Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt:{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"User is already in chat", 23, asker));
+            break;
+        }
+        default:{
+            throw exception;
+            break;
+        }
+        }
+    }
 }
 
 void MainServerManager::remove_user_from_chat(Database::ChatIdType chat, Database::UserIdType user, Database::UserIdType initializer)
 {
+    Client asker = get_client_by_user(initializer);
+    try{
 
+        bool ableToEdit = chatSettingsDb->can_edit_users(initializer, chat);
+        if(ableToEdit){
+            chatSettingsDb->remove_user_from_chat(user, chat);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit users in this chat", 33, asker));
+        }
+    }
+    catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        case Exceptions::DatabaseWorkingExceptionId_DeleteMissedItemAttempt:{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"User is not in chat", 23, asker));
+            break;
+        }
+        default:{
+            throw exception;
+            break;
+        }
+        }
+    }
 }
 
-void MainServerManager::change_users_chat_capability(Database::ChatIdType chat, Database::UserIdType user, Database::ChatCapability newCapability, Database::UserIdType initializer)
+void MainServerManager::change_users_chat_capability(Database::ChatIdType chat, Database::UserIdType user, Database::ChatCapability newCapability,
+                                                     Database::UserIdType initializer)
 {
+    Client asker = get_client_by_user(initializer);
+    try{
 
+        bool ableToEdit = chatSettingsDb->can_edit_users(initializer, chat);
+        if(ableToEdit){
+            chatSettingsDb->set_capability(user, chat, newCapability);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit users in this chat", 33, asker));
+        }
+    }
+    catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        case Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt:{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"User is already in chat", 23, asker));
+            break;
+        }
+        default:{
+            throw exception;
+            break;
+        }
+        }
+    }
 }
 
 void MainServerManager::create_game(Client creator)
@@ -224,19 +292,58 @@ void MainServerManager::create_game(Client creator)
 
 }
 
-void MainServerManager::get_statistics(Database::UserIdType user, Database::UserIdType asker)
+void MainServerManager::get_statistics(Database::UserIdType user, Database::UserIdType asker, Network::MessageIdType requestId)
 {
+    try {
+        if(asker == user){
+
+        }
+        Database::User currentUser = usersDb->get_user(user);
+
+        UserStatistics statistics = UserStatistics(currentUser);
+
+        std::string data = System::Serializer::serialize<UserStatistics>(statistics);
+
+        networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)data.c_str(), data.length(), get_client_by_user(asker), requestId));
+    } catch (Exceptions::Exception* exception) {
+        switch(exception->get_id()){
+        default:{
+            throw exception;
+        }
+        }
+    }
 
 }
 
 void MainServerManager::add_game(Gameplay::Game game)
 {
-
+    try {
+        Database::GameIdType current = gamesDb->add_game(game);
+        game.id = current;
+        usersDb->register_game(game);
+    } catch (Exceptions::Exception* exception) {
+        switch(exception->get_id()){
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::logout_user(Database::UserIdType user)
 {
-
+    try {
+        usersDb->logout_user(user);
+    } catch (Exceptions::Exception* exception) {
+        switch(exception->get_id()){
+        default:{
+            throw exception;
+        }
+        }
+    }
+    if(users.contains(user)){
+        users[users.indexOf(user)] = nullUser;
+    }
 }
 
 void MainServerManager::get_logs_data(QString data, Client sender)
@@ -246,22 +353,75 @@ void MainServerManager::get_logs_data(QString data, Client sender)
 
 void MainServerManager::add_transaction(Database::Transaction transaction)
 {
+    try {
+        Database::TransactionIdType id = transactionsDb->add_transaction(transaction.buyer, transaction.price, transaction.type);
+        usersDb->add_transaction(transaction.buyer, id);
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+
+    switch (transaction.type) {
+    case Database::TransactionType_BuySomething:{
+        usersDb->set_account_type(transaction.buyer, Database::AccountType_Pro);
+        break;
+    }
+    default:{
+        throw new Exceptions::MainServerException(System::String("Unknown transaction type!"),
+                                                  Exceptions::MainServerExceptionId_UnknownTransactionType);
+    }
+    }
 
 }
 
 void MainServerManager::change_nickname(Database::UserIdType user, QString newNickname)
 {
-
+    try {
+        usersDb->change_nickname(user, newNickname);
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            break;
+        }
+        }
+    }
 }
 
-void MainServerManager::change_email(Database::UserIdType user, QString newEmail)
+void MainServerManager::change_email(Database::UserIdType user, QString newEmail, Network::MessageIdType requestId)
 {
+    try {
+        bool success = usersDb->change_email(user, newEmail);
 
+        networker->send_message(Message(MessageType_RequestAnswer, (SymbolType*)System::Serializer::serialize<bool>(success).c_str(),
+                                        (int)sizeof(bool), get_client_by_user(user), requestId));
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::change_achievement(Database::UserIdType user, Database::Achievement achievement)
 {
+    try {
+        usersDb->add_achievement(user, achievement);
+        Client client = get_client_by_user(user);
+        networker->send_message(Message(MessageType_AchievementChange, (SymbolType*)&achievement, sizeof(achievement),
+                                        client));
 
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::add_user_to_game(Client client, int gameId)
@@ -271,17 +431,69 @@ void MainServerManager::add_user_to_game(Client client, int gameId)
 
 void MainServerManager::delete_message(Database::UserIdType user, Database::MessageIdType message)
 {
-
+    try {
+        Database::ChatMessage messageData = chatsDb->get_message(message);
+        bool canEdit = false;
+        if(user == messageData.from){
+            canEdit = chatSettingsDb->can_send_message(user, messageData.toChat);
+        } else{
+            canEdit = chatSettingsDb->can_edit_messages(user, messageData.toChat);
+        }
+        if(canEdit){
+            chatsDb->delete_message(message);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit this message", 29, get_client_by_user(user)));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::edit_message(Database::UserIdType user, Database::ChatMessage message)
 {
-
+    try {
+        bool canEdit = false;
+        if(user == message.from){
+            canEdit = chatSettingsDb->can_send_message(user, message.toChat);
+        } else{
+            canEdit = chatSettingsDb->can_edit_messages(user, message.toChat);
+        }
+        if(canEdit){
+            chatsDb->edit_message(message);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit this message", 29, get_client_by_user(user)));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::read_message(Database::UserIdType user, Database::MessageIdType message)
 {
+    try {
+        Database::ChatMessage messageData = chatsDb->get_message(message);
+        bool canEdit = chatSettingsDb->can_read_message(user, messageData.toChat);
 
+        if(canEdit){
+            chatsDb->message_read(message, user);
+        } else{
+            networker->send_message(Message(MessageType_AccessDenied, (SymbolType*)"You can't edit this message", 29, get_client_by_user(user)));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
 }
 
 void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)

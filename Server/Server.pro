@@ -37,6 +37,7 @@ SOURCES += \
         Exceptions/messageprocessingexception.cpp \
         Exceptions/requestexception.cpp \
         Exceptions/subserverexception.cpp \
+        Exceptions/systemexception.cpp \
         Gameplay/game_s.cpp \
         Network/crypto.cpp \
         Subservers/backupsubserverobject.cpp \
@@ -49,7 +50,8 @@ SOURCES += \
         Network/mainservernetworker.cpp \
         Requests/networkrequest.cpp \
         Requests/request.cpp \
-        Subservers/subserverobject.cpp
+        Subservers/subserverobject.cpp \
+        userstatistics.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -75,6 +77,7 @@ HEADERS += \
     Exceptions/messageprocessingexception.h \
     Exceptions/requestexception.h \
     Exceptions/subserverexception.h \
+    Exceptions/systemexception.h \
     Gameplay/game_s.h \
     Gameplay/gameitems.h \
     Network/crypto.h \
@@ -91,7 +94,8 @@ HEADERS += \
     Requests/networkrequest.h \
     Requests/request.h \
     System/simplestring.h \
-    Subservers/subserverobject.h
+    Subservers/subserverobject.h \
+    userstatistics.h
 
 DISTFILES += \
     Mafia \

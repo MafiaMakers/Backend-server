@@ -186,6 +186,8 @@ int MainServerNetworker::get_list_index(MessageIdType id)
     return  -1;
 }
 
+
+#warning "This method is complex to read! Maybe it is good to reconstruct it
 void MainServerNetworker::add_received_message(Message message)
 {
     int listIndex = get_list_index(message.id);

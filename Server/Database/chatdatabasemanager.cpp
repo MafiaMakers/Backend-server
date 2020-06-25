@@ -143,6 +143,8 @@ void ChatDatabaseManager::delete_message(MessageIdType id)
     }
 }
 
+
+#warning "This method is complex to read! Maybe it is good to reconstruct it
 void ChatDatabaseManager::edit_message(ChatMessage message)
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(message.id) + ")";
@@ -214,7 +216,7 @@ void ChatDatabaseManager::edit_message(ChatMessage message)
     }
 }
 
-void ChatDatabaseManager::message_read(MessageType id, UserIdType readUser)
+void ChatDatabaseManager::message_read(MessageIdType id, UserIdType readUser)
 {
     try {
         QString infoRequest = "SELECT READ_USERS, TO_CHAT FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
@@ -246,6 +248,8 @@ void ChatDatabaseManager::message_read(MessageType id, UserIdType readUser)
     }
 }
 
+
+#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> fromChats,
                                                          MafiaList<UserIdType> possibleSenders,
                                                          MafiaList<ChatFeature> features,
@@ -311,6 +315,33 @@ MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> f
         switch (exception->get_id()) {
         default:{
             throw exception;
+        }
+        }
+    }
+}
+
+ChatMessage ChatDatabaseManager::get_message(MessageIdType id)
+{
+    QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+
+    try {
+        QSqlQuery* query = dbWorker->run_query(request);
+        MafiaList<ChatMessage> answer = get_query_messages(query);
+
+        if(answer.length() == 1){
+            return answer[0];
+        } else if(answer.length() == 0){
+            throw new Exceptions::DatabaseWorkingException(System::String("No such messageId in db"),
+                                                           Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+        } else{
+            throw new Exceptions::DatabaseWorkingException(System::String("Something impossible happened"),
+                                                           Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            return ChatMessage();
         }
         }
     }

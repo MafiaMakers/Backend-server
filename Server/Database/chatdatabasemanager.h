@@ -63,7 +63,7 @@ namespace Mafia {
              * \param id id сообщения, которое прочитанно
              * \param readUser id пользователя, который его прочитал
              */
-            void message_read(MessageType id, UserIdType readUser);
+            void message_read(MessageIdType id, UserIdType readUser);
 
             /*!
              * \brief Функция получения сообщений по фильтру
@@ -82,6 +82,13 @@ namespace Mafia {
                                                 QString containsData = "",
                                                 QDateTime sentAfter = BEGINNING_TIME,
                                                 QDateTime sentBefore = ENDING_TIME);
+
+            /*!
+             * \brief Получение всех параметров сообщения по id
+             * \param id id сообщения, о котором необходимо получить информацию
+             * \return Все данные сообщения
+             */
+            ChatMessage get_message(MessageIdType id);
         signals:
             /*!
              * \brief Сигнал, вызываемый при успешном добавлении сообщения в БД

@@ -55,7 +55,13 @@ namespace Mafia {
                 }
                 return source;
             }
-
+            /*!
+             * \brief Функция, которая вставляет строку в данную строку начиная с необходимого индекса
+             * Например, если надо вставить в строку "Hello ______" строку "world!".
+             * firstString.paste(secondString, 6);
+             * \param data Строка, которую необходимо вставить
+             * \param index Индекс этой строки (не той, которая data, а именно этой), с которого необходимо начать вставлять данные
+             */
             void paste(String data, int index = 0){
                 for(int i = index; (i < index + data.size) && i < this->size; i++){
                     this->data[i] = data.data[i - index];

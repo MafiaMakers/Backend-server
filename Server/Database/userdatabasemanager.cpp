@@ -445,6 +445,8 @@ void UserDatabaseManager::change_nickname(UserIdType id, QString newNickname)
     }
 }
 
+
+#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
                                                Status userStatus,
                                                Achievement userAchievement,

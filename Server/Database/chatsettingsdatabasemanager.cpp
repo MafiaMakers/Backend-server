@@ -101,6 +101,8 @@ void ChatSettingsDatabaseManager::add_user_to_chat(UserIdType user, ChatIdType c
     }
 }
 
+
+#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<ChatIdType> ids, MafiaList<UserIdType> users,
                                                                   FilterType usersFilter, QDateTime createdAfter, QDateTime createdBefore)
 {
@@ -378,6 +380,40 @@ bool ChatSettingsDatabaseManager::can_read_message(UserIdType user, ChatIdType c
 }
 
 bool ChatSettingsDatabaseManager::can_edit_users(UserIdType user, ChatIdType chat)
+{
+    try {
+        ChatCapability usersCapability = get_capability(user, chat);
+        switch (usersCapability) {
+        case ChatCapabilities_Admin:{
+            return true;
+        }
+        case ChatCapabilities_Editor:{
+            return true;
+        }
+        case ChatCapabilities_Speaker:{
+            return false;
+        }
+        case ChatCapabilities_Watcher:{
+            return false;
+        }
+        case ChatCapabilities_None:{
+            return false;
+        }
+        default:{
+            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+                                                           Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
+        }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+        }
+        }
+    }
+}
+
+bool ChatSettingsDatabaseManager::can_edit_messages(UserIdType user, ChatIdType chat)
 {
     try {
         ChatCapability usersCapability = get_capability(user, chat);

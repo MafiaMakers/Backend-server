@@ -19,7 +19,7 @@ namespace Mafia {
             ChatCapabilities_Editor = 2,
             //! \brief Админ (может добавлять, удалять, назначать должности разных пользователей)
             ChatCapabilities_Admin = 3,
-
+            //! \brief Никакая роль (используется для обозначения роли пользователя, не состоящего в чате)
             ChatCapabilities_None = 4,
             //! \brief Индекс последнего элемента перечисления (см. )
             ChatCapabilities_Last = 5
@@ -63,6 +63,16 @@ namespace Mafia {
              */
             void add_user_to_chat(UserIdType user, ChatIdType chat, ChatCapability usersCapability = ChatCapabilities_Speaker);
 
+            /*!
+             * \brief Получение id всех чатов, подходящих под фильтры
+             * \param ids Список возможных id (среди которых искать) (если оставить пустым или задать пустой список, то будет поиск по всем чатам)
+             * \param users Пользователи, которые входят в чат
+             * \param usersFilter Тип фильтра по пользователям (должны ли в один чат входить сразу все пользователи из списка или достаточно
+             * наличия одного пользователя из списка в чате, чтобы чат подходил)
+             * \param createdAfter Поиск будет только среди чатов, созданных позднее данного момента
+             * \param createdBefore Поиск будет только среди чатов, созданных ранее данного момента
+             * \return Список id всех чатов, которые подходят под условие
+             */
             MafiaList<ChatIdType> get_chats_with(MafiaList<ChatIdType> ids = MafiaList<ChatIdType>(),
                                                  MafiaList<UserIdType> users = MafiaList<UserIdType>(),
                                                  FilterType usersFilter = FilterType_NONE,
@@ -104,12 +114,45 @@ namespace Mafia {
              */
             Chat get_chat(ChatIdType chat);
 
+            /*!
+             * \brief Функция проверяет, может ли данный пользователь отправлять сообщения в данный чат
+             * \param user id пользователя, которого проверяем
+             * \param chat id чата, в который пользователь может или не может отправить сообщение
+             * \return true, если пользователь может отправлять сообщение в этот чат, иначе false
+             */
             bool can_send_message(UserIdType user, ChatIdType chat);
 
+            /*!
+             * \brief Функция проверяет, может ли пользователь читать сообщения из данного чата
+             * \param user id пользователя, которого проверяем
+             * \param chat id чата, который проверяем
+             * \return true, если пользователь может читать, иначе false
+             */
             bool can_read_message(UserIdType user, ChatIdType chat);
 
+            /*!
+             * \brief Функция, проверяющая, может ли пользователь изменять параметры других пользователей в этом чате (назначать админов,
+             * добавлять и удалять пользователей из чата)
+             * \param user id пользователя, которого проверяем
+             * \param chat id чата, который проверяем
+             * \return true, если пользователь может изменять права других пользователей, иначе - false
+             */
             bool can_edit_users(UserIdType user, ChatIdType chat);
 
+            /*!
+             * \brief Функция, проверяющая, может ли данный пользователь изменять чужие сообщения в данном чате
+             * \param user id пользователя, которого проверяем
+             * \param chat id чата, который проверяем
+             * \return true, если пользователь может изменять чужие сообщения в этом чате, иначе - false
+             */
+            bool can_edit_messages(UserIdType user, ChatIdType chat);
+
+            /*!
+             * \brief Получение роли (прав) пользователя в данном чате
+             * \param user id пользователя
+             * \param chat id чата
+             * \return Права или роль пользователя в данном чате (см. \ref Mafia::Database::ChatCapability)
+             */
             ChatCapability get_capability(UserIdType user, ChatIdType chat);
 
         private:

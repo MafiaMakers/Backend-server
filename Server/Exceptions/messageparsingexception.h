@@ -10,7 +10,9 @@ namespace Mafia {
         class MessageParsingException : public Exception
         {
         public:
-
+            /*!
+             * \brief Пустой конструктор
+             */
             MessageParsingException(){};
             /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
             MessageParsingException(System::String data, ExceptionIdType id);
