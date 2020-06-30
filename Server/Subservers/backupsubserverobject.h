@@ -19,7 +19,7 @@ namespace Mafia {
              * \param maxNotAnswering Максимальное количество пропущенных подрят запросов на отклик (стандартно равно 5)
              * \param specialCommands Дополнительные команды для передачи субсерверу
              */
-            BackupSubserverObject(MainServerNetworker* networker, int port, const System::String path, const System::String processName,
+            BackupSubserverObject(Network::MainServerNetworker* networker, int port,
                                   int checkInterval = 2000, int maxNotAnswering = 5, const System::String specialCommands = System::String(""));
 
         private slots:
@@ -27,13 +27,19 @@ namespace Mafia {
              * \brief Слот для получения сообщения от субсервера (автоматически привязывается к сигналу MainServerNetworker'а)
              * \param message Сообщение, которое получил сервер
              */
-            void message_from_server(Message message) override;
+            void message_from_server(Network::Message message) override;
 
         private:
             /*!
              * \brief Метод постоянной проверки подключения
              */
             void check_connection();
+
+            //! Путь к исполняемому файлу субсервера
+            static const System::String exePath;
+
+            //! Имя процесса субсервера
+            static const System::String exeProcessName;
         };
 
     }

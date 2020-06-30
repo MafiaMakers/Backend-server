@@ -1,5 +1,4 @@
 #ifndef RUNPROGRAM_H
-//! Набор системных функций для запуска и завершения программ
 #define RUNPROGRAM_H
 
 #include <windows.h>

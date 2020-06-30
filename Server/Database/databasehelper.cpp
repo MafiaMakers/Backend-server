@@ -6,23 +6,6 @@
 using namespace Mafia;
 using namespace Database;
 
-QString Mafia::Database::generate_salt()
-{
-    const int saltSize = 10;
-
-    QString salt = "";
-
-    for(int i = 0; i < saltSize; i++){
-        salt += (char)((char)'A' + (char)(qrand() % 26));
-    }
-
-    return salt;
-}
-
-
-
-
-
 template<>
 int Mafia::Database::query_value_to_variable(QVariant data)
 {

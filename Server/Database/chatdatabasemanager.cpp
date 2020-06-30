@@ -143,8 +143,6 @@ void ChatDatabaseManager::delete_message(MessageIdType id)
     }
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 void ChatDatabaseManager::edit_message(ChatMessage message)
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(message.id) + ")";
@@ -248,8 +246,6 @@ void ChatDatabaseManager::message_read(MessageIdType id, UserIdType readUser)
     }
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> fromChats,
                                                          MafiaList<UserIdType> possibleSenders,
                                                          MafiaList<ChatFeature> features,

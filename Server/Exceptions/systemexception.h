@@ -31,8 +31,12 @@ namespace Mafia {
             //! \brief Исключение, вызываемое при получении для десериализации сообщения неверного размера,
             //! из которого невозможно извлечь необходимую структуру
             SystemExceptionId_InvalidMessageSize = 801,
+            //! \brief Исключение, вызываемое при попытке выделить порт, когда все доступные порты уже заняты
+            SystemExceptionId_PortAllocation = 802,
+            //! \brief Исключение, вызываемое при попытке освободить порт, который не был выделен
+            SystemExceptionId_PortFreeing = 803,
             //! \brief Максимальный id таких исключений (см. \ref Mafia::Database::Status_Last)
-            SystemExceptionId_Last = 802,
+            SystemExceptionId_Last = 804,
         };
     }
 }

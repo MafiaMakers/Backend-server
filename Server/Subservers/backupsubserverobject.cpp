@@ -2,10 +2,11 @@
 using namespace Mafia;
 using namespace Subservers;
 
+const System::String BackupSubserverObject::exePath = System::String("");
+const System::String BackupSubserverObject::exeProcessName = System::String("");
 
-Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(MainServerNetworker *networker, int port, const Mafia::System::String path,
-    const Mafia::System::String processName, int checkInterval, int maxNotAnswering, const Mafia::System::String specialCommands)
-    : SubserverObject(networker, port, path, processName, checkInterval, maxNotAnswering, specialCommands)
+Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::MainServerNetworker *networker, int port, int checkInterval, int maxNotAnswering, const Mafia::System::String specialCommands)
+    : SubserverObject(networker, port, exePath, exeProcessName, checkInterval, maxNotAnswering, specialCommands)
 {
 
 }
@@ -13,14 +14,14 @@ Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(MainServerNetwor
 void BackupSubserverObject::check_connection()
 {
     try {
-        Message message = Message();
-        message.type = MessageType_CheckConnection;
+        Network::Message message = Network::Message();
+        message.type = Network::MessageType_CheckConnection;
         message.client = myAddress;
-        message.data = (SymbolType*)"c";
+        message.data = (Network::SymbolType*)"c";
         message.size = 2;
 
         networker->send_message(message);
-    } catch (Exception* exception) {
+    } catch (Exceptions::Exception* exception) {
         switch(exception->get_id()){
         default:{
             exception->show();
@@ -29,15 +30,15 @@ void BackupSubserverObject::check_connection()
     }
 }
 
-void BackupSubserverObject::message_from_server(Message message)
+void BackupSubserverObject::message_from_server(Network::Message message)
 {
     if(message.client == this->myAddress){
         switch (message.type) {
-        case MessageType_CheckConnection:{
+        case Network::MessageType_CheckConnection:{
             notAnsweringsCount = 0;
             break;
         }
-        case MessageType_CheckConnectionServer:{
+        case Network::MessageType_CheckConnectionServer:{
             check_connection();
             break;
         }

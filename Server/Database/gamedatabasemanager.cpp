@@ -42,8 +42,6 @@ GameDatabaseManager::GameDatabaseManager(DatabaseWorker *databaseWorker) : Datab
     }
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 Gameplay::Game GameDatabaseManager::get_game_data(GameIdType id)
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
@@ -117,8 +115,6 @@ GameIdType GameDatabaseManager::add_game(Gameplay::Game &game)
 
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<Gameplay::Game> GameDatabaseManager::get_games_with(MafiaList<UserIdType> participants, FilterType participantsFilter,
                                                           MafiaList<Gameplay::Role> roles, FilterType rolesFilter,
                                                           MafiaList<Gameplay::GameResult> outcomes, QDateTime beginAfter, QDateTime endBefore)

@@ -1,7 +1,12 @@
 #include "serializer.h"
-#include <MafiaDatabase>
+#include "Database/chatmessage.h"
+#include "Database/chatsettingsdatabasemanager.h"
 #include "userstatistics.h"
 #include <MafiaExceptions>
+#include "System/tuple.h"
+#include "clientinfo.h"
+
+
 using namespace Mafia;
 using namespace System;
 
@@ -27,6 +32,31 @@ int Serializer::deserialize(String data, unsigned int* pointerIndex){
         return 0;
     }
 }
+
+
+template<>
+std::string Serializer::serialize(Network::Client value){
+    std::string result = "";
+    result += serialize<int>(value.ip);
+    result += serialize<int>(value.port);
+
+    return result;
+}
+
+template<>
+Network::Client Serializer::deserialize(String data, unsigned int* pointerIndex){
+    Network::Client result = Network::Client();
+    unsigned int currentIdx = 0;
+    result.ip = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.port = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+
+    if(pointerIndex != NULL){
+        *pointerIndex += currentIdx;
+    }
+
+    return result;
+}
+
 
 template<>
 std::string Serializer::serialize(Database::ChatCapability value){
@@ -284,8 +314,129 @@ UserStatistics Serializer::deserialize(String data, unsigned int* pointerIndex){
     return result;
 }
 
-template<class T>
-T Serializer::deserialize(String data)
-{
-    return deserialize<T>(data, NULL);
+template<>
+std::string Serializer::serialize(System::Tuple<Database::UserIdType, QString> value){
+    std::string result = "";
+    result += serialize<Database::UserIdType>(value.item1);
+    result += serialize<QString>(value.item2);
+    return result;
+}
+
+template<>
+System::Tuple<Database::UserIdType, QString> Serializer::deserialize(String data, unsigned int * pointerIndex){
+    System::Tuple<Database::UserIdType, QString> result = System::Tuple<Database::UserIdType, QString>();
+    unsigned int currentIdx = 0;
+    result.item1 = deserialize<Database::UserIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.item2 = deserialize<QString>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+
+    if(pointerIndex != NULL){
+        *pointerIndex += currentIdx;
+    }
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(ClientInfo value){
+    std::string result = "";
+
+    result += serialize<Network::Client>(value.client);
+    result += serialize<UserStatistics>(value.statistics);
+
+    return result;
+}
+
+template<>
+ClientInfo Serializer::deserialize(String data, unsigned int* pointerIndex){
+    unsigned int currentIdx = 0;
+    ClientInfo result = ClientInfo();
+
+    result.client = deserialize<Network::Client>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.statistics = deserialize<UserStatistics>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+
+    if(pointerIndex != NULL){
+        *pointerIndex += currentIdx;
+    }
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(Gameplay::Role value){
+    return serialize<int>((int)value);
+}
+
+template<>
+Gameplay::Role Serializer::deserialize(String data, unsigned int * pointerIndex){
+    return (Gameplay::Role)deserialize<int>(data, pointerIndex);
+}
+
+template<>
+std::string Serializer::serialize(MafiaList<Gameplay::Role> value){
+    std::string result = "";
+    result += serialize<int>(value.length());
+    for(int i = 0; i < value.length(); i++){
+        result += serialize<Gameplay::Role>(value[i]);
+    }
+
+    return result;
+}
+
+template<>
+MafiaList<Gameplay::Role> Serializer::deserialize(String data, unsigned int * pointerIndex){
+    unsigned int currentIdx = 0;
+    int size = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+
+    MafiaList<Gameplay::Role> result = MafiaList<Gameplay::Role>();
+    for(int i = 0; i < size; i++){
+        result.append(deserialize<Gameplay::Role>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx));
+    }
+
+    if(pointerIndex != NULL){
+        *pointerIndex += currentIdx;
+    }
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(Gameplay::GameResult value){
+    return serialize<int>((int)value);
+}
+
+template<>
+Gameplay::GameResult Serializer::deserialize(String data, unsigned int* pointerIndex){
+    return (Gameplay::GameResult)deserialize<int>(data, pointerIndex);
+}
+
+template<>
+std::string Serializer::serialize(Gameplay::Game value){
+    std::string result = "";
+
+    result += serialize<Database::GameIdType>(value.id);
+    result += serialize<MafiaList<Gameplay::Role>>(value.roles);
+    result += serialize<MafiaList<Database::UserIdType>>(value.users);
+    result += serialize<Gameplay::GameResult>(value.result);
+    result += serialize<QDateTime>(value.endingDT);
+    result += serialize<QDateTime>(value.endingDT);
+
+    return result;
+}
+
+template<>
+Gameplay::Game Serializer::deserialize(String data, unsigned int* pointerIndex){
+    Gameplay::Game result = Gameplay::Game();
+    unsigned int currentIdx = 0;
+    result.id = deserialize<Database::GameIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.roles = deserialize<MafiaList<Gameplay::Role>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.users = deserialize<MafiaList<Database::UserIdType>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.result = deserialize<Gameplay::GameResult>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.endingDT = deserialize<QDateTime>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+    result.beginningDT = deserialize<QDateTime>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+
+    if(pointerIndex != NULL){
+        *pointerIndex += currentIdx;
+    }
+
+    return result;
 }

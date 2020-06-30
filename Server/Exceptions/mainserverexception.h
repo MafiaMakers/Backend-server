@@ -3,6 +3,7 @@
 #include "exception.h"
 namespace Mafia {
     namespace Exceptions {
+        //! \brief Класс для исключений, вызванных работой главного менеджера основного сервера
         class MainServerException : public Exception
         {
         public:
@@ -36,8 +37,10 @@ namespace Mafia {
             MainServerExceptionId_NoSuchClient = 702,
             //! \brief Исключение, вызываемое при получении транзакции неизвестного или неверного типа
             MainServerExceptionId_UnknownTransactionType = 703,
+            //! \brief Исключение, вызываемое при попытке работы с игрой, которая не запущена/завершена/не существовала
+            MainServerExceptionId_NoSuchGame = 704,
             //! \brief Максимальное id исключения (см. \ref Mafia::Database::Status_Last)
-            MainServerExceptionId_Last = 704
+            MainServerExceptionId_Last = 705
         };
     }
 }

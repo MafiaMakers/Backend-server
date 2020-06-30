@@ -29,12 +29,6 @@ namespace Mafia{
         QString get_sql_type(int maxListCount = 0, T val = T());
 
         /*!
-         * \brief Функция случайной генерации соли для хеширования пароля
-         * \return Соль в виде строки
-         */
-        QString generate_salt();
-
-        /*!
          * \brief Функция преобразования QByteArray, полученного из БД в QList<T>
          * \param data данные, полученные из БД в виде QByteArray
          * \return список, сгенерированный на основе этих данных

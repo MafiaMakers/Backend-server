@@ -12,7 +12,7 @@
 typedef int RequestIdType;
 
 namespace Mafia {
-
+    //! \brief Пространство имен для работы с API субсерверов
     namespace Subservers {
         //! Структура для хранения сетевого запроса и его id
         struct RequestWithId{
@@ -45,8 +45,11 @@ namespace Mafia {
              * \param maxNotAnswering Максимальное количество пропущенных запросов на подтверждение активности субсервера (стандартное значение 5)
              * \param specialCommands Специальные параметры, которые дополнительно надо передать при запуске субсервера (стандартное значение "")
              */
-            SubserverObject(MainServerNetworker* networker, int port, const System::String path, const System::String processName,
+            SubserverObject(Network::MainServerNetworker* networker, int port, const System::String path, const System::String processName,
                             int checkInterval = 2000, int maxNotAnswering = 5, const System::String specialCommands = System::String(""));
+
+            //! \brief Деструктор (пока пустой)
+            ~SubserverObject();
             /*!
              * \brief Метод отправления запроса субсерверу
              * \param type Тип сообщения, которое надо отправить субсерверу
@@ -54,13 +57,8 @@ namespace Mafia {
              * \param size Размер массива данных
              * \return id реквеста, по которому потом можно обратиться в этот же объект SubserverObject и получить сведения
              */
-            virtual RequestIdType send_request(MessageTypeType type, SymbolType* data, int size);
+            virtual RequestIdType send_request(Network::MessageTypeType type, Network::SymbolType* data, int size);
 
-            /*!
-             * \brief Метод для передачи нового клиента данному субсерверу
-             * \param client Клиент, которого необходимо передать
-             */
-            virtual void pass_client(Client client);
             /*!
              * \brief Функция получения результата запроса по id запроса
              * \param requestId id запроса, у которого надо получить данные
@@ -81,7 +79,18 @@ namespace Mafia {
              * \param id id сообщения (стандартное значение 0)
              * \return id отправленного сообщения
              */
-            int send_message_to_subserver(MessageTypeType type, SymbolType* data, int size, MessageIdType id = 0);
+            int send_message_to_subserver(Network::MessageTypeType type, Network::SymbolType* data, int size, Network::MessageIdType id = 0);
+
+            /*!
+             * \brief Функция получения адреса субсервера
+             * \return Адрес этого субсервера
+             */
+            Network::Client get_my_address();
+
+            /*!
+             * \brief Функция принудительного завершения процесса субсервера
+             */
+            void finish_work();
         signals:
             /*!
              * \brief Сигнал, вызываемый при готовности запроса
@@ -96,7 +105,7 @@ namespace Mafia {
              * \brief Сигнал, вызываемый при получении сообщения от субсервера
              * \param message сообщение, которое получено от субсервера
              */
-            void on_message_got(Message message);
+            void on_message_got(Network::Message message);
         protected slots:
             /*!
              * \brief Слот, который привязывается к запросу и вызывает сигнал \ref Mafia::SubserverObject::on_request_ready(RequestIdType requestId)
@@ -110,7 +119,7 @@ namespace Mafia {
              * \ref Mafia::SubserverObject::on_message_got(Mafia::Message message)
              * \param message Сообщение, полученное от сервера
              */
-            virtual void message_from_server(Message message);
+            virtual void message_from_server(Network::Message message);
 
             /*!
              * \brief Слот, обрабатывающий краш субсервера (в т.ч. перезапускает его)
@@ -130,13 +139,13 @@ namespace Mafia {
             virtual void run_me(const System::String specialCommands);
 
             //! Адрес субсервера (127.0.0.1 и порт)
-            Client myAddress;
+            Network::Client myAddress;
 
             //! Список всех запросов этого субсервера
             MafiaList<RequestWithId> currentRequests;
 
             //! Указатель на объект \ref Mafia::MainServerNetworker , используемый для создания запросов и отправления сообщений
-            MainServerNetworker* networker;
+            Network::MainServerNetworker* networker;
 
             //! PID процесса субсервера
             int pid;

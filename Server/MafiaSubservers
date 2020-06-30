@@ -1,2 +1,3 @@
 #include "Subservers/backupsubserverobject.h"
 #include "Subservers/subserverobject.h"
+#include "Subservers/roomsubserverobject.h"

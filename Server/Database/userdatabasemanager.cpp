@@ -4,7 +4,7 @@
 #include "System/SHA_256.h"
 #include "Gameplay/game_s.h"
 #include <iostream>
-
+#include "System/keygen.h"
 using namespace Mafia;
 using namespace Database;
 
@@ -56,7 +56,7 @@ UserIdType UserDatabaseManager::add_user(QString nickname, QString email, QStrin
 
     newUser.nickname = nickname;
     newUser.email = email;
-    newUser.salt = generate_salt();
+    newUser.salt = System::KeyGen::generate_key<QString>(SALT_SIZE);
 
     QString addedPassword = password + newUser.salt + localParameter;
 
@@ -80,7 +80,7 @@ UserIdType UserDatabaseManager::add_user(QString nickname, QString email, QStrin
     newUser.chats = MafiaList<ChatIdType>();
     newUser.transactions = MafiaList<TransactionIdType>();
     newUser.loginDateTime = QDateTime::currentDateTimeUtc();
-    newUser.confirmationKey = generate_confirmation_key();
+    newUser.confirmationKey = System::KeyGen::generate_key<QString>(CONFIRMATION_KEY_SIZE);
 
     try {
         return add_user(newUser);
@@ -445,8 +445,6 @@ void UserDatabaseManager::change_nickname(UserIdType id, QString newNickname)
     }
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
                                                Status userStatus,
                                                Achievement userAchievement,
@@ -602,18 +600,6 @@ UserIdType UserDatabaseManager::add_user(User user)
     return user.id;
 }
 
-QString UserDatabaseManager::generate_confirmation_key()
-{
-    const int confirmationKeySize = 20;
-
-    QString confirmationKey = "";
-
-    for(int i = 0; i < confirmationKeySize; i++){
-        confirmationKey += (char)((char)'A' + (char)(qrand() % 26));
-    }
-
-    return confirmationKey;
-}
 
 void UserDatabaseManager::register_game(Gameplay::Game game)
 {

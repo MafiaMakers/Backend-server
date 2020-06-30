@@ -4,3 +4,6 @@
 #include "System/SHA_256.h"
 #include "System/simplestring.h"
 #include "System/serializer.h"
+#include "System/keygen.h"
+#include "System/portsmanager.h"
+#include "System/tuple.h"

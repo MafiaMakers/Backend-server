@@ -41,10 +41,14 @@ SOURCES += \
         Gameplay/game_s.cpp \
         Network/crypto.cpp \
         Subservers/backupsubserverobject.cpp \
+        Subservers/roomsubserverobject.cpp \
         System/SHA_256.cpp \
         System/functions.cpp \
+        System/keygen.cpp \
+        System/portsmanager.cpp \
         System/runprogram.cpp \
         System/serializer.cpp \
+        clientinfo.cpp \
         main.cpp \
         mainservermanager.cpp \
         Network/mainservernetworker.cpp \
@@ -82,11 +86,16 @@ HEADERS += \
     Gameplay/gameitems.h \
     Network/crypto.h \
     Subservers/backupsubserverobject.h \
+    Subservers/roomsubserverobject.h \
     System/SHA_256.h \
     System/functions.h \
+    System/keygen.h \
     System/limitedqueue.h \
+    System/portsmanager.h \
     System/runprogram.h \
     System/serializer.h \
+    System/tuple.h \
+    clientinfo.h \
     mainservermanager.h \
     Network/mainservernetworker.h \
     Network/message.h \

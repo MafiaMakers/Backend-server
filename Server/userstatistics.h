@@ -1,7 +1,7 @@
 #ifndef USERSTATISTICS_H
 #define USERSTATISTICS_H
 #include "System/functions.h"
-#include <MafiaDatabase>
+#include "Database/user.h"
 namespace Mafia {
     /*!
      * \brief Структура, используемая для отправки пользователям статистики об игроке

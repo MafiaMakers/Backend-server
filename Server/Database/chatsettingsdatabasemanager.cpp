@@ -101,8 +101,6 @@ void ChatSettingsDatabaseManager::add_user_to_chat(UserIdType user, ChatIdType c
     }
 }
 
-
-#warning "This method is complex to read! Maybe it is good to reconstruct it
 MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<ChatIdType> ids, MafiaList<UserIdType> users,
                                                                   FilterType usersFilter, QDateTime createdAfter, QDateTime createdBefore)
 {

@@ -33,7 +33,10 @@ namespace Mafia {
              * \param data Данные в строке
              * \return Необходимую структуру данных
              */
-            static T deserialize (String data);
+            static T deserialize (String data)
+            {
+                return deserialize<T>(data, NULL);
+            }
 
         private:
             template<class T>
@@ -47,7 +50,8 @@ namespace Mafia {
              * (Если он равен NULL, то ничего не изменяется)
              * \return Все так же необходимую десериализованную структуру данных
              */
-            static T deserialize (String data, unsigned int* pointerIndex = NULL);
+            static T deserialize (String data, unsigned int* pointerIndex);
+
         };
     }
 }

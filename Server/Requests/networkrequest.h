@@ -3,8 +3,6 @@
 #include "request.h"
 #include "Network/mainservernetworker.h"
 #include "Exceptions/requestexception.h"
-using namespace Mafia::Network;
-using namespace Mafia::Exceptions;
 namespace Mafia {
     namespace Requests {
         /*!
@@ -21,7 +19,7 @@ namespace Mafia {
              * \param _networker Указатель на объект работы с сетью
              * \param toAsk Сообщение запроса
              */
-            NetworkRequest(MainServerNetworker* _networker, Message toAsk);
+            NetworkRequest(Network::MainServerNetworker* _networker, Network::Message toAsk);
 
             /*!
              *  \brief Метод получения данных. Работает только когда запрос уже закончил свою работу, иначе кидает ошибку. Возвращает полученные данные
@@ -33,10 +31,10 @@ namespace Mafia {
                     if(this->size == sizeof(T)){
                         return(*(T*)(this->data));
                     } else{
-                        throw new RequestException(System::String("Size of message doesn't match to size of given type"), Exceptions::RequestExceptionId_SizeMismatch);
+                        throw new Exceptions::RequestException(System::String("Size of message doesn't match to size of given type"), Exceptions::RequestExceptionId_SizeMismatch);
                     }
                 } else{
-                    throw new RequestException(System::String("Request hasn't finished yet!"), Exceptions::RequestExceptionId_NotFinished);
+                    throw new Exceptions::RequestException(System::String("Request hasn't finished yet!"), Exceptions::RequestExceptionId_NotFinished);
                 }
 
             }
@@ -57,14 +55,14 @@ namespace Mafia {
              * \brief Слот для проверки, получены ли данные этого запроса. Слот привязан к серверному сигналу получения ответа на запрос
              * \param received Полученное сообщение
              */
-            void tryClose(Message received);
+            void tryClose(Network::Message received);
         private:
             //! id сообщения, которое было отправлено изначально
-            const MessageIdType id;
+            const Network::MessageIdType id;
             //! Клиент, которому было отправлено сообщение
-            const Client client;
+            const Network::Client client;
             //! Полученные данные
-            SymbolType* data;
+            Network::SymbolType* data;
             //! Размер массива полученных данных
             int size;
         };

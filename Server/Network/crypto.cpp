@@ -19,8 +19,6 @@ void Crypto::setKey(char* key, int size){
     Crypto::key = System::String(key, size);
 }
 
-
-#error "This method is too complex to read! Reconstruct it"
 Message Crypto::parse_data(char *data, int size){
     System::String tData = System::String(0, 0);
     try {

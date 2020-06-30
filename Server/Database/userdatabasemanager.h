@@ -7,15 +7,15 @@
 #include "databasehelper.h"
 #include "databasemanager.h"
 
-//! \brief Максимальное количество транзакций одного игрока
-#define MAX_TRANSACTIONS_COUNT 1024
-//! \brief Максимальное количество игр одного игрока
-#define MAX_GAMES_COUNT 65536
-//! \brief Максимальное количество чатов, в которых может состоять игрок
-#define MAX_CHATS_COUNT 1024
-
 namespace Mafia{
     namespace Database {
+        //! \brief Максимальное количество транзакций одного игрока
+        const int MAX_TRANSACTIONS_COUNT = 1024;
+        //! \brief Максимальное количество игр одного игрока
+        const int MAX_GAMES_COUNT = 65536;
+        //! \brief Максимальное количество чатов, в которых может состоять игрок
+        const int MAX_CHATS_COUNT = 1024;
+
          /*!
          * \brief Класс для работы с базой данных пользователя
          */
@@ -174,12 +174,6 @@ namespace Mafia{
             UserIdType add_user(User user);
 
             /*!
-             * \brief Функция рандомной генерации ключа подтверждения email-a
-             * \return Строку с ключем
-             */
-            static QString generate_confirmation_key();
-
-            /*!
              * \brief Функция добавления информации о новой игре конкретному пользователю (участнику этой игры)
              * \param userId id пользователя
              * \param gameId id игры, которую следует добавить
@@ -188,6 +182,11 @@ namespace Mafia{
              */
             void register_game(UserIdType userId, GameIdType gameId, Gameplay::Role role, Gameplay::GamePersonalResult result);
 
+            //! \brief Размер строки соли (для генерации хеша пароля)
+            static const int SALT_SIZE = 16;
+
+            //! \brief Размер ключа подтверждения email-a
+            static const int CONFIRMATION_KEY_SIZE = 16;
         };
     }
 }
