@@ -39,6 +39,11 @@ namespace Mafia {
              */
             void on_subserver_api_message_received(Message message);
 
+            /*!
+             * \brief Сигнал, вызываемый при получении сообщения такого типа,
+             * который не предусмотрен стандартным обработчиком MainServerNetworker'a
+             * \param message Все данные сообщения
+             */
             void message_received(Message message);
         private slots:
             /*!

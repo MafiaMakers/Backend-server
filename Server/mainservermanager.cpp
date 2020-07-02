@@ -166,7 +166,8 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
-            networker->send_message(Network::Message(Network::MessageType_UnableToCreateUser, (Network::SymbolType*)"", 1, client));
+            networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)"", 1,
+                                                     client, requestId));
             break;
         }
         default:{
@@ -216,8 +217,15 @@ void MainServerManager::login_user(QString email, QString password, Network::Cli
                 clients.append(client);
                 users.append(userId);
             }
+
+            System::Tuple<Database::UserIdType, QString> messageData = System::Tuple<Database::UserIdType, QString>(userId, email);
+
+            std::string messageText = System::Serializer::serialize<System::Tuple<Database::UserIdType, QString>>(messageData);
+            networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)messageText.c_str(),
+                                                     messageText.length(), client, requestId));
         } else{
-            networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)"Invalid password or email", 26, client, requestId));
+            networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
+                                                     (Network::SymbolType*)"", 0, client, requestId));
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {

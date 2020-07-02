@@ -10,14 +10,24 @@
 
 namespace Mafia {
     namespace Network {
+        //! \brief Класс, который занимается обработкой всех сообщений, которые не обрабатывают субсервера и networker
         class MessageProcessor : public QObject
         {
             Q_OBJECT
         public:
+            /*!
+             * \brief Qt-шный конструктор, который не следует вызывать
+             * \param parent Какая-то непонятная дичь
+             */
             explicit MessageProcessor(QObject *parent = nullptr);
 
+            /*!
+             * \brief Основной конструктор, который следует использовать
+             * \param networker
+             */
             MessageProcessor(Network::MainServerNetworker* networker);
 
+            //! \brief Т.к. класс по сути является синглтоном, это поле представляет указатель на единственный экземпляр класса
             static MessageProcessor* instance;
 
         signals:
@@ -65,11 +75,14 @@ namespace Mafia {
             void read_message(Network::Client client, Database::MessageIdType message);
 
         private slots:
-
+            /*!
+             * \brief Слот, соединяемый с событием networker'a, получения необработанного сообщения
+             * \param message Полученное сообщение, которое следует обработать
+             */
             void message_received(Network::Message message);
 
         private:
-
+            //! \brief Указатель на объект networker'a
             Network::MainServerNetworker* networker;
 
         };

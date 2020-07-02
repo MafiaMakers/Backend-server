@@ -24,13 +24,33 @@ namespace Mafia {
         explicit MainServerManager(int argc, char* argv[], QObject * parent = nullptr);
 
     private slots:
+        /*!
+         * \brief Слот, вызываемый, когда приходит новое сообщение в чат
+         * \param message Сообщение
+         */
         void on_chat_message_sent(Database::ChatMessage message);
 
+        /*!
+         * \brief Слот, вызываемый, когда какое-либо сообщение в чате изменено
+         * \param message Измененное сообщение
+         */
         void on_chat_message_edited(Database::ChatMessage message);
 
+        /*!
+         * \brief Слот, вызываемый, когда кто-либо прочитал какое-либо сообщение из какого-либо чата
+         * \param message id сообщения, которое прочитали
+         * \param chat Чат, из которого было это сообщение
+         * \param user Пользователь, прочитавший сообщение
+         */
         void on_chat_message_read(Database::MessageIdType message, Database::ChatIdType chat, Database::UserIdType user);
 
+        /*!
+         * \brief Слот, вызываемый при удалении сообщения из чата
+         * \param messageId id удаляемого сообщения
+         * \param chat Чат, из которого удалили сообщение
+         */
         void on_chat_message_deleted(Database::MessageIdType messageId, Database::ChatIdType chat);
+
         /*!
          * \brief Функция регистрации нового пользователя
          * \param nickname Никнейм нового пользователя
@@ -133,7 +153,8 @@ namespace Mafia {
          * \brief Функция получения статистики данного пользователя
          * \param user id пользователя, чьи данные требуются
          * \param asker Клиент, который хочет получить эти данные
-         * \param requestId id запроса, который отправил клиент (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
+         * \param requestId id запроса, который отправил клиент
+         * (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
         void get_statistics(Database::UserIdType user, Network::Client asker, Network::MessageIdType requestId);
 
@@ -143,6 +164,13 @@ namespace Mafia {
          */
         void add_game(Gameplay::Game game, Subservers::RoomSubserverObject* rso);
 
+        /*!
+         * \brief Слот, вызываемый, когда пользователь пытается подтвердить свой электронный адрес
+         * \param client Клиент, который отправил запрос
+         * \param confirmationKey Ключ, который передал клиент
+         * \param requestId id запроса, который отправил клиент
+         * (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
+         */
         void confirm_email(Network::Client client, QString confirmationKey, Network::MessageIdType requestId);
 
         /*!
@@ -223,6 +251,9 @@ namespace Mafia {
         void read_message(Network::Client client, Database::MessageIdType message);
 
         private:
+        /*!
+         * \brief Функция, которая подключает слоты менеджера к сигналам Message Processor'а
+         */
         void connect_to_processor();
 
         /*!

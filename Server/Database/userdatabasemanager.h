@@ -158,6 +158,11 @@ namespace Mafia{
                                       QDateTime loginAfter = BEGINNING_TIME,
                                       QDateTime loginBefore = ENDING_TIME);
 
+            /*!
+             * \brief Функция, идентичная \ref Mafia::Database::UserDatabaseManager::get_users , но вместо списка пользователей
+             * возвращает список id этих пользователей
+             * \return Список id пользователей, подходящих под фильтр
+             */
             MafiaList<UserIdType> get_users_ids(MafiaList<UserIdType> ids = MafiaList<UserIdType>(),
                                                 Status userStatus = Status_Any,
                                                 Achievement userAchievement = Achievement_Any,
@@ -167,6 +172,11 @@ namespace Mafia{
                                                 QDateTime loginBefore = ENDING_TIME);
 
         private:
+            /*!
+             * \brief Вспомогательная функция для создания фильтра. Возвращает условие, которое должно быть помещено в "WHERE ("
+             * для обеспечения данных фильтров (см. \ref Mafia::Database::UserDatabaseManager::get_users)
+             * \return Строку, в которой содержится запрос, который должен быть помещен в "WHERE (" в SQL запросе
+             */
             QString create_filter_request(MafiaList<UserIdType> ids,
                                           Status userStatus,
                                           Achievement userAchievement,
