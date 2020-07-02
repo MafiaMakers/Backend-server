@@ -56,14 +56,14 @@ void RoomSubserverObject::message_from_server(Network::Message message)
     if(message.client == this->myAddress){
         switch (message.type) {
         case Network::MessageType_CheckConnection:{
-            System::Serializer::deserialize<Gameplay::Game>(System::String(""));
             System::Serializer::serialize<Gameplay::Game>(Gameplay::Game());
 
             notAnsweringsCount = 0;
             break;
         }
         case Network::MessageType_PlayerLeaveGame:{
-            ClientInfo data = System::Serializer::deserialize<ClientInfo>(System::String(message.data, message.size));
+            System::String messageData = System::String(message.data, message.size);
+            ClientInfo data = System::Serializer::deserialize<ClientInfo>(messageData);
             if(myClients.contains(data)){
                 emit client_leave(data.client);
                 myClients.removeOne(data);
@@ -71,7 +71,8 @@ void RoomSubserverObject::message_from_server(Network::Message message)
             break;
         }
         case Network::MessageType_GameResults:{
-            Gameplay::Game gameData = System::Serializer::deserialize<Gameplay::Game>(System::String(message.data, message.size));
+            System::String messageData = System::String(message.data, message.size);
+            Gameplay::Game gameData = System::Serializer::deserialize<Gameplay::Game>(messageData);
             emit game_ended(gameData, this);
             break;
         }

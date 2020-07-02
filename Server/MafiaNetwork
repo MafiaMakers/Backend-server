@@ -3,3 +3,4 @@
 #include "Network/message.h"
 #include "Network/messageTypes.h"
 #include "Network/messagetypes.h"
+#include "Network/messageprocessor.h"

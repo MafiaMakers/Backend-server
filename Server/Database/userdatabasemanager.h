@@ -158,7 +158,23 @@ namespace Mafia{
                                       QDateTime loginAfter = BEGINNING_TIME,
                                       QDateTime loginBefore = ENDING_TIME);
 
+            MafiaList<UserIdType> get_users_ids(MafiaList<UserIdType> ids = MafiaList<UserIdType>(),
+                                                Status userStatus = Status_Any,
+                                                Achievement userAchievement = Achievement_Any,
+                                                AuthorizedStatus authorizedNow = AuthorizedStatus_Any,
+                                                QString nickname = "",
+                                                QDateTime loginAfter = BEGINNING_TIME,
+                                                QDateTime loginBefore = ENDING_TIME);
+
         private:
+            QString create_filter_request(MafiaList<UserIdType> ids,
+                                          Status userStatus,
+                                          Achievement userAchievement,
+                                          AuthorizedStatus authorizedNow,
+                                          QString nickname,
+                                          QDateTime loginAfter,
+                                          QDateTime loginBefore);
+
             /*!
              * \brief Получение списка пользователей по ответу на sql-запрос
              * \param query Sql-запрос с ответом из которого надо извлечь данные

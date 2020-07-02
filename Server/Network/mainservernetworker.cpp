@@ -82,9 +82,21 @@ void MainServerNetworker::_send_message(char* data, int size, QHostAddress clien
 
 void MainServerNetworker::_process_message(Message message)
 {    
+
+    if(needConfirmation.contains(message.type)){
+        //std::cout << "Need confirmation" << std::endl;
+        Message confirmationMessage = Message();
+        confirmationMessage.type = MessageType_Confirmation;
+        confirmationMessage.id = message.id;
+        confirmationMessage.data = (SymbolType*)"Message received!";
+        confirmationMessage.size = 18;
+        confirmationMessage.client = message.client;
+        send_message(confirmationMessage);
+    }
     //show_message(message);
     if(message.client.ip == (int)QHostAddress("127.0.0.1").toIPv4Address()){
         emit on_subserver_api_message_received(message);
+        return;
     }
 
     switch (message.type) {
@@ -116,21 +128,9 @@ void MainServerNetworker::_process_message(Message message)
     }
         // Тут еще надо код со всякими emit...
     default:{
-        throw new Exceptions::MessageProcessingException(System::String("unknown message type received"), Exceptions::MessageProcessingExceptionId_UnknownMessageType);
+        emit message_received(message);
+        //throw new Exceptions::MessageProcessingException(System::String("unknown message type received"), Exceptions::MessageProcessingExceptionId_UnknownMessageType);
     }
-    }
-
-
-
-    if(needConfirmation.contains(message.type)){
-        //std::cout << "Need confirmation" << std::endl;
-        Message confirmationMessage = Message();
-        confirmationMessage.type = MessageType_Confirmation;
-        confirmationMessage.id = message.id;
-        confirmationMessage.data = (SymbolType*)"Message received!";
-        confirmationMessage.size = 18;
-        confirmationMessage.client = message.client;
-        send_message(confirmationMessage);
     }
 }
 

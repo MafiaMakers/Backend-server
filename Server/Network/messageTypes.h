@@ -63,8 +63,46 @@ namespace Mafia {
             MessageType_GameCreated = 24,
             //! \brief Сообщение, которое отправляется игроку, который ввел неверный ключ для входа в игру
             MessageType_InvalidGameKey = 25,
+
+            MessageType_CreateUser = 26,
+
+            MessageType_LoginRequest = 27,
+
+            MessageType_CreateChatRequest = 28,
+
+            MessageType_GetChatsRequest = 29,
+
+            MessageType_AddUserToChat = 30,
+
+            MessageType_ChangeUsersCapability = 31,
+
+            MessageType_RemoveUserFromChat = 32,
+
+            MessageType_CreateGameRequest = 33,
+
+            MessageType_GetStatisticsRequest = 34,
+
+            MessageType_ConfirmEmail = 35,
+
+            MessageType_Logout = 36,
+
+            MessageType_LogsData = 37,
+
+            MessageType_ChangeNickname = 38,
+
+            MessageType_ChangeEmailRequest = 39,
+
+            MessageType_GetIntoGameRequest = 40,
+
+            MessageType_NewChatMessage = 41,
+
+            MessageType_EditedChatMessage = 42,
+
+            MessageType_DeletedChatMessage = 43,
+
+            MessageType_OnReadChatMessage = 44,
             //! \brief Верхняя граница типов сообщений
-            MessageType_Last = 26
+            MessageType_Last = 45
         };
 
 

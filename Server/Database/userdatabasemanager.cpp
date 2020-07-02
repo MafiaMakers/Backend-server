@@ -148,7 +148,8 @@ bool UserDatabaseManager::confirm_user(UserIdType id, QString confirmationKey)
 
             return realKey == confirmationKey;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -188,16 +189,21 @@ User UserDatabaseManager::get_user(UserIdType id)
             currentUser.isConfirmed = query_value_to_variable<Status>(query->value(record.indexOf("IS_CONFIRMED")));
             currentUser.passwordHash = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_HASH")));
 
-            currentUser.transactions = query_value_to_variable<MafiaList<TransactionIdType>>(query->value(record.indexOf("TRANSACTIONS")));
+            currentUser.transactions = query_value_to_variable<MafiaList<TransactionIdType>>(
+                                                                                    query->value(record.indexOf("TRANSACTIONS")));
             currentUser.loginDateTime = query_value_to_variable<QDateTime>(query->value(record.indexOf("LOGIN_DATE_TIME")));
 
-            currentUser.confirmationKey = query_value_to_variable<QString>(query->value(record.indexOf("CONFIRMATION_KEY")));
-            currentUser.defeatesByRoles = query_value_to_variable<MafiaList<int>>(query->value(record.indexOf("DEFEATES_BY_ROLES")));
-            currentUser.victoriesByRoles = query_value_to_variable<MafiaList<int>>(query->value(record.indexOf("VICTORIES_BY_ROLES")));
+            currentUser.confirmationKey = query_value_to_variable<QString>(
+                                                                                query->value(record.indexOf("CONFIRMATION_KEY")));
+            currentUser.defeatesByRoles = query_value_to_variable<MafiaList<int>>(
+                                                                                query->value(record.indexOf("DEFEATES_BY_ROLES")));
+            currentUser.victoriesByRoles = query_value_to_variable<MafiaList<int>>(
+                                                                                query->value(record.indexOf("VICTORIES_BY_ROLES")));
 
             return currentUser;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
 
     } catch (Exceptions::Exception* exception) {
@@ -230,7 +236,8 @@ void UserDatabaseManager::add_transaction(UserIdType user, TransactionIdType tra
             dbWorker->run_query(passRequest);
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -261,18 +268,22 @@ void UserDatabaseManager::change_password(UserIdType id, QString newPassword)
 
                     QString passwordHash = QString::fromStdString(hash);
 
-                    QString request = "UPDATE " + dbName + "\nSET PASSWORD_HASH = \'" + passwordHash + "\'\nWHERE (ID = " + QString::number(id) + ")";
+                    QString request = "UPDATE " + dbName + "\nSET PASSWORD_HASH = \'" + passwordHash +
+                            "\'\nWHERE (ID = " + QString::number(id) + ")";
                     dbWorker->run_query(request);
 
                 } else{
-                    throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+                    throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                                   Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
                 }
             } else{
-                throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"), Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
+                throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"),
+                                                               Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
             }
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
 
     } catch (Exceptions::Exception* exception) {
@@ -296,7 +307,8 @@ UserIdType UserDatabaseManager::get_id(QString email)
             UserIdType id = query_value_to_variable<UserIdType>(query->value(0));
             return id;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
             return -1;
         }
 
@@ -312,7 +324,8 @@ UserIdType UserDatabaseManager::get_id(QString email)
 
 void UserDatabaseManager::add_achievement(UserIdType id, Achievement achievement)
 {
-    QString request = "UPDATE " + dbName + "\nSET ACHIEVEMENT = " + QString::number(achievement) + "\nWHERE (ID = " + QString::number(id) + ")";
+    QString request = "UPDATE " + dbName + "\nSET ACHIEVEMENT = " + QString::number(achievement) +
+            "\nWHERE (ID = " + QString::number(id) + ")";
 
     try {
         dbWorker->run_query(request);
@@ -338,10 +351,12 @@ void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
             chats.append(chatId);
 
             QByteArray newChats = qbytearray_from_qlist<ChatIdType>(chats);
-            QString request = "UPDATE " + dbName + "\nSET ALL_CHATS = \'" + QString::fromStdString(newChats.toStdString()) + "\'\n WHERE (ID = " + QString::number(userId) + ")";
+            QString request = "UPDATE " + dbName + "\nSET ALL_CHATS = \'" + QString::fromStdString(newChats.toStdString()) +
+                    "\'\n WHERE (ID = " + QString::number(userId) + ")";
             dbWorker->run_query(request);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception * exception) {
         switch(exception->get_id()){
@@ -365,7 +380,8 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
             if(chats.contains(chatId)){
                 chats.removeOne(chatId);
                 QByteArray newChats = qbytearray_from_qlist<ChatIdType>(chats);
-                QString request = "UPDATE " + dbName + "\nSET ALL_CHATS = \'" + QString::fromStdString(newChats.toStdString()) + "\'\n WHERE (ID = " + QString::number(userId) + ")";
+                QString request = "UPDATE " + dbName + "\nSET ALL_CHATS = \'" + QString::fromStdString(newChats.toStdString()) +
+                        "\'\n WHERE (ID = " + QString::number(userId) + ")";
                 dbWorker->run_query(request);
             } else{
                 throw new Exceptions::DatabaseWorkingException(System::String("This user is not in this chat"),
@@ -373,7 +389,8 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
             }
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception * exception) {
         switch(exception->get_id()){
@@ -388,7 +405,8 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
 void UserDatabaseManager::set_account_type(UserIdType id, AccountType newAccountType)
 {
     try {
-        QString request = "UPDATE " + dbName + "\nSET ACCOUNT_TYPE = " + QString::number(newAccountType) + "\nWHERE (ID = " + QString::number(id) + ")";
+        QString request = "UPDATE " + dbName + "\nSET ACCOUNT_TYPE = " + QString::number(newAccountType) + "\nWHERE (ID = " +
+                QString::number(id) + ")";
         dbWorker->run_query(request);
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -455,7 +473,53 @@ MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
 {
     MafiaList<User> users = MafiaList<User>();
 
-    QString request = "SELECT * FROM " + dbName + " WHERE (TRUE";
+    QString request = "SELECT * FROM " + dbName +
+            create_filter_request(ids, userStatus, userAchievement, authorizedNow, nickname, loginAfter, loginBefore);
+    try {
+        QSqlQuery* query = dbWorker->run_query(request);
+
+        return get_query_users(query);
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            return MafiaList<User>();
+        }
+        }
+    }
+}
+
+MafiaList<UserIdType> UserDatabaseManager::get_users_ids(MafiaList<UserIdType> ids, Status userStatus, Achievement userAchievement,
+                                                         AuthorizedStatus authorizedNow, QString nickname,
+                                                         QDateTime loginAfter, QDateTime loginBefore)
+{
+    QString request = "SELECT ID FROM " + dbName +
+            create_filter_request(ids, userStatus, userAchievement, authorizedNow, nickname, loginAfter, loginBefore);
+
+    MafiaList<UserIdType> userIds = MafiaList<UserIdType>();
+
+    try {
+        QSqlQuery* query = dbWorker->run_query(request);
+
+        while (query->next()) {
+            userIds.append(query_value_to_variable<UserIdType>(query->value(0)));
+        }
+        return userIds;
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            throw exception;
+            return MafiaList<UserIdType>();
+        }
+        }
+    }
+}
+
+QString UserDatabaseManager::create_filter_request(MafiaList<UserIdType> ids, Status userStatus, Achievement userAchievement,
+                                                   AuthorizedStatus authorizedNow, QString nickname,
+                                                   QDateTime loginAfter, QDateTime loginBefore)
+{
+    QString request = " WHERE (TRUE";
 
     if(ids.length() != 0){
         request += " AND (";
@@ -489,18 +553,6 @@ MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
     request += " AND (LOGIN_DATE_TIME <= \'" + loginBefore.toString(SQL_DATETIME_FORMAT) + "\')";
     request += ")";
 
-    try {
-        QSqlQuery* query = dbWorker->run_query(request);
-
-        return get_query_users(query);
-    } catch (Exceptions::Exception* exception) {
-        switch (exception->get_id()) {
-        default:{
-            throw exception;
-            return MafiaList<User>();
-        }
-        }
-    }
 }
 
 MafiaList<User> UserDatabaseManager::get_query_users(QSqlQuery *query)
@@ -547,7 +599,8 @@ UserIdType UserDatabaseManager::add_user(User user)
         if(userIdQuery->next()){
             user.id = query_value_to_variable<UserIdType>(userIdQuery->value(0)) + 1;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -619,14 +672,16 @@ void UserDatabaseManager::register_game(Gameplay::Game game)
 }
 
 
-void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Gameplay::Role role, Gameplay::GamePersonalResult result)
+void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Gameplay::Role role,
+                                        Gameplay::GamePersonalResult result)
 {
     QString allGamesRequest = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(userId) + ")";
     try {
         QSqlQuery* allGamesQuery = dbWorker->run_query(allGamesRequest);
         QSqlRecord allGamesRecord = allGamesQuery->record();
         if(allGamesQuery->next()){
-            MafiaList<GameIdType> games = query_value_to_variable<MafiaList<GameIdType>>(allGamesQuery->value(allGamesRecord.indexOf("ALL_GAMES")));
+            MafiaList<GameIdType> games = query_value_to_variable<MafiaList<GameIdType>>(
+                                                                        allGamesQuery->value(allGamesRecord.indexOf("ALL_GAMES")));
             games.append(gameId);
 
             QString request = "UPDATE " + dbName +
@@ -639,7 +694,8 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
 
             switch (result) {
             case Gameplay::GamePersonalResult_Defeat:{
-                MafiaList<int> defs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(allGamesRecord.indexOf("DEFEATES_BY_ROLES")));
+                MafiaList<int> defs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(
+                                                                                  allGamesRecord.indexOf("DEFEATES_BY_ROLES")));
                 defs[role]++;
 
                 QString defsRequest = "UPDATE " + dbName +
@@ -650,7 +706,8 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
                 break;
             }
             case Gameplay::GamePersonalResult_Victory:{
-                MafiaList<int> victs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(allGamesRecord.indexOf("VICTORIES_BY_ROLES")));
+                MafiaList<int> victs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(
+                                                                                   allGamesRecord.indexOf("VICTORIES_BY_ROLES")));
                 victs[role]++;
 
                 QString victRequest = "UPDATE " + dbName +

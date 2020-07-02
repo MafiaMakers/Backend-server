@@ -24,6 +24,13 @@ namespace Mafia {
         explicit MainServerManager(int argc, char* argv[], QObject * parent = nullptr);
 
     private slots:
+        void on_chat_message_sent(Database::ChatMessage message);
+
+        void on_chat_message_edited(Database::ChatMessage message);
+
+        void on_chat_message_read(Database::MessageIdType message, Database::ChatIdType chat, Database::UserIdType user);
+
+        void on_chat_message_deleted(Database::MessageIdType messageId, Database::ChatIdType chat);
         /*!
          * \brief Функция регистрации нового пользователя
          * \param nickname Никнейм нового пользователя
@@ -136,6 +143,8 @@ namespace Mafia {
          */
         void add_game(Gameplay::Game game, Subservers::RoomSubserverObject* rso);
 
+        void confirm_email(Network::Client client, QString confirmationKey, Network::MessageIdType requestId);
+
         /*!
          * \brief Функция выхода пользователя из системы
          * \param client Клиент, который хочет выйти из системы
@@ -212,7 +221,10 @@ namespace Mafia {
          * \param message id сообщения, которое прочитал пользователь
          */
         void read_message(Network::Client client, Database::MessageIdType message);
+
         private:
+        void connect_to_processor();
+
         /*!
          * \brief Получает данные от уже инициализированного сетевого запроса
          * \param req Указатель на запрос

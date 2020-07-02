@@ -21,11 +21,9 @@ std::string Serializer::serialize(int value){
 }
 
 template<>
-int Serializer::deserialize(String data, unsigned int* pointerIndex){
+int Serializer::deserialize(String &data){
     if((unsigned int)data.size >= sizeof(int)){
-        if(pointerIndex != NULL){
-            *pointerIndex += sizeof (int);
-        }
+        data = String(data.data + sizeof(int), data.size - sizeof(int));
         return(*(int*)data.data);
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
@@ -44,16 +42,10 @@ std::string Serializer::serialize(Network::Client value){
 }
 
 template<>
-Network::Client Serializer::deserialize(String data, unsigned int* pointerIndex){
+Network::Client Serializer::deserialize(String &data){
     Network::Client result = Network::Client();
-    unsigned int currentIdx = 0;
-    result.ip = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.port = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
-
+    result.ip = deserialize<int>(data);
+    result.port = deserialize<int>(data);
     return result;
 }
 
@@ -64,8 +56,8 @@ std::string Serializer::serialize(Database::ChatCapability value){
 }
 
 template<>
-Database::ChatCapability Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return((Database::ChatCapability)deserialize<int>(data, pointerIndex));
+Database::ChatCapability Serializer::deserialize(String &data){
+    return((Database::ChatCapability)deserialize<int>(data));
 }
 
 template<>
@@ -74,8 +66,8 @@ std::string Serializer::serialize(Database::ChatFeature value){
 }
 
 template<>
-Database::ChatFeature Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return((Database::ChatFeature)deserialize<int>(data, pointerIndex));
+Database::ChatFeature Serializer::deserialize(String &data){
+    return((Database::ChatFeature)deserialize<int>(data));
 }
 
 template<>
@@ -84,8 +76,8 @@ std::string Serializer::serialize(Database::AccountType value){
 }
 
 template<>
-Database::AccountType Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return((Database::AccountType)deserialize<int>(data, pointerIndex));
+Database::AccountType Serializer::deserialize(String &data){
+    return((Database::AccountType)deserialize<int>(data));
 }
 
 template<>
@@ -94,8 +86,8 @@ std::string Serializer::serialize(Database::Achievement value){
 }
 
 template<>
-Database::Achievement Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return((Database::Achievement)deserialize<int>(data, pointerIndex));
+Database::Achievement Serializer::deserialize(String &data){
+    return((Database::Achievement)deserialize<int>(data));
 }
 
 template<>
@@ -112,20 +104,18 @@ std::string Serializer::serialize(MafiaList<int> value){
 
 
 template<>
-MafiaList<int> Serializer::deserialize(String data, unsigned int* pointerIndex){
-    unsigned int currentIndex = 0;
-    int size = deserialize<int>(data, &currentIndex);
+MafiaList<int> Serializer::deserialize(String &data){
+
+    int size = deserialize<int>(data);
     MafiaList<int> result = MafiaList<int>();
     if((unsigned int)data.size >= (size + 1) * sizeof(int)){
         for(int i = 0; i < size; i++){
-            result.append(deserialize<int>(String(data.data + currentIndex, sizeof(int)), &currentIndex));
+            result.append(deserialize<int>(data));
         }
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
     }
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIndex;
-    }
+
     return result;
 }
 
@@ -138,11 +128,9 @@ std::string Serializer::serialize(char value){
 }
 
 template<>
-char Serializer::deserialize(String value, unsigned int* pointerIndex){
+char Serializer::deserialize(String &value){
     if(value.size > 0){
-        if(pointerIndex != NULL){
-            *pointerIndex += sizeof (char);
-        }
+        value = String(value.data + sizeof(char), value.size - sizeof(char));
         return value.data[0];
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
@@ -156,8 +144,8 @@ std::string Serializer::serialize(bool value){
 }
 
 template<>
-bool Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return (bool)deserialize<char>(data, pointerIndex);
+bool Serializer::deserialize(String &data){
+    return (bool)deserialize<char>(data);
 }
 
 template<>
@@ -171,20 +159,18 @@ std::string Serializer::serialize(MafiaList<char> value){
 }
 
 template<>
-MafiaList<char> Serializer::deserialize(String data, unsigned int* pointerIndex){
-    unsigned int currentIdx = 0;
-    unsigned int size = (unsigned int)deserialize<int>(data, &currentIdx);
+MafiaList<char> Serializer::deserialize(String &data){
+
+    unsigned int size = (unsigned int)deserialize<int>(data);
     MafiaList<char> result = MafiaList<char>();
     if((unsigned int)data.size >= (size * sizeof(char)) + sizeof(int)){
         for(unsigned int i = 0; i < size; i++){
-            result.append(deserialize<char>(String(data.data + currentIdx, sizeof(char)), &currentIdx));
+            result.append(deserialize<char>(data));
         }
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
     }
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
+
     return result;
 }
 
@@ -201,9 +187,9 @@ std::string Serializer::serialize(QString value){
 }
 
 template<>
-QString Serializer::deserialize(String data, unsigned int* pointerIndex){
+QString Serializer::deserialize(String &data){
     QString result = "";
-    MafiaList<char> d = deserialize<MafiaList<char>>(data, pointerIndex);
+    MafiaList<char> d = deserialize<MafiaList<char>>(data);
     for(int i = 0; i < d.length(); i++){
         result += d[i];
     }
@@ -216,8 +202,8 @@ std::string Serializer::serialize(QDateTime value){
 }
 
 template<>
-QDateTime Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return QDateTime::fromString(deserialize<QString>(data, pointerIndex), Database::SQL_DATETIME_FORMAT);
+QDateTime Serializer::deserialize(String &data){
+    return QDateTime::fromString(deserialize<QString>(data), Database::SQL_DATETIME_FORMAT);
 }
 
 
@@ -238,22 +224,19 @@ std::string Serializer::serialize(Database::ChatMessage value){
 }
 
 template<>
-Database::ChatMessage Serializer::deserialize(String data, unsigned int* pointerIndex){
+Database::ChatMessage Serializer::deserialize(String &data){
     Database::ChatMessage result = Database::ChatMessage();
-    unsigned int currentIdx = 0;
 
-    result.id = deserialize<Database::MessageIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.from = deserialize<Database::UserIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.toChat = deserialize<Database::ChatIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.feature = deserialize<Database::ChatFeature>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.timestamp = deserialize<QDateTime>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.data = deserialize<QString>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.answerFor = deserialize<MafiaList<Database::MessageIdType>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.readUsers = deserialize<MafiaList<Database::UserIdType>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
 
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
+    result.id = deserialize<Database::MessageIdType>(data);
+    result.from = deserialize<Database::UserIdType>(data);
+    result.toChat = deserialize<Database::ChatIdType>(data);
+    result.feature = deserialize<Database::ChatFeature>(data);
+    result.timestamp = deserialize<QDateTime>(data);
+    result.data = deserialize<QString>(data);
+    result.answerFor = deserialize<MafiaList<Database::MessageIdType>>(data);
+    result.readUsers = deserialize<MafiaList<Database::UserIdType>>(data);
+
     return result;
 }
 
@@ -268,17 +251,15 @@ std::string Serializer::serialize(MafiaList<Database::ChatMessage> value){
 }
 
 template<>
-MafiaList<Database::ChatMessage> Serializer::deserialize(String data, unsigned int* pointerIndex){
+MafiaList<Database::ChatMessage> Serializer::deserialize(String &data){
     MafiaList<Database::ChatMessage> result = MafiaList<Database::ChatMessage>();
-    unsigned int currentIdx = 0;
 
-    unsigned int size = deserialize<int>(data, &currentIdx);
+
+    unsigned int size = deserialize<int>(data);
     for(unsigned int i = 0; i < size; i++){
-        result.append(deserialize<Database::ChatMessage>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx));
+        result.append(deserialize<Database::ChatMessage>(data));
     }
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
+
     return result;
 }
 
@@ -296,21 +277,17 @@ std::string Serializer::serialize(UserStatistics value){
 }
 
 template<>
-UserStatistics Serializer::deserialize(String data, unsigned int* pointerIndex){
+UserStatistics Serializer::deserialize(String &data){
     UserStatistics result = UserStatistics();
-    unsigned int currentIndex = 0;
 
-    result.id = deserialize<Database::UserIdType>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.nickname = deserialize<QString>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.accountType = deserialize<Database::AccountType>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.achievement = deserialize<Database::Achievement>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.loginDateTime = deserialize<QDateTime>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.defeatesByRoles = deserialize<MafiaList<int>>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
-    result.victoriesByRoles = deserialize<MafiaList<int>>(String(data.data + currentIndex, data.size - currentIndex), &currentIndex);
 
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIndex;
-    }
+    result.id = deserialize<Database::UserIdType>(data);
+    result.nickname = deserialize<QString>(data);
+    result.accountType = deserialize<Database::AccountType>(data);
+    result.achievement = deserialize<Database::Achievement>(data);
+    result.loginDateTime = deserialize<QDateTime>(data);
+    result.defeatesByRoles = deserialize<MafiaList<int>>(data);
+    result.victoriesByRoles = deserialize<MafiaList<int>>(data);
     return result;
 }
 
@@ -323,15 +300,11 @@ std::string Serializer::serialize(System::Tuple<Database::UserIdType, QString> v
 }
 
 template<>
-System::Tuple<Database::UserIdType, QString> Serializer::deserialize(String data, unsigned int * pointerIndex){
+System::Tuple<Database::UserIdType, QString> Serializer::deserialize(String &data){
     System::Tuple<Database::UserIdType, QString> result = System::Tuple<Database::UserIdType, QString>();
-    unsigned int currentIdx = 0;
-    result.item1 = deserialize<Database::UserIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.item2 = deserialize<QString>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
 
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
+    result.item1 = deserialize<Database::UserIdType>(data);
+    result.item2 = deserialize<QString>(data);
 
     return result;
 }
@@ -347,17 +320,12 @@ std::string Serializer::serialize(ClientInfo value){
 }
 
 template<>
-ClientInfo Serializer::deserialize(String data, unsigned int* pointerIndex){
-    unsigned int currentIdx = 0;
+ClientInfo Serializer::deserialize(String &data){
+
     ClientInfo result = ClientInfo();
 
-    result.client = deserialize<Network::Client>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.statistics = deserialize<UserStatistics>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
-
+    result.client = deserialize<Network::Client>(data);
+    result.statistics = deserialize<UserStatistics>(data);
     return result;
 }
 
@@ -367,8 +335,8 @@ std::string Serializer::serialize(Gameplay::Role value){
 }
 
 template<>
-Gameplay::Role Serializer::deserialize(String data, unsigned int * pointerIndex){
-    return (Gameplay::Role)deserialize<int>(data, pointerIndex);
+Gameplay::Role Serializer::deserialize(String &data){
+    return (Gameplay::Role)deserialize<int>(data);
 }
 
 template<>
@@ -383,19 +351,14 @@ std::string Serializer::serialize(MafiaList<Gameplay::Role> value){
 }
 
 template<>
-MafiaList<Gameplay::Role> Serializer::deserialize(String data, unsigned int * pointerIndex){
-    unsigned int currentIdx = 0;
-    int size = deserialize<int>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
+MafiaList<Gameplay::Role> Serializer::deserialize(String &data){
+
+    int size = deserialize<int>(data);
 
     MafiaList<Gameplay::Role> result = MafiaList<Gameplay::Role>();
     for(int i = 0; i < size; i++){
-        result.append(deserialize<Gameplay::Role>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx));
+        result.append(deserialize<Gameplay::Role>(data));
     }
-
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
-
     return result;
 }
 
@@ -405,8 +368,8 @@ std::string Serializer::serialize(Gameplay::GameResult value){
 }
 
 template<>
-Gameplay::GameResult Serializer::deserialize(String data, unsigned int* pointerIndex){
-    return (Gameplay::GameResult)deserialize<int>(data, pointerIndex);
+Gameplay::GameResult Serializer::deserialize(String &data){
+    return (Gameplay::GameResult)deserialize<int>(data);
 }
 
 template<>
@@ -424,19 +387,34 @@ std::string Serializer::serialize(Gameplay::Game value){
 }
 
 template<>
-Gameplay::Game Serializer::deserialize(String data, unsigned int* pointerIndex){
+Gameplay::Game Serializer::deserialize(String &data){
     Gameplay::Game result = Gameplay::Game();
-    unsigned int currentIdx = 0;
-    result.id = deserialize<Database::GameIdType>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.roles = deserialize<MafiaList<Gameplay::Role>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.users = deserialize<MafiaList<Database::UserIdType>>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.result = deserialize<Gameplay::GameResult>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.endingDT = deserialize<QDateTime>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
-    result.beginningDT = deserialize<QDateTime>(String(data.data + currentIdx, data.size - currentIdx), &currentIdx);
 
-    if(pointerIndex != NULL){
-        *pointerIndex += currentIdx;
-    }
+    result.id = deserialize<Database::GameIdType>(data);
+    result.roles = deserialize<MafiaList<Gameplay::Role>>(data);
+    result.users = deserialize<MafiaList<Database::UserIdType>>(data);
+    result.result = deserialize<Gameplay::GameResult>(data);
+    result.endingDT = deserialize<QDateTime>(data);
+    result.beginningDT = deserialize<QDateTime>(data);
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(System::Tuple<int, int> value){
+    std::string result = "";
+    result += serialize<int>(value.item1);
+    result += serialize<int>(value.item2);
+
+    return result;
+}
+
+template<>
+System::Tuple<int, int> Serializer::deserialize(System::String &data){
+    System::Tuple<int, int> result = System::Tuple<int, int>();
+
+    result.item1 = deserialize<int>(data);
+    result.item2 = deserialize<int>(data);
 
     return result;
 }

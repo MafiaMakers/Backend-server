@@ -39,7 +39,29 @@ SOURCES += \
         Exceptions/subserverexception.cpp \
         Exceptions/systemexception.cpp \
         Gameplay/game_s.cpp \
+        Network/MessageProcessing/addusertochatprocessorobject.cpp \
+        Network/MessageProcessing/changeemailrequestprocessorobject.cpp \
+        Network/MessageProcessing/changenicknameprocessorobject.cpp \
+        Network/MessageProcessing/changeuserscapabilityprocessorobject.cpp \
+        Network/MessageProcessing/confirmemailprocessorobject.cpp \
+        Network/MessageProcessing/createchatrequestprocessorobject.cpp \
+        Network/MessageProcessing/creategamerequestprocessorobject.cpp \
+        Network/MessageProcessing/createuserprocessorobject.cpp \
+        Network/MessageProcessing/deletechatmessageprocessorobject.cpp \
+        Network/MessageProcessing/editchatmessageprocessorobject.cpp \
+        Network/MessageProcessing/getchatmessagesprocessorobject.cpp \
+        Network/MessageProcessing/getchatsrequestprocessorobject.cpp \
+        Network/MessageProcessing/getintogamerequestprocessorobject.cpp \
+        Network/MessageProcessing/getstatisticsrequestprocessorobject.cpp \
+        Network/MessageProcessing/loginrequestprocessorobject.cpp \
+        Network/MessageProcessing/logoutprocessorobject.cpp \
+        Network/MessageProcessing/logsdataprocessorobject.cpp \
+        Network/MessageProcessing/processorobject.cpp \
+        Network/MessageProcessing/readchatmessageprocessorobject.cpp \
+        Network/MessageProcessing/removeuserfromchatprocessorobject.cpp \
+        Network/MessageProcessing/sendchatmessageprocessorobject.cpp \
         Network/crypto.cpp \
+        Network/messageprocessor.cpp \
         Subservers/backupsubserverobject.cpp \
         Subservers/roomsubserverobject.cpp \
         System/SHA_256.cpp \
@@ -84,7 +106,29 @@ HEADERS += \
     Exceptions/systemexception.h \
     Gameplay/game_s.h \
     Gameplay/gameitems.h \
+    Network/MessageProcessing/addusertochatprocessorobject.h \
+    Network/MessageProcessing/changeemailrequestprocessorobject.h \
+    Network/MessageProcessing/changenicknameprocessorobject.h \
+    Network/MessageProcessing/changeuserscapabilityprocessorobject.h \
+    Network/MessageProcessing/confirmemailprocessorobject.h \
+    Network/MessageProcessing/createchatrequestprocessorobject.h \
+    Network/MessageProcessing/creategamerequestprocessorobject.h \
+    Network/MessageProcessing/createuserprocessorobject.h \
+    Network/MessageProcessing/deletechatmessageprocessorobject.h \
+    Network/MessageProcessing/editchatmessageprocessorobject.h \
+    Network/MessageProcessing/getchatmessagesprocessorobject.h \
+    Network/MessageProcessing/getchatsrequestprocessorobject.h \
+    Network/MessageProcessing/getintogamerequestprocessorobject.h \
+    Network/MessageProcessing/getstatisticsrequestprocessorobject.h \
+    Network/MessageProcessing/loginrequestprocessorobject.h \
+    Network/MessageProcessing/logoutprocessorobject.h \
+    Network/MessageProcessing/logsdataprocessorobject.h \
+    Network/MessageProcessing/processorobject.h \
+    Network/MessageProcessing/readchatmessageprocessorobject.h \
+    Network/MessageProcessing/removeuserfromchatprocessorobject.h \
+    Network/MessageProcessing/sendchatmessageprocessorobject.h \
     Network/crypto.h \
+    Network/messageprocessor.h \
     Subservers/backupsubserverobject.h \
     Subservers/roomsubserverobject.h \
     System/SHA_256.h \

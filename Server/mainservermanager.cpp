@@ -28,6 +28,12 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
 
         transactionsDb = new Database::TransactionDatabaseManager(dbWorker);
 
+        connect(chatsDb, &Database::ChatDatabaseManager::on_message_read, this, &MainServerManager::on_chat_message_read);
+        connect(chatsDb, &Database::ChatDatabaseManager::on_message_sent, this, &MainServerManager::on_chat_message_sent);
+        connect(chatsDb, &Database::ChatDatabaseManager::on_message_edited, this, &MainServerManager::on_chat_message_edited);
+        connect(chatsDb, &Database::ChatDatabaseManager::on_message_deleted, this, &MainServerManager::on_chat_message_deleted);
+
+        connect_to_processor();
 
         _networker_test();
         //_database_test();
@@ -36,6 +42,103 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
         exception->show();
     }
 
+}
+
+void MainServerManager::on_chat_message_sent(Database::ChatMessage message)
+{
+    try {
+        MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(message.toChat).users;
+
+        std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
+
+        for(int i = 0; i < ids.length(); i++){
+            if(users.contains(ids[i])){
+                Network::Client client = get_client_by_user(ids[i]);
+
+                networker->send_message(Network::Message(Network::MessageType_NewChatMessage,
+                                                         (Network::SymbolType*)messageData.c_str(), messageData.length(), client));
+            }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
+}
+
+void MainServerManager::on_chat_message_edited(Database::ChatMessage message)
+{
+    try {
+        MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(message.toChat).users;
+
+        std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
+
+        for(int i = 0; i < ids.length(); i++){
+            if(users.contains(ids[i])){
+                Network::Client client = get_client_by_user(ids[i]);
+
+                networker->send_message(Network::Message(Network::MessageType_EditedChatMessage,
+                                                         (Network::SymbolType*)messageData.c_str(), messageData.length(), client));
+            }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
+}
+
+void MainServerManager::on_chat_message_read(Database::MessageIdType message, Database::ChatIdType chat, Database::UserIdType user)
+{
+    try {
+        MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(chat).users;
+
+        std::string messageData = System::Serializer::serialize<System::Tuple<Database::MessageIdType, Database::UserIdType>>
+                (System::Tuple<Database::MessageIdType, Database::UserIdType>(message, user));
+
+        for(int i = 0; i < ids.length(); i++){
+            if(users.contains(ids[i])){
+                Network::Client client = get_client_by_user(ids[i]);
+
+                networker->send_message(Network::Message(Network::MessageType_OnReadChatMessage,
+                                                         (Network::SymbolType*)messageData.c_str(), messageData.length(), client));
+            }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
+}
+
+void MainServerManager::on_chat_message_deleted(Database::MessageIdType messageId, Database::ChatIdType chat)
+{
+    try {
+        MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(chat).users;
+
+        std::string messageData = System::Serializer::serialize<Database::MessageIdType>(messageId);
+
+        for(int i = 0; i < ids.length(); i++){
+            if(users.contains(ids[i])){
+                Network::Client client = get_client_by_user(ids[i]);
+
+                networker->send_message(Network::Message(Network::MessageType_DeletedChatMessage,
+                                                         (Network::SymbolType*)messageData.c_str(), messageData.length(), client));
+            }
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
 }
 
 void MainServerManager::create_user(QString nickname, QString email, QString password, Network::Client client, Network::MessageIdType requestId)
@@ -359,6 +462,28 @@ void MainServerManager::add_game(Gameplay::Game game, Subservers::RoomSubserverO
     }
 }
 
+void MainServerManager::confirm_email(Network::Client client, QString confirmationKey, Network::MessageIdType requestId)
+{
+    try {
+        Database::UserIdType user = get_user_by_client(client);
+        if(user != nullUser){
+            bool success = usersDb->confirm_user(user, confirmationKey);
+
+            System::String mesData = System::Serializer::serialize<bool>(success);
+
+            networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)mesData.data,
+                                                     mesData.size, client, requestId));
+        }
+    } catch (Exceptions::Exception* exception) {
+        switch (exception->get_id()) {
+        default:{
+            exception->show();
+        }
+        }
+    }
+
+}
+
 void MainServerManager::logout_user(Network::Client client)
 {
     try {
@@ -542,6 +667,52 @@ void MainServerManager::read_message(Network::Client client, Database::MessageId
         }
         }
     }
+}
+
+void MainServerManager::connect_to_processor()
+{
+    Network::MessageProcessor* processor = new Network::MessageProcessor(networker);
+
+    connect(processor, &Network::MessageProcessor::login_user, this, &MainServerManager::login_user);
+
+    connect(processor, &Network::MessageProcessor::send_chat_message, this, &MainServerManager::send_chat_message);
+
+    connect(processor, &Network::MessageProcessor::create_user, this, &MainServerManager::create_user);
+
+    connect(processor, &Network::MessageProcessor::create_chat, this, &MainServerManager::create_chat);
+
+    connect(processor, &Network::MessageProcessor::get_last_messages, this, &MainServerManager::get_last_messages);
+
+    connect(processor, &Network::MessageProcessor::get_users_chats, this, &MainServerManager::get_users_chats);
+
+    connect(processor, &Network::MessageProcessor::add_user_to_chat, this, &MainServerManager::add_user_to_chat);
+
+    connect(processor, &Network::MessageProcessor::remove_user_from_chat, this, &MainServerManager::remove_user_from_chat);
+
+    connect(processor, &Network::MessageProcessor::change_users_chat_capability,
+            this, &MainServerManager::change_users_chat_capability);
+
+    connect(processor, &Network::MessageProcessor::create_game, this, &MainServerManager::create_game);
+
+    connect(processor, &Network::MessageProcessor::get_statistics, this, &MainServerManager::get_statistics);
+
+    connect(processor, &Network::MessageProcessor::confirm_email, this, &MainServerManager::confirm_email);
+
+    connect(processor, &Network::MessageProcessor::logout_user, this, &MainServerManager::logout_user);
+
+    connect(processor, &Network::MessageProcessor::get_logs_data, this, &MainServerManager::get_logs_data);
+
+    connect(processor, &Network::MessageProcessor::change_nickname, this, &MainServerManager::change_nickname);
+
+    connect(processor, &Network::MessageProcessor::change_email, this, &MainServerManager::change_email);
+
+    connect(processor, &Network::MessageProcessor::add_user_to_game, this, &MainServerManager::add_user_to_game);
+
+    connect(processor, &Network::MessageProcessor::delete_message, this, &MainServerManager::delete_message);
+
+    connect(processor, &Network::MessageProcessor::edit_message, this, &MainServerManager::edit_message);
+
+    connect(processor, &Network::MessageProcessor::read_message, this, &MainServerManager::read_message);
 }
 
 void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)

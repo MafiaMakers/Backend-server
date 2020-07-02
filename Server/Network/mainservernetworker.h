@@ -38,6 +38,8 @@ namespace Mafia {
              * \param message Пришедшее сообщение
              */
             void on_subserver_api_message_received(Message message);
+
+            void message_received(Message message);
         private slots:
             /*!
              * \brief слот для получения сообщения. Вызывается автоматически
