@@ -141,10 +141,12 @@ void MainServerManager::on_chat_message_deleted(Database::MessageIdType messageI
     }
 }
 
-void MainServerManager::create_user(QString nickname, QString email, QString password, Network::Client client, Network::MessageIdType requestId)
+void MainServerManager::create_user(QString nickname, QString email, QString password, Network::Client client,
+                                    Network::MessageIdType requestId)
 {
     try {
-        Database::UserIdType newUserId = usersDb->add_user(nickname, email, password);
+        QString confirmationKey = "";
+        Database::UserIdType newUserId = usersDb->add_user(nickname, email, password, confirmationKey);
         if(clients.contains(client)){
             int index = clients.indexOf(client);
             if(users[index] != nullUser){
@@ -163,6 +165,11 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
 
         networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)messageText.c_str(),
                                                  messageText.length(), client, requestId));
+
+        QString mailMessageText = "You received this message because your email was connected with " + nickname + "'s account "
+                " in Mafia online game. This is your confirmation key: " + confirmationKey + ". Put it in the respective field in "
+                "game and your registration will be completed.";
+        System::MailSender::send_email(email, "Welcome to Mafia Online game", mailMessageText);
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
@@ -738,9 +745,11 @@ void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
 void MainServerManager::_database_test()
 {
     try {
+        QString key1 = "";
+        Database::UserIdType uid1 = usersDb->add_user("Nikita", "andrusov.n@gmail.com", "password1", key1);
 
-        Database::UserIdType uid1 = usersDb->add_user("Nikita", "andrusov.n@gmail.com", "password1");
-        Database::UserIdType uid2 = usersDb->add_user("SomeUser", "test@test.com", "testPassword");
+        QString key2 = "";
+        Database::UserIdType uid2 = usersDb->add_user("SomeUser", "test@test.com", "testPassword", key2);
 
         Database::ChatIdType chat = chatSettingsDb->create_chat();
         chatSettingsDb->add_user_to_chat(uid1, chat, Database::ChatCapabilities_Admin);
@@ -871,6 +880,16 @@ void MainServerManager::_networker_test()
 
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();
+}
+
+void MainServerManager::_add_user_test()
+{
+    try {
+        create_user("Nikita", "andrusov.n@gmail.com", "QwertyAsdfg", Network::Client(QHostAddress("192.168.1.66").toIPv4Address(),
+                                                                                     10000), 0);
+    } catch (Exceptions::Exception* exception) {
+        exception->show();
+    }
 }
 
 Network::Client MainServerManager::get_client_by_user(Database::UserIdType user)

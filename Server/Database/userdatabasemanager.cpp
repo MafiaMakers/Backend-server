@@ -50,7 +50,7 @@ UserDatabaseManager::UserDatabaseManager(DatabaseWorker* _dbWorker) : DatabaseMa
     }
 }
 
-UserIdType UserDatabaseManager::add_user(QString nickname, QString email, QString password)
+UserIdType UserDatabaseManager::add_user(QString nickname, QString email, QString password, QString &confirmationKey)
 {
     User newUser = User();
 
@@ -81,6 +81,8 @@ UserIdType UserDatabaseManager::add_user(QString nickname, QString email, QStrin
     newUser.transactions = MafiaList<TransactionIdType>();
     newUser.loginDateTime = QDateTime::currentDateTimeUtc();
     newUser.confirmationKey = System::KeyGen::generate_key<QString>(CONFIRMATION_KEY_SIZE);
+
+    confirmationKey = newUser.confirmationKey;
 
     try {
         return add_user(newUser);

@@ -35,7 +35,7 @@ namespace Mafia{
              * \param password пароль пользователя
              * \return id нового пользователя в базе данных
              */
-            UserIdType add_user(QString nickname, QString email, QString password);
+            UserIdType add_user(QString nickname, QString email, QString password, QString &confirmationKey);
 
             /*!
              * \brief Функция для входа пользователя в учетную запись

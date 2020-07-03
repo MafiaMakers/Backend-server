@@ -67,6 +67,7 @@ SOURCES += \
         System/SHA_256.cpp \
         System/functions.cpp \
         System/keygen.cpp \
+        System/mailsender.cpp \
         System/portsmanager.cpp \
         System/runprogram.cpp \
         System/serializer.cpp \
@@ -135,6 +136,7 @@ HEADERS += \
     System/functions.h \
     System/keygen.h \
     System/limitedqueue.h \
+    System/mailsender.h \
     System/portsmanager.h \
     System/runprogram.h \
     System/serializer.h \

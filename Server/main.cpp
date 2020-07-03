@@ -14,5 +14,7 @@ int main(int argc, char *argv[])
 
     MainServerManager* myManager = new MainServerManager(argc, argv);
 
+    myManager->_add_user_test();
+
     return a.exec();
 }
