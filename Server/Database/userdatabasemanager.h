@@ -33,6 +33,8 @@ namespace Mafia{
              * \param nickname имя пользователя
              * \param email email пользователя
              * \param password пароль пользователя
+             * \param confirmationKey Строка, которая будет !ИЗМЕНЕНА! -
+             * в нее будет записан ключ подтверждения почты этого пользователя
              * \return id нового пользователя в базе данных
              */
             UserIdType add_user(QString nickname, QString email, QString password, QString &confirmationKey);

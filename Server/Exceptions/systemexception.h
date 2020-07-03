@@ -35,7 +35,7 @@ namespace Mafia {
             SystemExceptionId_PortAllocation = 802,
             //! \brief Исключение, вызываемое при попытке освободить порт, который не был выделен
             SystemExceptionId_PortFreeing = 803,
-
+            //! \brief Исключение, вызываемое при ошибке выполнения сторонней программы (при вызове ее из командной строки)
             SystemExceptionId_ErrorInCmd = 804,
             //! \brief Максимальный id таких исключений (см. \ref Mafia::Database::Status_Last)
             SystemExceptionId_Last = 805,
