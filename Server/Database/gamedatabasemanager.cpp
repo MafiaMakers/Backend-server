@@ -41,7 +41,6 @@ GameDatabaseManager::GameDatabaseManager(DatabaseWorker *databaseWorker) : Datab
         }
     }
 }
-
 Gameplay::Game GameDatabaseManager::get_game_data(GameIdType id)
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
@@ -60,7 +59,8 @@ Gameplay::Game GameDatabaseManager::get_game_data(GameIdType id)
 
             return game;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                           Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
     } catch (Exceptions::Exception* exception) {
@@ -86,16 +86,20 @@ GameIdType GameDatabaseManager::add_game(Gameplay::Game &game)
         if(idQuery->next()){
             game.id = query_value_to_variable<GameIdType>(idQuery->value(0)) + 1;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("NULL sql request answer"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+            throw new Exceptions::DatabaseWorkingException(System::String("NULL sql request answer"),
+                                                           Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
 
-        QString request = "INSERT INTO " + dbName + " (ID, GAME_RESULT, ROLES, PLAYERS, BEGIN, END) VALUES (%1, %2, %3, %4, %5, %6)";
+        QString request = "INSERT INTO " + dbName +
+                " (ID, GAME_RESULT, ROLES, PLAYERS, BEGIN, END) VALUES (%1, %2, %3, %4, %5, %6)";
 
         request = request.arg(QString::number(game.id));
         request = request.arg(QString::number(game.result));
-        request = request.arg("\'" + QString::fromStdString(qbytearray_from_qlist<Gameplay::Role>(game.roles).toStdString()) + "\'");
-        request = request.arg("\'" + QString::fromStdString(qbytearray_from_qlist<UserIdType>(game.users).toStdString()) + "\'");
+        request = request.arg("\'" + QString::fromStdString(
+                                  qbytearray_from_qlist<Gameplay::Role>(game.roles).toStdString()) + "\'");
+        request = request.arg("\'" + QString::fromStdString(
+                                  qbytearray_from_qlist<UserIdType>(game.users).toStdString()) + "\'");
         request = request.arg("\'" + game.beginningDT.toString(SQL_DATETIME_FORMAT) + "\'");
         request = request.arg("\'" + game.endingDT.toString(SQL_DATETIME_FORMAT) + "\'");
 
@@ -117,84 +121,17 @@ GameIdType GameDatabaseManager::add_game(Gameplay::Game &game)
 
 MafiaList<Gameplay::Game> GameDatabaseManager::get_games_with(MafiaList<UserIdType> participants, FilterType participantsFilter,
                                                           MafiaList<Gameplay::Role> roles, FilterType rolesFilter,
-                                                          MafiaList<Gameplay::GameResult> outcomes, QDateTime beginAfter, QDateTime endBefore)
+                                                          MafiaList<Gameplay::GameResult> outcomes, QDateTime beginAfter,
+                                                              QDateTime endBefore)
 {
     try {
         QString request = "SELECT * FROM " + dbName + " WHERE (TRUE";
 
-        if(participants.length() > 0){
-            request = request + " AND (";
-            ASSERT((participantsFilter != FilterType_NONE), "Participants is not null but filter type is null");
-            MafiaList<UserIdType> oneUser = MafiaList<UserIdType>() << 0;
+        request += " AND " + generate_request_participant(participants, participantsFilter);
 
-            for(int i = 0; i < participants.length(); i++){
-                oneUser[0] = participants[i];
-                QString user = QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUser).toStdString());
-                request += "CONTAINS(PLAYERS, \'" + user + "\')";
+        request += " AND " + generate_request_outcomes(outcomes);
 
-                if(i != participants.length() - 1){
-                    switch (participantsFilter) {
-                    case FilterType_OR:{
-                        request += " OR ";
-                        break;
-                    }
-                    case FilterType_AND:{
-                        request += " AND ";
-                        break;
-                    }
-                    default:{
-                        throw new Exceptions::DatabaseWorkingException(System::String("Unknown filtertype"), Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
-                    }
-                    }
-                } else{
-                    request += ")";
-                }
-            }
-
-        }
-
-        if(outcomes.length() > 0){
-            request = request + " AND (";
-
-            for(int i = 0; i < outcomes.length(); i++){
-                QString outcome = QString::number(outcomes[i]);
-                request += "(GAME_RESULT = " + outcome + ")";
-                if(i != roles.length() - 1){
-                    request += " OR ";
-                } else{
-                    request += ")";
-                }
-            }
-        }
-
-        if(roles.length() > 0){
-            request = request + " AND (";
-            ASSERT((rolesFilter != FilterType_NONE), "Roles is not null but filter type is null");
-            MafiaList<Gameplay::Role> oneRole = MafiaList<Gameplay::Role>() << Gameplay::Role_None;
-
-            for(int i = 0; i < roles.length(); i++){
-                oneRole[0] = roles[i];
-                QString role = QString::fromStdString(qbytearray_from_qlist<Gameplay::Role>(oneRole).toStdString());
-                request += "CONTAINS(ROLES, \'" + role + "\')";
-                if(i != roles.length() - 1){
-                    switch (rolesFilter) {
-                    case FilterType_OR:{
-                        request += " OR ";
-                        break;
-                    }
-                    case FilterType_AND:{
-                        request += " AND ";
-                        break;
-                    }
-                    default:{
-                        throw new Exceptions::DatabaseWorkingException(System::String("Unknown filtertype"), Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
-                    }
-                    }
-                } else{
-                    request += ")";
-                }
-            }
-        }
+        request += " AND " + generate_request_roles(roles, rolesFilter);
 
         request = request + " AND (BEGIN >= \'" + beginAfter.toString(SQL_DATETIME_FORMAT) + "\')";
         request = request + " AND (END <= \'" + endBefore.toString(SQL_DATETIME_FORMAT) + "\')";
@@ -225,4 +162,75 @@ MafiaList<Gameplay::Game> GameDatabaseManager::get_games_with(MafiaList<UserIdTy
         }
     }
 
+}
+
+QString GameDatabaseManager::generate_request_participant(MafiaList<UserIdType> participants, FilterType filter)
+{
+    QString request = "";
+
+    if(participants.length() > 0){
+        request = request + " AND (";
+        ASSERT((filter != FilterType_NONE), "Participants is not null but filter type is null");
+        MafiaList<UserIdType> oneUser = MafiaList<UserIdType>() << 0;
+
+        for(int i = 0; i < participants.length(); i++){
+            oneUser[0] = participants[i];
+            QString user = QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUser).toStdString());
+            request += "CONTAINS(PLAYERS, \'" + user + "\')";
+
+            if(i != participants.length() - 1){
+                get_sql_filter(filter);
+            } else{
+                request += ")";
+            }
+        }
+
+    }
+
+    return request;
+}
+
+QString GameDatabaseManager::generate_request_outcomes(MafiaList<Gameplay::GameResult> outcomes)
+{
+    QString request = "";
+
+    if(outcomes.length() > 0){
+        request = request + " AND (";
+
+        for(int i = 0; i < outcomes.length(); i++){
+            QString outcome = QString::number(outcomes[i]);
+            request += "(GAME_RESULT = " + outcome + ")";
+            if(i != outcomes.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
+}
+
+QString GameDatabaseManager::generate_request_roles(MafiaList<Gameplay::Role> roles, FilterType filter)
+{
+    QString request = "";
+
+    if(roles.length() > 0){
+        request = request + " AND (";
+        ASSERT((filter != FilterType_NONE), "Roles is not null but filter type is null");
+        MafiaList<Gameplay::Role> oneRole = MafiaList<Gameplay::Role>() << Gameplay::Role_None;
+
+        for(int i = 0; i < roles.length(); i++){
+            oneRole[0] = roles[i];
+            QString role = QString::fromStdString(qbytearray_from_qlist<Gameplay::Role>(oneRole).toStdString());
+            request += "CONTAINS(ROLES, \'" + role + "\')";
+            if(i != roles.length() - 1){
+                get_sql_filter(filter);
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
 }

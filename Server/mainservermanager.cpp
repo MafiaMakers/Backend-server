@@ -878,6 +878,7 @@ void MainServerManager::_networker_test()
                         System::String("D:\\Dropbox\\Dropbox\\Nikita\\Programs_1\\c++\\Mafia\\ClientSumm\\ClientSumm\\Client-summ\\release\\ForLibsTest.exe"),
                         System::String("ForLibsTest.exe"));
 
+
     std::thread getDataThread(&MainServerManager::_get_data_from_request, this, myTestRequest);
     getDataThread.detach();
 }

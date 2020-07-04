@@ -5,6 +5,7 @@
 #include <MafiaExceptions>
 #include "System/tuple.h"
 #include "clientinfo.h"
+#include "Network/message.h"
 
 
 using namespace Mafia;
@@ -414,6 +415,63 @@ System::Tuple<int, int> Serializer::deserialize(System::String &data){
     System::Tuple<int, int> result = System::Tuple<int, int>();
 
     result.item1 = deserialize<int>(data);
+    result.item2 = deserialize<int>(data);
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(Network::MessageType value){
+    return serialize<int>((int)value);
+}
+
+template<>
+Network::MessageType Serializer::deserialize(System::String &data){
+    return (Network::MessageType)deserialize<int>(data);
+}
+
+template<>
+std::string Serializer::serialize(Network::Message value){
+    std::string result = "";
+
+    result += serialize<Network::MessageIdType>(value.id);
+    result += serialize<Network::MessageType>(value.type);
+    result += serialize<int>(value.partIndex);
+    result += serialize<int>(value.partsCount);
+    result += serialize<QString>(QString::fromStdString(std::string((char*)value.data, value.size)));
+
+    return result;
+}
+
+template<>
+Network::Message System::Serializer::deserialize(String &data){
+    Network::Message result = Network::Message();
+
+    result.id = deserialize<Network::MessageIdType>(data);
+    result.type = deserialize<Network::MessageType>(data);
+    result.partIndex = deserialize<int>(data);
+    result.partsCount = deserialize<int>(data);
+    std::string mesData = deserialize<QString>(data).toStdString();
+    result.data = (Network::SymbolType*)mesData.c_str();
+    result.size = mesData.length();
+
+    return result;
+}
+
+template<>
+std::string Serializer::serialize(Tuple<Network::Message, int> value){
+    std::string result = "";
+    result += serialize<Network::Message>(value.item1);
+    result += serialize<int>(value.item2);
+
+    return result;
+}
+
+template<>
+Tuple<Network::Message, int> Serializer::deserialize(System::String &data){
+    Tuple<Network::Message, int> result = Tuple<Network::Message, int>();
+
+    result.item1 = deserialize<Network::Message>(data);
     result.item2 = deserialize<int>(data);
 
     return result;

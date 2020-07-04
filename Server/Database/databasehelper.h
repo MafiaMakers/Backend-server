@@ -9,6 +9,7 @@
 //#include "chatsettingsdatabasemanager.h"
 #include "chatdatabasemanager.h"
 #include <QVariant>
+#include "databasemanager.h"
 
 
 
@@ -17,16 +18,25 @@ namespace Mafia{
         //! \brief Размер строки для хранения в БД
         const int STRING_SIZE = 256;
 
+        QString get_sql_filter(FilterType filter);
 
+
+        template<class T>
         /*!
          * \brief Функция получения строки с sql названием типа данных, переданного в функцию
          * \param T Тип, который надо преобразовать в sql-тип
-         * \param maxListCount Если этот тип - список, то также надо передать максимальный размер, которого может достигать этот список
-         * \param val Переменная-костыль... Просто забейте...
          * \return SQL-тип в виде строки
          */
+        QString get_sql_type();
+
         template<class T>
-        QString get_sql_type(int maxListCount = 0, T val = T());
+        /*!
+         * \brief Функция получения строки с sql названием типа данных, переданного в функцию (эта функция для списков)
+         * \param T Тип, который надо преобразовать в sql-тип
+         * \param maxListCount Если этот тип - список, то также надо передать максимальный размер, которого может достигать этот список
+         * \return SQL-тип в виде строки
+         */
+        QString get_sql_type(int mesListCount);
 
         /*!
          * \brief Функция преобразования QByteArray, полученного из БД в QList<T>

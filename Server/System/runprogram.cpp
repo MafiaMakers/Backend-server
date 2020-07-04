@@ -3,7 +3,6 @@
 #include "System/functions.h"
 using namespace Mafia;
 using namespace System;
-
 int Mafia::System::run_app(const String pathToFile, const String processName, const String args)
 {
 

@@ -156,13 +156,16 @@ namespace Mafia {
             ChatCapability get_capability(UserIdType user, ChatIdType chat);
 
         private:
+            QString generate_request_id(MafiaList<ChatIdType> ids);
+
+            QString generate_request_user(MafiaList<UserIdType> users, FilterType filter);
+
             /*!
              * \brief Получение всех чатов из sql-запроса
              * \param query указатель на sql-запрос с ответом
              * \return Список всех чатов, которые были в sql-запросе
              */
             MafiaList<Chat> get_request_chat(QSqlQuery* query);
-
         };
     }
 }

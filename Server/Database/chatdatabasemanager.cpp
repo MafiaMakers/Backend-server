@@ -79,7 +79,8 @@ MafiaList<ChatMessage> ChatDatabaseManager::get_last_messages(ChatIdType chatId,
 
 MessageIdType ChatDatabaseManager::add_message(ChatMessage message)
 {
-    QString request = "INSERT INTO " + dbName + " (ID, SENDER, TO_CHAT, TIMESTAMP, FEATURE, READ_USERS, ANSWER_FOR, DATA) VALUES (%1, %2, %3, %4, %5, %6, %7, %8)";
+    QString request = "INSERT INTO " + dbName +
+            " (ID, SENDER, TO_CHAT, TIMESTAMP, FEATURE, READ_USERS, ANSWER_FOR, DATA) VALUES (%1, %2, %3, %4, %5, %6, %7, %8)";
 
     QString idRequest = "SELECT COALESCE(MAX(ID), 0) FROM " + dbName;
     try {
@@ -163,20 +164,7 @@ void ChatDatabaseManager::edit_message(ChatMessage message)
             oldVersion.readUsers = query_value_to_variable<MafiaList<UserIdType>>(query->value(record.indexOf("READ_USERS")));
             oldVersion.timestamp = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
 
-            if(message.id != oldVersion.id){
-                throw new Exceptions::DatabaseWorkingException(System::String("Some impossible thing happened!!!"),
-                                                               Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
-            }
-
-            if(message.from != oldVersion.from){
-                throw new Exceptions::DatabaseWorkingException(System::String("Sender in edited message is different!!"),
-                                                               Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
-            }
-
-            if(message.toChat != oldVersion.toChat){
-                throw new Exceptions::DatabaseWorkingException(System::String("Destination chat differs in edited and old messages!"),
-                                                               Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
-            }
+            check_message_matches(message, oldVersion);
 
             QString updateRequest = "UPDATE " + dbName + "\nSET "
                     "TIMESTAMP = %1, "
@@ -192,14 +180,15 @@ void ChatDatabaseManager::edit_message(ChatMessage message)
 
             updateRequest = updateRequest.arg("\'" + message.timestamp.toString(SQL_DATETIME_FORMAT) + "\'");
             updateRequest = updateRequest.arg(QString::number(message.feature));
-            updateRequest = updateRequest.arg("\'" + QString::fromStdString(qbytearray_from_qlist<MessageIdType>(message.answerFor).toStdString()) + "\'");
+            updateRequest = updateRequest.arg("\'" + QString::fromStdString(
+                                                  qbytearray_from_qlist<MessageIdType>(message.answerFor).toStdString()) + "\'");
             updateRequest = updateRequest.arg("\'" + message.data + "\'");
 
             dbWorker->run_query(updateRequest);
 
             emit on_message_edited(message);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Not message with such ID"),
+            throw new Exceptions::DatabaseWorkingException(System::String("No message with such ID"),
                                                            Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
@@ -255,44 +244,11 @@ MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> f
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (TRUE";
 
-    if(fromChats.length() != 0){
-        request += " AND (";
-        for(int i = 0; i < fromChats.length(); i++){
-            request += "TO_CHAT = " + QString::number(fromChats[i]);
+    request += " AND " + generate_request_chat(fromChats);
 
-            if(i != fromChats.length() - 1){
-                request += " OR ";
-            } else{
-                request += ")";
-            }
-        }
-    }
+    request += " AND " + generate_request_sender(possibleSenders);
 
-    if(possibleSenders.length() != 0){
-        request += " AND (";
-        for(int i = 0; i < possibleSenders.length(); i++){
-            request += "SENDER = " + QString::number(possibleSenders[i]);
-
-            if(i != possibleSenders.length() - 1){
-                request += " OR ";
-            } else{
-                request += ")";
-            }
-        }
-    }
-
-    if(features.length() != 0){
-        request += " AND (";
-        for(int i = 0; i < features.length(); i++){
-            request += "FEATURE = " + QString::number(features[i]);
-
-            if(i != features.length() - 1){
-                request += " OR ";
-            } else{
-                request += ")";
-            }
-        }
-    }
+    request += " AND " + generate_request_feature(features);
 
     if(containsData != ""){
         request += " AND (CONTAINS(DATA, \'" + containsData + "\')";
@@ -341,6 +297,84 @@ ChatMessage ChatDatabaseManager::get_message(MessageIdType id)
         }
         }
     }
+}
+
+void ChatDatabaseManager::check_message_matches(ChatMessage newMessage, ChatMessage oldMessage)
+{
+    if(newMessage.id != oldMessage.id){
+        throw new Exceptions::DatabaseWorkingException(System::String("Some impossible thing happened!!!"),
+                                                       Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
+    }
+
+    if(newMessage.from != oldMessage.from){
+        throw new Exceptions::DatabaseWorkingException(System::String("Sender in edited message is different!!"),
+                                                       Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
+    }
+
+    if(newMessage.toChat != oldMessage.toChat){
+        throw new Exceptions::DatabaseWorkingException(System::String("Destination chat differs in edited and old messages!"),
+                                                       Exceptions::DatabaseWorkingExceptionId_MessageParameterMismatch);
+    }
+}
+
+QString ChatDatabaseManager::generate_request_chat(MafiaList<ChatIdType> chats)
+{
+    QString request = "";
+
+    if(chats.length() != 0){
+        request += "(";
+        for(int i = 0; i < chats.length(); i++){
+            request += "TO_CHAT = " + QString::number(chats[i]);
+
+            if(i != chats.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
+}
+
+QString ChatDatabaseManager::generate_request_sender(MafiaList<UserIdType> senders)
+{
+    QString request = "";
+
+    if(senders.length() != 0){
+        request += "(";
+        for(int i = 0; i < senders.length(); i++){
+            request += "SENDER = " + QString::number(senders[i]);
+
+            if(i != senders.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
+}
+
+QString ChatDatabaseManager::generate_request_feature(MafiaList<ChatFeature> features)
+{
+    QString request = "";
+
+    if(features.length() != 0){
+        request += "(";
+        for(int i = 0; i < features.length(); i++){
+            request += "FEATURE = " + QString::number(features[i]);
+
+            if(i != features.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
 }
 
 MafiaList<ChatMessage> ChatDatabaseManager::get_query_messages(QSqlQuery *query)

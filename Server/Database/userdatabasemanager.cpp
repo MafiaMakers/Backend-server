@@ -258,26 +258,7 @@ void UserDatabaseManager::change_password(UserIdType id, QString newPassword)
         QSqlQuery* authoizedQuery = dbWorker->run_query(authorizedRequest);
         if(authoizedQuery->next()){
             if(query_value_to_variable<bool>(authoizedQuery->value(0))){
-                QString saltRequest = "SELECT PASSWORD_SALT FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-                QSqlQuery* saltQuery = dbWorker->run_query(saltRequest);
-
-                if(saltQuery->next()){
-                    QString salt = query_value_to_variable<QString>(saltQuery->value(0));
-
-                    QString addedPassword = newPassword + salt + localParameter;
-
-                    std::string hash = System::SHA256().hash(addedPassword.toStdString().c_str());
-
-                    QString passwordHash = QString::fromStdString(hash);
-
-                    QString request = "UPDATE " + dbName + "\nSET PASSWORD_HASH = \'" + passwordHash +
-                            "\'\nWHERE (ID = " + QString::number(id) + ")";
-                    dbWorker->run_query(request);
-
-                } else{
-                    throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
-                                                                   Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
-                }
+                reset_users_password(newPassword, id);
             } else{
                 throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"),
                                                                Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
@@ -517,6 +498,30 @@ MafiaList<UserIdType> UserDatabaseManager::get_users_ids(MafiaList<UserIdType> i
     }
 }
 
+void UserDatabaseManager::reset_users_password(QString newPassword, UserIdType id)
+{
+    QString saltRequest = "SELECT PASSWORD_SALT FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+    QSqlQuery* saltQuery = dbWorker->run_query(saltRequest);
+
+    if(saltQuery->next()){
+        QString salt = query_value_to_variable<QString>(saltQuery->value(0));
+
+        QString addedPassword = newPassword + salt + localParameter;
+
+        std::string hash = System::SHA256().hash(addedPassword.toStdString().c_str());
+
+        QString passwordHash = QString::fromStdString(hash);
+
+        QString request = "UPDATE " + dbName + "\nSET PASSWORD_HASH = \'" + passwordHash +
+                "\'\nWHERE (ID = " + QString::number(id) + ")";
+        dbWorker->run_query(request);
+
+    } else{
+        throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+                                                       Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+    }
+}
+
 QString UserDatabaseManager::create_filter_request(MafiaList<UserIdType> ids, Status userStatus, Achievement userAchievement,
                                                    AuthorizedStatus authorizedNow, QString nickname,
                                                    QDateTime loginAfter, QDateTime loginBefore)
@@ -555,6 +560,7 @@ QString UserDatabaseManager::create_filter_request(MafiaList<UserIdType> ids, St
     request += " AND (LOGIN_DATE_TIME <= \'" + loginBefore.toString(SQL_DATETIME_FORMAT) + "\')";
     request += ")";
 
+    return request;
 }
 
 MafiaList<User> UserDatabaseManager::get_query_users(QSqlQuery *query)

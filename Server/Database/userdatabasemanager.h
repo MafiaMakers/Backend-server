@@ -174,6 +174,8 @@ namespace Mafia{
                                                 QDateTime loginBefore = ENDING_TIME);
 
         private:
+            void reset_users_password(QString newPassword, UserIdType id);
+
             /*!
              * \brief Вспомогательная функция для создания фильтра. Возвращает условие, которое должно быть помещено в "WHERE ("
              * для обеспечения данных фильтров (см. \ref Mafia::Database::UserDatabaseManager::get_users)

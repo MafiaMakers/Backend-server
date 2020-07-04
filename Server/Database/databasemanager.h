@@ -5,6 +5,18 @@
 
 namespace Mafia {
     namespace Database {
+        //! \brief Тип фильтра (используется для выбора нескольких объектов из БД).
+        //! Например, можно выбирать все игры, в которых были все три игрока (\ref Mafia::Database::FilterType_AND),
+        //! или все игры, в которых был хоть кто-то из троих (\ref Mafia::Database::FilterType_OR)
+        enum FilterType{
+            //! \brief Отсутствие фильтра
+            FilterType_NONE,
+            //! \brief Тип ИЛИ
+            FilterType_OR,
+            //! \brief Тип И
+            FilterType_AND
+        };
+
 
         //! \brief Базовый класс, от которого наследуются все классы для работы с конкретными БД
         class DatabaseManager

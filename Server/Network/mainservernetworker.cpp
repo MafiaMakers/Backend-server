@@ -14,7 +14,7 @@ const int MainServerNetworker::TIME_TO_RESEND = 500;
 const int MainServerNetworker::MAX_RESEND_COUNT = 100;
 //const int MainServerNetworker::idsForClient = 1000;
 
-const QSet<MessageTypeType> MainServerNetworker::needConfirmation = QSet<MessageTypeType>()
+const QSet<MessageType> MainServerNetworker::needConfirmation = QSet<MessageType>()
         << MessageType_Text
         << MessageType_RequestAnswer
         << MessageType_AbstractRequest
@@ -109,12 +109,7 @@ void MainServerNetworker::_process_message(Message message)
         break;
     }
     case MessageType_Confirmation:{
-        for(int i = 0; i < waitingForConfirmation.length(); i++){
-            if(((Message)waitingForConfirmation[i]).id == message.id){
-                waitingForConfirmation.removeAt(i);
-                break;
-            }
-        }
+        _confirm_message(message.id);
         break;
     }
     case MessageType_RequestAnswer:{
@@ -190,21 +185,13 @@ void MainServerNetworker::add_received_message(Message message)
 {
     int listIndex = get_list_index(message.id);
 
+    // Если такого сообщения еще нет в списке ожидающих. То есть это первая часть от сообщения, которая нам пришла
     if(listIndex == -1){
         listIndex = waitingToFillMessages.length();
+
         waitingToFillMessages.append(MafiaList<Message>());
 
-        Message base = Message();
-        base.id = message.id;
-        base.type = message.type;
-        base.client = message.client;
-        base.partsCount = message.partsCount;
-
-        waitingToFillMessages[listIndex].append(base);
-
-        for(int i = 0; i < message.partsCount; i++){
-            waitingToFillMessages[listIndex].append(Message());
-        }
+        _add_empty_message(message);
     }
     try {
         if(message.partIndex < waitingToFillMessages[listIndex].length() - 1 && message_matches(message)){
@@ -215,26 +202,7 @@ void MainServerNetworker::add_received_message(Message message)
         }
 
         if(check_message_full(message.id)){
-            Message wholeMessage = Message();
-            wholeMessage.id = message.id;
-            wholeMessage.type = message.type;
-            wholeMessage.client = message.client;
-            wholeMessage.partsCount = 1;
-            wholeMessage.partIndex = 0;
-            wholeMessage.size = 0;
-
-            for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
-                wholeMessage.size += waitingToFillMessages[listIndex][i].size;
-            }
-
-            wholeMessage.data = new SymbolType[wholeMessage.size];
-            int currentInd = 0;
-            for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
-                for(int j = 0; j < waitingToFillMessages[listIndex][i].size; j++){
-                    wholeMessage.data[currentInd] = waitingToFillMessages[listIndex][i].data[j];
-                    currentInd++;
-                }
-            }
+            Message wholeMessage = _construct_whole_message(message.id);
 
             waitingToFillMessages.removeAt(listIndex);
 
@@ -324,4 +292,59 @@ void MainServerNetworker::show_message(Message message)
 
     std::cout << std::endl;
     std::cout << "port " << message.client.port << std::endl;
+}
+
+void MainServerNetworker::_add_empty_message(Message baseMessage)
+{
+    int listIndex = waitingToFillMessages.length();
+
+    Message base = Message();
+    base.id = baseMessage.id;
+    base.type = baseMessage.type;
+    base.client = baseMessage.client;
+    base.partsCount = baseMessage.partsCount;
+
+    waitingToFillMessages[listIndex].append(base);
+
+    for(int i = 0; i < baseMessage.partsCount; i++){
+        waitingToFillMessages[listIndex].append(Message());
+    }
+}
+
+Message MainServerNetworker::_construct_whole_message(MessageIdType id)
+{
+    int listIndex = get_list_index(id);
+
+    Message wholeMessage = Message();
+    wholeMessage.id = waitingToFillMessages[listIndex][0].id;
+    wholeMessage.type = waitingToFillMessages[listIndex][0].type;
+    wholeMessage.client = waitingToFillMessages[listIndex][0].client;
+    wholeMessage.partsCount = 1;
+    wholeMessage.partIndex = 0;
+    wholeMessage.size = 0;
+
+    for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
+        wholeMessage.size += waitingToFillMessages[listIndex][i].size;
+    }
+
+    wholeMessage.data = new SymbolType[wholeMessage.size];
+    int currentInd = 0;
+    for(int i = 1; i < waitingToFillMessages[listIndex].length(); i++){
+        for(int j = 0; j < waitingToFillMessages[listIndex][i].size; j++){
+            wholeMessage.data[currentInd] = waitingToFillMessages[listIndex][i].data[j];
+            currentInd++;
+        }
+    }
+
+    return wholeMessage;
+}
+
+void MainServerNetworker::_confirm_message(MessageIdType id)
+{
+    for(int i = 0; i < waitingForConfirmation.length(); i++){
+        if(((Message)waitingForConfirmation[i]).id == id){
+            waitingForConfirmation.removeAt(i);
+            break;
+        }
+    }
 }

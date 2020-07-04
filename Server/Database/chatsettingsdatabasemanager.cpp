@@ -12,8 +12,8 @@ ChatSettingsDatabaseManager::ChatSettingsDatabaseManager(DatabaseWorker *databas
         case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
             QString request = "CREATE TABLE " + dbName + "("
                     "ID " + get_sql_type<ChatIdType>() + " PRIMARY KEY" + NOT_NULL + ", "
-                    "USERS " + get_sql_type<MafiaList<UserIdType>>() + ", "
-                    "CAPABILITIES " + get_sql_type<MafiaList<ChatCapability>>() + ", "
+                    "USERS " + get_sql_type<MafiaList<UserIdType>>(MAX_USERS_IN_CHAT) + ", "
+                    "CAPABILITIES " + get_sql_type<MafiaList<ChatCapability>>(MAX_USERS_IN_CHAT) + ", "
                     "TIMESTAMP " + get_sql_type<QDateTime>() + NOT_NULL
                     ")";
             try {
@@ -106,48 +106,9 @@ MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<Chat
 {
     QString request = "SELECT ID FROM " + dbName + " WHERE (TRUE";
 
-    if(ids.length() > 0){
-        request += " AND (";
-        for(int i = 0; i < ids.length(); i++){
-            request += "ID = " + QString::number(ids[i]);
+    request += " AND " + generate_request_id(ids);
 
-            if(i != ids.length() - 1){
-                request += " OR ";
-            } else{
-                request += ")";
-            }
-        }
-    }
-
-    if(users.length() > 0){
-        request += " AND (";
-        MafiaList<UserIdType> oneUserList = MafiaList<UserIdType>() << users[0];
-        for(int i = 0; i < users.length(); i++){
-            oneUserList[0] = users[i];
-            request += "CONTAINS(USERS, " + QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUserList).toStdString());
-
-            if(i != ids.length() - 1){
-                switch (usersFilter) {
-                case FilterType_OR:{
-                    request += " OR ";
-                    break;
-                }
-                case FilterType_AND:{
-                    request += " AND ";
-                    break;
-                }
-                case FilterType_NONE:{
-                    throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
-                                                                   Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
-                        break;
-                    }
-                }
-
-            } else{
-                request += ")";
-            }
-        }
-    }
+    request += " AND " + generate_request_user(users, usersFilter);
 
     request += " AND (TIMESTAMP >= " + createdAfter.toString(SQL_DATETIME_FORMAT) + ")";
     request += " AND (TIMESTAMP <= " + createdBefore.toString(SQL_DATETIME_FORMAT) + ")";
@@ -474,6 +435,49 @@ ChatCapability ChatSettingsDatabaseManager::get_capability(UserIdType user, Chat
         }
         }
     }
+}
+
+QString ChatSettingsDatabaseManager::generate_request_id(MafiaList<ChatIdType> ids)
+{
+    QString request = "";
+
+    if(ids.length() > 0){
+        request += "(";
+        for(int i = 0; i < ids.length(); i++){
+            request += "ID = " + QString::number(ids[i]);
+
+            if(i != ids.length() - 1){
+                request += " OR ";
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
+}
+
+QString ChatSettingsDatabaseManager::generate_request_user(MafiaList<UserIdType> users, FilterType filter)
+{
+    QString request = "";
+
+    if(users.length() > 0){
+        request += "(";
+        MafiaList<UserIdType> oneUserList = MafiaList<UserIdType>() << users[0];
+        for(int i = 0; i < users.length(); i++){
+            oneUserList[0] = users[i];
+            request += "CONTAINS(USERS, " + QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUserList).toStdString());
+
+            if(i != users.length() - 1){
+                request += get_sql_filter(filter);
+
+            } else{
+                request += ")";
+            }
+        }
+    }
+
+    return request;
 }
 
 MafiaList<Chat> ChatSettingsDatabaseManager::get_request_chat(QSqlQuery *query)

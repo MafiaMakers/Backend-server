@@ -104,77 +104,102 @@ MafiaList<ChatCapability> Mafia::Database::query_value_to_variable(QVariant data
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, int val){
+QString Mafia::Database::get_sql_type<int>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, QString val){
+QString Mafia::Database::get_sql_type<QString>(){
     return "VARCHAR(" + QString::number(STRING_SIZE) + ")";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, bool val){
+QString Mafia::Database::get_sql_type<bool>(){
     return "BIT";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<int> val){
+QString Mafia::Database::get_sql_type<MafiaList<int>>(int maxListCount){
     return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, QDateTime val){
+QString Mafia::Database::get_sql_type<QDateTime>(){
     return "DATETIME";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, Status val){
+QString Mafia::Database::get_sql_type<Status>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, Achievement val){
+QString Mafia::Database::get_sql_type<Achievement>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, AccountType val){
+QString Mafia::Database::get_sql_type<AccountType>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, Gameplay::Role val){
+QString Mafia::Database::get_sql_type<Gameplay::Role>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, Gameplay::GameResult val){
+QString Mafia::Database::get_sql_type<Gameplay::GameResult>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<Gameplay::Role> val){
+QString Mafia::Database::get_sql_type<MafiaList<Gameplay::Role>>(int maxListCount){
     return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, MafiaList<ChatCapability> val){
+QString Mafia::Database::get_sql_type<MafiaList<ChatCapability>>(int maxListCount){
     return "VARCHAR(" + QString::number(maxListCount * sizeof(int) * 2)+ ")";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, ChatFeature val){
+QString Mafia::Database::get_sql_type<ChatCapability>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, TransactionType val){
+QString Mafia::Database::get_sql_type<TransactionType>(){
     return "integer";
 }
 
 template<>
-QString Mafia::Database::get_sql_type(int maxListCount, AuthorizedStatus val){
+QString Mafia::Database::get_sql_type<AuthorizedStatus>(){
     return "integer";
 }
 
+template<>
+QString Mafia::Database::get_sql_type<ChatFeature>(){
+    return "integer";
+}
+
+
+QString Mafia::Database::get_sql_filter(FilterType filter)
+{
+    switch (filter) {
+    case FilterType_OR:{
+        return " OR ";
+        break;
+    }
+    case FilterType_AND:{
+        return " AND ";
+        break;
+    }
+    case FilterType_NONE:{
+        throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
+                                                       Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
+            break;
+    }
+    }
+    return "";
+}

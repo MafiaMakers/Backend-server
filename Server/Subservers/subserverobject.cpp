@@ -36,7 +36,7 @@ SubserverObject::~SubserverObject()
 
 }
 
-int SubserverObject::send_request(Network::MessageTypeType type, Network::SymbolType *data, int size)
+int SubserverObject::send_request(Network::MessageType type, Network::SymbolType *data, int size)
 {
     Requests::NetworkRequest* req = 0;
     try {
@@ -80,7 +80,7 @@ bool SubserverObject::is_request_ready(RequestIdType requestId)
     return false;
 }
 
-int SubserverObject::send_message_to_subserver(Network::MessageTypeType type, Network::SymbolType *data, int size, Network::MessageIdType id)
+int SubserverObject::send_message_to_subserver(Network::MessageType type, Network::SymbolType *data, int size, Network::MessageIdType id)
 {
     Network::Message message = Network::Message(type, data, size, myAddress, id);
     try {
@@ -123,15 +123,7 @@ T SubserverObject::get_request_result(RequestIdType requestId)
 {
     for(int i = 0; i < this->currentRequests.length(); i++){
         if(currentRequests[i].id == requestId){
-            try {
-                return currentRequests[i].request->get_result<T>();
-            } catch (Exceptions::Exception* exception) {
-                switch(exception->get_id()){
-                default:{
-                    throw exception;
-                }
-                }
-            }
+            return currentRequests[i].request->get_result<T>();
         }
     }
     throw new Exceptions::SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);

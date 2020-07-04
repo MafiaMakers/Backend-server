@@ -1,5 +1,7 @@
 #include "crypto.h"
 #include "Exceptions/messageparsingexception.h"
+#include "System/serializer.h"
+#include "System/tuple.h"
 
 using namespace Mafia;
 using namespace Network;
@@ -35,80 +37,21 @@ Message Crypto::parse_data(char *data, int size){
         }
     }
 
-    int othersCount = tData.size - (sizeof(MessageIdType) + sizeof (MessageTypeType) + sizeof (ControlSumType) + sizeof(Message::partIndex) + sizeof (Message::partsCount));
-
-    if(othersCount < 0){
-        throw new Exceptions::MessageParsingException(System::String("decrypted data size is too small"), Exceptions::MessageParsingExceptionId_ShortMessage);
-    }
-    Message result = Message();
-    int currentInd = 0;
-    char* mesIdChar = new char[sizeof(MessageIdType)];
-    for(unsigned int i = 0; i < sizeof(MessageIdType); i++){
-        mesIdChar[i] = tData.data[currentInd];
-        currentInd++;
-    }
-    result.id = *(MessageIdType*)mesIdChar;
-    if(!Crypto::_message_id_ok(result.id)){
-        throw new Exceptions::MessageParsingException(System::String("message id is less or equal to previous"), Exceptions::MessageParsingExceptionId_InvalidMessageId);
-    }
-
-    char* mesTypeChar = new char[sizeof (MessageTypeType)];
-    for (unsigned int i = 0; i < sizeof(MessageTypeType); i++){
-        mesTypeChar[i] = tData.data[currentInd];
-        currentInd++;
-    }
-
-    result.type = *(MessageTypeType*)mesTypeChar;
-
-    char* mesPartIdxChar = new char[sizeof (Message::partIndex)];
-    for(unsigned int i = 0; i < sizeof (Message::partIndex); i++){
-        mesPartIdxChar[i] = tData.data[currentInd];
-        currentInd++;
-    }
-    result.partIndex = *(int*)mesPartIdxChar;
-
-    char* mesPartsCount = new char[sizeof (Message::partsCount)];
-    for(unsigned int i = 0; i < sizeof (Message::partsCount); i++){
-        mesPartsCount[i] = tData.data[currentInd];
-        currentInd++;
-    }
-    result.partsCount = *(int*)mesPartsCount;
-
-    char* controlSumChar = new char[sizeof (ControlSumType)];
-    for(unsigned int i = 0; i < sizeof(ControlSumType); i++){
-        controlSumChar[i] = tData.data[currentInd];
-        currentInd++;
-    }
-
-    ControlSumType controlSum = *(ControlSumType*)controlSumChar;
-    if(othersCount % sizeof(SymbolType) != 0){
-        throw new Exceptions::MessageParsingException(System::String("message size doesn't multiple to size of SymbolType"), Exceptions::MessageParsingExceptionId_InvalidMessageId);
-    }
-
-    result.data = new SymbolType[othersCount / sizeof (SymbolType)];
+    System::Tuple<Message, ControlSumType> result = System::Serializer::deserialize<System::Tuple<Message, ControlSumType>>(
+                tData);
 
     ControlSumType realSum = 0;
-
-    result.size = othersCount / sizeof (SymbolType);
-
-    for(unsigned int i = 0; i < othersCount / sizeof (SymbolType); i++){
-        char* symbolChar = new char[sizeof(SymbolType)];
-        for(unsigned int j = 0; j < sizeof (SymbolType); j++){
-            symbolChar[j] = tData.data[currentInd];
-            realSum += (ControlSumType)tData.data[currentInd];
-            currentInd++;
-        }
-        result.data[i] = *(SymbolType*)symbolChar;
-        delete[] symbolChar;
+    for(unsigned int i = 0; i < result.item1.size * sizeof(SymbolType); i++){
+        realSum += (int)(char)((char*)result.item1.data)[i];
     }
 
-    if(controlSum != realSum){
+    if(result.item2 != realSum){
         throw new Exceptions::MessageParsingException(System::String("control sum doesn't match to real sum"), Exceptions::MessageParsingExceptionId_ControlSumMismatch);
     }
 
-    Crypto::lastMessageIds->append(result.id);
+    Crypto::lastMessageIds->append(result.item1.id);
 
-    return result;
+    return result.item1;
 }
 
 Message Crypto::parse_data(System::String data){
@@ -120,54 +63,20 @@ Message Crypto::parse_data(System::String data){
 }
 
 System::String Crypto::wrap_message(Message mes){
-    unsigned int size = (sizeof(MessageIdType) +
-                         sizeof (MessageTypeType) +
-                         sizeof (ControlSumType)) +
-                         mes.size * sizeof (SymbolType) +
-                         sizeof (mes.partIndex) +
-                         sizeof(mes.partsCount);
-
-    System::String resultData = System::String(new char[size], size);
-
-    unsigned int currentInd = 0;
-    for(unsigned int i = 0; i < sizeof(MessageIdType); i++){
-        resultData.data[currentInd] = ((char*)(&(mes.id)))[i];
-        currentInd++;
-    }
-
-    for(unsigned int i = 0; i < sizeof(MessageTypeType); i++){
-        resultData.data[currentInd] = ((char*)(&(mes.type)))[i];
-        currentInd++;
-    }
-
-    for(unsigned int i = 0; i < sizeof(mes.partIndex); i++){
-        resultData.data[currentInd] = ((char*)(&(mes.partIndex)))[i];
-        currentInd++;
-    }
-
-    for(unsigned int i = 0; i < sizeof(mes.partsCount); i++){
-        resultData.data[currentInd] = ((char*)(&(mes.partsCount)))[i];
-        currentInd++;
-    }
-
-    currentInd += sizeof (ControlSumType);
 
     ControlSumType controlSum = 0;
     for(int i = 0; i < mes.size; i++){
         for(unsigned int j = 0; j < sizeof (SymbolType); j++){
-            resultData.data[currentInd] = ((char*)&mes.data[i])[j];
             controlSum += (ControlSumType)(((char*)&mes.data[i])[j]);
-            currentInd++;
         }
     }
 
-    for(unsigned int i = 0; i < sizeof (ControlSumType); i++){
-        resultData.data[sizeof(MessageIdType) + sizeof(MessageTypeType) + sizeof(mes.partIndex) + sizeof (mes.partsCount) + i] = ((char*)&controlSum)[i];
-    }
+    System::String data = System::String(System::Serializer::serialize<System::Tuple<Message, ControlSumType>>(
+                System::Tuple<Message, ControlSumType>(mes, controlSum)));
 
     System::String result;
     try {
-        result = Crypto::_encrypt(resultData);
+        result = Crypto::_encrypt(data);
     } catch (Exceptions::Exception* exception) {
         throw exception;
     }
@@ -177,7 +86,7 @@ System::String Crypto::wrap_message(Message mes){
 
 bool Crypto::_message_id_ok(MessageIdType id)
 {
-    return/*(!(lastMessageIds->contains(id)) || id == -1)*/ true;
+    return true;
 }
 
 System::String Crypto::_encrypt(System::String decrypted){

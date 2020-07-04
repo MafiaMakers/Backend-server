@@ -193,25 +193,14 @@ MafiaList<Transaction> TransactionDatabaseManager::get_time_bounded_transactions
     }
 }
 
-void TransactionDatabaseManager::check_transaction_hashes()
+void TransactionDatabaseManager::check_database_cracked()
 {
     while(dbWorker->database_open()){
         std::this_thread::sleep_for(std::chrono::milliseconds(hashCheckingInterval));
-
         try {
-            MafiaList<Transaction> allTransactions = get_all_transactions();
-            QString prevHash = "";
-            for(int i = 0; i < allTransactions.length(); i++){
-                QString currentString = prevHash + QString::number(allTransactions[i].buyer) + "_" + QString::number(allTransactions[i].price) +
-                        "_" + QString::number(allTransactions[i].type) + localParameter;
-                QString expectedHash = QString::fromStdString(System::SHA256().hash(currentString.toStdString()));
-                //std::cout << currentString.toStdString() << " - currentString" << std::endl;
-                if(expectedHash != allTransactions[i].hash){
-                    std::cout << "Hash mismatch:\n" << expectedHash.toStdString() << "\n" << allTransactions[i].hash.toStdString() << "\n";
-                    on_database_cracked();
-                    break;
-                }
-                prevHash = allTransactions[i].hash;
+            bool databaseCracked = check_transaction_hashes();
+            if(databaseCracked){
+                on_database_cracked();
             }
         } catch (Exceptions::Exception* exception) {
             switch (exception->get_id()) {
@@ -222,6 +211,25 @@ void TransactionDatabaseManager::check_transaction_hashes()
         }
 
     }
+}
+
+bool TransactionDatabaseManager::check_transaction_hashes()
+{
+    MafiaList<Transaction> allTransactions = get_all_transactions();
+    QString prevHash = "";
+    for(int i = 0; i < allTransactions.length(); i++){
+        QString currentString = prevHash + QString::number(allTransactions[i].buyer) + "_" +
+                QString::number(allTransactions[i].price) + "_" + QString::number(allTransactions[i].type) +
+                localParameter;
+        QString expectedHash = QString::fromStdString(System::SHA256().hash(currentString.toStdString()));
+        //std::cout << currentString.toStdString() << " - currentString" << std::endl;
+        if(expectedHash != allTransactions[i].hash){
+            std::cout << "Hash mismatch:\n" << expectedHash.toStdString() << "\n" << allTransactions[i].hash.toStdString() << "\n";
+            return true;
+        }
+        prevHash = allTransactions[i].hash;
+    }
+    return false;
 }
 
 void TransactionDatabaseManager::on_database_cracked()
@@ -255,7 +263,7 @@ TransactionIdType TransactionDatabaseManager::add_transaction(Transaction transa
     }
 }
 
-QList<Transaction> TransactionDatabaseManager::get_request_transactions(QSqlQuery *query)
+MafiaList<Transaction> TransactionDatabaseManager::get_request_transactions(QSqlQuery *query)
 {
     MafiaList<Transaction> allTransactions = MafiaList<Transaction>();
     QSqlRecord record = query->record();

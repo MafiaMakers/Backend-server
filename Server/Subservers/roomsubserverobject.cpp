@@ -57,7 +57,6 @@ void RoomSubserverObject::message_from_server(Network::Message message)
         switch (message.type) {
         case Network::MessageType_CheckConnection:{
             System::Serializer::serialize<Gameplay::Game>(Gameplay::Game());
-
             notAnsweringsCount = 0;
             break;
         }

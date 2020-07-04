@@ -57,7 +57,7 @@ namespace Mafia {
              * \param size Размер массива данных
              * \return id реквеста, по которому потом можно обратиться в этот же объект SubserverObject и получить сведения
              */
-            virtual RequestIdType send_request(Network::MessageTypeType type, Network::SymbolType* data, int size);
+            virtual RequestIdType send_request(Network::MessageType type, Network::SymbolType* data, int size);
 
             /*!
              * \brief Функция получения результата запроса по id запроса
@@ -79,7 +79,7 @@ namespace Mafia {
              * \param id id сообщения (стандартное значение 0)
              * \return id отправленного сообщения
              */
-            int send_message_to_subserver(Network::MessageTypeType type, Network::SymbolType* data, int size, Network::MessageIdType id = 0);
+            int send_message_to_subserver(Network::MessageType type, Network::SymbolType* data, int size, Network::MessageIdType id = 0);
 
             /*!
              * \brief Функция получения адреса субсервера

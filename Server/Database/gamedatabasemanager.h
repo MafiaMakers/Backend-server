@@ -6,17 +6,6 @@
 
 namespace Mafia {
     namespace Database {
-        //! \brief Тип фильтра (используется для выбора нескольких объектов из БД).
-        //! Например, можно выбирать все игры, в которых были все три игрока (\ref Mafia::Database::FilterType_AND),
-        //! или все игры, в которых был хоть кто-то из троих (\ref Mafia::Database::FilterType_OR)
-        enum FilterType{
-            //! \brief Отсутствие фильтра
-            FilterType_NONE,
-            //! \brief Тип ИЛИ
-            FilterType_OR,
-            //! \brief Тип И
-            FilterType_AND
-        };
 
         //! \brief Основной класс для работы с БД с играми
         class GameDatabaseManager : public DatabaseManager
@@ -62,6 +51,32 @@ namespace Mafia {
                                                  MafiaList<Gameplay::GameResult> outcomes = MafiaList<Gameplay::GameResult>(),
                                                  QDateTime beginAfter = BEGINNING_TIME,
                                                  QDateTime endBefore = ENDING_TIME);
+
+        private:
+            /*!
+             * \brief Функция создания строки с запросом для добавления в "WHERE(". Для фильтрации только игр с данными пользователями.
+             * \param participants Список пользователей
+             * \param filter Тип фильтра пользователей (либо все перечисленные пользователи должны быть в каждой игре (AND),
+             * либо хоть кто-то один из них должен быть в каждой игре (OR))
+             * \return Строку, в которой записан запрос
+             */
+            QString generate_request_participant(MafiaList<UserIdType> participants, FilterType filter);
+
+            /*!
+             * \brief Функция создания строки с запросом для добавления в "WHERE(". Для фильтрации только игр с данными исходами.
+             * \param outcomes Список подходящих исходов
+             * \return Строку, в которой записан запрос
+             */
+            QString generate_request_outcomes(MafiaList<Gameplay::GameResult> outcomes);
+
+            /*!
+             * \brief Функция создания строки с запросом для добавления в "WHERE(". Для фильтрации только игр с данными ролями.
+             * \param roles Список ролей
+             * \param filter Тип фильтра ролей (либо все перечисленные роли должны быть в каждой игре (AND),
+             * либо хоть какая-то роль из списка должна быть в каждой игре (OR))
+             * \return Строку, в которой записан запрос
+             */
+            QString generate_request_roles(MafiaList<Gameplay::Role> roles, FilterType filter);
         };
     }
 }

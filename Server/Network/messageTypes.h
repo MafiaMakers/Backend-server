@@ -1,7 +1,5 @@
 #ifndef MESSAGETYPES_H
 #define MESSAGETYPES_H
-#include "message.h"
-#include "System/functions.h"
 namespace Mafia {
     namespace Network {
         enum MessageType{

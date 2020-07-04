@@ -1,16 +1,12 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
-
+#include "messageTypes.h"
 namespace Mafia {
     namespace Network {
         /*!
          * \brief Тип, в котором хранится id сообщения
          */
         typedef int MessageIdType;
-        /*!
-         * \brief Тип, в котором хранится тип сообщения
-         */
-        typedef short MessageTypeType;
         /*!
          * \brief Тип, в котором передаются символы (может быть заменен на wchar_t или qchar16 или еще на что-нибудь похожее)
          */
@@ -73,7 +69,7 @@ namespace Mafia {
              */
             Message(){
                 id = MessageIdType();
-                type = MessageTypeType();
+                type = MessageType();
                 data = 0;
                 size = 0;
                 partIndex = 0;
@@ -88,7 +84,7 @@ namespace Mafia {
              * \param size размер массива данных
              * \param client клиент
              */
-            Message(MessageTypeType type, SymbolType* data, int size, Client client, MessageIdType id = 0, int partsCount = 1, int partIndex = 0){
+            Message(MessageType type, SymbolType* data, int size, Client client, MessageIdType id = 0, int partsCount = 1, int partIndex = 0){
                 this->id = id;
                 this->data = data;
                 this->size = size;
@@ -121,7 +117,7 @@ namespace Mafia {
             //! \brief Индекс конкретно этой части, передаваемой в этом сообщении
             int partIndex;
             //! тип сообщения
-            MessageTypeType type;
+            MessageType type;
              //! данные сообщения
             SymbolType* data;
             //! размер данных сообщения

@@ -119,6 +119,29 @@ namespace Mafia {
 
         private:
             /*!
+             * \brief Метод проверки, совпадают ли эти сообщения
+             * (если одно из них является отредактированной копией другого)
+             * Проверяется при попытке редактирования сообщения.
+             * В случае, если что-либо не совпадает, метод выбрасывает исключение. Если все ОК, то метод ничего не делает
+             * \param newMessage Новая версия сообщения
+             * \param oldMessage Старая версия сообщения
+             */
+            void check_message_matches(ChatMessage newMessage, ChatMessage oldMessage);
+
+            /*!
+             * \brief Функция генерации запроса, который следует добавить в "WHERE (", чтобы получить сообщения только из этих чатов
+             * \param chats Список чатов из которых требуется получить сообщение
+             * \return Строку с условием, которое следует добавить в SQL-запрос
+             */
+            QString generate_request_chat(MafiaList<ChatIdType> chats);
+
+            //! \brief Аналогично с \ref Mafia::Database::ChatDatabaseManager::generate_request_chat но только фильтрует по отправителям
+            QString generate_request_sender(MafiaList<UserIdType> senders);
+
+            //! \brief Аналогично с \ref Mafia::Database::ChatDatabaseManager::generate_request_chat но только фильтрует по особенностям сообщений
+            QString generate_request_feature(MafiaList<ChatFeature> features);
+
+            /*!
              * \brief Получение сообщений по полученному ответу на sql-запрос
              * \param query sql-запрос, содержащий ответ
              * \return Список из  сообщений

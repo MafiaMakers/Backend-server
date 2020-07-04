@@ -2,7 +2,8 @@
 #define MAINSERVERNETWORKER_H
 #include <QUdpSocket>
 #include "crypto.h"
-#include "messageTypes.h"
+#include "System/functions.h"
+#include "message.h"
 
 namespace Mafia {
     //! \brief Пространство имен, отвечающее за передачу данных по интернету
@@ -57,6 +58,25 @@ namespace Mafia {
             void show_message(Message mes);
 
         private:
+            /*!
+             * \brief Функция, добавляющая в список сообщений, которые ожидают сборки по частям, нового сообщения
+             * \param baseMessage Первое сообщение партии, которое берется за основу
+             */
+            void _add_empty_message(Message baseMessage);
+
+            /*!
+             * \brief Функция, конструирующая цельное сообщение из кусочков
+             * \param id id сообщения, которое следует собрать
+             * \return Сообщение со всеми заполненными полями
+             */
+            Message _construct_whole_message(MessageIdType id);
+
+            /*!
+             * \brief Функция, подтверждающая получение сообщения с указанным id (вызывается при получении сообщения-подтверждения)
+             * \param id id сообщения, получение которого следует подтвердить
+             */
+            void _confirm_message(MessageIdType id);
+
             /*!
              * \brief Отправка сообщения
              * \param data массив символов, сообщение
@@ -128,7 +148,7 @@ namespace Mafia {
             //! Как только получены все части сообщения, из них конструируется большое сообщение, а части удаляются
             MafiaList<MafiaList<Message>> waitingToFillMessages;
             //! \brief Множество типов сообщений, которым необходимо подтверждение
-            static const QSet<MessageTypeType> needConfirmation;
+            static const QSet<MessageType> needConfirmation;
             //! \brief Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение
             static const int TIME_TO_RESEND;
             //! \brief Максимальное количество повторных отправок
