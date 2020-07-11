@@ -24,8 +24,9 @@ std::string Serializer::serialize(int value){
 template<>
 int Serializer::deserialize(String &data){
     if((unsigned int)data.size >= sizeof(int)){
+        int result = *(int*)data.data;
         data = String(data.data + sizeof(int), data.size - sizeof(int));
-        return(*(int*)data.data);
+        return result;
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
         return 0;
