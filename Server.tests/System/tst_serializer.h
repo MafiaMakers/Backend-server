@@ -3,6 +3,9 @@
 #include <QTest>
 #include <QObject>
 #include "System/serializer.h"
+#include "Database/chatmessage.h"
+#include "userstatistics.h"
+#include "Gameplay/game_s.h"
 //#include "System/serializer.cpp"
 
 namespace MafiaTests {
@@ -15,9 +18,35 @@ namespace MafiaTests {
             ~SerializerTests();
 
         private slots:
-            void int_11_11_returns();
+            void integer();
             void deserialize_short_message_int_error_returns();
+            void client();
+            void chat_capability();
+            void list_of_int();
+            void character();
+            void boolean();
+            void list_of_char();
+            void qstring();
+            void qdatetime();
+            void chat_message();
+            void list_of_chat_message();
+            void user_statistics();
+            void tuple_of_user_id_and_qstring();
+            void client_info();
+            void list_of_roles();
+            void game();
+            void tuple_of_int_and_int();
+            void network_message();
+            void tuple_of_network_message_and_int();
 
+        private:
+            Mafia::Database::ChatMessage generate_random_message();
+            Mafia::UserStatistics generate_random_statistics();
+            Mafia::Network::Message generate_random_network_message();
+            void compare_chat_messages(Mafia::Database::ChatMessage source, Mafia::Database::ChatMessage result);
+            void compare_user_statistics(Mafia::UserStatistics source, Mafia::UserStatistics result);
+            void compare_games(Mafia::Gameplay::Game source, Mafia::Gameplay::Game result);
+            void compare_messages(Mafia::Network::Message source, Mafia::Network::Message result);
 
         };
     }

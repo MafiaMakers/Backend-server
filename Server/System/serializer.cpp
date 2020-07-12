@@ -104,13 +104,12 @@ std::string Serializer::serialize(MafiaList<int> value){
     return result;
 }
 
-
 template<>
 MafiaList<int> Serializer::deserialize(String &data){
 
     int size = deserialize<int>(data);
     MafiaList<int> result = MafiaList<int>();
-    if((unsigned int)data.size >= (size + 1) * sizeof(int)){
+    if((unsigned int)data.size >= size * sizeof(int)){
         for(int i = 0; i < size; i++){
             result.append(deserialize<int>(data));
         }
@@ -132,8 +131,9 @@ std::string Serializer::serialize(char value){
 template<>
 char Serializer::deserialize(String &value){
     if(value.size > 0){
+        char result = value.data[0];
         value = String(value.data + sizeof(char), value.size - sizeof(char));
-        return value.data[0];
+        return result;
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
         return '\0';
@@ -155,7 +155,7 @@ std::string Serializer::serialize(MafiaList<char> value){
     std::string data = "";
     data += serialize<int>(value.length());
     for(int i = 0; i < value.length(); i++){
-        data += serialize(value[i]);
+        data += serialize<char>(value[i]);
     }
     return data;
 }
@@ -165,7 +165,7 @@ MafiaList<char> Serializer::deserialize(String &data){
 
     unsigned int size = (unsigned int)deserialize<int>(data);
     MafiaList<char> result = MafiaList<char>();
-    if((unsigned int)data.size >= (size * sizeof(char)) + sizeof(int)){
+    if((unsigned int)data.size >= (size * sizeof(char))){
         for(unsigned int i = 0; i < size; i++){
             result.append(deserialize<char>(data));
         }
@@ -439,6 +439,7 @@ std::string Serializer::serialize(Network::Message value){
     result += serialize<Network::MessageType>(value.type);
     result += serialize<int>(value.partIndex);
     result += serialize<int>(value.partsCount);
+    result += serialize<Network::Client>(value.client);
     result += serialize<QString>(QString::fromStdString(std::string((char*)value.data, value.size)));
 
     return result;
@@ -452,6 +453,7 @@ Network::Message System::Serializer::deserialize(String &data){
     result.type = deserialize<Network::MessageType>(data);
     result.partIndex = deserialize<int>(data);
     result.partsCount = deserialize<int>(data);
+    result.client = deserialize<Network::Client>(data);
     std::string mesData = deserialize<QString>(data).toStdString();
     result.data = (Network::SymbolType*)mesData.c_str();
     result.size = mesData.length();

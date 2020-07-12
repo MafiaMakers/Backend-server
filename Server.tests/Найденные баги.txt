@@ -1,0 +1,7 @@
+Mafia::System::Serializer::deserialize<int> - return после изменения строки с данными
+Mafia::System::Serializer::deserialize<char> - return после изменения строки с данными
+Mafia::System::Serializer::deserialize<bool> - return после изменения строки с данными
+Mafia::System::Serializer::deserialize<MafiaList<int>> - проверка на длинну строки, включающая в себя длинну первых 4х байт для длинны
+Mafia::System::Serializer::deserialize<MafiaList<char>> - проверка на длинну строки, включающая в себя длинну первых 4х байт для длинны
+Mafia::System::Serializer::serialize<Mafia::Network::Message> - нет сериализации данных о клиенте
+Mafia::System::Serializer::deserialize<Mafia::Network::Message> - нет десериализации данных о клиенте

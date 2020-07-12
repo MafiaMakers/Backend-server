@@ -21,4 +21,3 @@ int main(int argc, char* argv[]){
     std::cout << "Total tests failed: " << totalTestsFailed << std::endl;
     return 0;
 }
-//#include "tst_Tuple.moc"
