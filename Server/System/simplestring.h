@@ -26,8 +26,8 @@ namespace Mafia {
              * \param data данные из которых копировать строку
              */
             String(std::string data){
-                this->data = new char[data.length()];
-                this->size = data.length();
+				this->data = new char[data.length()];
+				this->size = data.length();
                 for(int i = 0; i < this->size; i++){
                     this->data[i] = data[i];
                 }

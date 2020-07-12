@@ -5,3 +5,4 @@ Mafia::System::Serializer::deserialize<MafiaList<int>> - проверка на �
 Mafia::System::Serializer::deserialize<MafiaList<char>> - проверка на длинну строки, включающая в себя длинну первых 4х байт для длинны
 Mafia::System::Serializer::serialize<Mafia::Network::Message> - нет сериализации данных о клиенте
 Mafia::System::Serializer::deserialize<Mafia::Network::Message> - нет десериализации данных о клиенте
+Mafia::System::String(std::string) - беды с нулевым символом в конце (он то учитывается, то нет)
