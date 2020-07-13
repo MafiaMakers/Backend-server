@@ -18,5 +18,4 @@ namespace MafiaTests {
 	}
 }
 
-
 #endif // SHA256TEST_H

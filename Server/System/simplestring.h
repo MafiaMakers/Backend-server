@@ -26,7 +26,8 @@ namespace Mafia {
              * \param data данные из которых копировать строку
              */
             String(std::string data){
-				this->data = new char[data.length()];
+				this->data = new char[data.length() + 1];
+				this->data[data.length()] = '\0';
 				this->size = data.length();
                 for(int i = 0; i < this->size; i++){
                     this->data[i] = data[i];
@@ -63,7 +64,11 @@ namespace Mafia {
              * \param index Индекс этой строки (не той, которая data, а именно этой), с которого необходимо начать вставлять данные
              */
             void paste(String data, int index = 0){
-                for(int i = index; (i < index + data.size) && i < this->size; i++){
+				for(int i = index; i < index + data.size; i++){
+					if(i == this->size){
+						this->data[i] = '\0';
+						break;
+					}
                     this->data[i] = data.data[i - index];
                 }
             }

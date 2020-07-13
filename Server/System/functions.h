@@ -45,9 +45,9 @@ namespace Mafia{
 //! \param type Тип указателя (например, int*)
 //! \param variable Имя переменной, которую вы выделяете
 //! \param obj Способ создания объекта (например, MyClass(someVar))
-#define SAFE_NEW(type, variable, obj) {\
-                                    type variable = new obj;\
-                                    PointerManager::addPtr((void*)variable);\
+#define SAFE_NEW(variable, obj) {\
+									variable = new obj;\
+									Mafia::System::PointerManager::addPtr((void*)variable);\
                                  }
 
 //! \brief Безопасное удаление указателя (если указатель не был выделен, выдаст ошибку) (не используйте для массивов)
@@ -56,9 +56,10 @@ namespace Mafia{
 //! SAFE_DELETE(a);
 //! \param variable Переменная, которую следует освободить
 #define SAFE_DELETE(variable) {\
-                            ASSERT(PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
-                            PointerManager::removePtr((void*)variable);\
+							ASSERT(Mafia::System::PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
+							Mafia::System::PointerManager::removePtr((void*)variable);\
                             delete variable;\
+							variable = 0;\
                          }
 
 //! \brief То же, что и \ref SAFE_DELETE(variable), только для массивов
@@ -67,8 +68,9 @@ namespace Mafia{
 //! SAFE_DELETE_ARRAY(b);
 #define SAFE_DELETE_ARRAY(variable) {\
                             ASSERT(PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
-                            PointerManager::removePtr((void*)variable);\
+							Mafia::System::PointerManager::removePtr((void*)variable);\
                             delete[] variable;\
+							variable = 0;\
                          }
 #else
 
@@ -92,7 +94,7 @@ namespace Mafia{
 //! Используем SAFE_NEW(MyClass*, a, MyClass(someVar));
 #define SAFE_NEW(type, variable, obj) {\
                                     type variable = new obj;\
-                                    PointerManager::addPtr((void*)variable);\
+									Mafia::System::PointerManager::addPtr((void*)variable);\
                                  }
 
 //! \brief Безопасное удаление указателя (если указатель не был выделен, выдаст ошибку) (не используйте для массивов)
@@ -102,7 +104,7 @@ namespace Mafia{
 //! SAFE_DELETE(a);
 #define SAFE_DELETE(variable) {\
                             ASSERT(PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
-                            PointerManager::removePtr((void*)variable);\
+							Mafia::System::PointerManager::removePtr((void*)variable);\
                             delete variable;\
                          }
 
@@ -112,7 +114,7 @@ namespace Mafia{
 //! SAFE_DELETE_ARRAY(b);
 #define SAFE_DELETE_ARRAY(variable) {\
                             ASSERT(PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
-                            PointerManager::removePtr((void*)variable);\
+							Mafia::System::PointerManager::removePtr((void*)variable);\
                             delete[] variable;\
                          }
 #endif

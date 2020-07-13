@@ -52,5 +52,4 @@ namespace MafiaTests {
     }
 }
 
-
 #endif // SERIALIZERTESTS_H

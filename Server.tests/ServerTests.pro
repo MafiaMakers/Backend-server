@@ -9,7 +9,6 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-
 SOURCES +=  \
     ../Server/Exceptions/exception.cpp \
     ../Server/Exceptions/systemexception.cpp \
@@ -23,6 +22,9 @@ SOURCES +=  \
     ../Server/userstatistics.cpp \
     System/tst_SHA_256.cpp \
     System/tst_Tuple.cpp \
+    System/tst_functions.cpp \
+    System/tst_keygen.cpp \
+    System/tst_limitedqueue.cpp \
     System/tst_portsmanager.cpp \
     System/tst_serializer.cpp \
     System/tst_simplestring.cpp \
@@ -31,6 +33,13 @@ SOURCES +=  \
 HEADERS += \
     System/tst_SHA_256.h \
     System/tst_Tuple.h \
+    System/tst_functions.h \
+    System/tst_keygen.h \
+    System/tst_limitedqueue.h \
     System/tst_portsmanager.h \
     System/tst_serializer.h \
-    System/tst_simplestring.h
+    System/tst_simplestring.h \
+    test.h
+
+DISTFILES += \
+    System/SystemTests

@@ -1,0 +1,24 @@
+#include "test.h"
+#include "System/tst_Tuple.h"
+#include "System/tst_serializer.h"
+#include "System/tst_SHA_256.h"
+#include "System/tst_simplestring.h"
+#include "System/tst_portsmanager.h"
+#include "System/tst_limitedqueue.h"
+#include "System/tst_keygen.h"
+#include "System/tst_functions.h"
+
+namespace MafiaTests {
+    namespace SystemTests {
+        void test(int argc, char* argv[]) {
+            ADD_TO_TEST<TupleTests>(argc, argv);
+            ADD_TO_TEST<SerializerTests>(argc, argv);
+            ADD_TO_TEST<SHA256Tests>(argc, argv);
+            ADD_TO_TEST<SimpleStringTests>(argc, argv);
+            ADD_TO_TEST<PortsManagerTests>(argc, argv);
+            ADD_TO_TEST<LimitedQueueTests>(argc, argv);
+            ADD_TO_TEST<KeyGenTests>(argc, argv);
+            ADD_TO_TEST<FunctionsTests>(argc, argv);
+        }
+    }
+}

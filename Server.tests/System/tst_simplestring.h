@@ -19,5 +19,4 @@ namespace MafiaTests {
 	}
 }
 
-
 #endif // SIMPLESTRINGTEST_H

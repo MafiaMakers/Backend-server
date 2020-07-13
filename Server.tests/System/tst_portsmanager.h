@@ -28,5 +28,4 @@ namespace MafiaTests {
 	}
 }
 
-
 #endif // PORTSMANAGERTESTS_H

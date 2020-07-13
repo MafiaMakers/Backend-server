@@ -26,8 +26,7 @@ void SimpleStringTests::paste_overflow()
 	Mafia::System::String largeSource = Mafia::System::String("ochen' mnogo dannyh");
 
 	smallBuffer.paste(largeSource);
-	smallBuffer.data[smallBuffer.size - 1] = '\0';
 
 	QCOMPARE(smallBuffer.size, 3);
-	QCOMPARE(smallBuffer.data, (char*)"oc");
+	QCOMPARE(smallBuffer.data, (char*)"och");
 }
