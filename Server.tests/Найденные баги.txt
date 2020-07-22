@@ -6,3 +6,16 @@ Mafia::System::Serializer::deserialize<MafiaList<char>> - проверка на 
 Mafia::System::Serializer::serialize<Mafia::Network::Message> - нет сериализации данных о клиенте
 Mafia::System::Serializer::deserialize<Mafia::Network::Message> - нет десериализации данных о клиенте
 Mafia::System::String(std::string) - беды с нулевым символом в конце (он то учитывается, то нет)
+Mafia::System::Serializer::deserialize<Mafia::Network::Message> - указатель на данные очищается и данные теряются
+MafiaTests::NetworkTests::CryptoTests::wrap_parse_notext_message() - неверные данные передаются в шифровальщик
+MafiaTests::UsersDatabaseManagerTests - ошибки, связанные с путаницей между bool и Mafia::Database::AuthorizedStatus
+MafiaTests::DatabaseTests::UserDatabaseManagerTests - ошибки, связанные с путаницей между bool и Mafia::Database::Status
+Mafia::Database::UserDatabaseManager::create_filter_request() - опечатка в названии колонки (AUTHORIZED вместо IS_AUTHORIZED)
+Mafia::Database::UserDatabaseManager::change_email() - нет проверки на наличие такого id в базе данных
+Mafia::Database::UserDatabaseManager::login_user() - неверное присваивание переменной is_authorized
+Mafia::Database::UserDatabaseManager::logout_user() - неверное присваивание переменной is_authorized
+Mafia::Database::UserDatabaseManager::change_password() - опять эта путаница с authorized
+Mafia::Database::UserDatabaseManager::get_query_users() - опечатка PASSWIRD
+Mafia::Database::UserDatabase::create_filter_request() - неверная функция поиска подстроки
+Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions() - использование времени в SQL-запросе без кавычек
+Mafia::Database::TransactionDatabaseManager::get_transaction() - отсутствие сериализации таймштампов

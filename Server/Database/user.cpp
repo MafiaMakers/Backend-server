@@ -37,7 +37,65 @@ void User::show()
     for(int j = 0; j < this->transactions.length(); j++){
         std::cout << "\n    " << this->transactions[j];
     }
-    std::cout << std::endl;
+	std::cout << std::endl;
+}
+
+bool User::operator ==(const User& user) const
+{
+	if(user.id != this->id){
+		return false;
+	}
+	if(user.salt != this->salt){
+		return false;
+	}
+	if(user.chats != this->chats){
+		return false;
+	}
+	if(user.email != this->email){
+		return false;
+	}
+	if(user.allGames != this->allGames){
+		return false;
+	}
+	if(user.nickname != this->nickname){
+		return false;
+	}
+	if(user.authorized != this->authorized){
+		return false;
+	}
+	if(user.accountType != this->accountType){
+		return false;
+	}
+	if(user.achievement != this->achievement){
+		return false;
+	}
+	if(user.isConfirmed != this->isConfirmed){
+		return false;
+	}
+	if(user.passwordHash != this->passwordHash){
+		return false;
+	}
+	if(user.transactions != this->transactions){
+		return false;
+	}
+	if(user.loginDateTime != this->loginDateTime){
+		return false;
+	}
+	if(user.confirmationKey != this->confirmationKey){
+		return false;
+	}
+	if(user.defeatesByRoles != this->defeatesByRoles){
+		return false;
+	}
+	if(user.victoriesByRoles != this->victoriesByRoles){
+		return false;
+	}
+	return true;
+}
+
+bool User::operator !=(const User& user) const
+{
+	return !(*this == user);
 }
 
 void Transaction::show()
@@ -48,5 +106,28 @@ void Transaction::show()
                  "\nhash = " << this->hash.toStdString() <<
                  "\ntype = " << this->type <<
                  "\ndate = " << this->timestamp.toString(SQL_DATETIME_FORMAT).toStdString() <<
-                 "\nprice = " << this->price << "\n";
+				 "\nprice = " << this->price << "\n";
+}
+
+bool Transaction::operator ==(const Transaction& a) const
+{
+	if(this->id != a.id){
+		return false;
+	}
+	if(this->hash != a.hash){
+		return false;
+	}
+	if(this->buyer != a.buyer){
+		return false;
+	}
+	if(this->type != a.type){
+		return false;
+	}
+	if(this->price != a.price){
+		return false;
+	}
+	if(this->timestamp != a.timestamp){
+		return false;
+	}
+	return true;
 }

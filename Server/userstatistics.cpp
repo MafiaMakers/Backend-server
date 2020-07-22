@@ -14,5 +14,31 @@ UserStatistics::UserStatistics(Database::User user)
     this->achievement = user.achievement;
     this->loginDateTime = user.loginDateTime;
     this->defeatesByRoles = user.defeatesByRoles;
-    this->victoriesByRoles = user.victoriesByRoles;
+	this->victoriesByRoles = user.victoriesByRoles;
+}
+
+bool UserStatistics::operator ==(const UserStatistics& a) const
+{
+	if(this->id != a.id){
+		return false;
+	}
+	if(this->nickname != a.nickname){
+		return false;
+	}
+	if(this->accountType != a.accountType){
+		return false;
+	}
+	if(this->achievement != a.achievement){
+		return false;
+	}
+	if(this->loginDateTime != a.loginDateTime){
+		return false;
+	}
+	if(this->defeatesByRoles != a.defeatesByRoles){
+		return false;
+	}
+	if(this->victoriesByRoles != a.victoriesByRoles){
+		return false;
+	}
+	return true;
 }

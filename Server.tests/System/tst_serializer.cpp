@@ -138,7 +138,7 @@ void SerializerTests::chat_message()
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::Database::ChatMessage>(source);
     Mafia::Database::ChatMessage result = Mafia::System::Serializer::deserialize<Mafia::Database::ChatMessage>(data);
 
-    compare_chat_messages(source, result);
+	QCOMPARE(source, result);
 }
 
 void SerializerTests::list_of_chat_message()
@@ -155,7 +155,7 @@ void SerializerTests::list_of_chat_message()
             Mafia::System::Serializer::deserialize<MafiaList<Mafia::Database::ChatMessage>>(data);
 
     for( int i = 0; i < length; i++ ) {
-        compare_chat_messages( source[ i ], result[ i ] );
+		QCOMPARE( source[ i ], result[ i ] );
     }
 }
 
@@ -166,7 +166,7 @@ void SerializerTests::user_statistics()
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::UserStatistics>(source);
     Mafia::UserStatistics result = Mafia::System::Serializer::deserialize<Mafia::UserStatistics>(data);
 
-    compare_user_statistics(source, result);
+	QCOMPARE(source, result);
 }
 
 void SerializerTests::tuple_of_user_id_and_qstring()
@@ -194,7 +194,7 @@ void SerializerTests::client_info()
 
     QCOMPARE(source.client.ip, result.client.ip);
     QCOMPARE(source.client.port, result.client.port);
-    compare_user_statistics(source.statistics, result.statistics);
+	QCOMPARE(source.statistics, result.statistics);
 
 }
 
@@ -226,7 +226,7 @@ void SerializerTests::game()
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::Gameplay::Game>(source);
     auto result = Mafia::System::Serializer::deserialize<Mafia::Gameplay::Game>(data);
 
-    compare_games(source, result);
+	QCOMPARE(source, result);
 }
 
 void SerializerTests::tuple_of_int_and_int()
@@ -247,7 +247,7 @@ void SerializerTests::network_message()
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::Network::Message>(source);
     auto result = Mafia::System::Serializer::deserialize<Mafia::Network::Message>(data);
 
-    compare_messages(source, result);
+	QCOMPARE(source, result);
 }
 
 void SerializerTests::tuple_of_network_message_and_int()
@@ -259,7 +259,7 @@ void SerializerTests::tuple_of_network_message_and_int()
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::System::Tuple<Mafia::Network::Message, int>>(source);
     auto result = Mafia::System::Serializer::deserialize<Mafia::System::Tuple<Mafia::Network::Message, int>>(data);
 
-    compare_messages(source.item1, result.item1);
+	QCOMPARE(source.item1, result.item1);
     QCOMPARE(source.item2, result.item2);
 }
 
@@ -301,49 +301,4 @@ Mafia::Network::Message SerializerTests::generate_random_network_message()
                  Mafia::Network::Client(qrand(), qrand()),
                  qrand(), qrand(), qrand()
                  );
-}
-
-void SerializerTests::compare_chat_messages(Mafia::Database::ChatMessage source, Mafia::Database::ChatMessage result)
-{
-    QCOMPARE(source.id, result.id);
-    QCOMPARE(source.data, result.data);
-    QCOMPARE(source.from, result.from);
-    QCOMPARE(source.toChat, result.toChat);
-    QCOMPARE(source.feature, result.feature);
-    QCOMPARE(source.answerFor, result.answerFor);
-    QCOMPARE(source.readUsers, result.readUsers);
-    QCOMPARE(source.timestamp, result.timestamp);
-}
-
-void SerializerTests::compare_user_statistics(Mafia::UserStatistics source, Mafia::UserStatistics result)
-{
-    QCOMPARE(source.id, result.id);
-    QCOMPARE(source.nickname, result.nickname);
-    QCOMPARE(source.accountType, result.accountType);
-    QCOMPARE(source.achievement, result.achievement);
-    QCOMPARE(source.loginDateTime, result.loginDateTime);
-    QCOMPARE(source.defeatesByRoles, result.defeatesByRoles);
-    QCOMPARE(source.victoriesByRoles, result.victoriesByRoles);
-}
-
-void SerializerTests::compare_games(Mafia::Gameplay::Game source, Mafia::Gameplay::Game result)
-{
-    QCOMPARE(source.id, result.id);
-    QCOMPARE(source.roles, result.roles);
-    QCOMPARE(source.users, result.users);
-    QCOMPARE(source.result, result.result);
-    QCOMPARE(source.endingDT, result.endingDT);
-    QCOMPARE(source.beginningDT, result.beginningDT);
-}
-
-void SerializerTests::compare_messages(Mafia::Network::Message source, Mafia::Network::Message result)
-{
-    QCOMPARE(source.id, result.id);
-    QCOMPARE(source.data, result.data);
-    QCOMPARE(source.size, result.size);
-    QCOMPARE(source.type, result.type);
-    QCOMPARE(source.client.ip, result.client.ip);
-    QCOMPARE(source.client.port, result.client.port);
-    QCOMPARE(source.partIndex, result.partIndex);
-    QCOMPARE(source.partsCount, result.partsCount);
 }

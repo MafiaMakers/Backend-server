@@ -1,0 +1,12 @@
+#include "test.h"
+#include "Network/tst_mainservernetworker.h"
+#include "Network/tst_crypto.h"
+
+namespace MafiaTests {
+    namespace NetworkTests {
+        void test(int argc, char* argv[]) {
+            ADD_TO_TEST<MainServerNetworkerTests>(argc, argv);
+            ADD_TO_TEST<CryptoTests>(argc, argv);
+        }
+    }
+}

@@ -57,5 +57,28 @@ void Game::show()
         std::cout << "\n    id = " << this->users[j] <<
                      "\n    role = " << this->roles[j];
     }
-    std::cout << std::endl;
+	std::cout << std::endl;
+}
+
+bool Game::operator ==(const Game& a) const
+{
+	if(this->id != a.id){
+		return false;
+	}
+	if(this->roles != a.roles){
+		return false;
+	}
+	if(this->users != a.users){
+		return false;
+	}
+	if(this->result != a.result){
+		return false;
+	}
+	if(this->endingDT != a.endingDT){
+		return false;
+	}
+	if(this->beginningDT != a.beginningDT){
+		return false;
+	}
+	return true;
 }

@@ -20,5 +20,34 @@ void ChatMessage::show()
     for(int j = 0; j < this->answerFor.length(); j++){
         std::cout << "\n    " << this->answerFor[j];
     }
-    std::cout << std::endl;
+	std::cout << std::endl;
+}
+
+bool ChatMessage::operator ==(const ChatMessage& a) const
+{
+	if(this->id != a.id){
+		return false;
+	}
+	if(this->data != a.data){
+		return false;
+	}
+	if(this->from != a.from){
+		return false;
+	}
+	if(this->toChat != a.toChat){
+		return false;
+	}
+	if(this->feature != a.feature){
+		return false;
+	}
+	if(this->answerFor != a.answerFor){
+		return false;
+	}
+	if(this->readUsers != a.readUsers){
+		return false;
+	}
+	if(this->timestamp != a.timestamp){
+		return false;
+	}
+	return true;
 }

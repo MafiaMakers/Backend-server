@@ -38,6 +38,8 @@ namespace Mafia {
             MafiaList<UserIdType> readUsers;
             //! \brief Метод для вывода информации о сообщении (всех его полей)
             void show();
+
+			bool operator == (const ChatMessage &a) const;
         };
     }
 }

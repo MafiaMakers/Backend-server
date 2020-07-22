@@ -43,11 +43,6 @@ namespace MafiaTests {
             Mafia::Database::ChatMessage generate_random_message();
             Mafia::UserStatistics generate_random_statistics();
             Mafia::Network::Message generate_random_network_message();
-            void compare_chat_messages(Mafia::Database::ChatMessage source, Mafia::Database::ChatMessage result);
-            void compare_user_statistics(Mafia::UserStatistics source, Mafia::UserStatistics result);
-            void compare_games(Mafia::Gameplay::Game source, Mafia::Gameplay::Game result);
-            void compare_messages(Mafia::Network::Message source, Mafia::Network::Message result);
-
         };
     }
 }

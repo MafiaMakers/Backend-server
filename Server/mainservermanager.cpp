@@ -568,7 +568,8 @@ void MainServerManager::change_email(Network::Client client, QString newEmail, N
         Database::UserIdType user = get_user_by_client(client);
         bool success = usersDb->change_email(user, newEmail);
 
-        networker->send_message(Network::Message(Network::MessageType_RequestAnswer, (Network::SymbolType*)System::Serializer::serialize<bool>(success).c_str(),
+		networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
+												 (Network::SymbolType*)System::Serializer::serialize<bool>(success).c_str(),
                                         (int)sizeof(bool), client, requestId));
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -587,7 +588,8 @@ void MainServerManager::change_achievement(Database::UserIdType user, Database::
 
         std::string messageData = System::Serializer::serialize<Database::Achievement>(achievement);
 
-        networker->send_message(Network::Message(Network::MessageType_AchievementChange, (Network::SymbolType*)messageData.c_str(), messageData.length(),
+		networker->send_message(Network::Message(Network::MessageType_AchievementChange,
+												 (Network::SymbolType*)messageData.c_str(), messageData.length(),
                                         client));
 
     } catch (Exceptions::Exception* exception) {
@@ -865,7 +867,7 @@ void MainServerManager::_networker_test()
                                               Network::Message(Network::MessageType_AbstractRequest,
                                                       (char*)"To be or not to be... That is the question!",
                                                       44,
-                                                Network::Client(QHostAddress("192.168.1.66").toIPv4Address(),
+												Network::Client(QHostAddress("127.0.0.1").toIPv4Address(),
                                                        10000)));
 
 

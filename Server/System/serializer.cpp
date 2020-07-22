@@ -12,132 +12,135 @@ using namespace Mafia;
 using namespace System;
 
 template<>
-std::string Serializer::serialize(int value){
-    std::string result = "";
-
-    for(unsigned int i = 0; i < sizeof(value); i++){
-        result += ((char*)&value)[i];
-    }
-    return result;
-}
-
-template<>
-int Serializer::deserialize(String &data){
-    if((unsigned int)data.size >= sizeof(int)){
-        int result = *(int*)data.data;
-        data = String(data.data + sizeof(int), data.size - sizeof(int));
-        return result;
-    } else{
-        throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
-        return 0;
-    }
-}
-
-
-template<>
-std::string Serializer::serialize(Network::Client value){
-    std::string result = "";
-    result += serialize<int>(value.ip);
-    result += serialize<int>(value.port);
-
-    return result;
-}
-
-template<>
-Network::Client Serializer::deserialize(String &data){
-    Network::Client result = Network::Client();
-    result.ip = deserialize<int>(data);
-    result.port = deserialize<int>(data);
-    return result;
-}
-
-
-template<>
-std::string Serializer::serialize(Database::ChatCapability value){
-    return serialize<int>((int)value);
-}
-
-template<>
-Database::ChatCapability Serializer::deserialize(String &data){
-    return((Database::ChatCapability)deserialize<int>(data));
-}
-
-template<>
-std::string Serializer::serialize(Database::ChatFeature value){
-    return serialize<int>((int)value);
-}
-
-template<>
-Database::ChatFeature Serializer::deserialize(String &data){
-    return((Database::ChatFeature)deserialize<int>(data));
-}
-
-template<>
-std::string Serializer::serialize(Database::AccountType value){
-    return serialize<int>((int)value);
-}
-
-template<>
-Database::AccountType Serializer::deserialize(String &data){
-    return((Database::AccountType)deserialize<int>(data));
-}
-
-template<>
-std::string Serializer::serialize(Database::Achievement value){
-    return serialize<int>((int)value);
-}
-
-template<>
-Database::Achievement Serializer::deserialize(String &data){
-    return((Database::Achievement)deserialize<int>(data));
-}
-
-template<>
-std::string Serializer::serialize(MafiaList<int> value){
-    std::string result = "";
-
-    result += serialize<int>(value.length());
-    for(int i = 0; i < value.length(); i++){
-        result += serialize<int>(value[i]);
-    }
-
-    return result;
-}
-
-template<>
-MafiaList<int> Serializer::deserialize(String &data){
-
-    int size = deserialize<int>(data);
-    MafiaList<int> result = MafiaList<int>();
-    if((unsigned int)data.size >= size * sizeof(int)){
-        for(int i = 0; i < size; i++){
-            result.append(deserialize<int>(data));
-        }
-    } else{
-        throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
-    }
-
-    return result;
-}
-
-
-template<>
 std::string Serializer::serialize(char value){
     std::string data = "";
-    data += value;
+	data += 'M' + (char)(value / 16);
+	data += 'M' + (char)(value % 16);
     return data;
 }
 
 template<>
 char Serializer::deserialize(String &value){
-    if(value.size > 0){
-        char result = value.data[0];
-        value = String(value.data + sizeof(char), value.size - sizeof(char));
+	if(value.size >= 2){
+		char result = (value.data[0] - 'M') * 16 + (value.data[1] - 'M');
+		value = String(value.data + 2 * sizeof(char), value.size - 2 * sizeof(char));
         return result;
     } else{
         throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
         return '\0';
     }
+}
+
+template<>
+std::string Serializer::serialize(int value){
+	std::string result = "";
+
+	for(unsigned int i = 0; i < sizeof(value); i++){
+		result += serialize<char>((((char*)&value)[i]));
+	}
+	return result;
+}
+
+template<>
+int Serializer::deserialize(String &data){
+	if((unsigned int)data.size >= sizeof(int)){
+		char* d = new char[sizeof (int)];
+		for(unsigned int i = 0; i < sizeof(int); i++){
+			d[i] = deserialize<char>(data);
+		}
+		int result = *(int*)d;
+		return result;
+	} else{
+		throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
+		return 0;
+	}
+}
+
+
+template<>
+std::string Serializer::serialize(Network::Client value){
+	std::string result = "";
+	result += serialize<int>(value.ip);
+	result += serialize<int>(value.port);
+
+	return result;
+}
+
+template<>
+Network::Client Serializer::deserialize(String &data){
+	Network::Client result = Network::Client();
+	result.ip = deserialize<int>(data);
+	result.port = deserialize<int>(data);
+	return result;
+}
+
+
+template<>
+std::string Serializer::serialize(Database::ChatCapability value){
+	return serialize<int>((int)value);
+}
+
+template<>
+Database::ChatCapability Serializer::deserialize(String &data){
+	return((Database::ChatCapability)deserialize<int>(data));
+}
+
+template<>
+std::string Serializer::serialize(Database::ChatFeature value){
+	return serialize<int>((int)value);
+}
+
+template<>
+Database::ChatFeature Serializer::deserialize(String &data){
+	return((Database::ChatFeature)deserialize<int>(data));
+}
+
+template<>
+std::string Serializer::serialize(Database::AccountType value){
+	return serialize<int>((int)value);
+}
+
+template<>
+Database::AccountType Serializer::deserialize(String &data){
+	return((Database::AccountType)deserialize<int>(data));
+}
+
+template<>
+std::string Serializer::serialize(Database::Achievement value){
+	return serialize<int>((int)value);
+}
+
+template<>
+Database::Achievement Serializer::deserialize(String &data){
+	return((Database::Achievement)deserialize<int>(data));
+}
+
+template<>
+std::string Serializer::serialize(MafiaList<int> value){
+	std::string result = "";
+
+	result += serialize<int>(value.length());
+	for(int i = 0; i < value.length(); i++){
+		result += serialize<int>(value[i]);
+	}
+
+	return result;
+}
+
+template<>
+MafiaList<int> Serializer::deserialize(String &data){
+
+	int size = deserialize<int>(data);
+	MafiaList<int> result = MafiaList<int>();
+	if((unsigned int)data.size >= size * sizeof(int)){
+		for(int i = 0; i < size; i++){
+			result.append(deserialize<int>(data));
+		}
+	} else{
+		throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
+	}
+
+	return result;
 }
 
 template<>
@@ -165,22 +168,17 @@ MafiaList<char> Serializer::deserialize(String &data){
 
     unsigned int size = (unsigned int)deserialize<int>(data);
     MafiaList<char> result = MafiaList<char>();
-    if((unsigned int)data.size >= (size * sizeof(char))){
-        for(unsigned int i = 0; i < size; i++){
-            result.append(deserialize<char>(data));
-        }
-    } else{
-        throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
-    }
+	for(unsigned int i = 0; i < size; i++){
+		result.append(deserialize<char>(data));
+	}
 
     return result;
 }
 
 template<>
 std::string Serializer::serialize(QString value){
-    MafiaList<char> charList = QList<char>();
+	MafiaList<char> charList = MafiaList<char>();
     std::string data = value.toStdString();
-
     for(unsigned int i = 0; i < data.length(); i++){
         charList.append(data[i]);
     }
@@ -441,22 +439,21 @@ std::string Serializer::serialize(Network::Message value){
     result += serialize<int>(value.partsCount);
     result += serialize<Network::Client>(value.client);
     result += serialize<QString>(QString::fromStdString(std::string((char*)value.data, value.size)));
-
     return result;
 }
 
 template<>
 Network::Message System::Serializer::deserialize(String &data){
     Network::Message result = Network::Message();
-
     result.id = deserialize<Network::MessageIdType>(data);
     result.type = deserialize<Network::MessageType>(data);
     result.partIndex = deserialize<int>(data);
     result.partsCount = deserialize<int>(data);
     result.client = deserialize<Network::Client>(data);
-    std::string mesData = deserialize<QString>(data).toStdString();
-    result.data = (Network::SymbolType*)mesData.c_str();
-    result.size = mesData.length();
+	std::string mesDataStr = deserialize<QString>(data).toStdString();
+	String mesData = String(mesDataStr);
+	result.data = (Network::SymbolType*)mesData.data;
+	result.size = mesData.size;
 
     return result;
 }
@@ -466,7 +463,6 @@ std::string Serializer::serialize(Tuple<Network::Message, int> value){
     std::string result = "";
     result += serialize<Network::Message>(value.item1);
     result += serialize<int>(value.item2);
-
     return result;
 }
 
@@ -476,6 +472,5 @@ Tuple<Network::Message, int> Serializer::deserialize(System::String &data){
 
     result.item1 = deserialize<Network::Message>(data);
     result.item2 = deserialize<int>(data);
-
     return result;
 }

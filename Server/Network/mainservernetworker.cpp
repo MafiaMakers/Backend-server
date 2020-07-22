@@ -7,10 +7,11 @@
 #include "messageTypes.h"
 #include "Exceptions/messageprocessingexception.h"
 #include "System/functions.h"
+#include <System/serializer.h>
 
 using namespace Mafia;
 using namespace Network;
-const int MainServerNetworker::TIME_TO_RESEND = 500;
+const int MainServerNetworker::TIME_TO_RESEND = 2000;
 const int MainServerNetworker::MAX_RESEND_COUNT = 100;
 //const int MainServerNetworker::idsForClient = 1000;
 
@@ -19,6 +20,11 @@ const QSet<MessageType> MainServerNetworker::needConfirmation = QSet<MessageType
         << MessageType_RequestAnswer
         << MessageType_AbstractRequest
         << MessageType_PassClientRequest;
+
+MainServerNetworker::MainServerNetworker(QObject* parent) : QObject(parent)
+{
+
+}
 
 MainServerNetworker::MainServerNetworker(int port)
 {
@@ -30,11 +36,18 @@ MainServerNetworker::MainServerNetworker(int port)
     this->waitingForConfirmation = MafiaList<Message>();
     std::thread resendingThread(&MainServerNetworker::_resend_not_confirmed_messages, this);
     resendingThread.detach();
-    connect(socket, SIGNAL(readyRead()), this, SLOT(receive_message()));
+	connect(socket, &QUdpSocket::readyRead, this, &MainServerNetworker::receive_message);
+}
+
+MainServerNetworker::~MainServerNetworker()
+{
+
 }
 
 MessageIdType MainServerNetworker::send_message(Message message)
 {
+	std::cout << "sending message : \n";
+	show_message(message);
     System::String mes = System::String();
     if(message.id == (MessageIdType)(0)){
         currentMaxId++;
@@ -62,7 +75,7 @@ MessageIdType MainServerNetworker::send_message(Message message)
             exception->show();
             return -2;
         }
-        std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
+		//std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
         _send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
@@ -82,7 +95,6 @@ void MainServerNetworker::_send_message(char* data, int size, QHostAddress clien
 
 void MainServerNetworker::_process_message(Message message)
 {    
-
     if(needConfirmation.contains(message.type)){
         //std::cout << "Need confirmation" << std::endl;
         Message confirmationMessage = Message();
@@ -93,10 +105,10 @@ void MainServerNetworker::_process_message(Message message)
         confirmationMessage.client = message.client;
         send_message(confirmationMessage);
     }
-    //show_message(message);
-    if(message.client.ip == (int)QHostAddress("127.0.0.1").toIPv4Address()){
+	//show_message(message);
+	if(message.client.ip == (int)QHostAddress("127.0.0.1").toIPv4Address()){
         emit on_subserver_api_message_received(message);
-        return;
+		//return;
     }
 
     switch (message.type) {
@@ -117,11 +129,11 @@ void MainServerNetworker::_process_message(Message message)
         break;
     }
     case MessageType_AbstractRequest:{
-        int answer = 42;
-        send_message(Message(MessageType_RequestAnswer, (SymbolType*)&answer, 4 / sizeof(SymbolType), message.client, message.id));
+		int answer = 42;
+		System::String mesData = System::Serializer::serialize<int>(answer);
+		send_message(Message(MessageType_RequestAnswer, (SymbolType*)mesData.data, mesData.size / sizeof(SymbolType), message.client, message.id));
         break;
     }
-        // Тут еще надо код со всякими emit...
     default:{
         emit message_received(message);
         //throw new Exceptions::MessageProcessingException(System::String("unknown message type received"), Exceptions::MessageProcessingExceptionId_UnknownMessageType);
@@ -174,9 +186,11 @@ bool MainServerNetworker::check_message_full(MessageIdType id)
 int MainServerNetworker::get_list_index(MessageIdType id)
 {
     for(int i = 0; i < waitingToFillMessages.length(); i++){
-        if(waitingToFillMessages[i][0].id == id){
-            return i;
-        }
+		if(waitingToFillMessages[i].length() > 1){
+			if(waitingToFillMessages[i][0].id == id){
+				return i;
+			}
+		}
     }
     return  -1;
 }
@@ -184,23 +198,18 @@ int MainServerNetworker::get_list_index(MessageIdType id)
 void MainServerNetworker::add_received_message(Message message)
 {
     int listIndex = get_list_index(message.id);
-
     // Если такого сообщения еще нет в списке ожидающих. То есть это первая часть от сообщения, которая нам пришла
     if(listIndex == -1){
         listIndex = waitingToFillMessages.length();
-
-        waitingToFillMessages.append(MafiaList<Message>());
-
         _add_empty_message(message);
     }
     try {
-        if(message.partIndex < waitingToFillMessages[listIndex].length() - 1 && message_matches(message)){
+		if(message.partIndex < waitingToFillMessages[listIndex].length() - 1 && message_matches(message)){
             waitingToFillMessages[listIndex][message.partIndex + 1] = message;
         } else{
             throw new Exceptions::MessageProcessingException(System::String("Message parts data mismatch"),
                                                              Exceptions::MessageProcessingExceptionId_MessagePartsMismatch);
         }
-
         if(check_message_full(message.id)){
             Message wholeMessage = _construct_whole_message(message.id);
 
@@ -219,6 +228,7 @@ void MainServerNetworker::add_received_message(Message message)
 
 bool MainServerNetworker::message_matches(Message message)
 {
+	//std::cout << "check message match\n";
     int index = get_list_index(message.id);
 
     if(index == -1){
@@ -238,12 +248,12 @@ bool MainServerNetworker::message_matches(Message message)
     if(message.partsCount != waitingToFillMessages[index][0].partsCount){
         return false;
     }
-
+	//std::cout << "messages math\n";
     return true;
 }
 
 void MainServerNetworker::receive_message() {
-    //std::cout << "Received some message" << std::endl;
+	std::cout << "Message received!\n";
     QByteArray datagram;
     datagram.resize(socket->pendingDatagramSize());
 
@@ -274,7 +284,6 @@ void MainServerNetworker::receive_message() {
 void MainServerNetworker::show_message(Message message)
 {
     std::cout << "[on port " << myPort << "]\n";
-    std::cout << "Received a message" << std::endl;
     std::cout << "Message : \n" << "    id : " << message.id << "\n    type : " << message.type << "\n    size : " << message.size << "\n    data : ";
     for(int i = 0; i < message.size; i++){
         std::cout << message.data[i];
@@ -298,11 +307,15 @@ void MainServerNetworker::_add_empty_message(Message baseMessage)
 {
     int listIndex = waitingToFillMessages.length();
 
+	waitingToFillMessages.append(MafiaList<Message>());
+
     Message base = Message();
     base.id = baseMessage.id;
     base.type = baseMessage.type;
     base.client = baseMessage.client;
     base.partsCount = baseMessage.partsCount;
+
+	waitingToFillMessages.append(MafiaList<Message>());
 
     waitingToFillMessages[listIndex].append(base);
 
@@ -335,7 +348,6 @@ Message MainServerNetworker::_construct_whole_message(MessageIdType id)
             currentInd++;
         }
     }
-
     return wholeMessage;
 }
 

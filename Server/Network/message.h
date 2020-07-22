@@ -45,6 +45,14 @@ namespace Mafia {
                 return(a.ip == this->ip && a.port == this->port);
             }
 
+			bool operator == (const Client &a) const{
+				return(a.ip == this->ip && a.port == this->port);
+			}
+
+			bool operator != (const Client &a) const{
+				return !(*this == a);
+			}
+
             /*!
              * \brief Тоже оператор сравнения, но только обратный
              * \param a второй объект клиент
@@ -109,6 +117,33 @@ namespace Mafia {
                 this->partsCount = mes.partsCount;
                 return mes;
             }
+
+			bool operator==(const Message &a) const {
+				if(this->id != a.id){
+					return false;
+				}
+				if(this->size != a.size){
+					return false;
+				}
+				for(int i = 0; i < this->size; i++){
+					if(this->data[i] != a.data[i]){
+						return false;
+					}
+				}
+				if(this->type != a.type){
+					return false;
+				}
+				if(this->client != a.client){
+					return false;
+				}
+				if(this->partIndex != a.partIndex){
+					return false;
+				}
+				if(this->partsCount != a.partsCount){
+					return false;
+				}
+				return true;
+			}
 
             //! id сообщения (используется для проверки повторных отправок и прочих сбоев)
             MessageIdType id;

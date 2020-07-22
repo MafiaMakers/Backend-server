@@ -17,6 +17,9 @@ namespace Mafia {
          * \param user Данные о пользователе, которые следует преобразовать
          */
         UserStatistics(Database::User user);
+
+		bool operator == (const UserStatistics &a) const;
+
         //! \brief см. \ref Mafia::Database::User::victoriesByRoles
         MafiaList<int> victoriesByRoles;
         //! \brief см. \ref Mafia::Database::User::defeatesByRoles

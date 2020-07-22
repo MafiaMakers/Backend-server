@@ -46,7 +46,10 @@ Message Crypto::parse_data(char *data, int size){
     }
 
     if(result.item2 != realSum){
-        throw new Exceptions::MessageParsingException(System::String("control sum doesn't match to real sum"), Exceptions::MessageParsingExceptionId_ControlSumMismatch);
+		throw new Exceptions::MessageParsingException(System::String("control sum doesn't match to real sum " +
+																	 QString::number(result.item2).toStdString() + " " +
+																	 QString::number(realSum).toStdString()),
+													  Exceptions::MessageParsingExceptionId_ControlSumMismatch);
     }
 
     Crypto::lastMessageIds->append(result.item1.id);
@@ -70,7 +73,6 @@ System::String Crypto::wrap_message(Message mes){
             controlSum += (ControlSumType)(((char*)&mes.data[i])[j]);
         }
     }
-
     System::String data = System::String(System::Serializer::serialize<System::Tuple<Message, ControlSumType>>(
                 System::Tuple<Message, ControlSumType>(mes, controlSum)));
 

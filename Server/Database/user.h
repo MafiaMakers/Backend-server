@@ -111,7 +111,9 @@ namespace Mafia {
             TransactionType type;
             //! \brief Метод для вывода в консоль всех данных о транзакции
             void show();
-        };
+
+			bool operator == (const Transaction &a) const;
+		};
 
         //! \brief Структура, используемая для хранения и работы с пользователем
         struct User{
@@ -149,6 +151,10 @@ namespace Mafia {
             MafiaList<ChatIdType> chats;
             //! \brief Метод для вывода в консоль всех данных о пользователе
             void show();
+
+			bool operator == (const User &user) const;
+
+			bool operator != (const User &user) const;
         };
     }
 }

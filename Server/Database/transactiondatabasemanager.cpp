@@ -140,6 +140,7 @@ Transaction TransactionDatabaseManager::get_transaction(TransactionIdType id)
             current.type = query_value_to_variable<TransactionType>(query->value(record.indexOf("TYPE")));
             current.buyer = query_value_to_variable<UserIdType>(query->value(record.indexOf("USER_ID")));
             current.price = query_value_to_variable<PriceType>(query->value(record.indexOf("PRICE")));
+			current.timestamp = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
 
            return current;
 
@@ -178,8 +179,8 @@ MafiaList<Transaction> TransactionDatabaseManager::get_time_bounded_transactions
 {
     try {
         QSqlQuery* query = dbWorker->run_query("SELECT * FROM " + dbName + " WHERE "
-                                               "(TIMESTAMP >= " + after.toString(SQL_DATETIME_FORMAT) +
-                                               " AND " + "TIMESTAMP <= " + before.toString(SQL_DATETIME_FORMAT) + ")");
+											   "(TIMESTAMP >= \'" + after.toString(SQL_DATETIME_FORMAT) +
+											   "\' AND " + "TIMESTAMP <= \'" + before.toString(SQL_DATETIME_FORMAT) + "\')");
         MafiaList<Transaction> transactions = get_request_transactions(query);
         return transactions;
 

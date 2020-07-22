@@ -23,8 +23,8 @@ UserDatabaseManager::UserDatabaseManager(DatabaseWorker* _dbWorker) : DatabaseMa
                         "ID " + get_sql_type<UserIdType>() + " PRIMARY KEY" + NOT_NULL + ", "
                         "NICKNAME " + get_sql_type<QString>() + NOT_NULL + ", "
                         "EMAIL " + get_sql_type<QString>() + UNIQUE + NOT_NULL + ", "
-                        "PASSWORD_HASH " + get_sql_type<QString>() + NOT_NULL + ", "
-                        "PASSWORD_SALT " + get_sql_type<QString>() + NOT_NULL + ", "
+					"PASSWORD_HASH " + get_sql_type<QString>() + NOT_NULL + ", "
+					"PASSWORD_SALT " + get_sql_type<QString>() + NOT_NULL + ", "
                         "IS_CONFIRMED " + get_sql_type<Status>() + NOT_NULL + ", "
                         "IS_AUTHORIZED " + get_sql_type<AuthorizedStatus>() + NOT_NULL + ", "
                         "ACCOUNT_TYPE " + get_sql_type<AccountType>() + NOT_NULL + ", "
@@ -107,7 +107,7 @@ bool UserDatabaseManager::login_user(UserIdType id, QString password)
         std::string hash = System::SHA256().hash(addedPassword.toStdString().c_str());
 
         if(user.passwordHash == QString::fromStdString(hash)){
-            QString request = "UPDATE " + dbName + "\nSET IS_AUTHORIZED = TRUE\nWHERE (ID =" + QString::number(id) + " )";
+			QString request = "UPDATE " + dbName + "\nSET IS_AUTHORIZED = " + QString::number(AuthorizedStatus_Authorized) + "\nWHERE (ID =" + QString::number(id) + " )";
             dbWorker->run_query(request);
             return true;
         } else{
@@ -127,16 +127,23 @@ bool UserDatabaseManager::login_user(UserIdType id, QString password)
 
 void UserDatabaseManager::logout_user(UserIdType id)
 {
-    QString request = "UPDATE " + dbName + "\nSET IS_AUTHORIZED = FALSE\nWHERE (ID =" + QString::number(id) + " )";
-    try {
-        dbWorker->run_query(request);
-    } catch (Exceptions::Exception* exception) {
-        switch (exception->get_id()) {
-        default:{
-            throw exception;
-        }
-        }
-    }
+	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+	QString request = "UPDATE " + dbName + "\nSET IS_AUTHORIZED = " + QString::number(AuthorizedStatus_NotAuthorized) + "\nWHERE (ID =" + QString::number(id) + " )";
+	try {
+		QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+		if(!emailQuery->next()){
+			throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+				Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+		}
+
+		dbWorker->run_query(request);
+	} catch (Exceptions::Exception* exception) {
+		switch (exception->get_id()) {
+		default:{
+			throw exception;
+		}
+		}
+	}
 
 }
 
@@ -253,30 +260,37 @@ void UserDatabaseManager::add_transaction(UserIdType user, TransactionIdType tra
 
 void UserDatabaseManager::change_password(UserIdType id, QString newPassword)
 {
-    try {
-        QString authorizedRequest = "SELECT IS_AUTHORIZED FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-        QSqlQuery* authoizedQuery = dbWorker->run_query(authorizedRequest);
-        if(authoizedQuery->next()){
-            if(query_value_to_variable<bool>(authoizedQuery->value(0))){
-                reset_users_password(newPassword, id);
-            } else{
-                throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"),
-                                                               Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
-            }
+	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	if(!emailQuery->next()){
+		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+	}
 
-        } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
-                                                           Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
-        }
+	try {
+		QString authorizedRequest = "SELECT IS_AUTHORIZED FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+		QSqlQuery* authoizedQuery = dbWorker->run_query(authorizedRequest);
+		if(authoizedQuery->next()){
+			if(query_value_to_variable<AuthorizedStatus>(authoizedQuery->value(0)) == AuthorizedStatus_Authorized){
+				reset_users_password(newPassword, id);
+			} else{
+				throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"),
+															   Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
+			}
 
-    } catch (Exceptions::Exception* exception) {
-        switch(exception->get_id()){
-        default:{
-            throw exception;
-            return;
-        }
-        }
-    }
+		} else{
+			throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+														   Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+		}
+
+	} catch (Exceptions::Exception* exception) {
+		switch(exception->get_id()){
+		default:{
+			throw exception;
+			return;
+		}
+		}
+	}
 }
 
 UserIdType UserDatabaseManager::get_id(QString email)
@@ -307,19 +321,26 @@ UserIdType UserDatabaseManager::get_id(QString email)
 
 void UserDatabaseManager::add_achievement(UserIdType id, Achievement achievement)
 {
-    QString request = "UPDATE " + dbName + "\nSET ACHIEVEMENT = " + QString::number(achievement) +
-            "\nWHERE (ID = " + QString::number(id) + ")";
+	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	if(!emailQuery->next()){
+		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+	}
 
-    try {
-        dbWorker->run_query(request);
-    } catch (Exceptions::Exception* exception) {
-        switch (exception->get_id()) {
-        default:{
-            throw exception;
-            return;
-        }
-        }
-    }
+	QString request = "UPDATE " + dbName + "\nSET ACHIEVEMENT = " + QString::number(achievement) +
+			"\nWHERE (ID = " + QString::number(id) + ")";
+
+	try {
+		dbWorker->run_query(request);
+	} catch (Exceptions::Exception* exception) {
+		switch (exception->get_id()) {
+		default:{
+			throw exception;
+			return;
+		}
+		}
+	}
 }
 
 void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
@@ -387,6 +408,13 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
 
 void UserDatabaseManager::set_account_type(UserIdType id, AccountType newAccountType)
 {
+	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	if(!emailQuery->next()){
+		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+	}
+
     try {
         QString request = "UPDATE " + dbName + "\nSET ACCOUNT_TYPE = " + QString::number(newAccountType) + "\nWHERE (ID = " +
                 QString::number(id) + ")";
@@ -406,10 +434,21 @@ bool UserDatabaseManager::change_email(UserIdType id, QString newEmail)
     QString getRequest = "SELECT EMAIL FROM " + dbName;
 
     try {
+		QString idRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+		QSqlQuery* idQuery = dbWorker->run_query(idRequest);
+		QString myEmail = "";
+		if(idQuery->next()){
+			myEmail = query_value_to_variable<QString>(idQuery->value(0));
+		} else {
+			throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+				Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+		}
+
         QSqlQuery* getQuery = dbWorker->run_query(getRequest);
 
         while(getQuery->next()){
-            if(query_value_to_variable<QString>(getQuery->value(0)) == newEmail){
+			QString currentEmail = query_value_to_variable<QString>(getQuery->value(0));
+			if(currentEmail == newEmail && currentEmail != myEmail){
                 return false;
             }
         }
@@ -433,17 +472,24 @@ bool UserDatabaseManager::change_email(UserIdType id, QString newEmail)
 
 void UserDatabaseManager::change_nickname(UserIdType id, QString newNickname)
 {
-    QString request = "UPDATE " + dbName + "\nSET NICKNAME = \'" + newNickname + "\'\nWHERE (ID = " + QString::number(id) + ")";
+	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
+	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	if(!emailQuery->next()){
+		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
+	}
 
-    try {
-        dbWorker->run_query(request);
-    } catch (Exceptions::Exception* exception) {
-        switch (exception->get_id()) {
-        default:{
-            throw exception;
-        }
-        }
-    }
+	QString request = "UPDATE " + dbName + "\nSET NICKNAME = \'" + newNickname + "\'\nWHERE (ID = " + QString::number(id) + ")";
+
+	try {
+		dbWorker->run_query(request);
+	} catch (Exceptions::Exception* exception) {
+		switch (exception->get_id()) {
+		default:{
+			throw exception;
+		}
+		}
+	}
 }
 
 MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
@@ -549,11 +595,11 @@ QString UserDatabaseManager::create_filter_request(MafiaList<UserIdType> ids, St
     }
 
     if(authorizedNow != AuthorizedStatus_Any){
-        request += " AND (AUTHORIZED = " + QString::number(authorizedNow) + ")";
+		request += " AND (IS_AUTHORIZED = " + QString::number(authorizedNow) + ")";
     }
 
     if(nickname != ""){
-        request += " AND (CONTAINS(NICKNAME, \'" + nickname + "\'))";
+		request += " AND (NICKNAME LIKE \'%" + nickname + "%\')";
     }
 
     request += " AND (LOGIN_DATE_TIME >= \'" + loginAfter.toString(SQL_DATETIME_FORMAT) + "\')";
@@ -571,7 +617,7 @@ MafiaList<User> UserDatabaseManager::get_query_users(QSqlQuery *query)
     while (query->next()) {
         User current = User();
         current.id = query_value_to_variable<UserIdType>(query->value(record.indexOf("ID")));
-        current.salt = query_value_to_variable<QString>(query->value(record.indexOf("PASSWIRD_SALT")));
+		current.salt = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_SALT")));
         current.chats = query_value_to_variable<MafiaList<ChatIdType>>(query->value(record.indexOf("ALL_CHATS")));
         current.email = query_value_to_variable<QString>(query->value(record.indexOf("EMAIL")));
         current.allGames = query_value_to_variable<MafiaList<GameIdType>>(query->value(record.indexOf("ALL_GAMES")));
@@ -729,7 +775,8 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
             }
 
         } else{
-
+		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+		Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
 
     } catch (Exceptions::Exception* exception) {

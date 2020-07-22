@@ -3,6 +3,7 @@
 #include "request.h"
 #include "Network/mainservernetworker.h"
 #include "Exceptions/requestexception.h"
+#include <System/serializer.h>
 namespace Mafia {
     namespace Requests {
         /*!
@@ -28,17 +29,16 @@ namespace Mafia {
             T get_result()
             {
                 if(this->finished){
-                    if(this->size == sizeof(T)){
-                        return(*(T*)(this->data));
-                    } else{
-                        throw new Exceptions::RequestException(System::String("Size of message doesn't match to size of given type"), Exceptions::RequestExceptionId_SizeMismatch);
-                    }
+					//if(this->size == sizeof(T)){
+						System::String dataStr = System::String(data, size);
+						return(System::Serializer::deserialize<T>(dataStr));
+					//} else{
+					//    throw new Exceptions::RequestException(System::String("Size of message doesn't match to size of given type"), Exceptions::RequestExceptionId_SizeMismatch);
+					//}
                 } else{
                     throw new Exceptions::RequestException(System::String("Request hasn't finished yet!"), Exceptions::RequestExceptionId_NotFinished);
                 }
-
             }
-
             /*!
              * \brief Метод получения данных. Сначала ждет, когда данные будут готовы к получению и только после этого возвращает значение.
              * Будьте аккуратны с этим методом, так как он ждет в том же потоке, откуда был вызван

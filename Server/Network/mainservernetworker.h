@@ -15,11 +15,15 @@ namespace Mafia {
         {
         Q_OBJECT
         public:
+			MainServerNetworker(QObject* parent = nullptr);
+
             /*!
              * \brief Конструктор, инициализирует сервер на указанном порте
              * \param port порт, на котором инициализировать сервер
              */
             MainServerNetworker(int port);
+
+			~MainServerNetworker();
 
             /*!
              * \brief Отправления сообщения

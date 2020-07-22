@@ -24,6 +24,8 @@ namespace Mafia {
             QDateTime endingDT;
             //! \brief Метод вывода в консоль всех параметров игры
             void show();
+
+			bool operator == (const Game &a) const;
         };
 
         /*!
