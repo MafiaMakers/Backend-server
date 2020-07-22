@@ -14,8 +14,13 @@ Mafia::Database::UserDatabaseManager::create_filter_request() - опечатка
 Mafia::Database::UserDatabaseManager::change_email() - нет проверки на наличие такого id в базе данных
 Mafia::Database::UserDatabaseManager::login_user() - неверное присваивание переменной is_authorized
 Mafia::Database::UserDatabaseManager::logout_user() - неверное присваивание переменной is_authorized
-Mafia::Database::UserDatabaseManager::change_password() - опять эта путаница с authorized
+Mafia::Database::UserDatabaseManager::change_password() - опять эта путаница с authorized bool и enum
 Mafia::Database::UserDatabaseManager::get_query_users() - опечатка PASSWIRD
 Mafia::Database::UserDatabase::create_filter_request() - неверная функция поиска подстроки
 Mafia::Database::TransactionDatabaseManager::get_time_bounded_transactions() - использование времени в SQL-запросе без кавычек
 Mafia::Database::TransactionDatabaseManager::get_transaction() - отсутствие сериализации таймштампов
+Mafia::Database::GameDatabaseManager::get_games_with() - лишние AND в SQL-запросе
+Mafia::Database::GameDatabaseManager::get_games_with() - та же ошибка с поиском подстроки
+Mafia::Database::GameDatabaseManager::generate_request_participants() - вызов функции без присваивания результата переменной (f() вместо a = f())
+Mafia::Database::GameDatabaseManager::generate_request_roles() - аналогично предыдущему
+MafiaTests::DatabaseTests::GameDatabaseManagerTests::add_game_test() - неправильное получение времени

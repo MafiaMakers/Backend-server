@@ -69,6 +69,9 @@ SOURCES +=  \
     ../Server/clientinfo.cpp \
     ../Server/mainservermanager.cpp \
     ../Server/userstatistics.cpp \
+    Database/tst_databasehelper.cpp \
+    Database/tst_databaseworker.cpp \
+    Database/tst_gamedatabasemanager.cpp \
     Database/tst_transactiondatabasemanager.cpp \
     Database/tst_userdatabasemanager.cpp \
     Network/tst_crypto.cpp \
@@ -150,6 +153,9 @@ HEADERS += \
     ../Server/System/tuple.h \
     ../Server/mainservermanager.h \
     Database/DatabaseTests \
+    Database/tst_databasehelper.h \
+    Database/tst_databaseworker.h \
+    Database/tst_gamedatabasemanager.h \
     Database/tst_transactiondatabasemanager.h \
     Database/tst_userdatabasemanager.h \
     Network/tst_crypto.h \

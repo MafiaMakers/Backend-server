@@ -8,7 +8,7 @@
 namespace Mafia {
     namespace Database {
         //! \brief Формат даты и времени, который используется везде по программе (т.к. он используется SQL)
-        const QString SQL_DATETIME_FORMAT = "yyyy.MM.dd hh:mm:ss";
+		const QString SQL_DATETIME_FORMAT = "yyyy.MM.dd hh:mm:ss";
         //! \brief Время, которое мы считаем 'самым началом' (раньше него не может быть ничего)
         const QDateTime BEGINNING_TIME = QDateTime::fromString("2000.01.01 01:01:01", SQL_DATETIME_FORMAT);
         //! \brief Время, которое мы считаем 'самым концом' (позже него не может быть ничего)

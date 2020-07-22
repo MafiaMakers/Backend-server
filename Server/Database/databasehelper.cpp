@@ -187,19 +187,17 @@ QString Mafia::Database::get_sql_type<ChatFeature>(){
 QString Mafia::Database::get_sql_filter(FilterType filter)
 {
     switch (filter) {
-    case FilterType_OR:{
-        return " OR ";
-        break;
-    }
-    case FilterType_AND:{
-        return " AND ";
-        break;
-    }
-    case FilterType_NONE:{
-        throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
-                                                       Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
-            break;
-    }
+		case FilterType_OR:{
+			return " OR ";
+		}
+		case FilterType_AND:{
+			return " AND ";
+		}
+		case FilterType_NONE:{
+			throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
+														   Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
+				break;
+		}
     }
     return "";
 }

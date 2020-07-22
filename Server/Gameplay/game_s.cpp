@@ -74,10 +74,12 @@ bool Game::operator ==(const Game& a) const
 	if(this->result != a.result){
 		return false;
 	}
-	if(this->endingDT != a.endingDT){
+	if(this->endingDT.msecsTo(a.endingDT) > 1000){
+		std::cout << this->endingDT.toString().toStdString() << "\n" << a.endingDT.toString().toStdString() << "\n";
 		return false;
 	}
-	if(this->beginningDT != a.beginningDT){
+	if(this->beginningDT.msecsTo(a.beginningDT) > 1000){
+		std::cout << this->beginningDT.toString().toStdString() << "\n" << a.beginningDT.toString().toStdString() << "\n";
 		return false;
 	}
 	return true;

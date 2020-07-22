@@ -127,11 +127,11 @@ MafiaList<Gameplay::Game> GameDatabaseManager::get_games_with(MafiaList<UserIdTy
     try {
         QString request = "SELECT * FROM " + dbName + " WHERE (TRUE";
 
-        request += " AND " + generate_request_participant(participants, participantsFilter);
+		request += generate_request_participant(participants, participantsFilter);
 
-        request += " AND " + generate_request_outcomes(outcomes);
+		request += generate_request_outcomes(outcomes);
 
-        request += " AND " + generate_request_roles(roles, rolesFilter);
+		request += generate_request_roles(roles, rolesFilter);
 
         request = request + " AND (BEGIN >= \'" + beginAfter.toString(SQL_DATETIME_FORMAT) + "\')";
         request = request + " AND (END <= \'" + endBefore.toString(SQL_DATETIME_FORMAT) + "\')";
@@ -176,10 +176,10 @@ QString GameDatabaseManager::generate_request_participant(MafiaList<UserIdType> 
         for(int i = 0; i < participants.length(); i++){
             oneUser[0] = participants[i];
             QString user = QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUser).toStdString());
-            request += "CONTAINS(PLAYERS, \'" + user + "\')";
+			request += "PLAYERS LIKE \'%" + user + "%\'";
 
             if(i != participants.length() - 1){
-                get_sql_filter(filter);
+				request += get_sql_filter(filter);
             } else{
                 request += ")";
             }
@@ -223,9 +223,9 @@ QString GameDatabaseManager::generate_request_roles(MafiaList<Gameplay::Role> ro
         for(int i = 0; i < roles.length(); i++){
             oneRole[0] = roles[i];
             QString role = QString::fromStdString(qbytearray_from_qlist<Gameplay::Role>(oneRole).toStdString());
-            request += "CONTAINS(ROLES, \'" + role + "\')";
+			request += "ROLES LIKE \'%" + role + "%\'";
             if(i != roles.length() - 1){
-                get_sql_filter(filter);
+				request += get_sql_filter(filter);
             } else{
                 request += ")";
             }
