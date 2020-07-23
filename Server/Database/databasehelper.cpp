@@ -21,7 +21,9 @@ QString Mafia::Database::query_value_to_variable(QVariant data)
 template<>
 QDateTime Mafia::Database::query_value_to_variable(QVariant data)
 {
-    return data.toDateTime();
+	QDateTime timestamp = data.toDateTime();
+	timestamp.setTimeSpec(Qt::UTC);
+	return timestamp;
 }
 
 template<>
@@ -200,4 +202,11 @@ QString Mafia::Database::get_sql_filter(FilterType filter)
 		}
     }
     return "";
+}
+
+QDateTime Mafia::Database::from_string(QString data)
+{
+	QDateTime result = QDateTime::fromString(data, SQL_DATETIME_FORMAT);
+	result.setTimeSpec(Qt::UTC);
+	return result;
 }

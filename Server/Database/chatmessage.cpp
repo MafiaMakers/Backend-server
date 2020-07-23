@@ -46,7 +46,7 @@ bool ChatMessage::operator ==(const ChatMessage& a) const
 	if(this->readUsers != a.readUsers){
 		return false;
 	}
-	if(this->timestamp != a.timestamp){
+	if(this->timestamp.msecsTo(a.timestamp) > 1500 || a.timestamp.msecsTo(this->timestamp) > 1500){
 		return false;
 	}
 	return true;

@@ -176,6 +176,7 @@ void ChatDatabaseManager::edit_message(ChatMessage message)
                     ;
 
             message.timestamp = QDateTime::currentDateTimeUtc();
+			message.feature = ChatFeature_Edited;
             message.readUsers = MafiaList<UserIdType>();
 
             updateRequest = updateRequest.arg("\'" + message.timestamp.toString(SQL_DATETIME_FORMAT) + "\'");
@@ -213,14 +214,16 @@ void ChatDatabaseManager::message_read(MessageIdType id, UserIdType readUser)
             QSqlRecord record = infoQuery->record();
             MafiaList<UserIdType> readUsers = query_value_to_variable<MafiaList<UserIdType>>(infoQuery->value(record.indexOf("READ_USERS")));
             ChatIdType chat = query_value_to_variable<ChatIdType>(infoQuery->value(record.indexOf("TO_CHAT")));
-            readUsers.append(readUser);
-            QString updateRequest = "UPDATE " + dbName + "\nSET READ_USERS = \'" +
-                    QString::fromStdString(qbytearray_from_qlist<UserIdType>(readUsers).toStdString()) + "\'\nWHERE (ID = " +
-                    QString::number(id) + ")";
+			if(!readUsers.contains(readUser)){
+				readUsers.append(readUser);
+				QString updateRequest = "UPDATE " + dbName + "\nSET READ_USERS = \'" +
+						QString::fromStdString(qbytearray_from_qlist<UserIdType>(readUsers).toStdString()) + "\'\nWHERE (ID = " +
+						QString::number(id) + ")";
 
-            dbWorker->run_query(updateRequest);
+				dbWorker->run_query(updateRequest);
 
-            emit on_message_read(id, readUser, chat);
+				emit on_message_read(id, readUser, chat);
+			}
         } else{
             throw new Exceptions::DatabaseWorkingException(System::String("No messages of such ID"),
                                                            Exceptions::DatabaseWorkingExceptionId_SQlQuery);
@@ -244,14 +247,14 @@ MafiaList<ChatMessage> ChatDatabaseManager::get_messages(MafiaList<ChatIdType> f
 {
     QString request = "SELECT * FROM " + dbName + " WHERE (TRUE";
 
-    request += " AND " + generate_request_chat(fromChats);
+	request += generate_request_chat(fromChats);
 
-    request += " AND " + generate_request_sender(possibleSenders);
+	request += generate_request_sender(possibleSenders);
 
-    request += " AND " + generate_request_feature(features);
+	request += generate_request_feature(features);
 
     if(containsData != ""){
-        request += " AND (CONTAINS(DATA, \'" + containsData + "\')";
+		request += " AND (DATA LIKE \'%" + containsData + "%\')";
     }
 
     request += " AND (TIMESTAMP >= \'" + sentAfter.toString(SQL_DATETIME_FORMAT) + "\')";
@@ -322,7 +325,7 @@ QString ChatDatabaseManager::generate_request_chat(MafiaList<ChatIdType> chats)
     QString request = "";
 
     if(chats.length() != 0){
-        request += "(";
+		request += " AND (";
         for(int i = 0; i < chats.length(); i++){
             request += "TO_CHAT = " + QString::number(chats[i]);
 
@@ -342,7 +345,7 @@ QString ChatDatabaseManager::generate_request_sender(MafiaList<UserIdType> sende
     QString request = "";
 
     if(senders.length() != 0){
-        request += "(";
+		request += " AND (";
         for(int i = 0; i < senders.length(); i++){
             request += "SENDER = " + QString::number(senders[i]);
 
@@ -362,7 +365,7 @@ QString ChatDatabaseManager::generate_request_feature(MafiaList<ChatFeature> fea
     QString request = "";
 
     if(features.length() != 0){
-        request += "(";
+		request += " AND (";
         for(int i = 0; i < features.length(); i++){
             request += "FEATURE = " + QString::number(features[i]);
 

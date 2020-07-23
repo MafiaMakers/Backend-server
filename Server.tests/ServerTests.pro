@@ -69,6 +69,8 @@ SOURCES +=  \
     ../Server/clientinfo.cpp \
     ../Server/mainservermanager.cpp \
     ../Server/userstatistics.cpp \
+    Database/tst_chatdatabasemanager.cpp \
+    Database/tst_chatsettingsdatabasemanager.cpp \
     Database/tst_databasehelper.cpp \
     Database/tst_databaseworker.cpp \
     Database/tst_gamedatabasemanager.cpp \
@@ -153,6 +155,8 @@ HEADERS += \
     ../Server/System/tuple.h \
     ../Server/mainservermanager.h \
     Database/DatabaseTests \
+    Database/tst_chatdatabasemanager.h \
+    Database/tst_chatsettingsdatabasemanager.h \
     Database/tst_databasehelper.h \
     Database/tst_databaseworker.h \
     Database/tst_gamedatabasemanager.h \

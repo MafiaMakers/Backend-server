@@ -15,16 +15,10 @@ void DatabaseWorkerTests::init_test_ready_check()
 	QVERIFY(worker->database_ready());
 }
 
-void DatabaseWorkerTests::restore_ready()
-{
-	worker->restore_database();
-	init_test_ready_check();
-}
-
 void DatabaseWorkerTests::run_query_test()
 {
 	try {
-		worker->run_query("CREATE TABLE TEST_TABLE (ID integer PRIMARY KEY NOT NULL)");
+		worker->run_query("CREATE TABLE TEST_TABLE (ID integer PRIMARY KEY NOT NULL, SOME integer)");
 	} catch (Mafia::Exceptions::Exception* exception) {
 		exception->show();
 		QFAIL("Exception is thrown!");
@@ -41,4 +35,10 @@ void DatabaseWorkerTests::run_incorrect_query()
 		//OK. Exception is thrown.
 	}
 
+}
+
+void DatabaseWorkerTests::restore_ready()
+{
+	worker->restore_database();
+	init_test_ready_check();
 }

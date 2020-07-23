@@ -22,7 +22,7 @@ namespace Mafia {
             //! \brief Никакая роль (используется для обозначения роли пользователя, не состоящего в чате)
             ChatCapabilities_None = 4,
             //! \brief Индекс последнего элемента перечисления (см. )
-            ChatCapabilities_Last = 5
+			ChatCapabilities_Last = 4
         };
         //! \brief Структура для хранения данных чата
         struct Chat{
@@ -36,6 +36,10 @@ namespace Mafia {
             QDateTime creationTime;
             //! \brief Функция для вывода в консоль всех полей чата
             void show();
+
+			bool operator == (const Chat &a) const;
+
+			bool operator != (const Chat &a) const;
         };
 
         //! \brief Основной класс для работы с БД чатов

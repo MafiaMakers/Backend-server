@@ -123,7 +123,7 @@ void SerializerTests::qstring()
 
 void SerializerTests::qdatetime()
 {
-	QDateTime source = QDateTime::fromString("2003.10.04 01:01:01", Mafia::Database::SQL_DATETIME_FORMAT);
+	QDateTime source = Mafia::Database::from_string("2003.10.04 01:01:01");
 
     Mafia::System::String data = Mafia::System::Serializer::serialize<QDateTime>(source);
     QDateTime result = Mafia::System::Serializer::deserialize<QDateTime>(data);
@@ -220,8 +220,8 @@ void SerializerTests::game()
     source.roles = MafiaList<Mafia::Gameplay::Role>() << Mafia::Gameplay::Role_Mafia << Mafia::Gameplay::Role_Doctor;
     source.users = MafiaList<Mafia::Database::UserIdType>() << qrand() << qrand();
     source.result = Mafia::Gameplay::GameResult_MafiaWins;
-	source.endingDT = QDateTime::fromString("2019.05.14 11:00:12", Mafia::Database::SQL_DATETIME_FORMAT);
-	source.beginningDT = QDateTime::fromString("2019.05.14 12:00:12", Mafia::Database::SQL_DATETIME_FORMAT);
+	source.endingDT = Mafia::Database::from_string("2019.05.14 11:00:12");
+	source.beginningDT = Mafia::Database::from_string("2019.05.14 12:00:12");
 
     Mafia::System::String data = Mafia::System::Serializer::serialize<Mafia::Gameplay::Game>(source);
     auto result = Mafia::System::Serializer::deserialize<Mafia::Gameplay::Game>(data);
@@ -274,7 +274,7 @@ Mafia::Database::ChatMessage SerializerTests::generate_random_message()
     result.feature = (Mafia::Database::ChatFeature)qrand();
     result.answerFor = MafiaList<Mafia::Database::MessageIdType>() << qrand() << qrand();
     result.readUsers = MafiaList<Mafia::Database::MessageIdType>() << qrand() << qrand() << qrand();
-	result.timestamp = QDateTime::fromString("2020.07.12 16:19:15", Mafia::Database::SQL_DATETIME_FORMAT);
+	result.timestamp = Mafia::Database::from_string("2020.07.12 16:19:15");
 
     return result;
 }
@@ -286,7 +286,7 @@ Mafia::UserStatistics SerializerTests::generate_random_statistics()
     source.nickname = "UserQwerty";
     source.accountType = Mafia::Database::AccountType_Pro;
     source.achievement = Mafia::Database::Achievement_ProMLGPlayer;
-	source.loginDateTime = QDateTime::fromString("2019.07.26 01:01:01", Mafia::Database::SQL_DATETIME_FORMAT);
+	source.loginDateTime = Mafia::Database::from_string("2019.07.26 01:01:01");
     source.defeatesByRoles = MafiaList<int>() << qrand() << qrand() << qrand() << qrand() << qrand();
     source.victoriesByRoles = MafiaList<int>() << qrand() << qrand() << qrand() << qrand() << qrand();
 

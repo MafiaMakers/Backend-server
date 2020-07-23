@@ -25,7 +25,7 @@ namespace Mafia {
              * \param _filename Имя файла базы данных (Стандартное значение "MyDatabase.sqlite")
              */
             DatabaseWorker(System::String _path = System::String(""),
-                           System::String _backupPath = System::String("D:\\"),
+						   System::String _backupPath = System::String("..\\"),
                            System::String _filename = System::String("MafiaDatabase.sqlite"));
 
             /*!

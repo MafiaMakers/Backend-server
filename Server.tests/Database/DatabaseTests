@@ -1,20 +1,42 @@
 #include "test.h"
 #include "stdio.h"
+#include "chrono"
+#include "thread"
 #include "tst_userdatabasemanager.h"
 #include "tst_transactiondatabasemanager.h"
 #include "tst_gamedatabasemanager.h"
 #include "tst_databaseworker.h"
 #include "tst_databasehelper.h"
+#include "tst_chatsettingsdatabasemanager.h"
+#include "tst_chatdatabasemanager.h"
 
 namespace MafiaTests {
     namespace DatabaseTests {
         void test(int argc, char* argv[]) {
 			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
+			//std::this_thread::sleep_for(std::chrono::milliseconds(5000));
             ADD_TO_TEST<UserDatabaseManagerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
             ADD_TO_TEST<TransactionDatabaseManagerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
 			ADD_TO_TEST<GameDatabaseManagerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
 			ADD_TO_TEST<DatabaseWorkerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
 			ADD_TO_TEST<DatabaseHelperTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
+			ADD_TO_TEST<ChatSettingsDatabaseManagerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
+			ADD_TO_TEST<ChatDatabaseManagerTests>(argc, argv);
+			remove("MafiaDatabase.sqlite");
+			remove("..\\MafiaDatabase.sqlite");
 		}
     }
 }

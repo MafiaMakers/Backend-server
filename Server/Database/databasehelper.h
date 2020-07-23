@@ -85,6 +85,13 @@ namespace Mafia{
          */
         T query_value_to_variable(QVariant data);
 
+		/*!
+		 * \brief Преобразование строки в QDateTime в кодировке, которая используется по всему проекту.
+		 * \param data Строка из которой получать данные
+		 * \return
+		 */
+		QDateTime from_string(QString data);
+
 
         /*!
          * \brief Функция преобразования QList<T>, полученного из программы в QByteArray для записи в БД

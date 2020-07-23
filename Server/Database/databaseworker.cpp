@@ -95,7 +95,7 @@ void DatabaseWorker::_database_backup()
 {
     while(dataBase.isOpen()){
         std::this_thread::sleep_for(std::chrono::milliseconds(backupInterval));
-        std::cout << "started backup" << std::endl;
+		//std::cout << "started backup" << std::endl;
         isOnBackup = true;
         std::string fullSourcePath;
         if(path.size > 0){
@@ -111,7 +111,7 @@ void DatabaseWorker::_database_backup()
         CopyFile(w_fullSourcePath.c_str(), w_fullBackupPath.c_str(), FALSE);
 
         isOnBackup = false;
-        std::cout << "ended backup" << std::endl;
+		//std::cout << "ended backup" << std::endl;
 
     }
 }

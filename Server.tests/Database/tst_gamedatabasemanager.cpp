@@ -14,8 +14,8 @@ GameDatabaseManagerTests::GameDatabaseManagerTests(QObject *parent) : QObject(pa
 void GameDatabaseManagerTests::add_game_test()
 {
 	auto currentGame = Mafia::Gameplay::Game();
-	currentGame.endingDT = QDateTime::currentDateTime();
-	currentGame.beginningDT = QDateTime::currentDateTime();
+	currentGame.endingDT = QDateTime::currentDateTimeUtc();
+	currentGame.beginningDT = QDateTime::currentDateTimeUtc();
 	currentGame.result = (Mafia::Gameplay::GameResult)(qrand() % (int)Mafia::Gameplay::GameResult_Last);
 
 	for(int i = Mafia::Gameplay::Role_First; i < Mafia::Gameplay::Role_Last; i++){

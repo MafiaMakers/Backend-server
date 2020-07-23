@@ -14,9 +14,9 @@ namespace MafiaTests {
 
 		private slots:
 			void init_test_ready_check();
-			void restore_ready();
 			void run_query_test();
 			void run_incorrect_query();
+			void restore_ready();
 
 		private:
 			Mafia::Database::DatabaseWorker* worker;

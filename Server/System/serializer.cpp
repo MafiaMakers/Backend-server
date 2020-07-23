@@ -203,7 +203,7 @@ std::string Serializer::serialize(QDateTime value){
 
 template<>
 QDateTime Serializer::deserialize(String &data){
-    return QDateTime::fromString(deserialize<QString>(data), Database::SQL_DATETIME_FORMAT);
+	return Database::from_string(deserialize<QString>(data));
 }
 
 
@@ -381,7 +381,7 @@ std::string Serializer::serialize(Gameplay::Game value){
     result += serialize<MafiaList<Database::UserIdType>>(value.users);
     result += serialize<Gameplay::GameResult>(value.result);
     result += serialize<QDateTime>(value.endingDT);
-    result += serialize<QDateTime>(value.endingDT);
+	result += serialize<QDateTime>(value.beginningDT);
 
     return result;
 }

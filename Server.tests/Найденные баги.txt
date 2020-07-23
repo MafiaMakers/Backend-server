@@ -24,3 +24,14 @@ Mafia::Database::GameDatabaseManager::get_games_with() - та же ошибка 
 Mafia::Database::GameDatabaseManager::generate_request_participants() - вызов функции без присваивания результата переменной (f() вместо a = f())
 Mafia::Database::GameDatabaseManager::generate_request_roles() - аналогично предыдущему
 MafiaTests::DatabaseTests::GameDatabaseManagerTests::add_game_test() - неправильное получение времени
+Mafia::System::Serializer::serialize<Mafia::Gameplay::Game>() - два раза сериализуется endingDT вместо сериализации endingDT и beginningDT
+Mafia::Database::ChatMessage::operator ==() - неверное сравнение времени (учитывает мс, а не должно)
+Mafia::Database::Chat::operator ==() - аналогично предыдущему
+Mafia::Database::Game::operator ==() - аналогично предыдущему
+Mafia::Database::ChatDatabaseManager::get_messages() - AND в SQL-запросе ставился даже в случае отсутствия условия
+MafiaTests::DatabaseTests::DatabaseWorkerTests - неверный порядок выполнения тестов, который приводил к исключению при работе с БД
+Mafia::Database::ChatSettingsDatabaseManager::get_chats_with() - AND в SQL-запросе ставился даже в случае отсутствия условия
+Mafia::Database::ChatSettingsDatabaseManager::get_chats_with() - нет кавычек в записи времени
+Везде блин... Дата и время читались не в UTC, а в локальном формате
+Mafia::Database::ChatDatabaseManager::edit_message() - не изменяется feature в edited
+MafiaTests::DatabaseTests::ChatDatabaseManagerTests::get_messages_full_condition() - перепутаны message id и chat id

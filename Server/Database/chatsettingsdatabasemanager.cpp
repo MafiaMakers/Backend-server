@@ -106,12 +106,12 @@ MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<Chat
 {
     QString request = "SELECT ID FROM " + dbName + " WHERE (TRUE";
 
-    request += " AND " + generate_request_id(ids);
+	request += generate_request_id(ids);
 
-    request += " AND " + generate_request_user(users, usersFilter);
+	request += generate_request_user(users, usersFilter);
 
-    request += " AND (TIMESTAMP >= " + createdAfter.toString(SQL_DATETIME_FORMAT) + ")";
-    request += " AND (TIMESTAMP <= " + createdBefore.toString(SQL_DATETIME_FORMAT) + ")";
+	request += " AND (TIMESTAMP >= \'" + createdAfter.toString(SQL_DATETIME_FORMAT) + "\')";
+	request += " AND (TIMESTAMP <= \'" + createdBefore.toString(SQL_DATETIME_FORMAT) + "\')";
     request += ")";
 
     try {
@@ -229,7 +229,7 @@ MafiaList<Chat> ChatSettingsDatabaseManager::get_users_chat(UserIdType user)
     MafiaList<UserIdType> oneUser = MafiaList<UserIdType>() << user;
     QString oneUserString = QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUser).toStdString());
 
-    QString request = "SELECT * FROM " + dbName + " WHERE (CONTAINS(USERS, \'" + oneUserString + "\'))";
+	QString request = "SELECT * FROM " + dbName + " WHERE (USERS LIKE \'%" + oneUserString + "%\')";
     try {
         QSqlQuery* query = dbWorker->run_query(request);
         return get_request_chat(query);
@@ -442,7 +442,7 @@ QString ChatSettingsDatabaseManager::generate_request_id(MafiaList<ChatIdType> i
     QString request = "";
 
     if(ids.length() > 0){
-        request += "(";
+		request += " AND (";
         for(int i = 0; i < ids.length(); i++){
             request += "ID = " + QString::number(ids[i]);
 
@@ -462,11 +462,11 @@ QString ChatSettingsDatabaseManager::generate_request_user(MafiaList<UserIdType>
     QString request = "";
 
     if(users.length() > 0){
-        request += "(";
+		request += " AND (";
         MafiaList<UserIdType> oneUserList = MafiaList<UserIdType>() << users[0];
         for(int i = 0; i < users.length(); i++){
             oneUserList[0] = users[i];
-            request += "CONTAINS(USERS, " + QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUserList).toStdString());
+			request += "USERS LIKE \'%" + QString::fromStdString(qbytearray_from_qlist<UserIdType>(oneUserList).toStdString()) + "%\'";
 
             if(i != users.length() - 1){
                 request += get_sql_filter(filter);
@@ -510,5 +510,27 @@ void Chat::show()
         std::cout << "\n    id = " << this->users[j] <<
                      "\n    role = " << this->usersCapabilities[j];
     }
-    std::cout << std::endl;
+	std::cout << std::endl;
+}
+
+bool Chat::operator ==(const Chat& a) const
+{
+	if(this->id != a.id){
+		return false;
+	}
+	if(this->users != a.users){
+		return false;
+	}
+	if(this->creationTime.msecsTo(a.creationTime) > 1500 || a.creationTime.msecsTo(this->creationTime) > 1500){
+		return false;
+	}
+	if(this->usersCapabilities != a.usersCapabilities){
+		return false;
+	}
+	return true;
+}
+
+bool Chat::operator !=(const Chat& a) const
+{
+	return !(*this == a);
 }
