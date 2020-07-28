@@ -134,8 +134,10 @@ namespace Mafia {
             //! \brief Сообщение, которое приходит всем онлайн пользователям, состоящим в каком-либо чате,
             //! когда кто-либо прочитывает какое-либо сообщение этого чата
             MessageType_OnReadChatMessage = 44,
+
+			MessageType_Error = 45,
             //! \brief Верхняя граница типов сообщений
-            MessageType_Last = 45
+			MessageType_Last = 46
         };
 
 

@@ -41,21 +41,8 @@ namespace Mafia {
          */
         explicit MainServerManager(int argc, char* argv[], QObject * parent = nullptr);
 
-
-        //! \brief Тестовая функция для теста БД (создает несколько тестовых элементов, добавляет их в БД и выводит обратно)
-        void _database_test();
-
         //! \brief Функция, получающая все данные из БД и выводящая их в консоль
         void _database_get_all();
-
-        //! \brief Тестовая функция для проверки субсервера, запросов и нетворкера
-        //! (создает их объекты, отправляет тестовый запрос, запускает пробный субсервер и отслеживает его работу)
-        void _networker_test();
-
-        /*!
-         * \brief Тестовая функция создания одного пользователя. В качестве данных указываются мои данные (Никиты)
-         */
-        void _add_user_test();
 
     private slots:
         /*!
@@ -311,6 +298,73 @@ namespace Mafia {
          */
         Database::UserIdType get_user_by_client(Network::Client client);
 
+		/*!
+		 * \brief Функция отправки email-ов, оповещающих о проблеме на сервере
+		 * \param message Сообщение, которое следует отправить
+		 */
+		void send_error_email(QString message);
+
+		/*!
+		 * \brief Если БД оказывается недоступна (какая-то фатальная ошибка),
+		 * то вызывается эта функция, которая пытается устранить проблему.
+		 * Если устранить проблему не удается, то она отправляет email-ы о проблеме
+		 */
+		void solve_database_error();
+
+		/*!
+		 * \brief Функция, которая решает проблему, возникающую при некорректном запросе пользователя.
+		 * \param user Пользователь, который отправил некорректный запрос
+		 */
+		void solve_users_problem(Database::UserIdType user);
+
+		/*!
+		 * \brief Перегрузка вышеуказанной функции
+		 * (\ref Mafia::MainServerManager::solve_users_problem(Database::UserIdType user))
+		 * \param client Клиент, который отправил неверный запрос
+		 */
+		void solve_users_problem(Network::Client client);
+
+		/*!
+		 * \brief Функция стандартной обработки ошибки
+		 * (если что либо выбрасывает ошибку,
+		 * имеет смысл сначала применить стандартный обработчик,
+		 * а затем уже уточнять дополнительные сведения)
+		 * \param exception Исключение, которое было выброшено
+		 */
+		void standart_exception_processing(Exceptions::Exception* exception);
+
+		/*!
+		 * \brief Функция стандартной обработки исключений,
+		 * которая учитывает пользователя,
+		 * при работе с которым возникло исключение, и уведомляет его об этом
+		 * \param exception Исключение, которое было выброшено
+		 * \param user Пользователь, которого следует уведомить
+		 */
+		void standart_exception_processing(Exceptions::Exception* exception, Database::UserIdType user);
+
+		/*!
+		 * \brief Функция стандартной обработки исключений,
+		 * которая учитывает клиента, при работе с которым произошла ошибка и уведомляет его.
+		 * \param exception Исключение, которое было выброшено
+		 * \param client Клиент, которого следует уведомить
+		 */
+		void standart_exception_processing(Exceptions::Exception* exception, Network::Client client);
+
+		/*!
+		 * \brief Функция, которая проверяет, не пустой ли пользователь (см. \ref Mafia::MainServerManager::nullUser)
+		 * И если пользователь пустой, то выкидывает соответствующее исключение
+		 * \param user Пользователь, которого следует проверить
+		 */
+		void check_null_user(Database::UserIdType user);
+
+		/*!
+		 * \brief Функция, которая высылает клиенту сообщение о том,
+		 * что следует авторизоваться прежде чем выполнять действие,
+		 * которое он хотел сделать
+		 * \param client Клиент, которому следует выслать сообщение
+		 */
+		void send_unauthorized_exception(Network::Client client);
+
         //! \brief Список всех клиентов, которые в данный момент онлайн
         MafiaList<Network::Client> clients;
 
@@ -340,9 +394,11 @@ namespace Mafia {
         Database::ChatSettingsDatabaseManager* chatSettingsDb;
 
         //! \brief Индекс "никакого" пользователя - user id, который назначается неавторизированным пользователям
-        static const Database::UserIdType nullUser = -1;
+		static const Database::UserIdType nullUser;
         //! \brief Стандартное количество чатов, которые следует загружать, если нет указаний по количеству чатов для загрузки
         static const int CHATS_UPLOAD_COUNT = 20;
+		//! \brief Список email-ов людей, которые должны получать сообщения о неполадках сервера
+		static const MafiaList<QString> errorEmailReceivers;
 
     };
 }

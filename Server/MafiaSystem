@@ -8,3 +8,4 @@
 #include "System/portsmanager.h"
 #include "System/tuple.h"
 #include "System/mailsender.h"
+#include "System/logsmanager.h"

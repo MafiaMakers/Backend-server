@@ -46,8 +46,8 @@ MainServerNetworker::~MainServerNetworker()
 
 MessageIdType MainServerNetworker::send_message(Message message)
 {
-	std::cout << "sending message : \n";
-	show_message(message);
+	//std::cout << "sending message : \n";
+	//show_message(message);
     System::String mes = System::String();
     if(message.id == (MessageIdType)(0)){
         currentMaxId++;
@@ -57,8 +57,6 @@ MessageIdType MainServerNetworker::send_message(Message message)
     int standartSize = (MAX_MESSAGE_SIZE / sizeof(SymbolType));
 
     message.partsCount = (message.size / standartSize) + 1;
-
-
 
     for(int i = 0; i < message.partsCount; i++){
         Message partMes = message;
@@ -204,8 +202,8 @@ void MainServerNetworker::add_received_message(Message message)
         _add_empty_message(message);
     }
     try {
-		if(message.partIndex < waitingToFillMessages[listIndex].length() - 1 && message_matches(message)){
-            waitingToFillMessages[listIndex][message.partIndex + 1] = message;
+		if( message.partIndex < waitingToFillMessages[ listIndex ].length() - 1 && message_matches( message ) ){
+			waitingToFillMessages[ listIndex ][ message.partIndex + 1 ] = message;
         } else{
             throw new Exceptions::MessageProcessingException(System::String("Message parts data mismatch"),
                                                              Exceptions::MessageProcessingExceptionId_MessagePartsMismatch);
@@ -283,8 +281,12 @@ void MainServerNetworker::receive_message() {
 
 void MainServerNetworker::show_message(Message message)
 {
-    std::cout << "[on port " << myPort << "]\n";
-    std::cout << "Message : \n" << "    id : " << message.id << "\n    type : " << message.type << "\n    size : " << message.size << "\n    data : ";
+	std::cout << "[on port " << myPort << "]";
+	std::cout << "\nMessage : "
+			  << "\n    id : " << message.id
+			  << "\n    type : " << message.type
+			  << "\n    size : " << message.size
+			  << "\n    data : ";
     for(int i = 0; i < message.size; i++){
         std::cout << message.data[i];
     }

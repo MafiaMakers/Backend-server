@@ -37,8 +37,10 @@ namespace Mafia {
             SystemExceptionId_PortFreeing = 803,
             //! \brief Исключение, вызываемое при ошибке выполнения сторонней программы (при вызове ее из командной строки)
             SystemExceptionId_ErrorInCmd = 804,
+			//Ошибка при работе с записью логов
+			SystemExceptionId_LogsError = 805,
             //! \brief Максимальный id таких исключений (см. \ref Mafia::Database::Status_Last)
-            SystemExceptionId_Last = 805,
+			SystemExceptionId_Last = 806,
         };
     }
 }

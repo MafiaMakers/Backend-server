@@ -6,6 +6,7 @@
 #include "Exceptions/databaseworkingexception.h"
 #include <windows.h>
 #include "user.h"
+#include "System/logsmanager.h"
 #include <iostream>
 
 using namespace Mafia;
@@ -15,22 +16,9 @@ using namespace Database;
 DatabaseWorker::DatabaseWorker(System::String _path, System::String _backupPath, System::String _filename)
     : path(_path), backupPath(_backupPath), filename(_filename)
 {
-    dataBase = QSqlDatabase::addDatabase("QSQLITE");
-    QString fullPath;
-    if(path.size > 0){
-        fullPath = QString::fromStdString(std::string(path.data, path.size)) + '\\' +
-                QString::fromStdString(std::string(filename.data, filename.size));
-    } else{
-        fullPath = QString::fromStdString(std::string(filename.data, filename.size));
-    }
-    dataBase.setDatabaseName(fullPath);
-    dataBase.setUserName("Admin");
-    dataBase.setPassword("admin");
-    if(!dataBase.open()){
-        std::cout << "Database could not be opened!\n";
-    }
+	restartAttempts = 0;
 
-    isOnBackup = false;
+	restart_database();
 
     std::thread backupThread(&DatabaseWorker::_database_backup, this);
     backupThread.detach();
@@ -75,6 +63,7 @@ QSqlQuery* DatabaseWorker::run_query(QString request)
 void DatabaseWorker::restore_database()
 {
     isOnBackup = true;
+
     std::string fullSourcePath;
     if(path.size > 0){
         fullSourcePath = std::string(path.data, path.size) + '\\' + std::string(filename.data, filename.size);
@@ -84,11 +73,53 @@ void DatabaseWorker::restore_database()
     std::wstring w_fullSourcePath(fullSourcePath.begin(), fullSourcePath.end());
 
     std::string fullBackupPath = std::string(backupPath.data, backupPath.size) + '\\' + std::string(filename.data, filename.size);
-    std::wstring w_fullBackupPath(fullBackupPath.begin(), fullBackupPath.end());
+	std::wstring w_fullBackupPath(fullBackupPath.begin(), fullBackupPath.end());
 
     CopyFile(w_fullBackupPath.c_str(), w_fullSourcePath.c_str(), FALSE);
 
-    isOnBackup = false;
+	System::LogsManager::add_record("Database has been restored",
+									System::LogType_Message,
+									System::LogSource_MainServer,
+									"");
+
+	isOnBackup = false;
+}
+
+bool DatabaseWorker::restart_database()
+{
+	isOnBackup = true;
+	restartAttempts++;
+	dataBase = QSqlDatabase::addDatabase("QSQLITE");
+	QString fullPath;
+	if(path.size > 0){
+		fullPath = QString::fromStdString(std::string(path.data, path.size)) + '\\' +
+				QString::fromStdString(std::string(filename.data, filename.size));
+	} else{
+		fullPath = QString::fromStdString(std::string(filename.data, filename.size));
+	}
+	dataBase.setDatabaseName(fullPath);
+	dataBase.setUserName("Admin");
+	dataBase.setPassword("admin");
+
+	bool success = dataBase.open();
+
+	if(!success){
+		std::cout << "Database could not be opened!\n";
+	} else {
+		restartAttempts = 0;
+	}
+
+	isOnBackup = false;
+
+	if(restartAttempts > maxRestartAttempts){
+		restartAttempts = 0;
+		throw new Exceptions::DatabaseWorkingException(
+			System::String("Restart attempts limit overflowed!"),
+			Exceptions::DatabaseWorkingExceptionId_DatabaseRestartAttemptsLimit
+			);
+	}
+
+	return success;
 }
 
 void DatabaseWorker::_database_backup()

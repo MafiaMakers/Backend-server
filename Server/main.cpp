@@ -10,11 +10,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Database::DatabaseWorker myDBWorker = Database::DatabaseWorker();
-
     MainServerManager* myManager = new MainServerManager(argc, argv);
-
-	//myManager->_add_user_test();
 
     return a.exec();
 }

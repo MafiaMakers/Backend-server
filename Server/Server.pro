@@ -69,6 +69,7 @@ SOURCES += \
         System/SHA_256.cpp \
         System/functions.cpp \
         System/keygen.cpp \
+        System/logsmanager.cpp \
         System/mailsender.cpp \
         System/portsmanager.cpp \
         System/runprogram.cpp \
@@ -138,6 +139,7 @@ HEADERS += \
     System/functions.h \
     System/keygen.h \
     System/limitedqueue.h \
+    System/logsmanager.h \
     System/mailsender.h \
     System/portsmanager.h \
     System/runprogram.h \

@@ -50,6 +50,8 @@ namespace Mafia {
              */
             void restore_database();
 
+			bool restart_database();
+
         private:
             /*!
              * \brief Выполняет во втором потоке резервное копирование базы данных для возможности восстановления
@@ -65,6 +67,9 @@ namespace Mafia {
              * \brief Интерфейс базы данных в виде QSqlDatabase
              */
             QSqlDatabase dataBase;
+
+			//! \brief Количество неудачных попыток перезапуска базы данных (подряд)
+			int restartAttempts;
 
             /*!
              * \brief Временной промежуток между двумя резервными копированиями (мс)
@@ -91,6 +96,9 @@ namespace Mafia {
              * Если это время превышается, будет выброшена ошибка о первышении времени ожидания
              */
             static const int maxWaitingTime = 2000;
+
+			//! \brief Максимальное количество неудачных попыток подряд перезапуска бд
+			static const int maxRestartAttempts = 5;
 
         };
 

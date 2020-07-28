@@ -2,11 +2,7 @@
 
 Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(){}
 
-Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(Mafia::System::String data, ExceptionIdType id)
-{
-    this->data = data;
-    this->id = id;
-}
+Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(Mafia::System::String data, ExceptionIdType id) : Exception(data, id){}
 
 void Mafia::Exceptions::DatabaseWorkingException::show()
 {

@@ -61,8 +61,10 @@ namespace Mafia {
             DatabaseWorkingExceptionId_ArraySizeMismatch = 512,
             //! \brief Исключение, вызываемое при получении неизвестной роли пользователя в чате при обработке различных данных о роли пользователя
             DatabaseWorkingExceptionId_UnknownChatCapability = 513,
+			//! \brief Исключение, вызываемое при превышении допустимого количества перезапусков базы данных
+			DatabaseWorkingExceptionId_DatabaseRestartAttemptsLimit = 514,
             //! \brief Верхняя граница id исключений работы с БД (см. \ref Mafia::Database::Status_First)
-            DatabaseWorkingExceptionId_Last = 514
+			DatabaseWorkingExceptionId_Last = 515
         };
     }
 }

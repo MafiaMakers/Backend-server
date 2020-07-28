@@ -39,8 +39,10 @@ namespace Mafia {
             MainServerExceptionId_UnknownTransactionType = 703,
             //! \brief Исключение, вызываемое при попытке работы с игрой, которая не запущена/завершена/не существовала
             MainServerExceptionId_NoSuchGame = 704,
+			//! \brief Исключение, вызываемое при обращении неавторизованного пользователя
+			MainServerExceptionId_NullUserRequest = 705,
             //! \brief Максимальное id исключения (см. \ref Mafia::Database::Status_Last)
-            MainServerExceptionId_Last = 705
+			MainServerExceptionId_Last = 706
         };
     }
 }

@@ -1,4 +1,5 @@
 #include "exception.h"
+#include "System/logsmanager.h"
 
 using namespace Mafia;
 using namespace Exceptions;
@@ -7,6 +8,11 @@ Exception::Exception(System::String data, ExceptionIdType id)
 {
     this->data = data;
     this->id = id;
+
+	System::LogsManager::add_record(std::string(data.data, data.size),
+									System::LogType_Exception,
+									System::LogSource_MainServer,
+									"");
 }
 
 void Exception::show()
