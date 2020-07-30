@@ -8,7 +8,7 @@ using namespace NetworkTests;
 
 CryptoTests::CryptoTests(QObject *parent) : QObject(parent)
 {
-	Mafia::Network::Crypto::setKey("some_key");
+	Mafia::Network::Crypto::set_key("some_key");
 }
 
 void CryptoTests::wrap_parse_text_message()
@@ -68,7 +68,7 @@ void CryptoTests::wrap_parse_empty_message()
 
 void CryptoTests::dich_key_test()
 {
-	Mafia::Network::Crypto::setKey(Mafia::System::String((char*)"\0\1\2\3\r\e\n\a", 8));
+	Mafia::Network::Crypto::set_key(Mafia::System::String((char*)"\0\1\2\3\r\e\n\a", 8));
 	try {
 		wrap_parse_text_message();
 	} catch (Mafia::Exceptions::Exception* exception) {

@@ -5,7 +5,11 @@ using namespace Subservers;
 const System::String BackupSubserverObject::exePath = System::String("");
 const System::String BackupSubserverObject::exeProcessName = System::String("");
 
-Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::MainServerNetworker *networker, int port, int checkInterval, int maxNotAnswering, const Mafia::System::String specialCommands)
+Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::MainServerNetworker *networker,
+																int port,
+																int checkInterval,
+																int maxNotAnswering,
+																const Mafia::System::String specialCommands)
     : SubserverObject(networker, port, exePath, exeProcessName, checkInterval, maxNotAnswering, specialCommands)
 {
 

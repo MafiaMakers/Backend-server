@@ -46,6 +46,8 @@ bool ChatMessage::operator ==(const ChatMessage& a) const
 	if(this->readUsers != a.readUsers){
 		return false;
 	}
+	//Если разница во времени небольшая, то оно считается равным,
+	//т.к. в SQL все округляется до секунд и могут быть небольшие беды в связи с этим
 	if(this->timestamp.msecsTo(a.timestamp) > 1500 || a.timestamp.msecsTo(this->timestamp) > 1500){
 		return false;
 	}

@@ -38,6 +38,7 @@ SubserverObject::~SubserverObject()
 
 int SubserverObject::send_request(Network::MessageType type, Network::SymbolType *data, int size)
 {
+	//Создаем новый запрос
     Requests::NetworkRequest* req = 0;
     try {
         req = new Requests::NetworkRequest(this->networker, Network::Message(type, data, size, this->myAddress));
@@ -50,18 +51,22 @@ int SubserverObject::send_request(Network::MessageType type, Network::SymbolType
         }
     }
 
+	//Находим максимальный id из списка
     int myId = 0;
     for(int i = 0; i < this->currentRequests.length(); i++){
-        if(this->currentRequests[i].id > myId){
+		if(this->currentRequests[i].id > myId){
             myId = this->currentRequests[i].id;
         }
     }
+	//И увеличиваем наш на 1
     myId++;
 
+	//Собираем запрос с id
     RequestWithId current = RequestWithId();
     current.id = myId;
     current.request = req;
 
+	//Подключаемся к сигналу готовности
     connect(req, &Requests::NetworkRequest::on_ready_me, this, &SubserverObject::request_answered);
 
     this->currentRequests.append(current);
@@ -71,6 +76,7 @@ int SubserverObject::send_request(Network::MessageType type, Network::SymbolType
 
 bool SubserverObject::is_request_ready(RequestIdType requestId)
 {
+	//Находим в списке запрос по id
     for(int i = 0; i < this->currentRequests.length(); i++){
         if(requestId == currentRequests[i].id){
             return currentRequests[i].request->is_finished();
@@ -115,7 +121,9 @@ void SubserverObject::request_answered(Requests::Request *request)
             return;
         }
     }
-    throw new Exceptions::SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
+	//Вот я не уверен, что стоит тут кидать исключение... Это ведь слот
+	//throw new Exceptions::SubserverException(
+	//		System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
 
 template<class T>
@@ -131,6 +139,7 @@ T SubserverObject::get_request_result(RequestIdType requestId)
 
 void SubserverObject::crash_processing()
 {
+	//Просто перезапуск
     if(this->pid != -1){
         System::kill(this->pid);
     }
@@ -140,10 +149,12 @@ void SubserverObject::crash_processing()
 void SubserverObject::_check_subserver_respond()
 {
     while(this->initialized){
+		//Если все уже плохо, то перезапустим
         if(notAnsweringsCount >= maxNotAnsweringsCount){
             emit on_crash();
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(this->checkRespondInterval));
+		//Отправляем субсерверу сообщение с запросом на подтверждение того, что у него все ок
         try {
             networker->send_message(Network::Message(Network::MessageType_CheckConnection, (Network::SymbolType*)(char*)"check", 6 / sizeof(Network::SymbolType), myAddress));
         } catch (Exceptions::Exception* exception) {
@@ -176,11 +187,12 @@ void SubserverObject::run_me(const System::String specialCommands)
 
     std::thread checkThread(&SubserverObject::_check_subserver_respond, this);
     checkThread.detach();
-
 }
 
 void SubserverObject::message_from_server(Network::Message message)
 {
+	//Этот метод будет переопределяться в наследниках.
+	//Ну пока просто отмечаем, если субсервер ответил на проверку отклика
     if(message.client == this->myAddress){
         switch (message.type) {
         case Network::MessageType_CheckConnection:{

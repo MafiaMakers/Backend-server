@@ -62,6 +62,12 @@ namespace Mafia {
             void show_message(Message mes);
 
         private:
+			/*!
+			 * \brief Функция отправки сообщения (используется для отправки и переотправки)
+			 * \param message Сообщение, которое следует отправить
+			 */
+			void _resend_message(Message message);
+
             /*!
              * \brief Функция, добавляющая в список сообщений, которые ожидают сборки по частям, нового сообщения
              * \param baseMessage Первое сообщение партии, которое берется за основу

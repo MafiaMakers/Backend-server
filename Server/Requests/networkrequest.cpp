@@ -17,9 +17,11 @@ NetworkRequest::NetworkRequest(Network::MainServerNetworker *_networker, Network
 
 void NetworkRequest::tryClose(Network::Message received)
 {
+	//Ответом на запрос должно быть сообщение с таким же id
     if(received.id == id){
+		//Кроме того во избежание ошибок проверим клиента-отправителя
         if(received.client == client){
-            close_request();
+			//Копируем данные из сообщения
             this->data = new Network::SymbolType[received.size];
             for(int i = 0; i < received.size; i++){
                 this->data[i] = received.data[i];
@@ -30,9 +32,9 @@ void NetworkRequest::tryClose(Network::Message received)
         } else{
             throw new Exceptions::RequestException(System::String("Clients doesn't match!"), Exceptions::RequestExceptionId_WrongClient);
         }
-    } else{
+	} /*else{
         std::cout << "Id not matching. Expected id" << id << ", but " << received.id << " is given\n";
-    }
+	}*/
 }
 
 

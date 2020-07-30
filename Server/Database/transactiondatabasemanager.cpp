@@ -15,10 +15,12 @@ const int TransactionDatabaseManager::hashCheckingInterval = 30000;
 TransactionDatabaseManager::TransactionDatabaseManager(DatabaseWorker* databaseWorker) : DatabaseManager(databaseWorker, "transactions_db")
 {
     try {
+		//Если БД еще не была создана, то эта функция выкинет ошибку, которую мы обработаем
         dbWorker->run_query("SELECT * FROM " + dbName);
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         case Exceptions::DatabaseWorkingExceptionId_SQlQuery:{
+			//Создаем БД
             QString request = "CREATE TABLE " + dbName + " ("
                     "ID " + get_sql_type<TransactionIdType>() + " PRIMARY KEY" + NOT_NULL + ", "
                     "USER_ID " + get_sql_type<UserIdType>() + NOT_NULL + ", "
@@ -30,6 +32,9 @@ TransactionDatabaseManager::TransactionDatabaseManager(DatabaseWorker* databaseW
             try {
                 dbWorker->run_query(request);
 
+				//Запускаем во втором потоке проверку хешей транзакций,
+				//чтобы постоянно убеждаться, что БД не была взломана
+				//и ничего не было добавлено или удалено
                 std::thread checkCrackThread(&TransactionDatabaseManager::check_transaction_hashes, this);
                 checkCrackThread.detach();
             } catch (Exceptions::Exception* exception) {
@@ -38,6 +43,7 @@ TransactionDatabaseManager::TransactionDatabaseManager(DatabaseWorker* databaseW
 
             break;
         }
+		//Если же ошибка другого характера, то все очень плохо...
         default:{
             exception->show();
         }
@@ -47,27 +53,32 @@ TransactionDatabaseManager::TransactionDatabaseManager(DatabaseWorker* databaseW
 
 TransactionIdType TransactionDatabaseManager::add_transaction(UserIdType userId, PriceType price, TransactionType type)
 {
-
+	//Берем максимальный id из БД
     QString idRequest = "SELECT COALESCE(MAX(ID), 0) FROM " + dbName;
 
     try {
         QSqlQuery* idQuery = dbWorker->run_query(idRequest);
 
+		//Если нашли такой id (а мы обязательно должны были найти), то добавляем новую строку в БД
         if(idQuery->next()){
             TransactionIdType maxId = query_value_to_variable<TransactionIdType>(idQuery->value(0));
-
+			//Берем хеш предыдущей транзакции, чтобы составить новый хеш
             QString hashRequest = "SELECT HASH FROM " + dbName + " WHERE (ID = " + QString::number(maxId) + ")";
             QSqlQuery* hashQuery = dbWorker->run_query(hashRequest);
             QString prevHash = "";
             if(hashQuery->next()){
                 prevHash = hashQuery->value(0).toString();
             } else{
+				//Тут на самом деле все ок. Если предыдущей транзакции не было, то оставляем строку пустой
                 //throw new Exceptions::DatabaseWorkingException(System::String("No previous hash in DB"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
             }
 
+			//Составляем новую строку, которую будем хешировать
             QString currentString = prevHash + QString::number(userId) + "_" + QString::number(price) + "_" + QString::number(type) + localParameter;
             //std::cout << currentString.toStdString() << " - currentString" << std::endl;
-            Transaction current = Transaction();
+
+			//Заполняем поля транзакции
+			Transaction current = Transaction();
 
             current.id = maxId + 1;
             current.type = type;
@@ -75,9 +86,10 @@ TransactionIdType TransactionDatabaseManager::add_transaction(UserIdType userId,
             current.price = price;
             current.timestamp = QDateTime::currentDateTimeUtc();
             current.hash = QString::fromStdString(System::SHA256().hash(currentString.toStdString()));
-
+			//Добавляем транзакцию (возвращаем ее id)
             return add_transaction(current);
         } else{
+			//Если предыдущей транзакции не было, то собираем строку без предыдущего хеша. Делаем все то же самое
             QString currentString = QString::number(userId) + "_" + QString::number(price) + localParameter;
 
             Transaction current = Transaction();
@@ -126,6 +138,7 @@ MafiaList<Transaction> TransactionDatabaseManager::get_all_transactions()
 Transaction TransactionDatabaseManager::get_transaction(TransactionIdType id)
 {
 
+	//Составляем запрос
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
 
     try {
@@ -133,6 +146,7 @@ Transaction TransactionDatabaseManager::get_transaction(TransactionIdType id)
 
         QSqlRecord record = query->record();
         if(query->next()){
+			//Заполняем результатами запроса транзакцию
             Transaction current = Transaction();
 
             current.id = query_value_to_variable<TransactionIdType>(query->value(record.indexOf("ID")));
@@ -218,12 +232,20 @@ bool TransactionDatabaseManager::check_transaction_hashes()
 {
     MafiaList<Transaction> allTransactions = get_all_transactions();
     QString prevHash = "";
+	//Проходимся по всем транзакциям и сверяем хеши
     for(int i = 0; i < allTransactions.length(); i++){
-        QString currentString = prevHash + QString::number(allTransactions[i].buyer) + "_" +
-                QString::number(allTransactions[i].price) + "_" + QString::number(allTransactions[i].type) +
+
+		//Заново составляем строку, которая хешируется
+		QString currentString = prevHash +
+				QString::number(allTransactions[i].buyer) + "_" +
+				QString::number(allTransactions[i].price) + "_" +
+				QString::number(allTransactions[i].type) +
                 localParameter;
+
+		//Заново хешируем строку, чтобы сверить ее с хешем, который хранится в БД
         QString expectedHash = QString::fromStdString(System::SHA256().hash(currentString.toStdString()));
         //std::cout << currentString.toStdString() << " - currentString" << std::endl;
+
         if(expectedHash != allTransactions[i].hash){
             std::cout << "Hash mismatch:\n" << expectedHash.toStdString() << "\n" << allTransactions[i].hash.toStdString() << "\n";
             return true;
@@ -235,15 +257,17 @@ bool TransactionDatabaseManager::check_transaction_hashes()
 
 void TransactionDatabaseManager::on_database_cracked()
 {
+	//Если БД была незаконно изменена, то пытаемся ее восстановить из предыдущей версии
     std::cout << "DATABASE CRACKED!!!\n";
     dbWorker->restore_database();
 }
 
 TransactionIdType TransactionDatabaseManager::add_transaction(Transaction transaction)
 {
+	//Создаем шаблон запроса, который потом заполним значениями (эти вот '%...')
     QString request = "INSERT INTO " + dbName + "(ID, USER_ID, PRICE, TYPE, HASH, TIMESTAMP)"
             "VALUES (%1, %2, %3, %4, %5, %6)";
-
+	//Заполняем шаблон значениями
     request = request.arg(transaction.id);
     request = request.arg(transaction.buyer);
     request = request.arg(transaction.price);
@@ -252,6 +276,7 @@ TransactionIdType TransactionDatabaseManager::add_transaction(Transaction transa
     request = request.arg("\'" + transaction.timestamp.toString(SQL_DATETIME_FORMAT) + "\'");
 
     try {
+		//Добавляем транзакцию
         dbWorker->run_query(request);
         return transaction.id;
     } catch (Exceptions::Exception* exception) {
@@ -266,9 +291,11 @@ TransactionIdType TransactionDatabaseManager::add_transaction(Transaction transa
 
 MafiaList<Transaction> TransactionDatabaseManager::get_request_transactions(QSqlQuery *query)
 {
+	//Создаем пустой список, который потом постепенно заполним значениями
     MafiaList<Transaction> allTransactions = MafiaList<Transaction>();
     QSqlRecord record = query->record();
-    while(query->next()){
+	while(query->next()){
+		//Заполняем по одной поля транзакций
         Transaction current = Transaction();
 
         current.id = query_value_to_variable<TransactionIdType>(query->value(record.indexOf("ID")));
@@ -278,6 +305,7 @@ MafiaList<Transaction> TransactionDatabaseManager::get_request_transactions(QSql
         current.price = query_value_to_variable<PriceType>(query->value(record.indexOf("PRICE")));
         current.timestamp = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
 
+		//Добавляем полученную транзакцию в список
         allTransactions.append(current);
 
     }

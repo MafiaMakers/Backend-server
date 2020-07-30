@@ -14,11 +14,11 @@ namespace Mafia {
         {
         public:
             //! \brief Метод задавания ключа шифрования
-            static void setKey(System::String key);
+            static void set_key(System::String key);
             //! \brief см. \ref Mafia::Crypto::setKey(String key)
-            static void setKey(char* key, int size);
+            static void set_key(char* key, int size);
             //! \brief см. \ref Mafia::Crypto::setKey(String key)
-            static void setKey(std::string key);
+            static void set_key(std::string key);
             /*! \brief Метод для распаковки сообщения
              * \param data массив символов - полученное по сети сообщение
              * \param size размер сообщения в байтах
