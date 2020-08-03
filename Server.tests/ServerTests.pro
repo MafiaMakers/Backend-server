@@ -62,10 +62,12 @@ SOURCES +=  \
     ../Server/System/SHA_256.cpp \
     ../Server/System/functions.cpp \
     ../Server/System/keygen.cpp \
+    ../Server/System/logsmanager.cpp \
     ../Server/System/mailsender.cpp \
     ../Server/System/portsmanager.cpp \
     ../Server/System/runprogram.cpp \
     ../Server/System/serializer.cpp \
+    ../Server/System/simplestring.cpp \
     ../Server/clientinfo.cpp \
     ../Server/mainservermanager.cpp \
     ../Server/userstatistics.cpp \
@@ -145,8 +147,7 @@ HEADERS += \
     ../Server/System/functions.h \
     ../Server/System/keygen.h \
     ../Server/System/limitedqueue.h \
-    ../Server/System/limitedqueue.h.EhicCU \
-    ../Server/System/limitedqueue.h.qDsLLD \
+    ../Server/System/logsmanager.h \
     ../Server/System/mailsender.h \
     ../Server/System/portsmanager.h \
     ../Server/System/runprogram.h \

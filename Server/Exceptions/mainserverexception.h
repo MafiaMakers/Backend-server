@@ -12,17 +12,17 @@ namespace Mafia {
              */
             MainServerException();
 
-            /*!
-             * \brief Основной конструктор, наследуемый от \ref Mafia::Exceptions::Exception(System::String data, ExceptionIdType id)
-             * \param data Данные сообщения
-             * \param id id сообщения
-             */
-            MainServerException(System::String data, ExceptionIdType id);
-
             //! \brief см. \ref Mafia::Exception::show()
             void show() override;
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+
+			/*!
+			 * \brief Основной конструктор, наследуемый от \ref Mafia::Exceptions::Exception(System::String data, ExceptionIdType id)
+			 * \param data Данные сообщения
+			 * \param id id сообщения
+			 */
+			MainServerException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Перечисление типов исключений, связанных с работой основного контроллера сервера

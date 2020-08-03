@@ -20,5 +20,9 @@ MessageProcessor::MessageProcessor(Network::MainServerNetworker *networker)
 
 void MessageProcessor::message_received(Network::Message message)
 {
-    MessageProcessing::ProcessorObject::generate(message)->process();
+	MessageProcessing::ProcessorObject* processor =
+		MessageProcessing::ProcessorObject::generate(message);
+
+	processor->process();
+	SAFE_DELETE(processor);
 }

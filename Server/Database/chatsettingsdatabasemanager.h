@@ -169,7 +169,7 @@ namespace Mafia {
              * \param query указатель на sql-запрос с ответом
              * \return Список всех чатов, которые были в sql-запросе
              */
-            MafiaList<Chat> get_request_chat(QSqlQuery* query);
+			MafiaList<Chat> get_request_chat(QSqlQuery query);
         };
     }
 }

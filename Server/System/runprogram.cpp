@@ -99,7 +99,8 @@ MafiaList<int> Mafia::System::get_all_pids_by_name(const String name)
 			//Начнем с name.size + 4, закончим символом кавычки
             int firstIndex = (firstLineIndex + name.size + 4);
 
-            char* source = new char[lastIndex - firstIndex];
+			char* source;
+			SAFE_NEW(source, char[lastIndex - firstIndex]);
 
             for(int j = firstIndex; j < lastIndex; j++){
                 source[j - firstIndex] = data[j];
@@ -107,6 +108,7 @@ MafiaList<int> Mafia::System::get_all_pids_by_name(const String name)
 
 			//Преобразуем строку в число и добавляем в список
             int res = atoi(source);
+			SAFE_DELETE_ARRAY(source);
             result.append(res);
         }
 		//Если встречаем смену строки, то обнуляем все предыдущие параметры и парсим новую строку

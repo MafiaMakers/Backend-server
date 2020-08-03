@@ -194,7 +194,7 @@ namespace Mafia{
              * \param query Sql-запрос с ответом из которого надо извлечь данные
              * \return Список пользователей, которые были полученны запросом
              */
-            MafiaList<User> get_query_users(QSqlQuery* query);
+			MafiaList<User> get_query_users(QSqlQuery query);
 
             /*!
              * \brief Добавление пользователя в БД

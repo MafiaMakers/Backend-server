@@ -10,10 +10,12 @@ namespace Mafia {
         public:
             //! \brief см. \ref Mafia::Exception::Exception()
             MessageProcessingException(){};
-            /*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
-            MessageProcessingException(System::String data, ExceptionIdType id);
+
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+
+			/*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
+			MessageProcessingException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Возможные типы исключений обработки сообщения

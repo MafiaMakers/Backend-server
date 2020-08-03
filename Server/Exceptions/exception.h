@@ -16,12 +16,9 @@ namespace Mafia {
         public:
             /*! \brief Пустой конструктор для переопределения его в дочерних классах.*/
             Exception(){}
-            /*!
-             * \brief Основной конструктор, который инициализирует параметры исключения
-             * \param data см. \ref Mafia::Excepton::data
-             * \param id см. \ref Mafia::Exception::data
-             */
-            Exception(System::String data, ExceptionIdType id);
+
+			virtual ~Exception();
+
             /*! \brief Функция для вывода сообщения об ошибке в случае, если ошибка все же не обработана.*/
             virtual void show();
             /*! \brief Задавание параметра data
@@ -40,12 +37,24 @@ namespace Mafia {
             * \returns сообщение данного исключения
             */
             virtual System::String get_data();
+
             /*!
              * \brief Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа
              * \return базовый id исключения (исключений с таким id не бывает)
              */
             virtual ExceptionIdType get_base_exception_id() = 0;
+
+			static Exception* generate(System::String data, ExceptionIdType id);
+
+			virtual void close();
         protected:
+			/*!
+			 * \brief Основной конструктор, который инициализирует параметры исключения
+			 * \param data см. \ref Mafia::Excepton::data
+			 * \param id см. \ref Mafia::Exception::data
+			 */
+			Exception(System::String data, ExceptionIdType id);
+
             //! \brief Сообщение, которое может быть использовано для отображения сообщения об ошибке
             System::String data;
             //! \brief id исключения для отличия одних от других

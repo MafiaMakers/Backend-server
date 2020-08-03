@@ -1,4 +1,5 @@
 #include "databaseworkingexception.h"
+#include "System/functions.h"
 
 Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(){}
 
@@ -7,9 +8,11 @@ Mafia::Exceptions::DatabaseWorkingException::DatabaseWorkingException(Mafia::Sys
 void Mafia::Exceptions::DatabaseWorkingException::show()
 {
     std::cout << "Exception in work with database!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
+	close();
 }
 
 ExceptionIdType Mafia::Exceptions::DatabaseWorkingException::get_base_exception_id()
 {
-    return DatabaseWorkingExceptionId_Default;
+	return DatabaseWorkingExceptionId_Default;
 }
+

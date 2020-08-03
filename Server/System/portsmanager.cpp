@@ -22,7 +22,7 @@ int PortsManager::allocate_port()
         }
     }
 
-    throw new Exceptions::SystemException(String("No free ports!"), Exceptions::SystemExceptionId_PortAllocation);
+	throw Exceptions::Exception::generate(String("No free ports!"), Exceptions::SystemExceptionId_PortAllocation);
     return -1;
 }
 
@@ -31,6 +31,6 @@ void PortsManager::free_port(int port)
     if(allocatedPorts.contains(port)){
         allocatedPorts.removeOne(port);
     } else{
-        throw new Exceptions::SystemException(String("This port wasn't be allocated"), Exceptions::SystemExceptionId_PortFreeing);
+		throw Exceptions::Exception::generate(String("This port wasn't be allocated"), Exceptions::SystemExceptionId_PortFreeing);
     }
 }

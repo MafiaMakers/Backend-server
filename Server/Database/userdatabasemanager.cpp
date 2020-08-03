@@ -44,7 +44,7 @@ UserDatabaseManager::UserDatabaseManager(DatabaseWorker* _dbWorker) : DatabaseMa
             } catch (Exceptions::Exception * exception) {
                 exception->show();
             }
-
+			exception->close();
             break;
         }
 		//Если ошибка другого типа, то все плохо...
@@ -145,9 +145,9 @@ void UserDatabaseManager::logout_user(UserIdType id)
 			"\nWHERE (ID =" + QString::number(id) + " )";
 	try {
 		//Если пользователь существует, то все ок, продолжаем. Если нет, то будет исключение
-		QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
-		if(!emailQuery->next()){
-			throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+		QSqlQuery emailQuery = dbWorker->run_query(emailRequest);
+		if(!emailQuery.next()){
+			throw Exceptions::Exception::generate(System::String("No such ID"),
 				Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 		}
 
@@ -167,9 +167,9 @@ bool UserDatabaseManager::confirm_user(UserIdType id, QString confirmationKey)
     try {
 		//Получаем ключ подтверждения email-а
         QString request = "SELECT CONFIRMATION_KEY FROM \'" + dbName + "\' WHERE (ID = " + QString::number(id) + ")";
-        QSqlQuery* query = dbWorker->run_query(request);
-        if(query->next()){
-            QString realKey = query_value_to_variable<QString>(query->value(0));
+		QSqlQuery query = dbWorker->run_query(request);
+		if(query.next()){
+			QString realKey = query_value_to_variable<QString>(query.value(0));
 
 			bool matches = realKey == confirmationKey;
 			//Если ключи совпадают, то изменяем статус пользователя
@@ -182,7 +182,7 @@ bool UserDatabaseManager::confirm_user(UserIdType id, QString confirmationKey)
 
 			return matches;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
@@ -201,44 +201,44 @@ User UserDatabaseManager::get_user(UserIdType id)
 		//Получаем из БД все данные о пользователе
         QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
 
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
-        QSqlRecord record = query->record();
+		QSqlRecord record = query.record();
 
-        if(query->next()){
+		if(query.next()){
 			//Создаем пустого пользователя и заполняем данными из запроса
             User currentUser = User();
 
             currentUser.id = id;
-            currentUser.salt = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_SALT")));
+			currentUser.salt = query_value_to_variable<QString>(query.value(record.indexOf("PASSWORD_SALT")));
 
-            currentUser.chats = query_value_to_variable<MafiaList<ChatIdType>>(query->value(record.indexOf("ALL_CHATS")));
+			currentUser.chats = query_value_to_variable<MafiaList<ChatIdType>>(query.value(record.indexOf("ALL_CHATS")));
 
-            currentUser.email = query_value_to_variable<QString>(query->value(record.indexOf("EMAIL")));
-            currentUser.allGames = query_value_to_variable<MafiaList<GameIdType>>(query->value(record.indexOf("ALL_GAMES")));
-            currentUser.nickname = query_value_to_variable<QString>(query->value(record.indexOf("NICKNAME")));
+			currentUser.email = query_value_to_variable<QString>(query.value(record.indexOf("EMAIL")));
+			currentUser.allGames = query_value_to_variable<MafiaList<GameIdType>>(query.value(record.indexOf("ALL_GAMES")));
+			currentUser.nickname = query_value_to_variable<QString>(query.value(record.indexOf("NICKNAME")));
 
-            currentUser.authorized = query_value_to_variable<AuthorizedStatus>(query->value(record.indexOf("IS_AUTHORIZED")));
+			currentUser.authorized = query_value_to_variable<AuthorizedStatus>(query.value(record.indexOf("IS_AUTHORIZED")));
 
-            currentUser.accountType = query_value_to_variable<AccountType>(query->value(record.indexOf("ACCOUNT_TYPE")));
-            currentUser.achievement = query_value_to_variable<Achievement>(query->value(record.indexOf("ACHIEVEMENT")));
-            currentUser.isConfirmed = query_value_to_variable<Status>(query->value(record.indexOf("IS_CONFIRMED")));
-            currentUser.passwordHash = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_HASH")));
+			currentUser.accountType = query_value_to_variable<AccountType>(query.value(record.indexOf("ACCOUNT_TYPE")));
+			currentUser.achievement = query_value_to_variable<Achievement>(query.value(record.indexOf("ACHIEVEMENT")));
+			currentUser.isConfirmed = query_value_to_variable<Status>(query.value(record.indexOf("IS_CONFIRMED")));
+			currentUser.passwordHash = query_value_to_variable<QString>(query.value(record.indexOf("PASSWORD_HASH")));
 
             currentUser.transactions = query_value_to_variable<MafiaList<TransactionIdType>>(
-                                                                                    query->value(record.indexOf("TRANSACTIONS")));
-            currentUser.loginDateTime = query_value_to_variable<QDateTime>(query->value(record.indexOf("LOGIN_DATE_TIME")));
+																					query.value(record.indexOf("TRANSACTIONS")));
+			currentUser.loginDateTime = query_value_to_variable<QDateTime>(query.value(record.indexOf("LOGIN_DATE_TIME")));
 
             currentUser.confirmationKey = query_value_to_variable<QString>(
-                                                                                query->value(record.indexOf("CONFIRMATION_KEY")));
+																				query.value(record.indexOf("CONFIRMATION_KEY")));
             currentUser.defeatesByRoles = query_value_to_variable<MafiaList<int>>(
-                                                                                query->value(record.indexOf("DEFEATES_BY_ROLES")));
+																				query.value(record.indexOf("DEFEATES_BY_ROLES")));
             currentUser.victoriesByRoles = query_value_to_variable<MafiaList<int>>(
-                                                                                query->value(record.indexOf("VICTORIES_BY_ROLES")));
+																				query.value(record.indexOf("VICTORIES_BY_ROLES")));
 
             return currentUser;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
 
@@ -258,11 +258,11 @@ void UserDatabaseManager::add_transaction(UserIdType user, TransactionIdType tra
 		//Получаем список транзакций пользователя (он зашифрован в строку)
         QString request = "SELECT TRANSACTIONS FROM " + dbName + " WHERE (ID = " + QString::number(user) + ")";
 
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
-        if(query->next()){
+		if(query.next()){
 			//Дешифруем строку в список и добавляем в него необходимую транзакцию
-            MafiaList<TransactionIdType> allTransactions = query_value_to_variable<MafiaList<TransactionIdType>>(query->value(0));
+			MafiaList<TransactionIdType> allTransactions = query_value_to_variable<MafiaList<TransactionIdType>>(query.value(0));
             allTransactions.append(transaction);
 			//Шифруем обратно в строку
             QByteArray transactionsData = qbytearray_from_qlist<TransactionIdType>(allTransactions);
@@ -274,7 +274,7 @@ void UserDatabaseManager::add_transaction(UserIdType user, TransactionIdType tra
             dbWorker->run_query(passRequest);
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
@@ -291,28 +291,28 @@ void UserDatabaseManager::change_password(UserIdType id, QString newPassword)
 {
 	//Чтобы проверить, что такой пользователь вообще существует, попробуем взять его email
 	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	QSqlQuery emailQuery = dbWorker->run_query(emailRequest);
 	//Если не удастся, кинем ошибку
-	if(!emailQuery->next()){
-		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+	if(!emailQuery.next()){
+		throw Exceptions::Exception::generate(System::String("No such ID"),
 			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 	}
 
 	try {
 		//Для изменения своего пароля надо быть авторизованным (хах, ну вроде логично)
 		QString authorizedRequest = "SELECT IS_AUTHORIZED FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-		QSqlQuery* authoizedQuery = dbWorker->run_query(authorizedRequest);
-		if(authoizedQuery->next()){
+		QSqlQuery authoizedQuery = dbWorker->run_query(authorizedRequest);
+		if(authoizedQuery.next()){
 			//Проверим, что пользователь авторизован. Иначе кинем ошибку
-			if(query_value_to_variable<AuthorizedStatus>(authoizedQuery->value(0)) == AuthorizedStatus_Authorized){
+			if(query_value_to_variable<AuthorizedStatus>(authoizedQuery.value(0)) == AuthorizedStatus_Authorized){
 				reset_users_password(newPassword, id);
 			} else{
-				throw new Exceptions::DatabaseWorkingException(System::String("User must be authorized to change password"),
+				throw Exceptions::Exception::generate(System::String("User must be authorized to change password"),
 															   Exceptions::DatabaseWorkingExceptionId_NotAuthorizedAction);
 			}
 
 		} else{
-			throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
 														   Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 		}
 
@@ -333,14 +333,14 @@ UserIdType UserDatabaseManager::get_id(QString email)
 
     try {
 		//Отправляем запрос в БД
-        QSqlQuery* query = dbWorker->run_query(selectRequest);
+		QSqlQuery query = dbWorker->run_query(selectRequest);
 
-        if(query->next()){
+		if(query.next()){
 			//Берем id из запроса
-            UserIdType id = query_value_to_variable<UserIdType>(query->value(0));
+			UserIdType id = query_value_to_variable<UserIdType>(query.value(0));
             return id;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
             return -1;
         }
@@ -359,11 +359,11 @@ void UserDatabaseManager::add_achievement(UserIdType id, Achievement achievement
 {
 	//Чтобы проверить, что пользователь вообще существует, попробуем взять его email
 	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	QSqlQuery emailQuery = dbWorker->run_query(emailRequest);
 
 	//Если не удается, то кинем исключение
-	if(!emailQuery->next()){
-		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+	if(!emailQuery.next()){
+		throw Exceptions::Exception::generate(System::String("No such ID"),
 			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 	}
 
@@ -388,11 +388,11 @@ void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
 	//Отправляем запрос в БД
     QString chatsRequest = "SELECT ALL_CHATS FROM " + dbName + " WHERE (ID = " + QString::number(userId) + ")";
     try {
-        QSqlQuery* chatsQuery = dbWorker->run_query(chatsRequest);
+		QSqlQuery chatsQuery = dbWorker->run_query(chatsRequest);
 
-        if(chatsQuery->next()){
+		if(chatsQuery.next()){
 			//Дешифруем строку из запроса в список чатов
-            MafiaList<ChatIdType> chats = query_value_to_variable<MafiaList<ChatIdType>>(chatsQuery->value(0));
+			MafiaList<ChatIdType> chats = query_value_to_variable<MafiaList<ChatIdType>>(chatsQuery.value(0));
 			//Добавляем новый чат
             chats.append(chatId);
 			//Шифруем обратно в список
@@ -402,7 +402,7 @@ void UserDatabaseManager::add_user_to_chat(UserIdType userId, ChatIdType chatId)
                     "\'\n WHERE (ID = " + QString::number(userId) + ")";
             dbWorker->run_query(request);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception * exception) {
@@ -420,11 +420,11 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
 	//Отправляем запрос в БД
     QString chatsRequest = "SELECT ALL_CHATS FROM " + dbName + " WHERE (ID = " + QString::number(userId) + ")";
     try {
-        QSqlQuery* chatsQuery = dbWorker->run_query(chatsRequest);
+		QSqlQuery chatsQuery = dbWorker->run_query(chatsRequest);
 
-        if(chatsQuery->next()){
+		if(chatsQuery.next()){
 			//Дешифруем результат запроса в список
-            MafiaList<ChatIdType> chats = query_value_to_variable<MafiaList<ChatIdType>>(chatsQuery->value(0));
+			MafiaList<ChatIdType> chats = query_value_to_variable<MafiaList<ChatIdType>>(chatsQuery.value(0));
 			//Пользователь должен состоять в чате, чтобы его можно было оттуда удалить
             if(chats.contains(chatId)){
 				//Удаляем из списка и шифруем список обратно в строку
@@ -435,12 +435,12 @@ void UserDatabaseManager::remove_user_from_chat(UserIdType userId, ChatIdType ch
                         "\'\n WHERE (ID = " + QString::number(userId) + ")";
                 dbWorker->run_query(request);
             } else{
-                throw new Exceptions::DatabaseWorkingException(System::String("This user is not in this chat"),
+				throw Exceptions::Exception::generate(System::String("This user is not in this chat"),
                                                                Exceptions::DatabaseWorkingExceptionId_DeleteMissedItemAttempt);
             }
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception * exception) {
@@ -457,10 +457,10 @@ void UserDatabaseManager::set_account_type(UserIdType id, AccountType newAccount
 {
 	//Проверяем, что пользователь существует. Для этого берем его email
 	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	QSqlQuery emailQuery = dbWorker->run_query(emailRequest);
 	//Если email не нашелся, то кидаем исключение
-	if(!emailQuery->next()){
-		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+	if(!emailQuery.next()){
+		throw Exceptions::Exception::generate(System::String("No such ID"),
 			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 	}
 
@@ -488,22 +488,22 @@ bool UserDatabaseManager::change_email(UserIdType id, QString newEmail)
 		//Получаем email нашего пользователя, чтобы
 		//1. убедиться, что он существует 2. не учитывать его email в списке других
 		QString idRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-		QSqlQuery* idQuery = dbWorker->run_query(idRequest);
+		QSqlQuery idQuery = dbWorker->run_query(idRequest);
 		QString myEmail = "";
 		//Если нашли его email, то запомним его.
 		//Если не нашли, то кинем исключение
-		if(idQuery->next()){
-			myEmail = query_value_to_variable<QString>(idQuery->value(0));
+		if(idQuery.next()){
+			myEmail = query_value_to_variable<QString>(idQuery.value(0));
 		} else {
-			throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			throw Exceptions::Exception::generate(System::String("No such ID"),
 				Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 		}
 
-        QSqlQuery* getQuery = dbWorker->run_query(getRequest);
+		QSqlQuery getQuery = dbWorker->run_query(getRequest);
 
 		//Пройдемся по email-ам всех пользователей и проверим, что новый email еще ни кем не занят
-        while(getQuery->next()){
-			QString currentEmail = query_value_to_variable<QString>(getQuery->value(0));
+		while(getQuery.next()){
+			QString currentEmail = query_value_to_variable<QString>(getQuery.value(0));
 			if(currentEmail == newEmail && currentEmail != myEmail){
                 return false;
             }
@@ -533,10 +533,10 @@ void UserDatabaseManager::change_nickname(UserIdType id, QString newNickname)
 {
 	//Чтобы убедиться, что пользователь существует, возьмем его email
 	QString emailRequest = "SELECT EMAIL FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-	QSqlQuery* emailQuery = dbWorker->run_query(emailRequest);
+	QSqlQuery emailQuery = dbWorker->run_query(emailRequest);
 	//Если такого пользователя нет, кинем исключение
-	if(!emailQuery->next()){
-		throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+	if(!emailQuery.next()){
+		throw Exceptions::Exception::generate(System::String("No such ID"),
 			Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
 	}
 	//Изменим имя пользователя в БД
@@ -566,7 +566,7 @@ MafiaList<User> UserDatabaseManager::get_users(MafiaList<UserIdType> ids,
     QString request = "SELECT * FROM " + dbName +
             create_filter_request(ids, userStatus, userAchievement, authorizedNow, nickname, loginAfter, loginBefore);
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
         return get_query_users(query);
     } catch (Exceptions::Exception* exception) {
@@ -589,10 +589,10 @@ MafiaList<UserIdType> UserDatabaseManager::get_users_ids(MafiaList<UserIdType> i
     MafiaList<UserIdType> userIds = MafiaList<UserIdType>();
 
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
-        while (query->next()) {
-            userIds.append(query_value_to_variable<UserIdType>(query->value(0)));
+		while (query.next()) {
+			userIds.append(query_value_to_variable<UserIdType>(query.value(0)));
         }
         return userIds;
     } catch (Exceptions::Exception* exception) {
@@ -609,11 +609,11 @@ void UserDatabaseManager::reset_users_password(QString newPassword, UserIdType i
 {
 	//Для начала получим соль пользователя, чтобы позже создать хеш
     QString saltRequest = "SELECT PASSWORD_SALT FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
-    QSqlQuery* saltQuery = dbWorker->run_query(saltRequest);
+	QSqlQuery saltQuery = dbWorker->run_query(saltRequest);
 	//Если пользователь нашелся, меняем его пароль. Если нет - кидаем исключение
-    if(saltQuery->next()){
+	if(saltQuery.next()){
 
-        QString salt = query_value_to_variable<QString>(saltQuery->value(0));
+		QString salt = query_value_to_variable<QString>(saltQuery.value(0));
 		//Заново создаем строку для хеширования
         QString addedPassword = newPassword + salt + localParameter;
 		//И хешируем
@@ -626,7 +626,7 @@ void UserDatabaseManager::reset_users_password(QString newPassword, UserIdType i
         dbWorker->run_query(request);
 
     } else{
-        throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+		throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                        Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
     }
 }
@@ -683,31 +683,31 @@ QString UserDatabaseManager::create_filter_request(MafiaList<UserIdType> ids,
     return request;
 }
 
-MafiaList<User> UserDatabaseManager::get_query_users(QSqlQuery *query)
+MafiaList<User> UserDatabaseManager::get_query_users(QSqlQuery query)
 {
 	//Создаем пустой список, который потом заполним по одному пользователю
     MafiaList<User> users = MafiaList<User>();
 
-    QSqlRecord record = query->record();
-    while (query->next()) {
+	QSqlRecord record = query.record();
+	while (query.next()) {
 		//Заполняем пользователя значениями из запроса
         User current = User();
-        current.id = query_value_to_variable<UserIdType>(query->value(record.indexOf("ID")));
-		current.salt = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_SALT")));
-        current.chats = query_value_to_variable<MafiaList<ChatIdType>>(query->value(record.indexOf("ALL_CHATS")));
-        current.email = query_value_to_variable<QString>(query->value(record.indexOf("EMAIL")));
-        current.allGames = query_value_to_variable<MafiaList<GameIdType>>(query->value(record.indexOf("ALL_GAMES")));
-        current.nickname = query_value_to_variable<QString>(query->value(record.indexOf("NICKNAME")));
-        current.authorized = query_value_to_variable<AuthorizedStatus>(query->value(record.indexOf("IS_AUTHORIZED")));
-        current.accountType = query_value_to_variable<AccountType>(query->value(record.indexOf("ACCOUNT_TYPE")));
-        current.achievement = query_value_to_variable<Achievement>(query->value(record.indexOf("ACHIEVEMENT")));
-        current.isConfirmed = query_value_to_variable<Status>(query->value(record.indexOf("IS_CONFIRMED")));
-        current.passwordHash = query_value_to_variable<QString>(query->value(record.indexOf("PASSWORD_HASH")));
-        current.transactions = query_value_to_variable<MafiaList<TransactionIdType>>(query->value(record.indexOf("TRANSACTIONS")));
-        current.loginDateTime = query_value_to_variable<QDateTime>(query->value(record.indexOf("LOGIN_DATE_TIME")));
-        current.confirmationKey = query_value_to_variable<QString>(query->value(record.indexOf("CONFIRMATION_KEY")));
-        current.defeatesByRoles = query_value_to_variable<MafiaList<int>>(query->value(record.indexOf("DEFEATES_BY_ROLES")));
-        current.victoriesByRoles = query_value_to_variable<MafiaList<int>>(query->value(record.indexOf("VICTORIES_BY_ROLES")));
+		current.id = query_value_to_variable<UserIdType>(query.value(record.indexOf("ID")));
+		current.salt = query_value_to_variable<QString>(query.value(record.indexOf("PASSWORD_SALT")));
+		current.chats = query_value_to_variable<MafiaList<ChatIdType>>(query.value(record.indexOf("ALL_CHATS")));
+		current.email = query_value_to_variable<QString>(query.value(record.indexOf("EMAIL")));
+		current.allGames = query_value_to_variable<MafiaList<GameIdType>>(query.value(record.indexOf("ALL_GAMES")));
+		current.nickname = query_value_to_variable<QString>(query.value(record.indexOf("NICKNAME")));
+		current.authorized = query_value_to_variable<AuthorizedStatus>(query.value(record.indexOf("IS_AUTHORIZED")));
+		current.accountType = query_value_to_variable<AccountType>(query.value(record.indexOf("ACCOUNT_TYPE")));
+		current.achievement = query_value_to_variable<Achievement>(query.value(record.indexOf("ACHIEVEMENT")));
+		current.isConfirmed = query_value_to_variable<Status>(query.value(record.indexOf("IS_CONFIRMED")));
+		current.passwordHash = query_value_to_variable<QString>(query.value(record.indexOf("PASSWORD_HASH")));
+		current.transactions = query_value_to_variable<MafiaList<TransactionIdType>>(query.value(record.indexOf("TRANSACTIONS")));
+		current.loginDateTime = query_value_to_variable<QDateTime>(query.value(record.indexOf("LOGIN_DATE_TIME")));
+		current.confirmationKey = query_value_to_variable<QString>(query.value(record.indexOf("CONFIRMATION_KEY")));
+		current.defeatesByRoles = query_value_to_variable<MafiaList<int>>(query.value(record.indexOf("DEFEATES_BY_ROLES")));
+		current.victoriesByRoles = query_value_to_variable<MafiaList<int>>(query.value(record.indexOf("VICTORIES_BY_ROLES")));
 		//Добавляем получившегося пользователя в список
         users.append(current);
     }
@@ -726,13 +726,13 @@ UserIdType UserDatabaseManager::add_user(User user)
 	//Получаем максимальный id из БД
     QString userIdRequest = "SELECT MAX(ID) FROM " + dbName;
     try {
-        QSqlQuery* userIdQuery = dbWorker->run_query(userIdRequest);
+		QSqlQuery userIdQuery = dbWorker->run_query(userIdRequest);
 
-        if(userIdQuery->next()){
+		if(userIdQuery.next()){
 			//Задаем пользователю соответствующий id
-            user.id = query_value_to_variable<UserIdType>(userIdQuery->value(0)) + 1;
+			user.id = query_value_to_variable<UserIdType>(userIdQuery.value(0)) + 1;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
     } catch (Exceptions::Exception* exception) {
@@ -814,12 +814,12 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
 	//Для начала получим все сведения о пользователе
     QString allGamesRequest = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(userId) + ")";
     try {
-        QSqlQuery* allGamesQuery = dbWorker->run_query(allGamesRequest);
-        QSqlRecord allGamesRecord = allGamesQuery->record();
-        if(allGamesQuery->next()){
+		QSqlQuery allGamesQuery = dbWorker->run_query(allGamesRequest);
+		QSqlRecord allGamesRecord = allGamesQuery.record();
+		if(allGamesQuery.next()){
 			//Дешифруем список игр пользователя
             MafiaList<GameIdType> games = query_value_to_variable<MafiaList<GameIdType>>(
-																		allGamesQuery->value(allGamesRecord.indexOf("ALL_GAMES")));
+																		allGamesQuery.value(allGamesRecord.indexOf("ALL_GAMES")));
 			//Добавляем в список эту игру
 			games.append(gameId);
 			//Изменяем список игр
@@ -834,7 +834,7 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
             switch (result) {
 				case Gameplay::GamePersonalResult_Defeat:{
 					//Дешифруем список
-					MafiaList<int> defs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(
+					MafiaList<int> defs = query_value_to_variable<MafiaList<int>>(allGamesQuery.value(
 																					  allGamesRecord.indexOf("DEFEATES_BY_ROLES")));
 					//Изменяем соответствующую ячейку
 					defs[role]++;
@@ -848,7 +848,7 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
 				}
 				case Gameplay::GamePersonalResult_Victory:{
 					//Дешифруем список из строки
-					MafiaList<int> victs = query_value_to_variable<MafiaList<int>>(allGamesQuery->value(
+					MafiaList<int> victs = query_value_to_variable<MafiaList<int>>(allGamesQuery.value(
 																					   allGamesRecord.indexOf("VICTORIES_BY_ROLES")));
 					//Изменяем соответствующую ячейку
 					victs[role]++;
@@ -866,7 +866,7 @@ void UserDatabaseManager::register_game(UserIdType userId, GameIdType gameId, Ga
             }
 
         } else{
-			throw new Exceptions::DatabaseWorkingException(System::String("No such ID"),
+			throw Exceptions::Exception::generate(System::String("No such ID"),
 					Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult);
         }
 

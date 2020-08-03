@@ -93,7 +93,7 @@ void LogsManager::add_record(std::string message,
 			break;
 		}
 		default:{
-			throw new Exceptions::SystemException(String("Invalid log source type"), Exceptions::SystemExceptionId_LogsError);
+			throw Exceptions::Exception::generate(String("Invalid log source type"), Exceptions::SystemExceptionId_LogsError);
 			break;
 		}
 	}

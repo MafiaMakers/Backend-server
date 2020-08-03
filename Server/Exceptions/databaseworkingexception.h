@@ -17,16 +17,15 @@ namespace Mafia {
             DatabaseWorkingException();
 
             /*!
-             * \brief см. \ref Mafia::Exceptions::Exception(System::String data, ExceptionIdType id)
-             */
-            DatabaseWorkingException(System::String data, ExceptionIdType id);
-
-            /*!
              * \brief show Вывод сообщения
              */
             void show() override;
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+			/*!
+			 * \brief см. \ref Mafia::Exceptions::Exception(System::String data, ExceptionIdType id)
+			 */
+			DatabaseWorkingException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Возможные id исключений, вызываемых работой с БД

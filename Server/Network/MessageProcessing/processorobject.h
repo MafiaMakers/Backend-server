@@ -21,6 +21,8 @@ namespace Mafia {
                  */
                 static ProcessorObject* generate(Message message);
 
+				virtual ~ProcessorObject();
+
                 /*!
                  * \brief Метод обработки сообщений, который в базовом классе чисто виртуальный, но определен в каждом наследнике
                  */

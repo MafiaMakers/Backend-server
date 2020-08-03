@@ -74,6 +74,7 @@ SOURCES += \
         System/portsmanager.cpp \
         System/runprogram.cpp \
         System/serializer.cpp \
+        System/simplestring.cpp \
         clientinfo.cpp \
         main.cpp \
         mainservermanager.cpp \

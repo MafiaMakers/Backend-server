@@ -34,7 +34,7 @@ bool DatabaseWorker::database_open()
     return dataBase.isOpen();
 }
 
-QSqlQuery* DatabaseWorker::run_query(QString request)
+QSqlQuery DatabaseWorker::run_query(QString request)
 {
     int time = 0;
     //std::cout << request.toStdString() << std::endl;
@@ -46,20 +46,23 @@ QSqlQuery* DatabaseWorker::run_query(QString request)
         time += 10;
 		//Но если ждем слишком долго, то это плохой знак
         if(time > maxWaitingTime){
-            throw new Exceptions::DatabaseWorkingException(System::String("Too much waiting time"), Exceptions::DatabaseWorkingExceptionId_TimeLimit);
-        }
+			throw Exceptions::Exception::generate(System::String("Too much waiting time"),
+														   Exceptions::DatabaseWorkingExceptionId_TimeLimit);
+			return QSqlQuery();
+		}
     }
 
-    QSqlQuery* query = new QSqlQuery(dataBase);
+	QSqlQuery query = QSqlQuery(dataBase);
 
-    bool success = query->exec(request);
+	bool success = query.exec(request);
 	//Если провалились, то кидаем исключение
     if(!success){
         std::string exception = "Unable to execute query\n";
-        exception += query->lastError().text().toStdString();
+		exception += query.lastError().text().toStdString();
         exception += "\n" + request.toStdString();
-        throw new Exceptions::DatabaseWorkingException(System::String(exception), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
-        return 0;
+		throw Exceptions::Exception::generate(System::String(exception),
+													   Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+		return QSqlQuery();
     }
 
     return query;
@@ -128,7 +131,7 @@ bool DatabaseWorker::restart_database()
 	//Если превысили лимит перезапусков, то все очень плохо, кидаем ошибку
 	if(restartAttempts > maxRestartAttempts){
 		restartAttempts = 0;
-		throw new Exceptions::DatabaseWorkingException(
+		throw Exceptions::Exception::generate(
 			System::String("Restart attempts limit overflowed!"),
 			Exceptions::DatabaseWorkingExceptionId_DatabaseRestartAttemptsLimit
 			);

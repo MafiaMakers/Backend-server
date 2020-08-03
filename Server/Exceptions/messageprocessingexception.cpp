@@ -1,4 +1,5 @@
 #include "messageprocessingexception.h"
+#include "System/functions.h"
 
 using namespace Mafia;
 using namespace Exceptions;
@@ -6,5 +7,6 @@ MessageProcessingException::MessageProcessingException(System::String data, Exce
 
 ExceptionIdType MessageProcessingException::get_base_exception_id()
 {
-    return MessageParsingExceptionId_Default;
+	return MessageParsingExceptionId_Default;
 }
+

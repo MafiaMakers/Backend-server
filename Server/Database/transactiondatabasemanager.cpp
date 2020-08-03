@@ -40,7 +40,7 @@ TransactionDatabaseManager::TransactionDatabaseManager(DatabaseWorker* databaseW
             } catch (Exceptions::Exception* exception) {
                 exception->show();
             }
-
+			exception->close();
             break;
         }
 		//Если же ошибка другого характера, то все очень плохо...
@@ -57,20 +57,20 @@ TransactionIdType TransactionDatabaseManager::add_transaction(UserIdType userId,
     QString idRequest = "SELECT COALESCE(MAX(ID), 0) FROM " + dbName;
 
     try {
-        QSqlQuery* idQuery = dbWorker->run_query(idRequest);
+		QSqlQuery idQuery = dbWorker->run_query(idRequest);
 
 		//Если нашли такой id (а мы обязательно должны были найти), то добавляем новую строку в БД
-        if(idQuery->next()){
-            TransactionIdType maxId = query_value_to_variable<TransactionIdType>(idQuery->value(0));
+		if(idQuery.next()){
+			TransactionIdType maxId = query_value_to_variable<TransactionIdType>(idQuery.value(0));
 			//Берем хеш предыдущей транзакции, чтобы составить новый хеш
             QString hashRequest = "SELECT HASH FROM " + dbName + " WHERE (ID = " + QString::number(maxId) + ")";
-            QSqlQuery* hashQuery = dbWorker->run_query(hashRequest);
+			QSqlQuery hashQuery = dbWorker->run_query(hashRequest);
             QString prevHash = "";
-            if(hashQuery->next()){
-                prevHash = hashQuery->value(0).toString();
+			if(hashQuery.next()){
+				prevHash = hashQuery.value(0).toString();
             } else{
 				//Тут на самом деле все ок. Если предыдущей транзакции не было, то оставляем строку пустой
-                //throw new Exceptions::DatabaseWorkingException(System::String("No previous hash in DB"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+				//throw Exceptions::Exception::generate(System::String("No previous hash in DB"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
             }
 
 			//Составляем новую строку, которую будем хешировать
@@ -119,7 +119,7 @@ MafiaList<Transaction> TransactionDatabaseManager::get_all_transactions()
     QString request = "SELECT * FROM " + dbName;
 
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
         MafiaList<Transaction> allTransactions = get_request_transactions(query);
 
@@ -142,24 +142,24 @@ Transaction TransactionDatabaseManager::get_transaction(TransactionIdType id)
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(id) + ")";
 
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
-        QSqlRecord record = query->record();
-        if(query->next()){
+		QSqlRecord record = query.record();
+		if(query.next()){
 			//Заполняем результатами запроса транзакцию
             Transaction current = Transaction();
 
-            current.id = query_value_to_variable<TransactionIdType>(query->value(record.indexOf("ID")));
-            current.hash = query_value_to_variable<QString>(query->value(record.indexOf("HASH")));
-            current.type = query_value_to_variable<TransactionType>(query->value(record.indexOf("TYPE")));
-            current.buyer = query_value_to_variable<UserIdType>(query->value(record.indexOf("USER_ID")));
-            current.price = query_value_to_variable<PriceType>(query->value(record.indexOf("PRICE")));
-			current.timestamp = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
+			current.id = query_value_to_variable<TransactionIdType>(query.value(record.indexOf("ID")));
+			current.hash = query_value_to_variable<QString>(query.value(record.indexOf("HASH")));
+			current.type = query_value_to_variable<TransactionType>(query.value(record.indexOf("TYPE")));
+			current.buyer = query_value_to_variable<UserIdType>(query.value(record.indexOf("USER_ID")));
+			current.price = query_value_to_variable<PriceType>(query.value(record.indexOf("PRICE")));
+			current.timestamp = query_value_to_variable<QDateTime>(query.value(record.indexOf("TIMESTAMP")));
 
            return current;
 
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null database request answer"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+			throw Exceptions::Exception::generate(System::String("Null database request answer"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -175,7 +175,7 @@ Transaction TransactionDatabaseManager::get_transaction(TransactionIdType id)
 MafiaList<Transaction> TransactionDatabaseManager::get_users_transactions(UserIdType buyer)
 {
     try {
-        QSqlQuery* query = dbWorker->run_query("SELECT * FROM " + dbName + " WHERE (USER_ID = " + QString::number(buyer) + ")");
+		QSqlQuery query = dbWorker->run_query("SELECT * FROM " + dbName + " WHERE (USER_ID = " + QString::number(buyer) + ")");
         MafiaList<Transaction> transactions = get_request_transactions(query);
         return transactions;
 
@@ -192,7 +192,7 @@ MafiaList<Transaction> TransactionDatabaseManager::get_users_transactions(UserId
 MafiaList<Transaction> TransactionDatabaseManager::get_time_bounded_transactions(QDateTime after, QDateTime before)
 {
     try {
-        QSqlQuery* query = dbWorker->run_query("SELECT * FROM " + dbName + " WHERE "
+		QSqlQuery query = dbWorker->run_query("SELECT * FROM " + dbName + " WHERE "
 											   "(TIMESTAMP >= \'" + after.toString(SQL_DATETIME_FORMAT) +
 											   "\' AND " + "TIMESTAMP <= \'" + before.toString(SQL_DATETIME_FORMAT) + "\')");
         MafiaList<Transaction> transactions = get_request_transactions(query);
@@ -289,21 +289,21 @@ TransactionIdType TransactionDatabaseManager::add_transaction(Transaction transa
     }
 }
 
-MafiaList<Transaction> TransactionDatabaseManager::get_request_transactions(QSqlQuery *query)
+MafiaList<Transaction> TransactionDatabaseManager::get_request_transactions(QSqlQuery query)
 {
 	//Создаем пустой список, который потом постепенно заполним значениями
     MafiaList<Transaction> allTransactions = MafiaList<Transaction>();
-    QSqlRecord record = query->record();
-	while(query->next()){
+	QSqlRecord record = query.record();
+	while(query.next()){
 		//Заполняем по одной поля транзакций
         Transaction current = Transaction();
 
-        current.id = query_value_to_variable<TransactionIdType>(query->value(record.indexOf("ID")));
-        current.hash = query_value_to_variable<QString>(query->value(record.indexOf("HASH")));
-        current.type = query_value_to_variable<TransactionType>(query->value(record.indexOf("TYPE")));
-        current.buyer = query_value_to_variable<UserIdType>(query->value(record.indexOf("USER_ID")));
-        current.price = query_value_to_variable<PriceType>(query->value(record.indexOf("PRICE")));
-        current.timestamp = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
+		current.id = query_value_to_variable<TransactionIdType>(query.value(record.indexOf("ID")));
+		current.hash = query_value_to_variable<QString>(query.value(record.indexOf("HASH")));
+		current.type = query_value_to_variable<TransactionType>(query.value(record.indexOf("TYPE")));
+		current.buyer = query_value_to_variable<UserIdType>(query.value(record.indexOf("USER_ID")));
+		current.price = query_value_to_variable<PriceType>(query.value(record.indexOf("PRICE")));
+		current.timestamp = query_value_to_variable<QDateTime>(query.value(record.indexOf("TIMESTAMP")));
 
 		//Добавляем полученную транзакцию в список
         allTransactions.append(current);

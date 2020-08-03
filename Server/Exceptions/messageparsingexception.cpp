@@ -1,4 +1,5 @@
 #include "messageparsingexception.h"
+#include "System/functions.h"
 #include <iostream>
 
 using namespace Mafia;
@@ -7,10 +8,12 @@ MessageParsingException::MessageParsingException(System::String data, ExceptionI
 
 void MessageParsingException::show()
 {
-    std::cout << "Exception in parsing message!\nException info : " << this->data.data << "\nException id : " << this->id << std::endl;
+	std::cout << "Exception in parsing message!\nException info : " << this->data.data
+			  << "\nException id : " << this->id << std::endl;
+	close();
 }
 
 ExceptionIdType MessageParsingException::get_base_exception_id()
 {
-    return MessageParsingExceptionId_Default;
+	return MessageParsingExceptionId_Default;
 }

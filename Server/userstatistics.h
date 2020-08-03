@@ -18,6 +18,8 @@ namespace Mafia {
          */
         UserStatistics(Database::User user);
 
+		~UserStatistics();
+
 		bool operator == (const UserStatistics &a) const;
 
         //! \brief см. \ref Mafia::Database::User::victoriesByRoles

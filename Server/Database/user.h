@@ -119,36 +119,52 @@ namespace Mafia {
         struct User{
             //! \brief id пользователя (уникальный)
             UserIdType id;
+
             //! \brief имя пользователя (не уникальное!)
             QString nickname;
+
             //! \brief email пользователя (уникальный)
             QString email;
+
             //! \brief Хеш пароля для сверения его с вводимым паролем
             QString passwordHash;
+
             //! \brief Соль хеша пароля (для большей безопасности)
             QString salt;
+
             //! \brief Статус пользователя (подтвердил ли он свой email)
             Status isConfirmed;
+
             //! \brief Авторизован ли прям сейчас пользователь в игре
             AuthorizedStatus authorized;
+
             //! \brief Тип аккаунта пользователя
             AccountType accountType;
+
             //! \brief Дата и время регистрации пользователя
             QDateTime loginDateTime;
+
             //! \brief Достижение (нашивка) пользователя
             Achievement achievement;
+
             //! \brief Ключ для подтверждения email-а
             ConfirmationKeyType confirmationKey;
+
             //! \brief Список всех транзакций, проведенных пользователем
             MafiaList<TransactionIdType> transactions;
+
             //! \brief Список всех id игр, в которых участвовал пользователь
             MafiaList<GameIdType> allGames;
+
             //! \brief Количество побед в играх (по каждой роли. То есть victoriesByRoles[RoleId] - это количество побед ролью RoleId)
             MafiaList<int> victoriesByRoles;
+
             //! \brief Количество поражений в играх (по каждой роли)
             MafiaList<int> defeatesByRoles;
+
             //! \brief Список всех id чатов, в которых участвует пользователь
             MafiaList<ChatIdType> chats;
+
             //! \brief Метод для вывода в консоль всех данных о пользователе
             void show();
 

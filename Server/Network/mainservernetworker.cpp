@@ -128,7 +128,7 @@ void MainServerNetworker::_process_message(Message message)
         emit message_received(message);
 
 
-		//throw new Exceptions::MessageProcessingException(System::String("unknown message type received"),
+		//throw Exceptions::Exception::generate(System::String("unknown message type received"),
 			//Exceptions::MessageProcessingExceptionId_UnknownMessageType);
     }
     }
@@ -158,7 +158,7 @@ bool MainServerNetworker::check_message_full(MessageIdType id)
 
 	//Если такое сообщение не найдено, кидаем ошибку
     if(listIndex == -1){
-		throw new Exceptions::MessageProcessingException(System::String("No such message id in list"),
+		throw Exceptions::Exception::generate(System::String("No such message id in list"),
                                                          Exceptions::MessageProcessingExceptionId_MissingMessageId);
         return false;
     }
@@ -198,7 +198,7 @@ void MainServerNetworker::add_received_message(Message message)
 		if( message.partIndex < waitingToFillMessages[ listIndex ].length() - 1 && message_matches( message ) ){
 			waitingToFillMessages[ listIndex ][ message.partIndex + 1 ] = message;
         } else{
-            throw new Exceptions::MessageProcessingException(System::String("Message parts data mismatch"),
+			throw Exceptions::Exception::generate(System::String("Message parts data mismatch"),
                                                              Exceptions::MessageProcessingExceptionId_MessagePartsMismatch);
         }
 
@@ -225,7 +225,7 @@ bool MainServerNetworker::message_matches(Message message)
     int index = get_list_index(message.id);
 
     if(index == -1){
-        throw new Exceptions::MessageProcessingException(System::String("No such message id in list"),
+		throw Exceptions::Exception::generate(System::String("No such message id in list"),
                                                          Exceptions::MessageProcessingExceptionId_MissingMessageId);
         return false;
     }
@@ -252,7 +252,8 @@ void MainServerNetworker::receive_message() {
     QByteArray datagram;
     datagram.resize(socket->pendingDatagramSize());
 
-    QHostAddress *address = new QHostAddress();
+	QHostAddress *address;
+	SAFE_NEW(address, QHostAddress());
     quint16 port;
 	auto bytesReceived = socket->readDatagram(datagram.data(), datagram.size(), address, &port);
 
@@ -269,6 +270,7 @@ void MainServerNetworker::receive_message() {
 		//Заполняем его поля клиента данными
         trueData.client.ip = address->toIPv4Address();
         trueData.client.port = port;
+		SAFE_DELETE(address);
         if(trueData.id > currentMaxId){
             currentMaxId = trueData.id;
         }
@@ -372,7 +374,7 @@ Message MainServerNetworker::_construct_whole_message(MessageIdType id)
 
 	//Если не нашли такой элемент, то кидаем исключение
 	if(listIndex == -1){
-		throw new Exceptions::MessageProcessingException(
+		throw Exceptions::Exception::generate(
 					System::String("No such message id in list"),
 					Exceptions::MessageProcessingExceptionId_MissingMessageId);
 	}

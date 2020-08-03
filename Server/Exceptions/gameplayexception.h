@@ -12,12 +12,14 @@ namespace Mafia {
         public:
             //! \brief Пустой конструктор
             GameplayException();
-            /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
-            GameplayException(System::String data, ExceptionIdType id);
+
             //! \brief см. \ref Mafia::Exception::show()
             void show() override;
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+
+			/*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
+			GameplayException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Возможные id иключений геймплея

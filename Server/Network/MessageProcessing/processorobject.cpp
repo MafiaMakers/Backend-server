@@ -28,73 +28,101 @@ using namespace MessageProcessing;
 
 ProcessorObject *ProcessorObject::generate(Message message)
 {
+	ProcessorObject* result;
     switch (message.type) {
     case MessageType_CreateUser:{
-        return new CreateUserProcessorObject(message);
+		SAFE_NEW(result, CreateUserProcessorObject(message));
+		break;
     }
     case MessageType_SendChatMessage:{
-        return new SendChatMessageProcessorObject(message);
+		SAFE_NEW(result, SendChatMessageProcessorObject(message));
+		break;
     }
     case MessageType_EditChatMessage:{
-        return new EditChatMessageProcessorObject(message);
+		SAFE_NEW(result, EditChatMessageProcessorObject(message));
+		break;
     }
     case MessageType_DeleteChatMessage:{
-        return new DeleteChatMessageProcessorObject(message);
+		SAFE_NEW(result, DeleteChatMessageProcessorObject(message));
+		break;
     }
     case MessageType_ReadChatMessage:{
-        return new ReadChatMessageProcessorObject(message);
+		SAFE_NEW(result, ReadChatMessageProcessorObject(message));
+		break;
     }
     case MessageType_GetChatMessages:{
-        return new GetChatMessagesProcessorObject(message);
+		SAFE_NEW(result, GetChatMessagesProcessorObject(message));
+		break;
     }
     case MessageType_LoginRequest:{
-        return new LoginRequestProcessorObject(message);
+		SAFE_NEW(result, LoginRequestProcessorObject(message));
+		break;
     }
     case MessageType_CreateChatRequest:{
-        return new CreateChatRequestProcessorObject(message);
+		SAFE_NEW(result, CreateChatRequestProcessorObject(message));
+		break;
     }
     case MessageType_GetChatsRequest:{
-        return new GetChatsRequestProcessorObject(message);
+		SAFE_NEW(result, GetChatsRequestProcessorObject(message));
+		break;
     }
     case MessageType_AddUserToChat:{
-        return new AddUserToChatProcessorObject(message);
+		SAFE_NEW(result, AddUserToChatProcessorObject(message));
+		break;
     }
     case MessageType_RemoveUserFromChat:{
-        return new RemoveUserFromChatProcessorObject(message);
+		SAFE_NEW(result, RemoveUserFromChatProcessorObject(message));
+		break;
     }
     case MessageType_ChangeUsersCapability:{
-        return new ChangeUsersCapabilityProcessorObject(message);
+		SAFE_NEW(result, ChangeUsersCapabilityProcessorObject(message));
+		break;
     }
     case MessageType_CreateGameRequest:{
-        return new CreateGameRequestProcessorObject(message);
+		SAFE_NEW(result, CreateGameRequestProcessorObject(message));
+		break;
     }
     case MessageType_GetStatisticsRequest:{
-        return new GetStatisticsRequestProcessorObject(message);
+		SAFE_NEW(result, GetStatisticsRequestProcessorObject(message));
+		break;
     }
     case MessageType_ConfirmEmail:{
-        return new ConfirmEmailProcessorObject(message);
+		SAFE_NEW(result, ConfirmEmailProcessorObject(message));
+		break;
     }
     case MessageType_Logout:{
-        return new LogoutProcessorObject(message);
+		SAFE_NEW(result, LogoutProcessorObject(message));
+		break;
     }
     case MessageType_LogsData:{
-        return new LogsDataProcessorObject(message);
+		SAFE_NEW(result, LogsDataProcessorObject(message));
+		break;
     }
     case MessageType_ChangeNickname:{
-        return new ChangeNicknameProcessorObject(message);
+		SAFE_NEW(result, ChangeNicknameProcessorObject(message));
+		break;
     }
     case MessageType_ChangeEmailRequest:{
-        return new ChangeEmailRequestProcessorObject(message);
+		SAFE_NEW(result, ChangeEmailRequestProcessorObject(message));
+		break;
     }
     case MessageType_GetIntoGameRequest:{
-        return new GetIntoGameRequestProcessorObject(message);
+		SAFE_NEW(result, GetIntoGameRequestProcessorObject(message));
+		break;
     }
     default:{
-        throw new Exceptions::MessageProcessingException(System::String("Unknown message type!"),
+		throw Exceptions::Exception::generate(System::String("Unknown message type!"),
                                                          Exceptions::MessageProcessingExceptionId_UnknownMessageType);
         return NULL;
     }
     }
+
+	return result;
+}
+
+ProcessorObject::~ProcessorObject()
+{
+
 }
 
 ProcessorObject::ProcessorObject(Message message)

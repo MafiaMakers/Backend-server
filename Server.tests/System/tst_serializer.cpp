@@ -68,10 +68,16 @@ void SerializerTests::list_of_int()
         source.append(qrand());
     }
 
-    Mafia::System::String data = Mafia::System::Serializer::serialize<MafiaList<int>>(source);
-    MafiaList<int> result = Mafia::System::Serializer::deserialize<MafiaList<int>>(data);
+	try {
+		Mafia::System::String data = Mafia::System::Serializer::serialize<MafiaList<int>>(source);
+		MafiaList<int> result = Mafia::System::Serializer::deserialize<MafiaList<int>>(data);
 
-    QCOMPARE(source, result);
+		QCOMPARE(source, result);
+
+	} catch (Mafia::Exceptions::Exception* exception) {
+		exception->show();
+		QFAIL("Exception is thrown!");
+	}
 
 }
 

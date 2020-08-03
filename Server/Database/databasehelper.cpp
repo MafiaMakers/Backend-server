@@ -196,9 +196,9 @@ QString Mafia::Database::get_sql_filter(FilterType filter)
 			return " AND ";
 		}
 		case FilterType_NONE:{
-			throw new Exceptions::DatabaseWorkingException(System::String("Incorrect filter!"),
+			throw Exceptions::Exception::generate(System::String("Incorrect filter!"),
 														   Exceptions::DatabaseWorkingExceptionId_UnknownFilterType);
-				break;
+			break;
 		}
     }
     return "";

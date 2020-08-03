@@ -13,12 +13,14 @@ namespace Mafia {
         public:
             //! \brief см. \ref Mafia::Exception::Exception()
             SubserverException(){}
-            /*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
-            SubserverException(System::String data, ExceptionIdType id);
+
             //! \brief см. \ref Mafia::Exception::show()
             void show() override;
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+
+			/*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
+			SubserverException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Возможные id исключений работы с субсервером

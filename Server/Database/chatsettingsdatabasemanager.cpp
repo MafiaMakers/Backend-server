@@ -28,6 +28,7 @@ ChatSettingsDatabaseManager::ChatSettingsDatabaseManager(DatabaseWorker *databas
 					}
 					}
 				}
+				exception->close();
 				break;
 			}
 			//Если это какая-то другая ошибка, то все плохо...
@@ -45,11 +46,11 @@ ChatIdType ChatSettingsDatabaseManager::create_chat()
     QString idRequest = "SELECT COALESCE(MAX(ID), 0) FROM " + dbName;
 
     try {
-        QSqlQuery* idQuery = dbWorker->run_query(idRequest);
+		QSqlQuery idQuery = dbWorker->run_query(idRequest);
 		//Результат точно должен быть, т.к. использовался COALESCE
-        if(idQuery->next()){
+		if(idQuery.next()){
 			//Задаем чату нужный ID
-            ChatIdType id = query_value_to_variable<ChatIdType>(idQuery->value(0)) + 1;
+			ChatIdType id = query_value_to_variable<ChatIdType>(idQuery.value(0)) + 1;
             QString request = "INSERT INTO " + dbName + " (ID, TIMESTAMP, USERS, CAPABILITIES) VALUES (%1, %2, \'\', \'\')";
 			//Заполняем пропуски в запросе
             request = request.arg(QString::number(id));
@@ -59,7 +60,7 @@ ChatIdType ChatSettingsDatabaseManager::create_chat()
             return id;
 		//Но если результата все же нет, то что-то не так...
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null query answer"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+			throw Exceptions::Exception::generate(System::String("Null query answer"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
     } catch (Exceptions::Exception* exception) {
@@ -78,18 +79,18 @@ void ChatSettingsDatabaseManager::add_user_to_chat(UserIdType user, ChatIdType c
     QString chatRequest = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
 
     try {
-        QSqlQuery* chatQuery = dbWorker->run_query(chatRequest);
+		QSqlQuery chatQuery = dbWorker->run_query(chatRequest);
 
-        if(chatQuery->next()){
-            QSqlRecord record = chatQuery->record();
+		if(chatQuery.next()){
+			QSqlRecord record = chatQuery.record();
 			//Дешифруем строки в списки
 			MafiaList<UserIdType> users =
-					query_value_to_variable<MafiaList<UserIdType>>(chatQuery->value(record.indexOf("USERS")));
+					query_value_to_variable<MafiaList<UserIdType>>(chatQuery.value(record.indexOf("USERS")));
 			MafiaList<ChatCapability> capabilities =
-					query_value_to_variable<MafiaList<ChatCapability>>(chatQuery->value(record.indexOf("CAPABILITIES")));
+					query_value_to_variable<MafiaList<ChatCapability>>(chatQuery.value(record.indexOf("CAPABILITIES")));
 
             if(users.contains(user)){
-                throw new Exceptions::DatabaseWorkingException(System::String("Attemp to add user to chat with this user"),
+				throw Exceptions::Exception::generate(System::String("Attemp to add user to chat with this user"),
                                                                Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt);
             }
 
@@ -102,7 +103,7 @@ void ChatSettingsDatabaseManager::add_user_to_chat(UserIdType user, ChatIdType c
 
             dbWorker->run_query(request);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+			throw Exceptions::Exception::generate(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -128,12 +129,12 @@ MafiaList<ChatIdType> ChatSettingsDatabaseManager::get_chats_with(MafiaList<Chat
     request += ")";
 
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
         MafiaList<ChatIdType> result = MafiaList<ChatIdType>();
 		//Вытаскиваем все значения из запроса
-        while(query->next()){
-            result.append(query_value_to_variable<ChatIdType>(query->value(0)));
+		while(query.next()){
+			result.append(query_value_to_variable<ChatIdType>(query.value(0)));
         }
 
         return result;
@@ -155,18 +156,18 @@ void ChatSettingsDatabaseManager::set_capability(UserIdType user, ChatIdType cha
     QString chatRequest = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
 
     try {
-        QSqlQuery* chatQuery = dbWorker->run_query(chatRequest);
+		QSqlQuery chatQuery = dbWorker->run_query(chatRequest);
 
-        if(chatQuery->next()){
+		if(chatQuery.next()){
 			//Дешифруем строки в списки
-            QSqlRecord record = chatQuery->record();
-            MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(chatQuery->value(record.indexOf("USERS")));
-            MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(chatQuery->value(record.indexOf("CAPABILITIES")));
+			QSqlRecord record = chatQuery.record();
+			MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(chatQuery.value(record.indexOf("USERS")));
+			MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(chatQuery.value(record.indexOf("CAPABILITIES")));
 			//Пользователь должен находиться в этом чате
 			if(users.contains(user)){
                 capabilities[users.indexOf(user)] = newCapability;
             } else{
-                throw new Exceptions::DatabaseWorkingException(System::String("Attemp to edit users capability in chat without this user"),
+				throw Exceptions::Exception::generate(System::String("Attemp to edit users capability in chat without this user"),
                                                                Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt);
             }
 
@@ -176,7 +177,7 @@ void ChatSettingsDatabaseManager::set_capability(UserIdType user, ChatIdType cha
 
             dbWorker->run_query(request);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+			throw Exceptions::Exception::generate(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -193,20 +194,20 @@ void ChatSettingsDatabaseManager::remove_user_from_chat(UserIdType user, ChatIdT
     QString chatRequest = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
 
     try {
-        QSqlQuery* chatQuery = dbWorker->run_query(chatRequest);
+		QSqlQuery chatQuery = dbWorker->run_query(chatRequest);
 
-        if(chatQuery->next()){
+		if(chatQuery.next()){
 			//Дещифруем их в списки
-            QSqlRecord record = chatQuery->record();
-            MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(chatQuery->value(record.indexOf("USERS")));
-            MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(chatQuery->value(record.indexOf("CAPABILITIES")));
+			QSqlRecord record = chatQuery.record();
+			MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(chatQuery.value(record.indexOf("USERS")));
+			MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(chatQuery.value(record.indexOf("CAPABILITIES")));
 			//Пользователь должен быть в этом чате
 			if(users.contains(user)){
 				//Удаляем его
                 capabilities.removeAt(users.indexOf(user));
                 users.removeOne(user);
             } else{
-                throw new Exceptions::DatabaseWorkingException(System::String("Attemp to remove user from chat without this user"),
+				throw Exceptions::Exception::generate(System::String("Attemp to remove user from chat without this user"),
                                                                Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt);
             }
 
@@ -218,7 +219,7 @@ void ChatSettingsDatabaseManager::remove_user_from_chat(UserIdType user, ChatIdT
 
             dbWorker->run_query(request);
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+			throw Exceptions::Exception::generate(System::String("Null sql answer!"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -233,7 +234,7 @@ MafiaList<Chat> ChatSettingsDatabaseManager::get_all_chats()
 {
     QString request = "SELECT * FROM " + dbName;
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
         return get_request_chat(query);
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -255,7 +256,7 @@ MafiaList<Chat> ChatSettingsDatabaseManager::get_users_chat(UserIdType user)
 
 	QString request = "SELECT * FROM " + dbName + " WHERE (USERS LIKE \'%" + oneUserString + "%\')";
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
         return get_request_chat(query);
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
@@ -273,16 +274,16 @@ Chat ChatSettingsDatabaseManager::get_chat(ChatIdType chat)
     QString request = "SELECT * FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
     try {
 		//Берем чаты, у которых нужный ID
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
         MafiaList<Chat> chats = get_request_chat(query);
 		//Такой должен быть только 1 (т.к. ID - PRIMARY KEY)
 		if(chats.length() == 1){
             return chats[0];
         } else{
             if(chats.length() < 1){
-                throw new Exceptions::DatabaseWorkingException(System::String("No chat with this ID"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
+				throw Exceptions::Exception::generate(System::String("No chat with this ID"), Exceptions::DatabaseWorkingExceptionId_SQlQuery);
             } else {
-                throw new Exceptions::DatabaseWorkingException(System::String("Something impossible happened! Many chats with same ID"),
+				throw Exceptions::Exception::generate(System::String("Something impossible happened! Many chats with same ID"),
                                                                Exceptions::DatabaseWorkingExceptionId_SQlQuery);
             }
         }
@@ -317,7 +318,7 @@ bool ChatSettingsDatabaseManager::can_send_message(UserIdType user, ChatIdType c
             return false;
         }
         default:{
-            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+			throw Exceptions::Exception::generate(System::String("Unknown chat capability"),
                                                            Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
         }
         }
@@ -351,7 +352,7 @@ bool ChatSettingsDatabaseManager::can_read_message(UserIdType user, ChatIdType c
             return false;
         }
         default:{
-            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+			throw Exceptions::Exception::generate(System::String("Unknown chat capability"),
                                                            Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
         }
         }
@@ -385,7 +386,7 @@ bool ChatSettingsDatabaseManager::can_edit_users(UserIdType user, ChatIdType cha
             return false;
         }
         default:{
-            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+			throw Exceptions::Exception::generate(System::String("Unknown chat capability"),
                                                            Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
         }
         }
@@ -419,7 +420,7 @@ bool ChatSettingsDatabaseManager::can_edit_messages(UserIdType user, ChatIdType 
             return false;
         }
         default:{
-            throw new Exceptions::DatabaseWorkingException(System::String("Unknown chat capability"),
+			throw Exceptions::Exception::generate(System::String("Unknown chat capability"),
                                                            Exceptions::DatabaseWorkingExceptionId_UnknownChatCapability);
         }
         }
@@ -438,13 +439,13 @@ ChatCapability ChatSettingsDatabaseManager::get_capability(UserIdType user, Chat
     QString request = "SELECT USERS, CAPABILITIES FROM " + dbName + " WHERE (ID = " + QString::number(chat) + ")";
 
     try {
-        QSqlQuery* query = dbWorker->run_query(request);
+		QSqlQuery query = dbWorker->run_query(request);
 
-        if(query->next()){
+		if(query.next()){
 			//Дешифруем их из строк в списки
-            MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(query->value(query->record().indexOf("USERS")));
+			MafiaList<UserIdType> users = query_value_to_variable<MafiaList<UserIdType>>(query.value(query.record().indexOf("USERS")));
             MafiaList<ChatCapability> capabilities = query_value_to_variable<MafiaList<ChatCapability>>(
-                                                     query->value(query->record().indexOf("CAPABILITIES")));
+													 query.value(query.record().indexOf("CAPABILITIES")));
 			//Пользователь должен быть в этом чате
             if(users.contains(user)){
                 return capabilities[users.indexOf(user)];
@@ -452,7 +453,7 @@ ChatCapability ChatSettingsDatabaseManager::get_capability(UserIdType user, Chat
                 return ChatCapabilities_None;
             }
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Null query answer"),
+			throw Exceptions::Exception::generate(System::String("Null query answer"),
                                                            Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
     } catch (Exceptions::Exception* exception) {
@@ -515,20 +516,20 @@ QString ChatSettingsDatabaseManager::generate_request_user(MafiaList<UserIdType>
     return request;
 }
 
-MafiaList<Chat> ChatSettingsDatabaseManager::get_request_chat(QSqlQuery *query)
+MafiaList<Chat> ChatSettingsDatabaseManager::get_request_chat(QSqlQuery query)
 {
 	//Будем по одному добавлять в пустой список все чаты
     MafiaList<Chat> chats = MafiaList<Chat>();
 
-    QSqlRecord record = query->record();
+	QSqlRecord record = query.record();
 
-    while (query->next()) {
+	while (query.next()) {
         Chat current = Chat();
 		//Заполняем пустой чат данными из запроса и добавляем его в список
-        current.id = query_value_to_variable<ChatIdType>(query->value(record.indexOf("ID")));
-        current.users = query_value_to_variable<MafiaList<UserIdType>>(query->value(record.indexOf("USERS")));
-        current.creationTime = query_value_to_variable<QDateTime>(query->value(record.indexOf("TIMESTAMP")));
-        current.usersCapabilities = query_value_to_variable<MafiaList<ChatCapability>>(query->value(record.indexOf("CAPABILITIES")));
+		current.id = query_value_to_variable<ChatIdType>(query.value(record.indexOf("ID")));
+		current.users = query_value_to_variable<MafiaList<UserIdType>>(query.value(record.indexOf("USERS")));
+		current.creationTime = query_value_to_variable<QDateTime>(query.value(record.indexOf("TIMESTAMP")));
+		current.usersCapabilities = query_value_to_variable<MafiaList<ChatCapability>>(query.value(record.indexOf("CAPABILITIES")));
 
         chats.append(current);
     }

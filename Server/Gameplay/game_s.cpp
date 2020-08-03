@@ -39,7 +39,7 @@ Mafia::Gameplay::GamePersonalResult Mafia::Gameplay::result_by_role_and_res(Mafi
         }
     }
     default:{
-        throw new Exceptions::GameplayException(System::String("Role id not found"), Exceptions::GameplayExceptionId_UnknownRole);
+		throw Exceptions::Exception::generate(System::String("Role id not found"), Exceptions::GameplayExceptionId_UnknownRole);
         return GamePersonalResult_None;
     }
     }

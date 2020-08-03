@@ -23,10 +23,21 @@ template<>
 char Serializer::deserialize(String &value){
 	if(value.size >= 2){
 		char result = (value.data[0] - 'M') * 16 + (value.data[1] - 'M');
-		value = String(value.data + 2 * sizeof(char), value.size - 2 * sizeof(char));
+
+		/*Здесь должна быть работа с памятью, но ее не будет
+		 *т.к. возникает мильон ошибок повторного разыменовывания указателей
+		 *и с ними я совсем сейчас не хочу разбираться.
+		 *Так что если возникнет проблема утечек памяти, то будем потом проверять эти места
+		 *А пока просто забьем*/
+
+		//delete value.data;
+		//delete (value.data + 1);
+		value.data += 2;
+		value.size -= 2;
+		//value = String(value.data + 2 * sizeof(char), value.size - 2 * sizeof(char));
         return result;
     } else{
-        throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
+		throw Exceptions::Exception::generate(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
         return '\0';
     }
 }
@@ -44,14 +55,17 @@ std::string Serializer::serialize(int value){
 template<>
 int Serializer::deserialize(String &data){
 	if((unsigned int)data.size >= sizeof(int)){
-		char* d = new char[sizeof (int)];
+		char* d;
+		SAFE_NEW(d, char[sizeof (int)]);
 		for(unsigned int i = 0; i < sizeof(int); i++){
 			d[i] = deserialize<char>(data);
 		}
 		int result = *(int*)d;
+		SAFE_DELETE_ARRAY(d);
 		return result;
 	} else{
-		throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
+		throw Exceptions::Exception::generate(String("Message is too short"),
+											  Exceptions::SystemExceptionId_InvalidMessageSize);
 		return 0;
 	}
 }
@@ -137,7 +151,7 @@ MafiaList<int> Serializer::deserialize(String &data){
 			result.append(deserialize<int>(data));
 		}
 	} else{
-		throw new Exceptions::SystemException(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
+		throw Exceptions::Exception::generate(String("Message is too short"), Exceptions::SystemExceptionId_InvalidMessageSize);
 	}
 
 	return result;

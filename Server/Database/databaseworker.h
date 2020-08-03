@@ -43,7 +43,7 @@ namespace Mafia {
              * \return Полученный результат в виде QSqlQuery*
              * \throws DatabaseWorkingExceptionId_SQlQuery в случае неудачного выполнения запроса
              */
-            QSqlQuery* run_query(QString request);
+			QSqlQuery run_query(QString request);
 
             /*!
              * \brief Функция, которая восстанавливает БД из резервной копии

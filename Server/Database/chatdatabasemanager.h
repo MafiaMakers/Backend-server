@@ -146,7 +146,7 @@ namespace Mafia {
              * \param query sql-запрос, содержащий ответ
              * \return Список из  сообщений
              */
-            MafiaList<ChatMessage> get_query_messages(QSqlQuery* query);
+			MafiaList<ChatMessage> get_query_messages(QSqlQuery query);
 
         };
     }

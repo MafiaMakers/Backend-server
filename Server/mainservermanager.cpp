@@ -137,6 +137,7 @@ void MainServerManager::on_chat_message_read(Database::MessageIdType message, Da
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing( exception );
+		exception->close();
     }
 }
 
@@ -163,6 +164,7 @@ void MainServerManager::on_chat_message_deleted(Database::MessageIdType messageI
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
+		exception->close();
     }
 }
 
@@ -224,6 +226,7 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
 										requestId)
 									);
 		}
+		exception->close();
     }
 }
 
@@ -258,6 +261,7 @@ void MainServerManager::send_chat_message(Network::Client sender, Database::Chat
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, sender);
+		exception->close();
     }
 }
 
@@ -300,6 +304,7 @@ void MainServerManager::login_user(QString email, QString password, Network::Cli
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -327,6 +332,7 @@ void MainServerManager::create_chat(Network::Client creator, Network::MessageIdT
 								);
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, creator);
+		exception->close();
     }
 
 }
@@ -382,6 +388,7 @@ void MainServerManager::get_last_messages(Network::Client client,
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -440,6 +447,7 @@ void MainServerManager::get_users_chats(Network::Client client, Network::Message
 
 	} catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
 	}
 }
 
@@ -478,6 +486,7 @@ void MainServerManager::add_user_to_chat(Database::ChatIdType chat,
 										initializer)
 									);
         }
+		exception->close();
     }
 }
 
@@ -512,6 +521,7 @@ void MainServerManager::remove_user_from_chat(Database::ChatIdType chat, Databas
 										initializer)
 									);
         }
+		exception->close();
 
     }
 }
@@ -549,6 +559,7 @@ void MainServerManager::change_users_chat_capability(Database::ChatIdType chat,
 										initializer)
 									);
         }
+		exception->close();
     }
 }
 
@@ -589,6 +600,7 @@ void MainServerManager::create_game(Network::Client creator)
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, creator);
+		exception->close();
     }
 }
 
@@ -625,6 +637,7 @@ void MainServerManager::get_statistics(Database::UserIdType user,
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, asker);
+		exception->close();
     }
 
 }
@@ -636,9 +649,9 @@ void MainServerManager::add_game(Gameplay::Game game, Subservers::RoomSubserverO
         if(games.contains(rso)){
             rso->finish_work();
             games.removeOne(rso);
-            delete rso;
+			SAFE_DELETE( rso );
         } else{
-			throw new Exceptions::MainServerException(
+			throw Exceptions::Exception::generate(
 						System::String("Signal from unknown room subserver object"),
 						Exceptions::MainServerExceptionId_NoSuchGame);
         }
@@ -677,6 +690,7 @@ void MainServerManager::confirm_email(Network::Client client,
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 
 }
@@ -695,6 +709,7 @@ void MainServerManager::logout_user(Network::Client client)
         usersDb->logout_user(user);
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
+		exception->close();
     }
 }
 
@@ -733,13 +748,14 @@ void MainServerManager::add_transaction(Database::Transaction transaction)
 			break;
 		}
 		default:{
-			throw new Exceptions::MainServerException(
+			throw Exceptions::Exception::generate(
 							System::String("Unknown transaction type!"),
 							Exceptions::MainServerExceptionId_UnknownTransactionType);
 		}
 		}
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
+		exception->close();
     }
 }
 
@@ -753,6 +769,7 @@ void MainServerManager::change_nickname(Network::Client client, QString newNickn
         usersDb->change_nickname(user, newNickname);
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -776,6 +793,7 @@ void MainServerManager::change_email(Network::Client client, QString newEmail, N
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -799,6 +817,7 @@ void MainServerManager::change_achievement(Database::UserIdType user, Database::
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
+		exception->close();
     }
 }
 
@@ -840,6 +859,7 @@ void MainServerManager::add_user_to_game(Network::Client client, QString gameKey
 
 	} catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
 	}
 
 }
@@ -877,6 +897,7 @@ void MainServerManager::delete_message(Network::Client client, Database::Message
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -910,6 +931,7 @@ void MainServerManager::edit_message(Network::Client client, Database::ChatMessa
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -936,6 +958,7 @@ void MainServerManager::read_message(Network::Client client, Database::MessageId
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
+		exception->close();
     }
 }
 
@@ -1046,7 +1069,7 @@ Network::Client MainServerManager::get_client_by_user(Database::UserIdType user)
     if(users.contains(user)){
         return clients[users.indexOf(user)];
     } else{
-		throw new Exceptions::MainServerException(
+		throw Exceptions::Exception::generate(
 					System::String("No such user in users list!!!"),
 					Exceptions::MainServerExceptionId_NoSuchUser);
         return Network::Client();
@@ -1058,7 +1081,7 @@ Database::UserIdType MainServerManager::get_user_by_client(Network::Client clien
     if(clients.contains(client)){
         return users[clients.indexOf(client)];
     } else{
-		throw new Exceptions::MainServerException(
+		throw Exceptions::Exception::generate(
 					System::String("No such client in clients list!!!"),
 					Exceptions::MainServerExceptionId_NoSuchClient);
         return Database::UserIdType();
@@ -1095,6 +1118,7 @@ void MainServerManager::solve_database_error()
 						QString::number(dbException->get_id())
 						);
 					restartSuccess = true;
+					dbException->close();
 					break;
 				}
 				default:{
@@ -1172,7 +1196,7 @@ void MainServerManager::standart_exception_processing(Exceptions::Exception* exc
 void MainServerManager::check_null_user(Database::UserIdType user)
 {
 	if(user == nullUser){
-		throw new Exceptions::MainServerException(
+		throw Exceptions::Exception::generate(
 					System::String("Client is not authorized"),
 					Exceptions::MainServerExceptionId_NullUserRequest);
 	}

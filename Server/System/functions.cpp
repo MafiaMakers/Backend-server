@@ -13,12 +13,12 @@ bool PointerManager::hasPtr(void *pointer)
 
 void PointerManager::addPtr(void *pointer)
 {
-    allocatedPointers.append(pointer);
+	allocatedPointers.append(pointer);
 }
 
 void PointerManager::removePtr(void *pointer)
 {
-    if(allocatedPointers.contains(pointer)){
-        allocatedPointers.removeOne(pointer);
-    }
+	if(allocatedPointers.contains(pointer)){
+		allocatedPointers.removeOne(pointer);
+	}
 }

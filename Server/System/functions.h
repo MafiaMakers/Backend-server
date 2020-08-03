@@ -2,6 +2,7 @@
 #define FUNCTIONS_H
 
 #include <QList>
+#include <QDebug>
 #include <iostream>
 
 //! \brief Определение списка, который мы будем далее использовать (может быть заменен с QList на самописный или библиотечный список)
@@ -16,12 +17,13 @@ namespace Mafia{
             //! \return true, если указатель был выделен и не был освобожден, иначе - false
             static bool hasPtr(void* pointer);
             //! \brief Функция добавления указателя в список при его выделении
-            static void addPtr(void* pointer);
+			static void addPtr(void* pointer);
             //! \brief Функция удаления указателя из списка при его освобождении
-            static void removePtr(void* pointer);
+			static void removePtr(void* pointer);
         private:
             //! \brief Список всех выделенных и не освобожденных на данный момент
             static MafiaList<void*> allocatedPointers;
+			static MafiaList<int> objectsSizes;
         };
     }
 }
@@ -34,15 +36,23 @@ namespace Mafia{
 #define ASSERT(condition, message)  {\
                                         if(!(condition))\
                                         {\
-                                            std::cout << "Assertion failed! \n[" << #condition << "]\n" << message;\
+											qDebug() << "Assertion failed! \n[" << #condition << "]\n" << message << "\n";\
+											std::cout << "Assertion failed! \n[" << #condition << "]\n" << message << "\n";\
                                         }\
                                     }
+//! \brief Регистрация уже выделенной части памяти, как выделенной.
+//! Можно использовать при удалении части массива, но оставлении другой части
+//! \param variable Указатель, который стоит зарегистрировать
+#define REGISTER(variable)  {\
+								if(!Mafia::System::PointerManager::hasPtr((void*)variable) && variable != 0){\
+									Mafia::System::PointerManager::addPtr(variable);\
+								}\
+							}
 
 //! \brief Безопасное выделение указателя (выделяет указатель и запоминает, что он был выделен)
 //! Способ применения:
 //! Вместо MyClass* a = new MyClass(someVar);
-//! Используем SAFE_NEW(MyClass*, a, MyClass(someVar));
-//! \param type Тип указателя (например, int*)
+//! Используем SAFE_NEW(a, MyClass(someVar));
 //! \param variable Имя переменной, которую вы выделяете
 //! \param obj Способ создания объекта (например, MyClass(someVar))
 #define SAFE_NEW(variable, obj) {\
@@ -51,26 +61,24 @@ namespace Mafia{
                                  }
 
 //! \brief Безопасное удаление указателя (если указатель не был выделен, выдаст ошибку) (не используйте для массивов)
-//! SAFE_NEW(int*, a, int());
+//! SAFE_NEW(a, int());
 //! ...some code with a...
 //! SAFE_DELETE(a);
 //! \param variable Переменная, которую следует освободить
 #define SAFE_DELETE(variable) {\
-							ASSERT(Mafia::System::PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
-							Mafia::System::PointerManager::removePtr((void*)variable);\
-                            delete variable;\
-							variable = 0;\
+							ASSERT(Mafia::System::PointerManager::hasPtr((void*)(variable)), "Pointer was not allocated!!!");\
+							Mafia::System::PointerManager::removePtr((void*)(variable));\
+							delete (variable);\
                          }
 
 //! \brief То же, что и \ref SAFE_DELETE(variable), только для массивов
-//! SAFE_NEW(int*, b, int[179]);
+//! SAFE_NEW(b, int[179]);
 //! ...some code with b...
 //! SAFE_DELETE_ARRAY(b);
 #define SAFE_DELETE_ARRAY(variable) {\
-                            ASSERT(PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
+							ASSERT(Mafia::System::PointerManager::hasPtr((void*)variable), "Pointer was not allocated!!!");\
 							Mafia::System::PointerManager::removePtr((void*)variable);\
-                            delete[] variable;\
-							variable = 0;\
+							delete[] (variable);\
                          }
 #else
 

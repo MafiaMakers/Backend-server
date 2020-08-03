@@ -33,7 +33,7 @@ GameDatabaseManager::GameDatabaseManager(DatabaseWorker *databaseWorker) : Datab
                 }
                 }
             }
-
+			exception->close();
             break;
         }
 		//Если ошибка другого характера, то все плохо...
@@ -50,22 +50,22 @@ Gameplay::Game GameDatabaseManager::get_game_data(GameIdType id)
 
     try {
 		//Отправляем запрос в БД
-        QSqlQuery* query = dbWorker->run_query(request);
-        QSqlRecord record = query->record();
+		QSqlQuery query = dbWorker->run_query(request);
+		QSqlRecord record = query.record();
 		//Если найден хоть один результат, то заполняем поля и возвращаем значения
-        if(query->next()){
+		if(query.next()){
             Gameplay::Game game = Gameplay::Game();
             game.id = id;
-            game.result = query_value_to_variable<Gameplay::GameResult>(query->value(record.indexOf("GAME_RESULT")));
-            game.endingDT = query_value_to_variable<QDateTime>(query->value(record.indexOf("END")));
-            game.beginningDT = query_value_to_variable<QDateTime>(query->value(record.indexOf("BEGIN")));
-            game.roles = query_value_to_variable<MafiaList<Gameplay::Role>>(query->value(record.indexOf("ROLES")));
-            game.users = query_value_to_variable<MafiaList<UserIdType>>(query->value(record.indexOf("PLAYERS")));
+			game.result = query_value_to_variable<Gameplay::GameResult>(query.value(record.indexOf("GAME_RESULT")));
+			game.endingDT = query_value_to_variable<QDateTime>(query.value(record.indexOf("END")));
+			game.beginningDT = query_value_to_variable<QDateTime>(query.value(record.indexOf("BEGIN")));
+			game.roles = query_value_to_variable<MafiaList<Gameplay::Role>>(query.value(record.indexOf("ROLES")));
+			game.users = query_value_to_variable<MafiaList<UserIdType>>(query.value(record.indexOf("PLAYERS")));
 
             return game;
 		//Если результатов нет, то кидаем исключение
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("Request answer was null"),
+			throw Exceptions::Exception::generate(System::String("Request answer was null"),
                                                            Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
@@ -83,18 +83,18 @@ GameIdType GameDatabaseManager::add_game(Gameplay::Game &game)
 {
 	//Если количество ролей не соответствует количеству игроков, то что-то не так
     if(game.roles.length() != game.users.length()){
-        throw new Exceptions::DatabaseWorkingException(System::String("Users and roles size mismatch"),
+		throw Exceptions::Exception::generate(System::String("Users and roles size mismatch"),
                                                        Exceptions::DatabaseWorkingExceptionId_ArraySizeMismatch);
     }
 
     try {
 		//Получаем максимальный id в БД
         QString idRequest = "SELECT COALESCE(MAX(ID), 0) FROM " + dbName;
-        QSqlQuery* idQuery = dbWorker->run_query(idRequest);
-        if(idQuery->next()){
-            game.id = query_value_to_variable<GameIdType>(idQuery->value(0)) + 1;
+		QSqlQuery idQuery = dbWorker->run_query(idRequest);
+		if(idQuery.next()){
+			game.id = query_value_to_variable<GameIdType>(idQuery.value(0)) + 1;
         } else{
-            throw new Exceptions::DatabaseWorkingException(System::String("NULL sql request answer"),
+			throw Exceptions::Exception::generate(System::String("NULL sql request answer"),
                                                            Exceptions::DatabaseWorkingExceptionId_SQlQuery);
         }
 
@@ -148,21 +148,21 @@ MafiaList<Gameplay::Game> GameDatabaseManager::get_games_with(MafiaList<UserIdTy
         request += ")";
 
 		//Выполняем запрос
-        QSqlQuery* query = dbWorker->run_query(request);
-        QSqlRecord record = query->record();
+		QSqlQuery query = dbWorker->run_query(request);
+		QSqlRecord record = query.record();
 
 		//Создаем пустой список, чтобы потом его заполнить
         MafiaList<Gameplay::Game> games = MafiaList<Gameplay::Game>();
-        while(query->next()){
+		while(query.next()){
 			//Заполняем поля новой игры
             Gameplay::Game current = Gameplay::Game();
 
-            current.id = query->value(record.indexOf("ID")).toInt();
-            current.result = query_value_to_variable<Gameplay::GameResult>(query->value(record.indexOf("GAME_RESULT")));
-            current.beginningDT = query_value_to_variable<QDateTime>(query->value(record.indexOf("BEGIN")));
-            current.endingDT = query_value_to_variable<QDateTime>(query->value(record.indexOf("END")));
-            current.roles = query_value_to_variable<MafiaList<Gameplay::Role>>(query->value(record.indexOf("ROLES")));
-            current.users = query_value_to_variable<MafiaList<UserIdType>>(query->value(record.indexOf("PLAYERS")));
+			current.id = query.value(record.indexOf("ID")).toInt();
+			current.result = query_value_to_variable<Gameplay::GameResult>(query.value(record.indexOf("GAME_RESULT")));
+			current.beginningDT = query_value_to_variable<QDateTime>(query.value(record.indexOf("BEGIN")));
+			current.endingDT = query_value_to_variable<QDateTime>(query.value(record.indexOf("END")));
+			current.roles = query_value_to_variable<MafiaList<Gameplay::Role>>(query.value(record.indexOf("ROLES")));
+			current.users = query_value_to_variable<MafiaList<UserIdType>>(query.value(record.indexOf("PLAYERS")));
 
 			//Добавляем игру в список
             games.append(current);

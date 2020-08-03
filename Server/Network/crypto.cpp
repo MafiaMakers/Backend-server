@@ -9,12 +9,11 @@ System::LimitedQueue<MessageIdType>* Crypto::lastMessageIds = new System::Limite
 System::String Crypto::key = System::String();
 
 void Crypto::set_key(System::String key){
-    lastMessageIds = new System::LimitedQueue<MessageIdType>(rememberMessagesCount);
     Crypto::key = key;
 }
 
 void Crypto::set_key(std::string key){
-    Crypto::key = System::String(key);
+	Crypto::key = System::String(key);
 }
 
 void Crypto::set_key(char* key, int size){
@@ -23,7 +22,7 @@ void Crypto::set_key(char* key, int size){
 
 Message Crypto::parse_data(char *data, int size){
 	//Дешифруем сообщение
-    System::String tData = System::String(0, 0);
+	System::String tData = System::String();
     try {
         tData = Crypto::_decrypt(System::String(data, size));
     } catch (Exceptions::Exception* exception) {
@@ -50,7 +49,7 @@ Message Crypto::parse_data(char *data, int size){
     }
 
     if(result.item2 != realSum){
-		throw new Exceptions::MessageParsingException(System::String("control sum doesn't match to real sum " +
+		throw Exceptions::Exception::generate(System::String("control sum doesn't match to real sum " +
 																	 QString::number(result.item2).toStdString() + " " +
 																	 QString::number(realSum).toStdString()),
 													  Exceptions::MessageParsingExceptionId_ControlSumMismatch);
@@ -112,9 +111,11 @@ bool Crypto::_message_id_ok(MessageIdType id)
 System::String Crypto::_encrypt(System::String decrypted){
 	//Ключ должен быть установлен
     if(Crypto::key.size == 0){
-        throw new Exceptions::MessageParsingException(System::String("encryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
+		throw Exceptions::Exception::generate(System::String("encryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
     }
-    System::String encrypted = System::String(new char[decrypted.size], decrypted.size);
+	char * d;
+	SAFE_NEW(d, char[decrypted.size]);
+	System::String encrypted = System::String(d, decrypted.size);
 	//Побитово прибавляем к строке символы ключа
     for(int i = 0; i < decrypted.size; i++){
 		short num = ( short )decrypted.data[ i ] + ( short )Crypto::key.data[ i % Crypto::key.size ];
@@ -133,11 +134,13 @@ System::String Crypto::_encrypt(System::String decrypted){
 System::String Crypto::_decrypt(System::String encrypted){
 	//Ключ должен быть установлен (и должен совпадать во всех клиентах)
     if(Crypto::key.size == 0){
-        throw new Exceptions::MessageParsingException(System::String("decryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
+		throw Exceptions::Exception::generate(System::String("decryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
     }
 
 	//Побитово вычитаем из строки символы ключа
-    System::String decrypted = System::String(new char[encrypted.size], encrypted.size);
+	char* d;
+	SAFE_NEW(d, char[encrypted.size]);
+	System::String decrypted = System::String(d, encrypted.size);
     for(int i = 0; i < decrypted.size; i++){
         short num = (short)encrypted.data[i] - (short)Crypto::key.data[i % Crypto::key.size];
         if(num > 128){

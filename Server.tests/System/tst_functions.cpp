@@ -19,7 +19,6 @@ void FunctionsTests::allocate_int()
 void FunctionsTests::free_int()
 {
 	SAFE_DELETE(currentInt);
-	QVERIFY(currentInt == 0);
 }
 
 void FunctionsTests::allocate_array()
@@ -31,5 +30,4 @@ void FunctionsTests::allocate_array()
 void FunctionsTests::delete_array()
 {
 	SAFE_DELETE(currentArray);
-	QVERIFY(currentArray == 0);
 }

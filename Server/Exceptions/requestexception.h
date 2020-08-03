@@ -12,8 +12,7 @@ namespace Mafia {
         public:
             //! \brief см. \ref Mafia::Exception::Exception()
             RequestException(){}
-            /*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
-            RequestException(System::String data, ExceptionIdType id);
+
             /*!
              * \brief show Вывод сообщения
              */
@@ -21,6 +20,8 @@ namespace Mafia {
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
 
+			/*! \brief Конструктор (см. \ref Mafia::MessageParsingException::MessageParsingException(String data, int id))*/
+			RequestException(System::String data, ExceptionIdType id);
         };
 
         //! \brief Возможные id исключений работы системы запросов

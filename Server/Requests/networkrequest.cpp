@@ -12,7 +12,12 @@ NetworkRequest::NetworkRequest(Network::MainServerNetworker *_networker, Network
     connect(_networker, &Network::MainServerNetworker::request_answer, this, &NetworkRequest::tryClose);
     ;
     std::cout << "Request initialized" << std::endl;
-    std::cout << "Request data is: " << toAsk.data << std::endl;
+	std::cout << "Request data is: " << toAsk.data << std::endl;
+}
+
+NetworkRequest::~NetworkRequest()
+{
+	SAFE_DELETE_ARRAY(this->data);
 }
 
 void NetworkRequest::tryClose(Network::Message received)
@@ -22,7 +27,7 @@ void NetworkRequest::tryClose(Network::Message received)
 		//Кроме того во избежание ошибок проверим клиента-отправителя
         if(received.client == client){
 			//Копируем данные из сообщения
-            this->data = new Network::SymbolType[received.size];
+			SAFE_NEW(this->data, Network::SymbolType[received.size]);
             for(int i = 0; i < received.size; i++){
                 this->data[i] = received.data[i];
             }
@@ -30,7 +35,7 @@ void NetworkRequest::tryClose(Network::Message received)
 
             close_request();
         } else{
-            throw new Exceptions::RequestException(System::String("Clients doesn't match!"), Exceptions::RequestExceptionId_WrongClient);
+			throw Exceptions::Exception::generate(System::String("Clients doesn't match!"), Exceptions::RequestExceptionId_WrongClient);
         }
 	} /*else{
         std::cout << "Id not matching. Expected id" << id << ", but " << received.id << " is given\n";

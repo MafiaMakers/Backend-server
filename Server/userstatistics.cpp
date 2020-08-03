@@ -17,6 +17,11 @@ UserStatistics::UserStatistics(Database::User user)
 	this->victoriesByRoles = user.victoriesByRoles;
 }
 
+UserStatistics::~UserStatistics()
+{
+
+}
+
 bool UserStatistics::operator ==(const UserStatistics& a) const
 {
 	if(this->id != a.id){

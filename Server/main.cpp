@@ -1,3 +1,8 @@
+/* Developed by Никита Андрусов
+ * Если у вас есть вопросы по коду, пишите vk.com/n_andrusov
+ * Если вам что-то не нравится, не убивайте пж...
+ * */
+
 #define DEBUG_MODE
 
 #include <QCoreApplication>

@@ -14,12 +14,14 @@ namespace Mafia {
              * \brief Пустой конструктор
              */
             SystemException();
-            /*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
-            SystemException(System::String data, ExceptionIdType id);
+
             //! \brief см. \ref Mafia::Exception::show()
             void show() override;
             //! \brief см. \ref Mafia::Exception::get_base_exception_id()
             ExceptionIdType get_base_exception_id() override;
+
+			/*! \brief см. \ref Mafia::Exception::Exception(Mafia::String data, ExceptionIdType id)*/
+			SystemException(System::String data, ExceptionIdType id);
         };
 
         /*!

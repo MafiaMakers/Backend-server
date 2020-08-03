@@ -81,7 +81,7 @@ namespace Mafia {
              * \param query Sql-запрос с ответом
              * \return Список из всех транзакций, которые были получены на данный запрос
              */
-            MafiaList<Transaction> get_request_transactions(QSqlQuery* query);
+			MafiaList<Transaction> get_request_transactions(QSqlQuery query);
 
             //! \brief Временной интервал в мс через который проверяется БД на совпадение хешей
             static const int hashCheckingInterval;

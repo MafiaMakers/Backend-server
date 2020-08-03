@@ -22,6 +22,8 @@ namespace Mafia {
              */
             NetworkRequest(Network::MainServerNetworker* _networker, Network::Message toAsk);
 
+			~NetworkRequest();
+
             /*!
              *  \brief Метод получения данных. Работает только когда запрос уже закончил свою работу, иначе кидает ошибку. Возвращает полученные данные
              */
@@ -36,7 +38,9 @@ namespace Mafia {
 					//    throw new Exceptions::RequestException(System::String("Size of message doesn't match to size of given type"), Exceptions::RequestExceptionId_SizeMismatch);
 					//}
                 } else{
-                    throw new Exceptions::RequestException(System::String("Request hasn't finished yet!"), Exceptions::RequestExceptionId_NotFinished);
+					throw Exceptions::Exception::generate(
+								System::String("Request hasn't finished yet!"),
+								Exceptions::RequestExceptionId_NotFinished);
                 }
             }
             /*!

@@ -41,7 +41,7 @@ int SubserverObject::send_request(Network::MessageType type, Network::SymbolType
 	//Создаем новый запрос
     Requests::NetworkRequest* req = 0;
     try {
-        req = new Requests::NetworkRequest(this->networker, Network::Message(type, data, size, this->myAddress));
+		SAFE_NEW(req, Requests::NetworkRequest(this->networker, Network::Message(type, data, size, this->myAddress)));
     } catch (Exceptions::Exception* exception) {
         switch (exception->get_id()) {
         default:{
@@ -82,7 +82,7 @@ bool SubserverObject::is_request_ready(RequestIdType requestId)
             return currentRequests[i].request->is_finished();
         }
     }
-    throw new Exceptions::SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
+	throw Exceptions::Exception::generate(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
     return false;
 }
 
@@ -122,7 +122,7 @@ void SubserverObject::request_answered(Requests::Request *request)
         }
     }
 	//Вот я не уверен, что стоит тут кидать исключение... Это ведь слот
-	//throw new Exceptions::SubserverException(
+	//throw Exceptions::Exception::generate(
 	//		System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
 
@@ -134,7 +134,7 @@ T SubserverObject::get_request_result(RequestIdType requestId)
             return currentRequests[i].request->get_result<T>();
         }
     }
-    throw new Exceptions::SubserverException(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
+	throw Exceptions::Exception::generate(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
 
 void SubserverObject::crash_processing()
@@ -156,7 +156,14 @@ void SubserverObject::_check_subserver_respond()
         std::this_thread::sleep_for(std::chrono::milliseconds(this->checkRespondInterval));
 		//Отправляем субсерверу сообщение с запросом на подтверждение того, что у него все ок
         try {
-            networker->send_message(Network::Message(Network::MessageType_CheckConnection, (Network::SymbolType*)(char*)"check", 6 / sizeof(Network::SymbolType), myAddress));
+
+			networker->send_message(Network::Message(
+										Network::MessageType_CheckConnection,
+										(Network::SymbolType*)(char*)"check",
+										6 / sizeof(Network::SymbolType),
+										myAddress)
+									);
+
         } catch (Exceptions::Exception* exception) {
             switch (exception->get_id()) {
             default:{
