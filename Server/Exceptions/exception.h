@@ -42,7 +42,7 @@ namespace Mafia {
              * \brief Функция получения базового id исключения, с которого начинается отсчет id всех исключений этого типа
              * \return базовый id исключения (исключений с таким id не бывает)
              */
-            virtual ExceptionIdType get_base_exception_id() = 0;
+			virtual ExceptionIdType get_base_exception_id();
 
 			static Exception* generate(System::String data, ExceptionIdType id);
 

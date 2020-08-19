@@ -90,7 +90,7 @@ namespace Mafia{
 		 * \param data Строка из которой получать данные
 		 * \return
 		 */
-		QDateTime from_string(QString data);
+		DATE_TIME from_string(STRING data);
 
 
         /*!

@@ -27,7 +27,7 @@ namespace Mafia {
         //! \brief см. \ref Mafia::Database::User::defeatesByRoles
         MafiaList<int> defeatesByRoles;
         //! \brief см. \ref Mafia::Database::User::loginDateTime
-        QDateTime loginDateTime;
+		DATE_TIME loginDateTime;
         //! \brief см. \ref Mafia::Database::User::accountType
         Database::AccountType accountType;
         //! \brief см. \ref Mafia::Database::User::achievement
@@ -35,7 +35,7 @@ namespace Mafia {
         //! \brief см. \ref Mafia::Database::User::id
         Database::UserIdType id;
         //! \brief см. \ref Mafia::Database::User::nickname
-        QString nickname;
+		STRING nickname;
     };
 }
 

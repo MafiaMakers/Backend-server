@@ -1,12 +1,17 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-
-#include <QList>
-#include <QDebug>
 #include <iostream>
+	#ifndef DONT_USE_QT
+		#include <QList>
 
-//! \brief Определение списка, который мы будем далее использовать (может быть заменен с QList на самописный или библиотечный список)
-#define MafiaList QList
+		//! \brief Определение списка, который мы будем далее использовать (может быть заменен с QList на самописный или библиотечный список)
+		#define MafiaList QList
+		#define STRING QString
+	#else
+		#include "IncludeList.h"
+		#define STRING std::string
+	#endif
+//#include <QDebug>
 
 namespace Mafia{
     namespace System{
@@ -23,7 +28,6 @@ namespace Mafia{
         private:
             //! \brief Список всех выделенных и не освобожденных на данный момент
             static MafiaList<void*> allocatedPointers;
-			static MafiaList<int> objectsSizes;
         };
     }
 }
@@ -35,8 +39,7 @@ namespace Mafia{
 //! \param message Сообщение, которое будет выведено в консоль, если утверждение неверно
 #define ASSERT(condition, message)  {\
                                         if(!(condition))\
-                                        {\
-											qDebug() << "Assertion failed! \n[" << #condition << "]\n" << message << "\n";\
+										{\
 											std::cout << "Assertion failed! \n[" << #condition << "]\n" << message << "\n";\
                                         }\
                                     }

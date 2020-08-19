@@ -204,9 +204,13 @@ QString Mafia::Database::get_sql_filter(FilterType filter)
     return "";
 }
 
-QDateTime Mafia::Database::from_string(QString data)
+DATE_TIME Mafia::Database::from_string(STRING data)
 {
+#ifndef DONT_USE_QT
 	QDateTime result = QDateTime::fromString(data, SQL_DATETIME_FORMAT);
 	result.setTimeSpec(Qt::UTC);
 	return result;
+#else
+	return data;
+#endif
 }

@@ -1,25 +1,24 @@
 #include <iostream>
+#include <thread>
+
 #include "mainservernetworker.h"
 #include "Exceptions/exception.h"
-#include <QUdpSocket>
-#include <QtCore>
-#include <QSet>
 #include "messageTypes.h"
 #include "Exceptions/messageprocessingexception.h"
-#include "System/functions.h"
 #include <System/serializer.h>
 
 using namespace Mafia;
 using namespace Network;
+
 const int MainServerNetworker::TIME_TO_RESEND = 2000;
 const int MainServerNetworker::MAX_RESEND_COUNT = 100;
 //const int MainServerNetworker::idsForClient = 1000;
 
-const QSet<MessageType> MainServerNetworker::needConfirmation = QSet<MessageType>()
-        << MessageType_Text
+const MafiaList<MessageType> MainServerNetworker::needConfirmation = MafiaList<MessageType>()
+		/*<< MessageType_Text
         << MessageType_RequestAnswer
         << MessageType_AbstractRequest
-        << MessageType_PassClientRequest;
+		<< MessageType_PassClientRequest*/;
 
 MainServerNetworker::MainServerNetworker(QObject* parent) : QObject(parent){}
 
@@ -27,13 +26,15 @@ MainServerNetworker::MainServerNetworker(int port)
 {
     this->waitingToFillMessages = MafiaList<MafiaList<Message>>();
     this->currentMaxId = 0;
-    this->socket = new QUdpSocket(this);
-    this->myPort = port;
-    this->socket->bind(QHostAddress::Any, this->myPort);
+
+	this->sender = new MESSAGE_SENDER(port);
+#ifndef DONT_USE_QT
+	connect(sender, &MESSAGE_SENDER::message_received, this, &MainServerNetworker::receive_message);
+#endif
+
     this->waitingForConfirmation = MafiaList<Message>();
     std::thread resendingThread(&MainServerNetworker::_resend_not_confirmed_messages, this);
     resendingThread.detach();
-	connect(socket, &QUdpSocket::readyRead, this, &MainServerNetworker::receive_message);
 }
 
 MainServerNetworker::~MainServerNetworker()
@@ -63,12 +64,8 @@ MessageIdType MainServerNetworker::send_message(Message message)
     //std::cout << "Sent a message" << std::endl;
 }
 
-void MainServerNetworker::_send_message(char* data, int size, QHostAddress client, int port) {
-	/*std::cout << "Sent " << data
-	 * << " of size " << size
-	 * << " to client with ip " << client.toString().toStdString()
-	 * << " to port " << port << std::endl;*/
-	socket->writeDatagram(data, size, client, port);
+void MainServerNetworker::_send_message(char* data, int size, int client, int port) {
+	sender->send(data, size, client, port);
 }
 
 void MainServerNetworker::_process_message(Message message)
@@ -88,7 +85,7 @@ void MainServerNetworker::_process_message(Message message)
 
 	//Если это сообщение субсервера, то объекты субсервера должны проверить:
 	//вдруг это системное сообщение, а не сообщение действия
-	if(message.client.ip == (int)QHostAddress("127.0.0.1").toIPv4Address()){
+	if(message.client.ip == LOCALHOST_IP){
         emit on_subserver_api_message_received(message);
 		//return;
     }
@@ -245,32 +242,23 @@ bool MainServerNetworker::message_matches(Message message)
     return true;
 }
 
-void MainServerNetworker::receive_message() {
+void MainServerNetworker::receive_message(char* data, int size, int ip, int port) {
 	//std::cout << "Message received!\n";
 
-	//Получаем сообщение из сокета
-    QByteArray datagram;
-    datagram.resize(socket->pendingDatagramSize());
 
-	QHostAddress *address;
-	SAFE_NEW(address, QHostAddress());
-    quint16 port;
-	auto bytesReceived = socket->readDatagram(datagram.data(), datagram.size(), address, &port);
-
-	if(bytesReceived > 0){
+	if(size > 0){
 		//Дешифруем сообщение
         Message trueData;
         try {
-            trueData = Crypto::parse_data(datagram.data(), datagram.size());
+			trueData = Crypto::parse_data(data, size);
         } catch (Exceptions::Exception* exception) {
             exception->show();
             return;
         }
 
 		//Заполняем его поля клиента данными
-        trueData.client.ip = address->toIPv4Address();
+		trueData.client.ip = ip;
         trueData.client.port = port;
-		SAFE_DELETE(address);
         if(trueData.id > currentMaxId){
             currentMaxId = trueData.id;
         }
@@ -283,7 +271,7 @@ void MainServerNetworker::receive_message() {
 
 void MainServerNetworker::show_message(Message message)
 {
-	std::cout << "[on port " << myPort << "]";
+	//std::cout << "[on port " << myPort << "]";
 	std::cout << "\nMessage : "
 			  << "\n    id : " << message.id
 			  << "\n    type : " << message.type
@@ -335,7 +323,7 @@ void MainServerNetworker::_resend_message(Message message)
 		}
 		//std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
 		//Отправляем
-		_send_message(mes.data, mes.size, QHostAddress(message.client.ip), message.client.port);
+		_send_message(mes.data, mes.size, message.client.ip, message.client.port);
 
 		/*А вот это какой-то кринжец, без которого прога почему-то не работает...
 		 *Если не ждать 1 мс, то происходят беды... ПАМАГИТИ
@@ -415,3 +403,7 @@ void MainServerNetworker::_confirm_message(MessageIdType id)
         }
     }
 }
+
+#ifdef DONT_USE_QT
+#include "defnetworkersignals.h"
+#endif

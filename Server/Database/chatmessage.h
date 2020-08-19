@@ -23,13 +23,13 @@ namespace Mafia {
             //! \brief id сообщения
             MessageIdType id;
             //! \brief Само сообщение (текст)
-            QString data;
+			STRING data;
             //! \brief id пользователя-отправителя
             UserIdType from;
             //! \brief id чата, в который отправлено сообщение
             ChatIdType toChat;
             //! \brief Время, когда было отправлено сообщение
-            QDateTime timestamp;
+			DATE_TIME timestamp;
             //! \brief Дополнительный параметр сообщения (см. \ref Mafia::Database::ChatFeature)
             ChatFeature feature;
             //! \brief Список сообщений, на которые отвечает данное сообщение

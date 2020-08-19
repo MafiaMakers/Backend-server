@@ -1,7 +1,7 @@
 #ifndef SIMPLESTRING_H
 #define SIMPLESTRING_H
 #include <iostream>
-#include <QString>
+//#include <QString>
 
 namespace Mafia {
     namespace System {

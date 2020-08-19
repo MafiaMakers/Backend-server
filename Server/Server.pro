@@ -23,6 +23,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         Database/chatdatabasemanager.cpp \
         Database/chatmessage.cpp \
+        Database/chatsettings.cpp \
         Database/chatsettingsdatabasemanager.cpp \
         Database/databasehelper.cpp \
         Database/databasemanager.cpp \
@@ -64,6 +65,7 @@ SOURCES += \
         Network/MessageProcessing/sendchatmessageprocessorobject.cpp \
         Network/crypto.cpp \
         Network/messageprocessor.cpp \
+        Network/messagesender.cpp \
         Subservers/backupsubserverobject.cpp \
         Subservers/roomsubserverobject.cpp \
         System/SHA_256.cpp \
@@ -92,6 +94,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Database/chatdatabasemanager.h \
     Database/chatmessage.h \
+    Database/chatsettings.h \
     Database/chatsettingsdatabasemanager.h \
     Database/databasehelper.h \
     Database/databasemanager.h \
@@ -134,6 +137,7 @@ HEADERS += \
     Network/MessageProcessing/sendchatmessageprocessorobject.h \
     Network/crypto.h \
     Network/messageprocessor.h \
+    Network/messagesender.h \
     Subservers/backupsubserverobject.h \
     Subservers/roomsubserverobject.h \
     System/SHA_256.h \

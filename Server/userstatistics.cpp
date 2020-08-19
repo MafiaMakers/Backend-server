@@ -36,7 +36,7 @@ bool UserStatistics::operator ==(const UserStatistics& a) const
 	if(this->achievement != a.achievement){
 		return false;
 	}
-	if(this->loginDateTime != a.loginDateTime){
+	if(!Database::date_time_equals(this->loginDateTime, a.loginDateTime)){
 		return false;
 	}
 	if(this->defeatesByRoles != a.defeatesByRoles){

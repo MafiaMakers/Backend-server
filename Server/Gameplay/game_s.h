@@ -1,7 +1,7 @@
 #ifndef GAME_S_H
 #define GAME_S_H
 #include "Database/user.h"
-#include "Database/databasehelper.h"
+//#include "Database/databasehelper.h"
 
 namespace Mafia {
     namespace Gameplay {
@@ -19,9 +19,9 @@ namespace Mafia {
             //! \brief Список ролей пользователей
             MafiaList<Role> roles;
             //! \brief Дата и время начала игры
-            QDateTime beginningDT;
+			DATE_TIME beginningDT;
             //! \brief Дата и время окончания игры
-            QDateTime endingDT;
+			DATE_TIME endingDT;
             //! \brief Метод вывода в консоль всех параметров игры
             void show();
 

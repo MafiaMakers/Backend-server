@@ -2,7 +2,7 @@
 #define SERIALIZER_H
 #include "functions.h"
 #include "simplestring.h"
-#include <QString>
+
 namespace Mafia {
     namespace System {
         /*!

@@ -1,12 +1,16 @@
 #include "serializer.h"
 #include "Database/chatmessage.h"
-#include "Database/chatsettingsdatabasemanager.h"
+#include "Database/chatsettings.h"
 #include "userstatistics.h"
 #include <MafiaExceptions>
 #include "System/tuple.h"
 #include "clientinfo.h"
 #include "Network/message.h"
+#include "Gameplay/game_s.h"
 
+#ifndef DONT_USE_QT
+	#include "Database/databasehelper.h"
+#endif
 
 using namespace Mafia;
 using namespace System;
@@ -190,9 +194,13 @@ MafiaList<char> Serializer::deserialize(String &data){
 }
 
 template<>
-std::string Serializer::serialize(QString value){
+std::string Serializer::serialize(STRING value){
 	MafiaList<char> charList = MafiaList<char>();
+#ifndef DONT_USE_QT
     std::string data = value.toStdString();
+#else
+	std::string data = value;
+#endif
     for(unsigned int i = 0; i < data.length(); i++){
         charList.append(data[i]);
     }
@@ -201,8 +209,8 @@ std::string Serializer::serialize(QString value){
 }
 
 template<>
-QString Serializer::deserialize(String &data){
-    QString result = "";
+STRING Serializer::deserialize(String &data){
+	STRING result = "";
     MafiaList<char> d = deserialize<MafiaList<char>>(data);
     for(int i = 0; i < d.length(); i++){
         result += d[i];
@@ -210,6 +218,7 @@ QString Serializer::deserialize(String &data){
     return result;
 }
 
+#ifndef DONT_USE_QT
 template<>
 std::string Serializer::serialize(QDateTime value){
     return serialize<QString>(value.toString(Database::SQL_DATETIME_FORMAT));
@@ -219,7 +228,7 @@ template<>
 QDateTime Serializer::deserialize(String &data){
 	return Database::from_string(deserialize<QString>(data));
 }
-
+#endif
 
 template<>
 std::string Serializer::serialize(Database::ChatMessage value){
@@ -229,8 +238,8 @@ std::string Serializer::serialize(Database::ChatMessage value){
     result += serialize<Database::UserIdType>(value.from);
     result += serialize<Database::ChatIdType>(value.toChat);
     result += serialize<Database::ChatFeature>(value.feature);
-    result += serialize<QDateTime>(value.timestamp);
-    result += serialize<QString>(value.data);
+	result += serialize<DATE_TIME>(value.timestamp);
+	result += serialize<STRING>(value.data);
     result += serialize<MafiaList<Database::MessageIdType>>(value.answerFor);
     result += serialize<MafiaList<Database::UserIdType>>(value.readUsers);
 
@@ -246,8 +255,8 @@ Database::ChatMessage Serializer::deserialize(String &data){
     result.from = deserialize<Database::UserIdType>(data);
     result.toChat = deserialize<Database::ChatIdType>(data);
     result.feature = deserialize<Database::ChatFeature>(data);
-    result.timestamp = deserialize<QDateTime>(data);
-    result.data = deserialize<QString>(data);
+	result.timestamp = deserialize<DATE_TIME>(data);
+	result.data = deserialize<STRING>(data);
     result.answerFor = deserialize<MafiaList<Database::MessageIdType>>(data);
     result.readUsers = deserialize<MafiaList<Database::UserIdType>>(data);
 
@@ -281,10 +290,10 @@ template<>
 std::string Serializer::serialize(UserStatistics value){
     std::string result = "";
     result += serialize<Database::UserIdType>(value.id);
-    result += serialize<QString>(value.nickname);
+	result += serialize<STRING>(value.nickname);
     result += serialize<Database::AccountType>(value.accountType);
     result += serialize<Database::Achievement>(value.achievement);
-    result += serialize<QDateTime>(value.loginDateTime);
+	result += serialize<DATE_TIME>(value.loginDateTime);
     result += serialize<decltype (value.defeatesByRoles)>(value.defeatesByRoles);
     result += serialize<decltype (value.victoriesByRoles)>(value.victoriesByRoles);
     return result;
@@ -296,29 +305,29 @@ UserStatistics Serializer::deserialize(String &data){
 
 
     result.id = deserialize<Database::UserIdType>(data);
-    result.nickname = deserialize<QString>(data);
+	result.nickname = deserialize<STRING>(data);
     result.accountType = deserialize<Database::AccountType>(data);
     result.achievement = deserialize<Database::Achievement>(data);
-    result.loginDateTime = deserialize<QDateTime>(data);
+	result.loginDateTime = deserialize<DATE_TIME>(data);
     result.defeatesByRoles = deserialize<MafiaList<int>>(data);
     result.victoriesByRoles = deserialize<MafiaList<int>>(data);
     return result;
 }
 
 template<>
-std::string Serializer::serialize(System::Tuple<Database::UserIdType, QString> value){
+std::string Serializer::serialize(System::Tuple<Database::UserIdType, STRING> value){
     std::string result = "";
     result += serialize<Database::UserIdType>(value.item1);
-    result += serialize<QString>(value.item2);
+	result += serialize<STRING>(value.item2);
     return result;
 }
 
 template<>
-System::Tuple<Database::UserIdType, QString> Serializer::deserialize(String &data){
-    System::Tuple<Database::UserIdType, QString> result = System::Tuple<Database::UserIdType, QString>();
+System::Tuple<Database::UserIdType, STRING> Serializer::deserialize(String &data){
+	System::Tuple<Database::UserIdType, STRING> result = System::Tuple<Database::UserIdType, STRING>();
 
     result.item1 = deserialize<Database::UserIdType>(data);
-    result.item2 = deserialize<QString>(data);
+	result.item2 = deserialize<STRING>(data);
 
     return result;
 }
@@ -394,8 +403,8 @@ std::string Serializer::serialize(Gameplay::Game value){
     result += serialize<MafiaList<Gameplay::Role>>(value.roles);
     result += serialize<MafiaList<Database::UserIdType>>(value.users);
     result += serialize<Gameplay::GameResult>(value.result);
-    result += serialize<QDateTime>(value.endingDT);
-	result += serialize<QDateTime>(value.beginningDT);
+	result += serialize<DATE_TIME>(value.endingDT);
+	result += serialize<DATE_TIME>(value.beginningDT);
 
     return result;
 }
@@ -408,8 +417,8 @@ Gameplay::Game Serializer::deserialize(String &data){
     result.roles = deserialize<MafiaList<Gameplay::Role>>(data);
     result.users = deserialize<MafiaList<Database::UserIdType>>(data);
     result.result = deserialize<Gameplay::GameResult>(data);
-    result.endingDT = deserialize<QDateTime>(data);
-    result.beginningDT = deserialize<QDateTime>(data);
+	result.endingDT = deserialize<DATE_TIME>(data);
+	result.beginningDT = deserialize<DATE_TIME>(data);
 
     return result;
 }
@@ -452,7 +461,11 @@ std::string Serializer::serialize(Network::Message value){
     result += serialize<int>(value.partIndex);
     result += serialize<int>(value.partsCount);
     result += serialize<Network::Client>(value.client);
-    result += serialize<QString>(QString::fromStdString(std::string((char*)value.data, value.size)));
+#ifndef DONT_USE_QT
+	result += serialize<STRING>(QString::fromStdString(std::string((char*)value.data, value.size)));
+#else
+	result += serialize<STRING>(std::string((char*)value.data, value.size));
+#endif
     return result;
 }
 
@@ -464,7 +477,11 @@ Network::Message System::Serializer::deserialize(String &data){
     result.partIndex = deserialize<int>(data);
     result.partsCount = deserialize<int>(data);
     result.client = deserialize<Network::Client>(data);
-	std::string mesDataStr = deserialize<QString>(data).toStdString();
+#ifndef DONT_USE_QT
+	std::string mesDataStr = deserialize<STRING>(data).toStdString();
+#else
+	std::string mesDataStr = deserialize<STRING>(data);
+#endif
 	String mesData = String(mesDataStr);
 	result.data = (Network::SymbolType*)mesData.data;
 	result.size = mesData.size;

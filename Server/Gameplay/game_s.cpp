@@ -49,8 +49,13 @@ void Game::show()
 {
     std::cout << "-------------------------\nGAME" <<
                  "\nid = " << this->id <<
+			 #ifndef DONT_USE_QT
                  "\nstart = " << this->beginningDT.toString(Database::SQL_DATETIME_FORMAT).toStdString() <<
                  "\nend = " << this->endingDT.toString(Database::SQL_DATETIME_FORMAT).toStdString() <<
+			 #else
+				 "\nstart = " << this->beginningDT <<
+				 "\nend = " << this->endingDT <<
+			 #endif
                  "\noutcome = " << this->result <<
                  "\nplayers:";
     for(int j = 0; j < this->users.length(); j++){
@@ -74,11 +79,11 @@ bool Game::operator ==(const Game& a) const
 	if(this->result != a.result){
 		return false;
 	}
-	if(this->endingDT.msecsTo(a.endingDT) > 1500 || a.endingDT.msecsTo(this->endingDT) > 1500){
+	if(!Database::date_time_equals( this->endingDT, a.endingDT )){
 		//std::cout << this->endingDT.toString().toStdString() << "\n" << a.endingDT.toString().toStdString() << "\n";
 		return false;
 	}
-	if(this->beginningDT.msecsTo(a.beginningDT) > 1500 || a.beginningDT.msecsTo(this->beginningDT) > 1500){
+	if(!Database::date_time_equals( this->beginningDT, a.beginningDT )){
 		//std::cout << this->beginningDT.toString().toStdString() << "\n" << a.beginningDT.toString().toStdString() << "\n";
 		return false;
 	}

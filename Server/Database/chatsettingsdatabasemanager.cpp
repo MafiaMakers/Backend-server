@@ -536,38 +536,3 @@ MafiaList<Chat> ChatSettingsDatabaseManager::get_request_chat(QSqlQuery query)
 
     return chats;
 }
-
-void Chat::show()
-{
-    std::cout << "-------------------------\nCHAT" <<
-                 "\nid = " << this->id <<
-                 "\ntime = " << this->creationTime.toString(SQL_DATETIME_FORMAT).toStdString() <<
-                 "\nusers:";
-    for(int j = 0; j < this->users.length(); j++){
-        std::cout << "\n    id = " << this->users[j] <<
-                     "\n    role = " << this->usersCapabilities[j];
-    }
-	std::cout << std::endl;
-}
-
-bool Chat::operator ==(const Chat& a) const
-{
-	if(this->id != a.id){
-		return false;
-	}
-	if(this->users != a.users){
-		return false;
-	}
-	if(this->creationTime.msecsTo(a.creationTime) > 1500 || a.creationTime.msecsTo(this->creationTime) > 1500){
-		return false;
-	}
-	if(this->usersCapabilities != a.usersCapabilities){
-		return false;
-	}
-	return true;
-}
-
-bool Chat::operator !=(const Chat& a) const
-{
-	return !(*this == a);
-}

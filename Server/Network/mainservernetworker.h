@@ -1,6 +1,19 @@
 #ifndef MAINSERVERNETWORKER_H
 #define MAINSERVERNETWORKER_H
-#include <QUdpSocket>
+
+#ifndef DONT_USE_QT
+#include <QObject>
+#include "messagesender.h"
+#define MESSAGE_SENDER MessageSender
+#else
+	#include "includemessagesender.h"
+	#define signals public
+	#define slots
+	#define Q_OBJECT
+	#define emit
+	class QObject{public:QObject(QObject* p = NULL){}};
+#endif
+
 #include "crypto.h"
 #include "System/functions.h"
 #include "message.h"
@@ -8,6 +21,8 @@
 namespace Mafia {
     //! \brief Пространство имен, отвечающее за передачу данных по интернету
     namespace Network {
+		//! \brief Оно же 127.0.0.1
+		const int LOCALHOST_IP = 0x7F000001;
         /*!
          * \brief Основной класс отправки и получения сообщений для основного сервера
          */
@@ -15,7 +30,7 @@ namespace Mafia {
         {
         Q_OBJECT
         public:
-			MainServerNetworker(QObject* parent = nullptr);
+            MainServerNetworker(QObject* parent = NULL);
 
             /*!
              * \brief Конструктор, инициализирует сервер на указанном порте
@@ -23,7 +38,7 @@ namespace Mafia {
              */
             MainServerNetworker(int port);
 
-			~MainServerNetworker();
+            ~MainServerNetworker();
 
             /*!
              * \brief Отправления сообщения
@@ -31,7 +46,7 @@ namespace Mafia {
              * Если id сообщения не фиксированно, то следует в поле id указать 0
              */
             MessageIdType send_message(Message message);
-        signals:
+		signals:
 
             /*!
              * \brief Сигнал, вызываемый при получении ответа на какой-либо сетевой запрос. К нему автоматически коннектятся все объекты запросов
@@ -50,18 +65,19 @@ namespace Mafia {
              * \param message Все данные сообщения
              */
             void message_received(Message message);
-        private slots:
+		public slots:
             /*!
              * \brief слот для получения сообщения. Вызывается автоматически
              */
-            void receive_message();
-            /*!
-             * \brief Функция вывода всей информации о сообщении
-             * \param mes Сообщение
-             */
-            void show_message(Message mes);
+			void receive_message(char* data, int size, int ip, int port);
 
         private:
+			/*!
+			 * \brief Функция вывода всей информации о сообщении
+			 * \param mes Сообщение
+			 */
+			void show_message(Message mes);
+
 			/*!
 			 * \brief Функция отправки сообщения (используется для отправки и переотправки)
 			 * \param message Сообщение, которое следует отправить
@@ -93,7 +109,7 @@ namespace Mafia {
              * \param size размер сообщения в байтах
              * \param client клиент, которому необходимо послать сообщение
              */
-            void _send_message(char* data, int size, QHostAddress client, int port);
+			void _send_message(char* data, int size, int client, int port);
             /*!
              * \brief Обработка сообщения
              * \param message Сообщение
@@ -138,10 +154,9 @@ namespace Mafia {
              */
             bool message_matches(Message message);
 
-            //! сокет сервера
-            QUdpSocket* socket;
-            //! порт сервера
-            int myPort;
+			//! \brief Объект, отвечающий за непосредственную отправку и передачу по сети сообщений
+			MESSAGE_SENDER* sender;
+
             //! Сообщения, ожидающие подтверждения
             MafiaList<Message> waitingForConfirmation;
             //! id сообщения, которое на данный момент максимальное
@@ -158,7 +173,7 @@ namespace Mafia {
             //! Как только получены все части сообщения, из них конструируется большое сообщение, а части удаляются
             MafiaList<MafiaList<Message>> waitingToFillMessages;
             //! \brief Множество типов сообщений, которым необходимо подтверждение
-            static const QSet<MessageType> needConfirmation;
+			static const MafiaList<MessageType> needConfirmation;
             //! \brief Время в мс через которое проводится повторная отправка сообщений, которые не получили подтверждение
             static const int TIME_TO_RESEND;
             //! \brief Максимальное количество повторных отправок

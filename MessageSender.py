@@ -10,12 +10,12 @@ def send_message(message_text, message_target, message_subject):
     my_mail = 'mafiaonlinegamemail@gmail.com'
     password = 'mafiaqwerty'
    # message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(my_mail, message_target, message_subject, message_text)
-    msg = MIMEMultipart()
+    msg = MIMEMultipart('alternative')
     msg['From'] = my_mail
     msg['To'] = message_target
     msg['Subject'] = message_subject
     body = message_text
-    msg.attach(MIMEText(body, 'plain'))
+    msg.attach(MIMEText(body, 'html'))
     server = smtp.SMTP_SSL('smtp.gmail.com', 465)
     server.connect('smtp.gmail.com', 465)
    # server.set_debuglevel(1)

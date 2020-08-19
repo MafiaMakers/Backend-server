@@ -1,3 +1,4 @@
+
 #include "functions.h"
 
 using namespace Mafia;

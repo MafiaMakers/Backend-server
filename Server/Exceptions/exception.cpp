@@ -1,5 +1,9 @@
 #include "exception.h"
+
+#ifndef DONT_USE_QT
 #include "System/logsmanager.h"
+#endif
+
 #include "System/functions.h"
 
 #include "systemexception.h"
@@ -24,10 +28,12 @@ Exception::Exception(System::String data, ExceptionIdType id)
     this->data = data;
     this->id = id;
 
+#ifndef DONT_USE_QT
 	System::LogsManager::add_record(std::string(data.data, data.size),
 									System::LogType_Exception,
 									System::LogSource_MainServer,
 									"");
+#endif
 }
 
 void Exception::show()
@@ -54,6 +60,11 @@ ExceptionIdType Exception::get_id()
 System::String Exception::get_data()
 {
 	return data;
+}
+
+ExceptionIdType Exception::get_base_exception_id()
+{
+	return 0;
 }
 
 Exception* Exception::generate(System::String data, ExceptionIdType id)
@@ -93,6 +104,8 @@ Exception* Exception::generate(System::String data, ExceptionIdType id)
 			SAFE_NEW(exception, SystemException(data, id));
 			break;
 		}
+
+		SAFE_NEW(exception, Exception(data, id));
 	} while(false);
 
 	return exception;

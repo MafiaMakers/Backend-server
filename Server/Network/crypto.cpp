@@ -3,9 +3,14 @@
 #include "System/serializer.h"
 #include "System/tuple.h"
 
+#ifdef DONT_USE_QT
+#include <sstream>
+#endif
+
 using namespace Mafia;
 using namespace Network;
-System::LimitedQueue<MessageIdType>* Crypto::lastMessageIds = new System::LimitedQueue<MessageIdType>(rememberMessagesCount);
+System::LimitedQueue<MessageIdType>* Crypto::lastMessageIds =
+		new System::LimitedQueue<MessageIdType>(rememberMessagesCount);
 System::String Crypto::key = System::String();
 
 void Crypto::set_key(System::String key){
@@ -49,10 +54,26 @@ Message Crypto::parse_data(char *data, int size){
     }
 
     if(result.item2 != realSum){
-		throw Exceptions::Exception::generate(System::String("control sum doesn't match to real sum " +
-																	 QString::number(result.item2).toStdString() + " " +
-																	 QString::number(realSum).toStdString()),
-													  Exceptions::MessageParsingExceptionId_ControlSumMismatch);
+		std::string exception = "control sum doesn't match to real sum ";
+#ifdef DONT_USE_QT
+		std::stringstream ss;
+		ss << result.item2;
+		std::string r1;
+		ss >> r1;
+
+		ss << realSum;
+		std::string r2;
+		ss >> r2;
+
+		exception += r1 + " " + r2;
+#else
+		exception +=
+				QString::number(result.item2).toStdString() +
+			   " " +
+				QString::number(realSum).toStdString();
+#endif
+		throw Exceptions::Exception::generate(System::String(exception),
+											Exceptions::MessageParsingExceptionId_ControlSumMismatch);
     }
 
 	//Для проверки id сообщений, добавляем id этого в список
@@ -111,7 +132,8 @@ bool Crypto::_message_id_ok(MessageIdType id)
 System::String Crypto::_encrypt(System::String decrypted){
 	//Ключ должен быть установлен
     if(Crypto::key.size == 0){
-		throw Exceptions::Exception::generate(System::String("encryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
+		throw Exceptions::Exception::generate(System::String("encryption failed! Key is not set"),
+											  Exceptions::MessageParsingExceptionId_NoneKey);
     }
 	char * d;
 	SAFE_NEW(d, char[decrypted.size]);
@@ -134,7 +156,8 @@ System::String Crypto::_encrypt(System::String decrypted){
 System::String Crypto::_decrypt(System::String encrypted){
 	//Ключ должен быть установлен (и должен совпадать во всех клиентах)
     if(Crypto::key.size == 0){
-		throw Exceptions::Exception::generate(System::String("decryption failed! Key is not set"), Exceptions::MessageParsingExceptionId_NoneKey);
+		throw Exceptions::Exception::generate(System::String("decryption failed! Key is not set"),
+											  Exceptions::MessageParsingExceptionId_NoneKey);
     }
 
 	//Побитово вычитаем из строки символы ключа

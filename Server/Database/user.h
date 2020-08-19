@@ -1,18 +1,26 @@
 #ifndef USER_H
 #define USER_H
 
-#include <QString>
-#include <QDateTime>
 #include "Gameplay/gameitems.h"
+	#ifndef DONT_USE_QT
+		#include <QString>
+		#include <QDateTime>
+		#define DATE_TIME QDateTime
+	#else
+		#define DATE_TIME std::string
+	#endif
 
 namespace Mafia {
 	namespace Database {
-		//! \brief Формат даты и времени, который используется везде по программе (т.к. он используется SQL)
-		const QString SQL_DATETIME_FORMAT = "yyyy.MM.dd hh:mm:ss";
-        //! \brief Время, которое мы считаем 'самым началом' (раньше него не может быть ничего)
-		const QDateTime BEGINNING_TIME = QDateTime::fromString("2000.01.01 01:01:01", SQL_DATETIME_FORMAT);
-        //! \brief Время, которое мы считаем 'самым концом' (позже него не может быть ничего)
-        const QDateTime ENDING_TIME = QDateTime::fromString("2073.01.01 01:01:01", SQL_DATETIME_FORMAT);
+            //! \brief Формат даты и времени, который используется везде по программе (т.к. он используется SQL)
+		const STRING SQL_DATETIME_FORMAT = "yyyy.MM.dd hh:mm:ss";
+
+		#ifndef DONT_USE_QT
+            //! \brief Время, которое мы считаем 'самым началом' (раньше него не может быть ничего)
+			const DATE_TIME BEGINNING_TIME = QDateTime::fromString("2000.01.01 01:01:01", SQL_DATETIME_FORMAT);
+            //! \brief Время, которое мы считаем 'самым концом' (позже него не может быть ничего)
+			const DATE_TIME ENDING_TIME = QDateTime::fromString("2073.01.01 01:01:01", SQL_DATETIME_FORMAT);
+		#endif
 
 
         //! \brief Тип, использующийся для id пользователей в базе данных
@@ -24,7 +32,7 @@ namespace Mafia {
         //! \brief Тип, использующийся для хранения id игр в базе данных
         typedef int GameIdType;
         //! \brief Тип, использующийся для хранения ключа подтверждения email-а в базе данных
-        typedef QString ConfirmationKeyType;
+        typedef STRING ConfirmationKeyType;
         //! \brief Тип, используемый для хранения цены, заплаченной при транзакции
         typedef int PriceType;
 
@@ -95,6 +103,8 @@ namespace Mafia {
             AuthorizedStatus_Last = 3
         };
 
+		bool date_time_equals(DATE_TIME f, DATE_TIME s);
+
         //! \brief Структура, используемая для хранения и работы с транзакциями
         struct Transaction{
             //! \brief id транзакции
@@ -104,9 +114,9 @@ namespace Mafia {
             //! \brief цена, которая была уплачена
             PriceType price;
             //! \brief Хеш транзакции, чтобы ее было сложнее подменить или вставить среди других транзакций
-            QString hash;
+            STRING hash;
             //! \brief Время и дата совершения транзакции
-            QDateTime timestamp;
+			DATE_TIME timestamp;
             //! \brief Тип транзакции (см. \ref Mafia::Database::TransactionType)
             TransactionType type;
             //! \brief Метод для вывода в консоль всех данных о транзакции
@@ -121,16 +131,16 @@ namespace Mafia {
             UserIdType id;
 
             //! \brief имя пользователя (не уникальное!)
-            QString nickname;
+            STRING nickname;
 
             //! \brief email пользователя (уникальный)
-            QString email;
+            STRING email;
 
             //! \brief Хеш пароля для сверения его с вводимым паролем
-            QString passwordHash;
+            STRING passwordHash;
 
             //! \brief Соль хеша пароля (для большей безопасности)
-            QString salt;
+            STRING salt;
 
             //! \brief Статус пользователя (подтвердил ли он свой email)
             Status isConfirmed;
@@ -142,7 +152,7 @@ namespace Mafia {
             AccountType accountType;
 
             //! \brief Дата и время регистрации пользователя
-            QDateTime loginDateTime;
+			DATE_TIME loginDateTime;
 
             //! \brief Достижение (нашивка) пользователя
             Achievement achievement;
@@ -168,9 +178,9 @@ namespace Mafia {
             //! \brief Метод для вывода в консоль всех данных о пользователе
             void show();
 
-			bool operator == (const User &user) const;
+            bool operator == (const User &user) const;
 
-			bool operator != (const User &user) const;
+            bool operator != (const User &user) const;
         };
     }
 }

@@ -1,5 +1,5 @@
 #include "chatmessage.h"
-#include "databasehelper.h"
+//#include "databasehelper.h"
 using namespace Mafia;
 using namespace Database;
 
@@ -8,8 +8,13 @@ void ChatMessage::show()
     std::cout << "-------------------------\nMESSAGE" <<
                  "\nid = " << this->id <<
                  "\nfrom = " << this->from <<
-                 "\ndata = " << this->data.toStdString() <<
-                 "\ndate = " << this->timestamp.toString(SQL_DATETIME_FORMAT).toStdString() <<
+				#ifndef DONT_USE_QT
+				"\ndata = " << this->data.toStdString() <<
+				 "\ndate = " << this->timestamp.toString(SQL_DATETIME_FORMAT).toStdString() <<
+				#else
+				"\ndata = " << this->data <<
+				 "\ntime = " << this->timestamp <<
+				#endif
                  "\nto chat = " << this->toChat <<
                  "\nfeature = " << this->feature <<
                  "\nreadUsers:";
@@ -46,9 +51,7 @@ bool ChatMessage::operator ==(const ChatMessage& a) const
 	if(this->readUsers != a.readUsers){
 		return false;
 	}
-	//Если разница во времени небольшая, то оно считается равным,
-	//т.к. в SQL все округляется до секунд и могут быть небольшие беды в связи с этим
-	if(this->timestamp.msecsTo(a.timestamp) > 1500 || a.timestamp.msecsTo(this->timestamp) > 1500){
+	if(!date_time_equals(this->timestamp, a.timestamp)){
 		return false;
 	}
 	return true;

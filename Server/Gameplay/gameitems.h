@@ -6,7 +6,7 @@ namespace Mafia {
     namespace Gameplay {
 
         //! \brief Возможные роли
-        enum Role{
+		enum Role{
             //! \brief Индекс первой роли (см. \ref Mafia::Database::Status_First)
             Role_First = 0,
             //! \brief Жирный митель
