@@ -1,0 +1,6 @@
+*.xml
+/RoomServerJava/.idea
+build-*
+*.so
+*.iml
+*.log
