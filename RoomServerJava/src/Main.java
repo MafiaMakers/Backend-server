@@ -1,24 +1,30 @@
+import Mafia.Network.*;
+
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+
 public class Main {
-    static {
+    /*static {
         System.load(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replaceAll("/", "\\\\") + "CPP_LIB\\Main.so");
+    }*/
+
+    public static void main(String[] args) {
+        /*try {
+            SubserverNetworker.init(5000);
+            System.out.println("INIT successfully finished");
+            MessageJ testMessage = new MessageJ();
+            testMessage.Setdata("Test".toCharArray());
+            testMessage.Setid(179);
+            testMessage.SetpartIndex(0);
+            testMessage.SetpartsCount(1);
+            testMessage.Settype(17);
+            testMessage.Getclient().Setip(0x7F000001);
+            testMessage.Getclient().Setport(5000);
+
+            SubserverNetworker.sendMessage(testMessage);
+        } catch (IllegalMonitorStateException exception){
+            System.out.println(exception.getMessage());
+        }*/
     }
-
-    public int var = 7;
-
-public static void main(String[] args) {
-        Main t = new Main();
-        System.out.println("2 + 7 = " + String.valueOf(t.sum(2, 7)));
-        int tv = t.var;
-        System.out.println(String.valueOf(tv) + " * 2 * 7 = " + String.valueOf(t.multiply(2, 7)));
-        System.out.println("Now t.var = " + String.valueOf(t.var));
-
-        System.out.println(t.stringFunc("This is source string"));
-        }
-
-native int sum(int a, int b);
-
-native int multiply(int a, int b);
-
-native String stringFunc(String data);
 
 }

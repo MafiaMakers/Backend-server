@@ -31,6 +31,14 @@ JNIEXPORT jint JNICALL Java_Main_multiply
 JNIEXPORT jstring JNICALL Java_Main_stringFunc
   (JNIEnv *, jobject, jstring);
 
+/*
+ * Class:     Main
+ * Method:    testVoid
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_Main_testVoid
+  (JNIEnv *, jobject);
+
 #ifdef __cplusplus
 }
 #endif

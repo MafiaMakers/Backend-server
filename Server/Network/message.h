@@ -1,8 +1,10 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 #include "messageTypes.h"
+#include "structparser.h"
 namespace Mafia {
     namespace Network {
+
         /*!
          * \brief Тип, в котором хранится id сообщения
          */
@@ -154,7 +156,7 @@ namespace Mafia {
             //! тип сообщения
             MessageType type;
              //! данные сообщения
-            SymbolType* data;
+            SymbolType __ARRAY__(size) data;
             //! размер данных сообщения
             int size;
             //! Клиент-отправитель
