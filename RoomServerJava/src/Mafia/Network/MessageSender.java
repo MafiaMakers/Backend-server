@@ -4,15 +4,23 @@ import java.io.IOException;
 import java.net.*;
 import java.nio.ByteBuffer;
 
+//!\brief Класс, который занимается отправкой и получением пакетов по сети
 public class MessageSender extends Thread{
-
+    //!\brief Размер буфера сообщений
     private static final int BUFFER_SIZE = 256;
+    //!\brief Размер инта))
     private static final int INT_SIZE = 4;
+    //!\brief Сокет
     private DatagramSocket socket;
+    //!\brief Проверка на то, инициализирован ли сокет
     private boolean initialized = false;
+    //!\brief Класс является синглтоном, так что это указатель на instance
     private static MessageSender instance = null;
+    //!\brief Проверка на то, работает ли сейчас сокет
     private boolean running = true;
 
+    //!\brief Инициализация инстанса и начало работы
+    //!\param port Порт, на котором следует инициализировать сокет
     public static void init(int port){
         try{
             System.out.println("Initializing message sender");
@@ -23,17 +31,25 @@ public class MessageSender extends Thread{
         }
     }
 
+    //!\brief Метод отправки сообщения
+    //!\param buffer Сообщение (байты), которое следует отправить
+    //!\param size Размер сообщения в байтах
+    //!\param ip IP, на который следует отправить сообщение
+    //!\param port Порт, на который следует отправить сообщение
     public static void send(byte[] buffer, int size, int ip, int port){
         instance.send_message(buffer, size, ip, port);
     }
 
+    //!\brief Метод, завершающий работу сокета
     public static void terminate(){
         instance.running = false;
         instance.stop();
         instance = null;
     }
 
-    public MessageSender(int port) throws Exception{
+    //!\brief Приватный конструктор (пользователь должен обращаться лишь к статическим методам)
+    //!\param port Порт, на котором следует создавать сокет
+    private MessageSender(int port) throws Exception{
         try {
             if(instance == null){
                 instance = this;
@@ -53,6 +69,7 @@ public class MessageSender extends Thread{
     }
 
     @Override
+    //!\brief Метод основной работы (получения сообщений) наследован от Thread
     public void run(){
         if(initialized){
             while (running){
@@ -90,6 +107,7 @@ public class MessageSender extends Thread{
         }
     }
 
+    //!\brief Функция отправки сообщения (приватная и не статическая!)
     private void send_message(byte[] buffer, int size, int ip, int port){
         System.out.println("Asked to send message:");
         System.out.println(String.valueOf(buffer));
