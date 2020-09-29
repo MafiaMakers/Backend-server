@@ -18,4 +18,5 @@ g++ -I"C:\Program Files\Java\jdk-9.0.4\include"^
  "..\..\..\..\..\Server\System\serializer.cpp"^
  "..\..\..\..\..\Server\Network\crypto.cpp"^
  "MessageParser.cpp"^
- -shared -o "..\..\..\..\out\production\RoomServerJava\Mafia\Network\CPP_LIB\MessageParser.so"
+ "Serializer.cpp"^
+ -shared -o "..\..\..\..\out\production\RoomServerJava\Mafia\Network\CPP_LIB\Serializer.so"
