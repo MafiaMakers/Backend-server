@@ -6,6 +6,7 @@
 #include "Database/chatmessage.h"
 #include "userstatistics.h"
 #include "Gameplay/game_s.h"
+#include "MafiaNetwork"
 //#include "System/serializer.cpp"
 
 namespace MafiaTests {

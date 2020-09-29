@@ -92,7 +92,7 @@ void DatabaseWorker::restore_database()
 									System::LogType_Message,
 									System::LogSource_MainServer,
 									"");
-	//Возобнавляем работу
+	//Возобновляем работу
 	restart_database();
 	isOnBackup = false;
 }

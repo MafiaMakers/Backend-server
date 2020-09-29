@@ -1,4 +1,5 @@
 #include "tst_chatsettingsdatabasemanager.h"
+#include "MafiaExceptions"
 
 using namespace MafiaTests;
 using namespace DatabaseTests;

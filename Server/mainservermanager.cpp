@@ -867,14 +867,14 @@ void MainServerManager::add_user_to_game(Network::Client client, QString gameKey
 void MainServerManager::delete_message(Network::Client client, Database::MessageIdType message)
 {
     try {
-		//Проверяем, что пользователь авторизован
+		//!Проверяем, что пользователь авторизован
         Database::UserIdType user = get_user_by_client(client);
 		check_null_user(user);
 
         Database::ChatMessage messageData = chatsDb->get_message(message);
-		//Проверяем, может ли этот пользователь удалить это сообщение
+		//!Проверяем, может ли этот пользователь удалить это сообщение
         bool canEdit = false;
-		//Если это его собственное сообщение,
+		//!Если это его собственное сообщение,
 		//то он должен иметь право на редактирование сообщений в этом чате
         if(user == messageData.from){
             canEdit = chatSettingsDb->can_send_message(user, messageData.toChat);

@@ -1,5 +1,6 @@
 package Mafia.Gameplay;
 
+import Mafia.Exceptions.ExceptionId;
 import Mafia.Exceptions.MafiaException;
 import Mafia.Gameplay.Roles.IRoutine;
 import java.lang.Boolean;
@@ -33,7 +34,7 @@ public class LateEvent{
             if(result.getClass().isInstance(Boolean.class)){
                 return ((Boolean)result).booleanValue();
             } else {
-                throw MafiaException.generate(1, "INVALID CONDITION ROUTINE!!!");
+                throw MafiaException.generate(ExceptionId.RoutineException, "INVALID CONDITION ROUTINE!!!");
             }
         } else{
             return false;

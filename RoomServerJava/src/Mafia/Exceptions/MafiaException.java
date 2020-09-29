@@ -3,15 +3,15 @@ package Mafia.Exceptions;
  */
 public class MafiaException extends Exception {
     //!ID исключения (по сути его тип)
-    private int id;
+    private ExceptionId id;
 
     //!\brief Геттер для \ref Mafia.Exceptions.MafiaException.id
-    public int get_id(){
+    public ExceptionId get_id(){
         return id;
     }
 
     //!\brief Основной конструктор (приватныЙ!!!). Он нужен лишь для наследников.
-    private MafiaException(int id, String data) {
+    protected MafiaException(ExceptionId id, String data) {
         super(data);
         this.id = id;
     }
@@ -20,7 +20,11 @@ public class MafiaException extends Exception {
      *\param id ID исключения
      *\param data Текст, который следует вывести
     */
-    public static MafiaException generate(int id, String data){
+    public static MafiaException generate(ExceptionId id, String data){
+        if(id == ExceptionId.MessageParsingException){
+            return new NetworkException(id, data);
+        }
+
         return new MafiaException(id, data);
     }
 

@@ -12,6 +12,7 @@ TEMPLATE = app
 SOURCES +=  \
     ../Server/Database/chatdatabasemanager.cpp \
     ../Server/Database/chatmessage.cpp \
+    ../Server/Database/chatsettings.cpp \
     ../Server/Database/chatsettingsdatabasemanager.cpp \
     ../Server/Database/databasehelper.cpp \
     ../Server/Database/databasemanager.cpp \
@@ -54,6 +55,7 @@ SOURCES +=  \
     ../Server/Network/crypto.cpp \
     ../Server/Network/mainservernetworker.cpp \
     ../Server/Network/messageprocessor.cpp \
+    ../Server/Network/messagesender.cpp \
     ../Server/Requests/networkrequest.cpp \
     ../Server/Requests/request.cpp \
     ../Server/Subservers/backupsubserverobject.cpp \
@@ -138,6 +140,7 @@ HEADERS += \
     ../Server/Network/message.h \
     ../Server/Network/messageTypes.h \
     ../Server/Network/messageprocessor.h \
+    ../Server/Network/messagesender.h \
     ../Server/Requests/networkrequest.h \
     ../Server/Requests/request.h \
     ../Server/Subservers/backupsubserverobject.h \

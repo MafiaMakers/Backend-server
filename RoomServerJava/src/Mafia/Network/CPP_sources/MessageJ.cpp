@@ -2,6 +2,7 @@
 #define _Included_Mafia_Network_MessageJ
 #include <jni.h>
 #include "..\Mafia-server\Server\Network\message.h"
+#include <iostream>
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +22,7 @@ Message * get_Message(JNIEnv * env, jobject obj) {
 	jclass cls = env->GetObjectClass(obj);
 	jfieldID fid = env->GetFieldID(cls, "_pointer", "J");
 	jlong var = env->GetLongField(obj, fid);
+	//std::cerr << "MESSAGE_PTR: " << var << std::endl;
 	Message* object = (Message*)(__int64)var;
 	return object;
 }
@@ -115,9 +117,16 @@ JNIEXPORT jcharArray JNICALL Java_Mafia_Network_MessageJ_Getdata
 	Message* object = get_Message(env, obj);
 	jcharArray arr = env->NewCharArray(object->size);
 	jchar* jarr = env->GetCharArrayElements(arr, 0);
-	for (int i; i < object->size; i++) {
-		jarr[i] = object->data[i];
+	//std::cerr << "get\n";
+	//std::cerr << "_DATA: " << (__int64)object->data << std::endl;
+	//std::cerr << "SIZE: " << object->size << std::endl;
+	for (int i = 0; i < object->size; i++) {
+		//std::cerr << (int)object->data[i] << "/";
+		jarr[i] = (jchar)object->data[i];
+		//std::cerr << (int)object->data[i] << " ";
 	}
+	//std::cerr << std::endl;
+
 	env->ReleaseCharArrayElements(arr, jarr, 0);
 	return arr;
 }
@@ -132,6 +141,8 @@ JNIEXPORT void JNICALL Java_Mafia_Network_MessageJ_Setdata
 	for (int i = 0; i < size; i++) {
 		object->data[i] = (SymbolType)jarr[i];
 	}
+
+	env->ReleaseCharArrayElements(data, jarr, 0);
 }
 
 JNIEXPORT void JNICALL Java_Mafia_Network_MessageJ_SetdataElement

@@ -3,6 +3,7 @@
 #include <QTest>
 #include <QObject>
 #include "Database/gamedatabasemanager.h"
+#include "Exceptions/exception.h"
 
 namespace MafiaTests {
 	namespace DatabaseTests {

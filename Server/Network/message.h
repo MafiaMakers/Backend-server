@@ -1,7 +1,11 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 #include "messageTypes.h"
+#ifdef DONT_USE_QT
 #include "structparser.h"
+#else
+#define __ARRAY__(T) *
+#endif
 namespace Mafia {
     namespace Network {
 

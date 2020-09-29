@@ -25,7 +25,7 @@ namespace Mafia {
         //! \brief см. \ref Mafia::Database::User::victoriesByRoles
         MafiaList<int> victoriesByRoles;
         //! \brief см. \ref Mafia::Database::User::defeatesByRoles
-        MafiaList<int> defeatesByRoles;
+		MafiaList<int> defeatesByRoles;
         //! \brief см. \ref Mafia::Database::User::loginDateTime
 		DATE_TIME loginDateTime;
         //! \brief см. \ref Mafia::Database::User::accountType
