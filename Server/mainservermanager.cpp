@@ -19,30 +19,30 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
 
 		Network::Crypto::set_key("cdbhjDH%R^%^&@bhfcdsjVg");
 
-        networker = new Network::MainServerNetworker(System::PortsManager::allocate_port());
+		networker = new Network::MainServerNetworker(System::PortsManager::allocate_port());
 
-        backupSubserver = new Subservers::BackupSubserverObject(networker, System::PortsManager::allocate_port());
+		backupSubserver = new Subservers::BackupSubserverObject(networker, System::PortsManager::allocate_port());
 
-        games = MafiaList<Subservers::RoomSubserverObject*>();
+		games = MafiaList<Subservers::RoomSubserverObject*>();
 
-        dbWorker = new Database::DatabaseWorker();
+		dbWorker = new Database::DatabaseWorker();
 
-        usersDb = new Database::UserDatabaseManager(dbWorker);
+		usersDb = new Database::UserDatabaseManager(dbWorker);
 
-        gamesDb = new Database::GameDatabaseManager(dbWorker);
+		gamesDb = new Database::GameDatabaseManager(dbWorker);
 
-        chatSettingsDb = new Database::ChatSettingsDatabaseManager(dbWorker);
+		chatSettingsDb = new Database::ChatSettingsDatabaseManager(dbWorker);
 
-        chatsDb = new Database::ChatDatabaseManager(dbWorker);
+		chatsDb = new Database::ChatDatabaseManager(dbWorker);
 
-        transactionsDb = new Database::TransactionDatabaseManager(dbWorker);
+		transactionsDb = new Database::TransactionDatabaseManager(dbWorker);
 
-        connect(chatsDb, &Database::ChatDatabaseManager::on_message_read, this, &MainServerManager::on_chat_message_read);
-        connect(chatsDb, &Database::ChatDatabaseManager::on_message_sent, this, &MainServerManager::on_chat_message_sent);
-        connect(chatsDb, &Database::ChatDatabaseManager::on_message_edited, this, &MainServerManager::on_chat_message_edited);
-        connect(chatsDb, &Database::ChatDatabaseManager::on_message_deleted, this, &MainServerManager::on_chat_message_deleted);
+		connect(chatsDb, &Database::ChatDatabaseManager::on_message_read, this, &MainServerManager::on_chat_message_read);
+		connect(chatsDb, &Database::ChatDatabaseManager::on_message_sent, this, &MainServerManager::on_chat_message_sent);
+		connect(chatsDb, &Database::ChatDatabaseManager::on_message_edited, this, &MainServerManager::on_chat_message_edited);
+		connect(chatsDb, &Database::ChatDatabaseManager::on_message_deleted, this, &MainServerManager::on_chat_message_deleted);
 
-        connect_to_processor();
+		connect_to_processor();
 
 		if(!dbWorker->database_ready()){
 			solve_database_error();

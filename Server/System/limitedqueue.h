@@ -72,7 +72,7 @@ namespace Mafia {
                     last->next = newElement;
                     QueueElement<T>* cur = first;
                     first = first->next;
-                    delete cur;
+					//delete cur;
                     elementsCount--;
                 }
                 last = newElement;

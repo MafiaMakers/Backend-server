@@ -8,6 +8,8 @@ namespace Mafia {
         //! \brief По сути статический класс для случайной генерации различных ключей (солей в т.ч.)
         class KeyGen
         {
+		private:
+			static bool initialized;
         public:
             template<class T>
             /*!

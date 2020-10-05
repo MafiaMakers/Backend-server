@@ -178,22 +178,23 @@ void SubserverObject::_check_subserver_respond()
 
 void SubserverObject::run_me(const System::String specialCommands)
 {
-    try {
-        this->pid = run_app(this->path, this->processName, specialCommands);
-    } catch (Exceptions::Exception* exception) {
-        switch(exception->get_id()){
-        default:{
-            emit on_crash();
-            exception->show();
-            return;
-        }
-        }
-    }
+	if(this->processName.size != 0){
+		try {
+			this->pid = run_app(this->path, this->processName, specialCommands);
+		} catch (Exceptions::Exception* exception) {
+			switch(exception->get_id()){
+			default:{
+				emit on_crash();
+				exception->show();
+				return;
+			}
+			}
+		}
+		this->initialized = true;
 
-    this->initialized = true;
-
-    std::thread checkThread(&SubserverObject::_check_subserver_respond, this);
-    checkThread.detach();
+		std::thread checkThread(&SubserverObject::_check_subserver_respond, this);
+		checkThread.detach();
+	}
 }
 
 void SubserverObject::message_from_server(Network::Message message)

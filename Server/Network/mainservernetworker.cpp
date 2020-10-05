@@ -24,7 +24,7 @@ MainServerNetworker::MainServerNetworker(QObject* parent) : QObject(parent){}
 
 MainServerNetworker::MainServerNetworker(int port)
 {
-	Crypto::set_key("TEST_key_thisIs");
+	//Crypto::set_key("TEST_key_thisIs");
 
     this->waitingToFillMessages = MafiaList<MafiaList<Message>>();
     this->currentMaxId = 0;
@@ -37,6 +37,8 @@ MainServerNetworker::MainServerNetworker(int port)
     this->waitingForConfirmation = MafiaList<Message>();
     std::thread resendingThread(&MainServerNetworker::_resend_not_confirmed_messages, this);
     resendingThread.detach();
+
+	std::cout << "Initialized server on port " << port << std::endl;
 }
 
 MainServerNetworker::~MainServerNetworker()
@@ -124,7 +126,7 @@ void MainServerNetworker::_process_message(Message message)
         break;
     }
     default:{
-		std::cerr << "received_message called\n";
+		//std::cerr << "received_message called\n";
 		//В любой непонятной ситуации передавай управление основному менеджеру
         emit message_received(message);
 
@@ -188,35 +190,35 @@ int MainServerNetworker::get_list_index(MessageIdType id)
 
 void MainServerNetworker::add_received_message(Message message)
 {
-	std::cerr << "adding received message\n";
+	//std::cerr << "adding received message\n";
     int listIndex = get_list_index(message.id);
-	std::cerr << "list index: " << listIndex << "\n";
+	//std::cerr << "list index: " << listIndex << "\n";
 	// Если такого сообщения еще нет в списке ожидающих, значит это первая часть от сообщения, которая нам пришла
     if(listIndex == -1){
-		std::cerr << "INDEX IS -1!!\n";
+		//std::cerr << "INDEX IS -1!!\n";
         listIndex = waitingToFillMessages.length();
-		std::cout << "Addind empty\n";
+		//std::cout << "Addind empty\n";
         _add_empty_message(message);
-		std::cerr << listIndex << " - new list index\n";
+		//std::cerr << listIndex << " - new list index\n";
     }
     try {
 		//Если в списке не произошло какой-либо ошибки
 		if( message.partIndex < waitingToFillMessages[ listIndex ].length() - 1 && message_matches( message ) ){
-			std::cerr << "all ok\n";
+			//std::cerr << "all ok\n";
 			waitingToFillMessages[ listIndex ][ message.partIndex + 1 ] = message;
         } else{
 			throw Exceptions::Exception::generate(System::String("Message parts data mismatch"),
                                                              Exceptions::MessageProcessingExceptionId_MessagePartsMismatch);
         }
 
-		std::cerr << "checking full message\n";
+		//std::cerr << "checking full message\n";
 		//Если сообщение получено целиком, то собираем его и отправляем на обработку
         if(check_message_full(message.id)){
-			std::cerr << "constructing result\n";
+			//std::cerr << "constructing result\n";
             Message wholeMessage = _construct_whole_message(message.id);
 
             waitingToFillMessages.removeAt(listIndex);
-			std::cerr << "processing!!!\n";
+			//std::cerr << "processing!!!\n";
             _process_message(wholeMessage);
         }
     } catch (Exceptions::Exception* exception) {
@@ -240,17 +242,17 @@ bool MainServerNetworker::message_matches(Message message)
     }
 
     if(message.type != waitingToFillMessages[index][0].type){
-		std::cerr << "TYPE MISMATCH\n";
+		//std::cerr << "TYPE MISMATCH\n";
         return false;
     }
 
     if(message.client != waitingToFillMessages[index][0].client){
-		std::cerr << "CLIENT MISMATCH\n";
+		//std::cerr << "CLIENT MISMATCH\n";
         return false;
     }
 
     if(message.partsCount != waitingToFillMessages[index][0].partsCount){
-		std::cerr << "PARTS COUNT MISMATCH\n";
+		//std::cerr << "PARTS COUNT MISMATCH\n";
         return false;
     }
 	//std::cout << "messages math\n";
@@ -258,7 +260,7 @@ bool MainServerNetworker::message_matches(Message message)
 }
 
 void MainServerNetworker::receive_message(char* data, int size, int ip, int port) {
-	std::cerr << "--Message received!\n";
+	//std::cerr << "--Message received!\n";
 
 
 	if(size > 0){
@@ -266,7 +268,7 @@ void MainServerNetworker::receive_message(char* data, int size, int ip, int port
         Message trueData;
         try {
 			trueData = Crypto::parse_data(data, size);
-			std::cerr << "decoding succeed\n";
+			//std::cerr << "decoding succeed\n";
         } catch (Exceptions::Exception* exception) {
             exception->show();
             return;
@@ -278,7 +280,7 @@ void MainServerNetworker::receive_message(char* data, int size, int ip, int port
         if(trueData.id > currentMaxId){
             currentMaxId = trueData.id;
         }
-		std::cerr << "data completed\n";
+		//std::cerr << "data completed\n";
         //show_message(trueData);
 
         add_received_message(trueData);
@@ -338,7 +340,7 @@ void MainServerNetworker::_resend_message(Message message)
 			exception->show();
 			return;
 		}
-		std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
+		//std::cout << "Sent message : " << std::string(partMes.data, partMes.size) << std::endl;
 		//Отправляем
 		_send_message(mes.data, mes.size, message.client.ip, message.client.port);
 

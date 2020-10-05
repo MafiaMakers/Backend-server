@@ -13,7 +13,7 @@ UserDatabaseManagerTests::UserDatabaseManagerTests(QObject *parent) : QObject(pa
 
 void UserDatabaseManagerTests::add_random_user()
 {
-	QString email = Mafia::System::KeyGen::generate_key<QString>(10);
+	QString email = Mafia::System::KeyGen::generate_key<QString>(20);
 	QString nickname = Mafia::System::KeyGen::generate_key<QString>(10);
 	QString password = Mafia::System::KeyGen::generate_key<QString>(10);
 	QString confirmationKey = "";

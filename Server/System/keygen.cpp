@@ -3,11 +3,16 @@
 using namespace Mafia;
 using namespace System;
 
+bool KeyGen::initialized = false;
+
 template<>
 std::string KeyGen::generate_key(int length)
 {
     std::string result = "";
-	srand(time(NULL));
+	if(!initialized){
+		srand(time(NULL));
+		initialized = true;
+	}
     for(int i = 0; i < length; i++){
 		result += (char)('A' + ((unsigned)rand() % 26));
     }

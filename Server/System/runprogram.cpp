@@ -1,5 +1,7 @@
 #include "runprogram.h"
 #include "sstream"
+#include "stdio.h"
+//#include "unique_ptr.h"
 #include "System/functions.h"
 using namespace Mafia;
 using namespace System;
@@ -54,6 +56,7 @@ std::string Mafia::System::exec(const char *cmd)
 
 	//Если все ок, то продолжаем
     if (!pipe) {
+		std::cout << "Cringe\n";
        throw std::runtime_error("popen() failed!");
     }
 

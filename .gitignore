@@ -7,3 +7,9 @@ build-*
 *.class
 *.jar
 *.user
+*.sqlite
+ServerRelease
+RoomServer
+check_err.bat
+check_nerr.bat
+*.dll
