@@ -19,7 +19,7 @@ MainServerManager::MainServerManager(int argc, char* argv[], QObject* parent) : 
 
 		Network::Crypto::set_key("cdbhjDH%R^%^&@bhfcdsjVg");
 
-		networker = new Network::MainServerNetworker(System::PortsManager::allocate_port());
+		networker = new Network::Networker(System::PortsManager::allocate_port());
 
 		backupSubserver = new Subservers::BackupSubserverObject(networker, System::PortsManager::allocate_port());
 
@@ -67,19 +67,15 @@ void MainServerManager::on_chat_message_sent(Database::ChatMessage message)
 		//Получаем список пользователей, которых следует уведомить об отправке сообщения
         MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(message.toChat).users;
 
-        std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
+		//std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
+		KeyValuePairSet messageData = message.to_json();
 
 		//Выбираем тех пользователей, которые онлайн и отправляем им сообщения
         for(int i = 0; i < ids.length(); i++){
             if(users.contains(ids[i])){
                 Network::Client client = get_client_by_user(ids[i]);
 
-				networker->send_message(Network::Message(
-											Network::MessageType_NewChatMessage,
-											(Network::SymbolType*)messageData.c_str(),
-											messageData.length(),
-											client)
-										);
+				networker->send_message(Network::MessageType_NewChatMessage, messageData, client);
             }
         }
     } catch (Exceptions::Exception* exception) {
@@ -93,19 +89,20 @@ void MainServerManager::on_chat_message_edited(Database::ChatMessage message)
 		//Получаем список пользователей, которых следует уведомить об изменении сообщения
         MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(message.toChat).users;
 
-        std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
-
+		//std::string messageData = System::Serializer::serialize<Database::ChatMessage>(message);
+		KeyValuePairSet messageData = message.to_json();
 		//Выбираем тех, кто онлайн и отправляем им сообщения
         for(int i = 0; i < ids.length(); i++){
             if(users.contains(ids[i])){
                 Network::Client client = get_client_by_user(ids[i]);
 
-				networker->send_message(Network::Message(
+				/*networker->send_message(Network::Message(
 											Network::MessageType_EditedChatMessage,
 											(Network::SymbolType*)messageData.c_str(),
 											messageData.length(),
 											client)
-										);
+										);*/
+				networker->send_message(Network::MessageType_EditedChatMessage, messageData, client);
             }
         }
     } catch (Exceptions::Exception* exception) {
@@ -119,20 +116,23 @@ void MainServerManager::on_chat_message_read(Database::MessageIdType message, Da
 		//Получаем список пользователей, которых следует уведомить о прочтении сообщения
         MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(chat).users;
 
-        std::string messageData = System::Serializer::serialize<System::Tuple<Database::MessageIdType, Database::UserIdType>>
-                (System::Tuple<Database::MessageIdType, Database::UserIdType>(message, user));
+		/*std::string messageData = System::Serializer::serialize<System::Tuple<Database::MessageIdType, Database::UserIdType>>
+				(System::Tuple<Database::MessageIdType, Database::UserIdType>(message, user));*/
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("userId", user);
+		messageData.insert("messageId", message);
 
 		//Выбираем тех, кто онлайн и отправляем им сообщение
         for(int i = 0; i < ids.length(); i++){
             if(users.contains(ids[i])){
                 Network::Client client = get_client_by_user(ids[i]);
-
-				networker->send_message(Network::Message(
+				networker->send_message(Network::MessageType_OnReadChatMessage, messageData, client);
+				/*networker->send_message(Network::Message(
 											Network::MessageType_OnReadChatMessage,
 											(Network::SymbolType*)messageData.c_str(),
 											messageData.length(),
 											client)
-										);
+										);*/
             }
         }
     } catch (Exceptions::Exception* exception) {
@@ -147,19 +147,22 @@ void MainServerManager::on_chat_message_deleted(Database::MessageIdType messageI
 		//Получаем список пользователей, которых следует уведомить об удалении сообщения
         MafiaList<Database::UserIdType> ids = chatSettingsDb->get_chat(chat).users;
 
-        std::string messageData = System::Serializer::serialize<Database::MessageIdType>(messageId);
+		//std::string messageData = System::Serializer::serialize<Database::MessageIdType>(messageId);
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("messageId", messageId);
 
 		//Выбираем тех, кто онлайн и отправляем им сообщение
         for(int i = 0; i < ids.length(); i++){
             if(users.contains(ids[i])){
                 Network::Client client = get_client_by_user(ids[i]);
 
-				networker->send_message(Network::Message(
+				networker->send_message(Network::MessageType_DeletedChatMessage, messageData, client);
+				/*networker->send_message(Network::Message(
 											Network::MessageType_DeletedChatMessage,
 											(Network::SymbolType*)messageData.c_str(),
 											messageData.length(),
 											client)
-										);
+										);*/
             }
         }
     } catch (Exceptions::Exception* exception) {
@@ -168,8 +171,8 @@ void MainServerManager::on_chat_message_deleted(Database::MessageIdType messageI
     }
 }
 
-void MainServerManager::create_user(QString nickname, QString email, QString password, Network::Client client,
-                                    Network::MessageIdType requestId)
+void MainServerManager::create_user(QString nickname, QString email, QString password, Network::Client client/*,
+									Network::MessageIdType requestId*/)
 {
     try {
 		//Добавляем пользователя в БД и получаем его ключ подтверждения почты
@@ -181,12 +184,13 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
             int index = clients.indexOf(client);
             if(users[index] != nullUser){
                 usersDb->logout_user(users[index]);
-				networker->send_message(Network::Message(
+				/*networker->send_message(Network::Message(
 											Network::MessageType_LoggedOut,
 											(Network::SymbolType*)"",
 											1,
 											client)
-										);
+										);*/
+				networker->send_message(Network::MessageType_LoggedOut, QJsonObject(), client);
             }
             users[index] = newUserId;
 		//Иначе просто добавляем нового клиента и нового пользователя уже авторизованным
@@ -196,17 +200,24 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
         }
 
 		//Отправляем ему сообщение о том, что он успешно зарегистрировался и вошел
-        System::Tuple<Database::UserIdType, QString> messageData = System::Tuple<Database::UserIdType, QString>(newUserId, email);
+		//System::Tuple<Database::UserIdType, QString> messageData = System::Tuple<Database::UserIdType, QString>(newUserId, email);
 
-        std::string messageText = System::Serializer::serialize<System::Tuple<Database::UserIdType, QString>>(messageData);
+		//std::string messageText = System::Serializer::serialize<System::Tuple<Database::UserIdType, QString>>(messageData);
 
-		networker->send_message(Network::Message(
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("email", email);
+		messageData.insert("userId", newUserId);
+		messageData.insert("nickname", nickname);
+
+		networker->send_message(Network::MessageType_LoggedIn, messageData, client);
+
+		/*networker->send_message(Network::Message(
 									Network::MessageType_RequestAnswer,
 									(Network::SymbolType*)messageText.c_str(),
 									messageText.length(),
 									client,
 									requestId)
-								);
+								);*/
 
 		//Создаем и отправляем email для подтверждения ему на почту
         QString mailMessageText = "You received this message because your email was connected with " + nickname + "'s account "
@@ -218,13 +229,18 @@ void MainServerManager::create_user(QString nickname, QString email, QString pas
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
 		if(exception->get_id() == Exceptions::DatabaseWorkingExceptionId_EmptyQueryResult){
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("data", QString::fromStdString(std::string(exception->get_data().data, exception->get_data().size)));
+			messageData.insert("id", exception->get_id());
+
+			networker->send_message(Network::MessageType_Error, messageData, client);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_RequestAnswer,
 										(Network::SymbolType*)"",
 										0,
 										client,
 										requestId)
-									);
+									);*/
 		}
 		exception->close();
     }
@@ -251,12 +267,19 @@ void MainServerManager::send_chat_message(Network::Client sender, Database::Chat
         if(chatSettingsDb->can_send_message(senderUser, toChat)){
             chatsDb->add_message(message);
         } else{
-			networker->send_message(Network::Message(
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"",
 										1,
 										sender)
-									);
+									);*/
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_ChatAccess);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", toChat);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, sender);
         }
 
     } catch (Exceptions::Exception* exception) {
@@ -265,11 +288,13 @@ void MainServerManager::send_chat_message(Network::Client sender, Database::Chat
     }
 }
 
-void MainServerManager::login_user(QString email, QString password, Network::Client client, Network::MessageIdType requestId)
+void MainServerManager::login_user(QString email, QString password, Network::Client client/*, Network::MessageIdType requestId*/)
 {
     try {
         Database::UserIdType userId = usersDb->get_id(email);
         bool login = usersDb->login_user(userId, password);
+
+		QString nickname = usersDb->get_user(userId).nickname;
 		//Проверяем, удалось ли войти
         if(login){
 			//Если клиент уже был под какой-то учетной записью,
@@ -286,21 +311,36 @@ void MainServerManager::login_user(QString email, QString password, Network::Cli
             }
 
 			//Отправляем сообщение об успешном входе
-            System::Tuple<Database::UserIdType, QString> messageData = System::Tuple<Database::UserIdType, QString>(userId, email);
+			//System::Tuple<Database::UserIdType, QString> messageData = System::Tuple<Database::UserIdType, QString>(userId, email);
 
-            std::string messageText = System::Serializer::serialize<System::Tuple<Database::UserIdType, QString>>(messageData);
+			//std::string messageText = System::Serializer::serialize<System::Tuple<Database::UserIdType, QString>>(messageData);
 
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("email", email);
+			messageData.insert("userId", userId);
+			messageData.insert("nickname", nickname);
+
+			networker->send_message(Network::MessageType_LoggedIn, messageData, client);
+
+			/*networker->send_message(Network::Message(
 										Network::MessageType_RequestAnswer,
 										(Network::SymbolType*)messageText.c_str(),
 										messageText.length(),
 										client,
 										requestId)
-									);
+									);*/
         } else{
 			//Отправляем ответ на запрос, но пустой, т.к. не удалось войти
-            networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
-                                                     (Network::SymbolType*)"", 0, client, requestId));
+			/*networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
+													 (Network::SymbolType*)"", 0, client, requestId));*/
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_Login);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("email", email);
+			dataData.insert("password", password);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, client);
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -308,7 +348,7 @@ void MainServerManager::login_user(QString email, QString password, Network::Cli
     }
 }
 
-void MainServerManager::create_chat(Network::Client creator, Network::MessageIdType requestId)
+void MainServerManager::create_chat(Network::Client creator/*, Network::MessageIdType requestId*/)
 {
     try {
 		//Проверяем, что пользователь авторизован
@@ -321,15 +361,21 @@ void MainServerManager::create_chat(Network::Client creator, Network::MessageIdT
         chatSettingsDb->add_user_to_chat(creatorUser, newId, Database::ChatCapabilities_Admin);
 
 		//Отправляем ему сообщение об успешном создании чата
-        std::string messageData = System::Serializer::serialize<Database::ChatIdType>(newId);
+		//std::string messageData = System::Serializer::serialize<Database::ChatIdType>(newId);
 
-		networker->send_message(Network::Message(
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("chatId", newId);
+
+		networker->send_message(Network::MessageType_CreateChatRequest, messageData, creator);
+
+		/*networker->send_message(Network::Message(
 									Network::MessageType_RequestAnswer,
 									(Network::SymbolType*)messageData.c_str(),
 									messageData.length(),
 									creator,
 									requestId)
-								);
+								);*/
+
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, creator);
 		exception->close();
@@ -339,7 +385,7 @@ void MainServerManager::create_chat(Network::Client creator, Network::MessageIdT
 
 void MainServerManager::get_last_messages(Network::Client client,
 										  Database::ChatIdType chat,
-										  Network::MessageIdType requestId,
+										  /*Network::MessageIdType requestId,*/
 										  int messagesCount)
 {
     try {
@@ -360,31 +406,49 @@ void MainServerManager::get_last_messages(Network::Client client,
             }
 
 			//Отправляем пользователю эти сообщения
-			std::string data = System::Serializer::serialize<MafiaList<Database::ChatMessage>>( allMessages );
+			//std::string data = System::Serializer::serialize<MafiaList<Database::ChatMessage>>( allMessages );
 
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			QJsonArray messagesArr = QJsonArray();
+
+			for(int i = 0; i < allMessages.size(); i++){
+				QJsonObject current = allMessages[i].to_json();
+				messagesArr.append(QJsonValue(current));
+			}
+
+			messageData.insert("allMessages", messagesArr);
+
+			networker->send_message(Network::MessageType_GetChatMessages, messageData, client);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_RequestAnswer,
 										(Network::SymbolType*)data.c_str(),
 										data.length(),
 										client,
 										requestId)
-									);
+									);*/
         } else{
 			//Отправляем пустой ответ на запрос
-			networker->send_message(Network::Message(
+			/*networker->send_message(Network::Message(
 										Network::MessageType_RequestAnswer,
 										(Network::SymbolType*)"",
 										0,
 										client,
 										requestId)
-									);
+									);*/
 			//Отправляем пользователю информацию о том, что он не может читать сообщения из этого чата
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_ChatAccess);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, client);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't read messages from this chat",
 										39,
 										client)
-									);
+									);*/
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -392,7 +456,7 @@ void MainServerManager::get_last_messages(Network::Client client,
     }
 }
 
-void MainServerManager::get_users_chats(Network::Client client, Network::MessageIdType requestId, int chatsCount)
+void MainServerManager::get_users_chats(Network::Client client/*, Network::MessageIdType requestId*/, int chatsCount)
 {
 	try {
 		//Проверяем, что пользователь авторизован
@@ -435,15 +499,26 @@ void MainServerManager::get_users_chats(Network::Client client, Network::Message
 		}
 
 		//Отправляем пользователю сообщение со списком чатов, отсортированных по дате последнего сообщения
-		std::string data = System::Serializer::serialize<MafiaList<Database::ChatIdType>>(chats);
+		//std::string data = System::Serializer::serialize<MafiaList<Database::ChatIdType>>(chats);
+		KeyValuePairSet messageData = KeyValuePairSet();
 
-		networker->send_message(Network::Message(
+		QJsonArray chatsArr = QJsonArray();
+
+		for(int i = 0; i < chats.size(); i++){
+			chatsArr.append(QJsonValue(chats[i]));
+		}
+
+		messageData.insert("chats", chatsArr);
+
+		/*networker->send_message(Network::Message(
 									Network::MessageType_RequestAnswer,
 									(Network::SymbolType*)data.c_str(),
 									data.length(),
 									client,
 									requestId)
-								);
+								);*/
+
+		networker->send_message(Network::MessageType_GetChatsRequest, messageData, client);
 
 	} catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -468,23 +543,38 @@ void MainServerManager::add_user_to_chat(Database::ChatIdType chat,
             chatSettingsDb->add_user_to_chat(user, chat, capability);
         } else{
 			//Если не ок, то отправляем сообщение о том, что пользователь не имеет права на такое действие
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_ChatEditing);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit users in this chat",
 										33,
 										initializer)
-									);
+									);*/
         }
     }
     catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, initializer);
 		if(exception->get_id() == Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt){
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_IncorrectAction);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			dataData.insert("userId", user);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"User is already in chat",
 										23,
 										initializer)
-									);
+									);*/
         }
 		exception->close();
     }
@@ -503,23 +593,39 @@ void MainServerManager::remove_user_from_chat(Database::ChatIdType chat, Databas
         if(ableToEdit){
             chatSettingsDb->remove_user_from_chat(user, chat);
         } else{
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_ChatEditing);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			dataData.insert("userId", user);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit users in this chat",
 										33,
 										initializer)
-									);
+									);*/
         }
     }
     catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, initializer);
 		if(exception->get_id() == Exceptions::DatabaseWorkingExceptionId_DeleteMissedItemAttempt){
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_IncorrectAction);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			dataData.insert("userId", user);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"User is not in chat",
 										23,
 										initializer)
-									);
+									);*/
         }
 		exception->close();
 
@@ -541,23 +647,39 @@ void MainServerManager::change_users_chat_capability(Database::ChatIdType chat,
         if(ableToEdit){
             chatSettingsDb->set_capability(user, chat, newCapability);
         } else{
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_ChatEditing);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			dataData.insert("userId", user);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, KeyValuePairSet(), initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit users in this chat",
 										33,
 										initializer)
-									);
+									);*/
         }
     }
     catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, initializer);
 		if(exception->get_id() == Exceptions::DatabaseWorkingExceptionId_DoubleAddingItemAttempt){
-			networker->send_message(Network::Message(
+			KeyValuePairSet messageData = KeyValuePairSet();
+			messageData.insert("action", Network::ActionType_IncorrectAction);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", chat);
+			dataData.insert("userId", user);
+			messageData.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, messageData, initializer);
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"User is already in chat",
 										23,
 										initializer)
-									);
+									);*/
         }
 		exception->close();
     }
@@ -577,25 +699,30 @@ void MainServerManager::create_game(Network::Client creator)
 		//Передаем субсерверу все данные о пользователе и переводим пользователя на этот субсервер
         Database::User userInfo = usersDb->get_user(user);
         current->pass_client(creator, UserStatistics(userInfo));
-        std::string data = System::Serializer::serialize<Network::Client>(current->get_my_address());
+		//std::string data = System::Serializer::serialize<Network::Client>(current->get_my_address());
 
 		//Отправляем пользователю сообщение о переводе на субсервер
-		networker->send_message(Network::Message(
+		/*networker->send_message(Network::Message(
 									Network::MessageType_ChangeServer,
 									(Network::SymbolType*)data.c_str(),
 									data.length(),
 									creator)
-								);
+								);*/
+		networker->send_message(Network::MessageType_ChangeServer, current->get_my_address().to_json(), creator);
 
 		//Отправляем сообщение пользователю с ключем для входа в комнату
-        std::string keyData = System::Serializer::serialize<QString>(current->get_key());
+		//std::string keyData = System::Serializer::serialize<QString>(current->get_key());
 
-		networker->send_message(Network::Message(
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("key", current->get_key());
+
+		networker->send_message(Network::MessageType_GameCreated, messageData, creator);
+		/*networker->send_message(Network::Message(
 									Network::MessageType_GameCreated,
 									(Network::SymbolType*)keyData.c_str(),
 									keyData.length(),
 									creator)
-								);
+								);*/
         games.append(current);
 
     } catch (Exceptions::Exception* exception) {
@@ -605,8 +732,8 @@ void MainServerManager::create_game(Network::Client creator)
 }
 
 void MainServerManager::get_statistics(Database::UserIdType user,
-									   Network::Client asker,
-									   Network::MessageIdType requestId)
+									   Network::Client asker/*,
+									   Network::MessageIdType requestId*/)
 {
     try {
 		//Проверяем, что пользователь авторизован
@@ -625,15 +752,17 @@ void MainServerManager::get_statistics(Database::UserIdType user,
         UserStatistics statistics = UserStatistics(currentUser);
 
 		//И отправляем их клиенту
-        std::string data = System::Serializer::serialize<UserStatistics>(statistics);
+		//std::string data = System::Serializer::serialize<UserStatistics>(statistics);
 
-		networker->send_message(Network::Message(
+		/*networker->send_message(Network::Message(
 									Network::MessageType_RequestAnswer,
 									(Network::SymbolType*)data.c_str(),
 									data.length(),
 									asker,
 									requestId)
-								);
+								);*/
+
+		networker->send_message(Network::MessageType_GetStatisticsRequest, statistics.to_json(), asker);
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, asker);
@@ -651,7 +780,7 @@ void MainServerManager::add_game(Gameplay::Game game, Subservers::RoomSubserverO
             games.removeOne(rso);
 			SAFE_DELETE( rso );
         } else{
-			throw Exceptions::Exception::generate(
+			Exceptions::Exception::process_uncatchable_exception(
 						System::String("Signal from unknown room subserver object"),
 						Exceptions::MainServerExceptionId_NoSuchGame);
         }
@@ -667,8 +796,8 @@ void MainServerManager::add_game(Gameplay::Game game, Subservers::RoomSubserverO
 }
 
 void MainServerManager::confirm_email(Network::Client client,
-									  QString confirmationKey,
-									  Network::MessageIdType requestId)
+									  QString confirmationKey/*,
+									  Network::MessageIdType requestId*/)
 {
     try {
 		//Проверяем, что пользователь авторизован
@@ -679,14 +808,17 @@ void MainServerManager::confirm_email(Network::Client client,
 		bool success = usersDb->confirm_user(user, confirmationKey);
 
 		//Отправляем пользователю данные о том, удалось или нет подтвердить почту
-		System::String mesData = System::Serializer::serialize<bool>(success);
+		//System::String mesData = System::Serializer::serialize<bool>(success);
 
-		networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
+		/*networker->send_message(Network::Message(Network::MessageType_RequestAnswer,
 												 (Network::SymbolType*)mesData.data,
 												 mesData.size,
 												 client,
 												 requestId)
-								);
+								);*/
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("success", success);
+		networker->send_message(Network::MessageType_ConfirmEmail, messageData, client);
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -773,7 +905,7 @@ void MainServerManager::change_nickname(Network::Client client, QString newNickn
     }
 }
 
-void MainServerManager::change_email(Network::Client client, QString newEmail, Network::MessageIdType requestId)
+void MainServerManager::change_email(Network::Client client, QString newEmail/*, Network::MessageIdType requestId*/)
 {
     try {
 		//Проверяем, что пользователь авторизован
@@ -783,13 +915,17 @@ void MainServerManager::change_email(Network::Client client, QString newEmail, N
         bool success = usersDb->change_email(user, newEmail);
 
 		//Отправляем сообщение клиенту о том, удалось ли изменить email
-		networker->send_message(Network::Message(
+		/*networker->send_message(Network::Message(
 									Network::MessageType_RequestAnswer,
 									(Network::SymbolType*)System::Serializer::serialize<bool>(success).c_str(),
 									(int)sizeof(bool),
 									client,
 									requestId)
-								);
+								);*/
+
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("success", success);
+		networker->send_message(Network::MessageType_ConfirmEmail, messageData, client);
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -806,14 +942,17 @@ void MainServerManager::change_achievement(Database::UserIdType user, Database::
 		//Если пользователь онлайн, то отправим ему уведомление.
 		//Если нет, то будет выброшено исключение и ничего не произойдет
         Network::Client client = get_client_by_user(user);
-        std::string messageData = System::Serializer::serialize<Database::Achievement>(achievement);
+		//std::string messageData = System::Serializer::serialize<Database::Achievement>(achievement);
 
-		networker->send_message(Network::Message(
+		/*networker->send_message(Network::Message(
 									Network::MessageType_AchievementChange,
 									(Network::SymbolType*)messageData.c_str(),
 									messageData.length(),
 									client)
-								);
+								);*/
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("achievement", achievement);
+		networker->send_message(Network::MessageType_AchievementChange, messageData, client);
 
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception);
@@ -836,26 +975,33 @@ void MainServerManager::add_user_to_game(Network::Client client, QString gameKey
 				games[i]->pass_client(client, UserStatistics(userInfo));
 
 				//Отправляем клиенту инфу о переходе на субсервер
-				std::string data = System::Serializer::serialize<Network::Client>(games[i]->get_my_address());
+				//std::string data = System::Serializer::serialize<Network::Client>(games[i]->get_my_address());
 
-				networker->send_message(Network::Message(
+				/*networker->send_message(Network::Message(
 											Network::MessageType_ChangeServer,
 											(Network::SymbolType*)data.c_str(),
 											data.length(),
 											client)
-										);
+										);*/
 
+				networker->send_message(Network::MessageType_ChangeServer, games[i]->get_my_address().to_json(), client);
 				return;
 			}
 		}
 
 		//Если ничего не нашли, то отправляем сообщение о неверном ключе
-		networker->send_message(Network::Message(
+		/*networker->send_message(Network::Message(
 									Network::MessageType_InvalidGameKey,
 									(Network::SymbolType*)"",
 									1,
 									client)
-								);
+								);*/
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("action", Network::ActionType_JoiningGame);
+		KeyValuePairSet dataData = KeyValuePairSet();
+		dataData.insert("key", gameKey);
+		messageData.insert("data", dataData);
+		networker->send_message(Network::MessageType_AccessDenied, messageData, client);
 
 	} catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -888,12 +1034,21 @@ void MainServerManager::delete_message(Network::Client client, Database::Message
         if(canEdit){
             chatsDb->delete_message(message);
         } else{
-			networker->send_message(Network::Message(
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit this message",
 										29,
 										client)
-									);
+									);*/
+			KeyValuePairSet accessDeniedMessage = KeyValuePairSet();
+			accessDeniedMessage.insert("action", Network::ActionType_ChatEditing);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", messageData.toChat);
+			dataData.insert("messageId", message);
+			dataData.insert("userId", messageData.from);
+			accessDeniedMessage.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, accessDeniedMessage, client);
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -922,12 +1077,21 @@ void MainServerManager::edit_message(Network::Client client, Database::ChatMessa
         if(canEdit){
             chatsDb->edit_message(message);
         } else{
-			networker->send_message(Network::Message(
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit this message",
 										29,
 										client)
-									);
+									);*/
+			KeyValuePairSet accessDeniedMessage = KeyValuePairSet();
+			accessDeniedMessage.insert("action", Network::ActionType_ChatEditing);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", message.toChat);
+			dataData.insert("messageId", message.id);
+			dataData.insert("userId", message.from);
+			accessDeniedMessage.insert("data", dataData);
+
+			networker->send_message(Network::MessageType_AccessDenied, accessDeniedMessage, client);
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -944,17 +1108,24 @@ void MainServerManager::read_message(Network::Client client, Database::MessageId
 
 		//Проверяем, может ли этот пользователь читать сообщение из этого чата
         Database::ChatMessage messageData = chatsDb->get_message(message);
-        bool canEdit = chatSettingsDb->can_read_message(user, messageData.toChat);
+		bool canRead = chatSettingsDb->can_read_message(user, messageData.toChat);
 
-        if(canEdit){
+		if(canRead){
             chatsDb->message_read(message, user);
         } else{
-			networker->send_message(Network::Message(
+			/*networker->send_message(Network::Message(
 										Network::MessageType_AccessDenied,
 										(Network::SymbolType*)"You can't edit this message",
 										29,
 										client)
-									);
+									);*/
+			KeyValuePairSet accessDeniedMessage = KeyValuePairSet();
+			accessDeniedMessage.insert("action", Network::ActionType_ChatAccess);
+			KeyValuePairSet dataData = KeyValuePairSet();
+			dataData.insert("chatId", messageData.toChat);
+			accessDeniedMessage.insert("data", dataData);
+			networker->send_message(Network::MessageType_AccessDenied, accessDeniedMessage, client);
+
         }
     } catch (Exceptions::Exception* exception) {
 		standart_exception_processing(exception, client);
@@ -1009,7 +1180,7 @@ void MainServerManager::connect_to_processor()
     connect(processor, &Network::MessageProcessor::read_message, this, &MainServerManager::read_message);
 }
 
-void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
+/*void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
 {
     if(req != 0){
         try {
@@ -1019,7 +1190,7 @@ void MainServerManager::_get_data_from_request(Requests::NetworkRequest *req)
             exception->show();
         }
     }
-}
+}*/
 
 void MainServerManager::_database_get_all()
 {
@@ -1139,15 +1310,20 @@ void MainServerManager::solve_users_problem(Database::UserIdType user)
 void MainServerManager::solve_users_problem(Network::Client client)
 {
 	//Просто отправляем сообщение пользователю
-	QString messageData = "Some error with your request!";
-	std::string data = System::Serializer::serialize<QString>(messageData);
+	QString messageText = "Some error with your request!";
+	/*std::string data = System::Serializer::serialize<QString>(messageData);
 	networker->send_message(Network::Message(
 								Network::MessageType_Error,
 								(Network::SymbolType* )data.c_str(),
 								data.length(),
 								client
 								)
-							);
+							);*/
+	KeyValuePairSet messageData = KeyValuePairSet();
+	messageData.insert("data", messageText);
+	messageData.insert("id", 0);
+
+	networker->send_message(Network::MessageType_Error, messageData, client);
 }
 
 void MainServerManager::standart_exception_processing(Exceptions::Exception* exception)
@@ -1207,13 +1383,18 @@ void MainServerManager::send_unauthorized_exception(Network::Client client)
 	try {
 		//Просто отправляем пользователю сообщение
 		QString message = "You have to be authorized for this action";
-		std::string data = System::Serializer::serialize<QString>(message);
+		/*std::string data = System::Serializer::serialize<QString>(message);
 		networker->send_message(Network::Message(
 									Network::MessageType_Error,
 									(Network::SymbolType*)data.c_str(),
 									data.length(),
 									client)
-								);
+								);*/
+		KeyValuePairSet messageData = KeyValuePairSet();
+		messageData.insert("action", Network::ActionType_LoginNeededAction);
+		messageData.insert("data", KeyValuePairSet());
+
+		networker->send_message(Network::MessageType_AccessDenied, messageData, client);
 	} catch (Exceptions::Exception* exception) {
 		exception->show();
 	}

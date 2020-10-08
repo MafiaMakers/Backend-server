@@ -18,7 +18,7 @@ void GetChatsRequestProcessorObject::process()
 	try {
 		GET_FROM_JSON(int, chatsCount, data);
 
-		emit MessageProcessor::instance->get_users_chats(sender, id, chatsCount);
+		emit MessageProcessor::instance->get_users_chats(sender/*, id*/, chatsCount);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

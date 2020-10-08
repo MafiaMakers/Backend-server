@@ -17,7 +17,7 @@ void ConfirmEmailProcessorObject::process()
 	try {
 		GET_FROM_JSON(QString, confirmationKey, data);
 
-		emit MessageProcessor::instance->confirm_email(sender, confirmationKey, id);
+		emit MessageProcessor::instance->confirm_email(sender, confirmationKey/*, id*/);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

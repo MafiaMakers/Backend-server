@@ -1,4 +1,5 @@
 #include "chatmessage.h"
+#include "QJsonArray"
 //#include "databasehelper.h"
 using namespace Mafia;
 using namespace Database;
@@ -55,4 +56,40 @@ bool ChatMessage::operator ==(const ChatMessage& a) const
 		return false;
 	}
 	return true;
+}
+
+QJsonObject ChatMessage::to_json()
+{
+	QJsonObject result = QJsonObject();
+
+	result.insert("id", id);
+	result.insert("data", data);
+	result.insert("from", from);
+	result.insert("toChat", toChat);
+	result.insert("feature", feature);
+	result.insert("timestamp", timestamp.toString(Database::SQL_DATETIME_FORMAT));
+
+	QJsonArray answerForArr = QJsonArray();
+	for(int i = 0; i < answerFor.size(); i++){
+		answerForArr.append(QJsonValue(answerFor[i]));
+	}
+	result.insert("answerFor", answerForArr);
+
+	QJsonArray readUsersArr = QJsonArray();
+	for(int i = 0; i < readUsers.size(); i++){
+		readUsersArr.append(QJsonValue(readUsers[i]));
+	}
+	result.insert("readUsers", readUsersArr);
+
+	return result;
+}
+
+ChatMessage::ChatMessage()
+{
+	id = -1;
+	data = "";
+	from = -1;
+	toChat = -1;
+	feature = ChatFeature_None;
+	timestamp = Database::BEGINNING_TIME;
 }

@@ -38,7 +38,7 @@ void Networker::on_message_received(char* message, int size, Client client)
 	QJsonObject json = doc.object();
 
 	JSONMessage mes = JSONMessage();
-	mes.id = json.value("id").toInt();
+	mes.id = (MessageType)json.value("id").toInt();
 	mes.sender = client;
 	mes.data = json.value("data").toObject();
 

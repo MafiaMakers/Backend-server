@@ -9,5 +9,5 @@ CreateChatRequestProcessorObject::CreateChatRequestProcessorObject(Message_t mes
 
 void CreateChatRequestProcessorObject::process()
 {
-    emit MessageProcessor::instance->create_chat(sender, id);
+	emit MessageProcessor::instance->create_chat(sender/*, id*/);
 }

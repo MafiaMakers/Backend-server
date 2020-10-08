@@ -16,7 +16,7 @@ void SendChatMessageProcessorObject::process()
 	Database::ChatFeature feature = System::Serializer::deserialize<Database::ChatFeature>(dataCopy);*/
 
 	try {
-		GET_FROM_JSON(Database::ChatFeature, feature, data);
+		GET_FROM_JSON_T(Database::ChatFeature, feature, int, data);
 		GET_FROM_JSON(Database::ChatIdType, chatId, data);
 		GET_FROM_JSON(QString, messageData, data);
 		GET_FROM_JSON(MafiaList<int>, answerFor, data);

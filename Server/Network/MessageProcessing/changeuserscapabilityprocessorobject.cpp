@@ -18,7 +18,7 @@ void ChangeUsersCapabilityProcessorObject::process()
 	emit MessageProcessor::instance->change_users_chat_capability(chatId, userId, newCapability, sender);*/
 
 	try {
-		GET_FROM_JSON(Database::ChatCapability, newCapability, data);
+		GET_FROM_JSON_T(Database::ChatCapability, newCapability, int, data);
 		GET_FROM_JSON(Database::ChatIdType, chatId, data);
 		GET_FROM_JSON(Database::UserIdType, userId, data);
 

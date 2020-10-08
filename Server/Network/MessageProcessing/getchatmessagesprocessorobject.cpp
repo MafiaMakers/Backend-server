@@ -20,7 +20,7 @@ void GetChatMessagesProcessorObject::process()
 		GET_FROM_JSON(int, messagesCount, data);
 		GET_FROM_JSON(Database::ChatIdType, chatId, data);
 
-		emit MessageProcessor::instance->get_last_messages(sender, chatId, id, messagesCount);
+		emit MessageProcessor::instance->get_last_messages(sender, chatId/*, id*/, messagesCount);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

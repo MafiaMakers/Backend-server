@@ -4,6 +4,7 @@
 #include <QObject>
 #include "Network/message.h"
 #include "Network/messageTypes.h"
+#include "Network/networker.h"
 #include "System/simplestring.h"
 #include "Exceptions/exception.h"
 #include "Requests/networkrequest.h"
@@ -45,7 +46,7 @@ namespace Mafia {
              * \param maxNotAnswering Максимальное количество пропущенных запросов на подтверждение активности субсервера (стандартное значение 5)
              * \param specialCommands Специальные параметры, которые дополнительно надо передать при запуске субсервера (стандартное значение "")
              */
-            SubserverObject(Network::MainServerNetworker* networker, int port, const System::String path, const System::String processName,
+			SubserverObject(Network::Networker* networker, int port, const System::String path, const System::String processName,
                             int checkInterval = 2000, int maxNotAnswering = 5, const System::String specialCommands = System::String(""));
 
             //! \brief Деструктор (пока пустой)
@@ -57,20 +58,20 @@ namespace Mafia {
              * \param size Размер массива данных
              * \return id реквеста, по которому потом можно обратиться в этот же объект SubserverObject и получить сведения
              */
-            virtual RequestIdType send_request(Network::MessageType type, Network::SymbolType* data, int size);
+			//virtual RequestIdType send_request(Network::MessageType type, Network::SymbolType* data, int size);
 
             /*!
              * \brief Функция получения результата запроса по id запроса
              * \param requestId id запроса, у которого надо получить данные
              */
-            template<class T>
-            T get_request_result(RequestIdType requestId);
+			//template<class T>
+			//T get_request_result(RequestIdType requestId);
             /*!
              * \brief Функция проверки, готов ли ответ на указанный запрос
              * \param requestId id запроса, который следует проверить на готовность
              * \return true, если запрос готов вернуть данные, иначе false
              */
-            bool is_request_ready(RequestIdType requestId);
+			//bool is_request_ready(RequestIdType requestId);
             /*!
              * \brief Функция отправки сообщения субсерверу
              * \param type Тип сообщения
@@ -79,7 +80,7 @@ namespace Mafia {
              * \param id id сообщения (стандартное значение 0)
              * \return id отправленного сообщения
              */
-            int send_message_to_subserver(Network::MessageType type, Network::SymbolType* data, int size, Network::MessageIdType id = 0);
+			int send_message_to_subserver(Network::MessageType type, Network::SymbolType* data, int size, Network::MessageIdType id = 0);
 
             /*!
              * \brief Функция получения адреса субсервера
@@ -96,7 +97,7 @@ namespace Mafia {
              * \brief Сигнал, вызываемый при готовности запроса
              * \param requestId id запроса, который стал готов к отдаче информации
              */
-            void on_request_ready(RequestIdType requestId);
+			//void on_request_ready(RequestIdType requestId);
             /*!
              * \brief Сигнал, вызываемый при краше субсервера (перезапуск производится автоматически)
              */
@@ -105,13 +106,13 @@ namespace Mafia {
              * \brief Сигнал, вызываемый при получении сообщения от субсервера
              * \param message сообщение, которое получено от субсервера
              */
-            void on_message_got(Network::Message message);
+			void on_message_got(Network::Message_t message);
         protected slots:
             /*!
              * \brief Слот, который привязывается к запросу и вызывает сигнал \ref Mafia::SubserverObject::on_request_ready(RequestIdType requestId)
              * \param request указатель на запрос, который стал готов к отдаче информации
              */
-            virtual void request_answered(Requests::Request* request);
+			//virtual void request_answered(Requests::Request* request);
 
             /*!
              * \brief Сигнал, вызываемый при получении сообщения от локалхоста.
@@ -119,7 +120,7 @@ namespace Mafia {
              * \ref Mafia::SubserverObject::on_message_got(Mafia::Message message)
              * \param message Сообщение, полученное от сервера
              */
-            virtual void message_from_server(Network::Message message);
+			virtual void message_from_server(Network::Message_t message);
 
             /*!
              * \brief Слот, обрабатывающий краш субсервера (в т.ч. перезапускает его)
@@ -142,10 +143,10 @@ namespace Mafia {
             Network::Client myAddress;
 
             //! Список всех запросов этого субсервера
-            MafiaList<RequestWithId> currentRequests;
+			//MafiaList<RequestWithId> currentRequests;
 
             //! Указатель на объект \ref Mafia::MainServerNetworker , используемый для создания запросов и отправления сообщений
-            Network::MainServerNetworker* networker;
+			Network::Networker* networker;
 
             //! PID процесса субсервера
             int pid;

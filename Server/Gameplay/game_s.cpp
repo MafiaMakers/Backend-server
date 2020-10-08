@@ -1,5 +1,8 @@
 #include "game_s.h"
 #include "Exceptions/gameplayexception.h"
+#include "Exceptions/messageparsingexception.h"
+#include "QJsonArray"
+
 using namespace Mafia;
 using namespace Gameplay;
 
@@ -88,4 +91,54 @@ bool Game::operator ==(const Game& a) const
 		return false;
 	}
 	return true;
+}
+
+Game::Game(QJsonObject src)
+{
+	QJsonValue valueId = src.value("id");
+	QJsonValue valueResult = src.value("result");
+	QJsonValue valueRoles = src.value("roles");
+	QJsonValue valueUsers = src.value("users");
+	QJsonValue valueBeginningDT = src.value("beginningDT");
+	QJsonValue valueEndingDT = src.value("endingDT");
+
+	if(valueId == QJsonValue::Undefined ||
+	   valueRoles == QJsonValue::Undefined ||
+	   valueUsers == QJsonValue::Undefined ||
+	   valueBeginningDT == QJsonValue::Undefined ||
+	   valueEndingDT == QJsonValue::Undefined ||
+	   valueResult == QJsonValue::Undefined){
+
+		Exceptions::Exception::process_uncatchable_exception(System::String("No needed id in userstatistics message"),
+															 Exceptions::MessageParsingExceptionId_NoSuchID);
+		return;
+	}
+
+	id = valueId.toInt();
+	result = (GameResult)valueResult.toInt();
+	beginningDT = QDateTime::fromString(valueBeginningDT.toString(), Database::SQL_DATETIME_FORMAT);
+	endingDT = QDateTime::fromString(valueEndingDT.toString(), Database::SQL_DATETIME_FORMAT);
+
+	users = MafiaList<int>();
+	QJsonArray usersArr = valueUsers.toArray();
+	for(int i = 0; i < usersArr.size(); i++){
+		users.append(usersArr.at(i).toInt());
+	}
+
+	roles = MafiaList<Role>();
+	QJsonArray rolesArr = valueRoles.toArray();
+	for(int i = 0; i < rolesArr.size(); i++){
+		roles.append((Role)rolesArr.at(i).toInt());
+	}
+
+}
+
+Game::Game()
+{
+	id = -1;
+	roles = MafiaList<Role>();
+	users = MafiaList<Database::UserIdType>();
+	beginningDT = Database::BEGINNING_TIME;
+	endingDT = Database::BEGINNING_TIME;
+	result = GameResult_None;
 }

@@ -7,6 +7,9 @@
 namespace Mafia {
     //! \brief Структура для хранения и описания информации о клиенте, которая передается субсерверу-комнате
     struct ClientInfo{
+		ClientInfo(QJsonObject src);
+		ClientInfo();
+
         /*!
          * \brief Оператор сравнения
          * \param a Второй объект, с которым сравниваем
@@ -20,6 +23,8 @@ namespace Mafia {
          * \return true, если эти объекты описывают не одного пользователя, иначе - false
          */
         bool operator != (ClientInfo a);
+
+		QJsonObject to_json();
 
         //! \brief Клиент, которого описываем
         Network::Client client;

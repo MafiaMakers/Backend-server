@@ -20,7 +20,7 @@ void LoginRequestProcessorObject::process()
 		GET_FROM_JSON(QString, email, data);
 		GET_FROM_JSON(QString, password, data);
 
-		emit MessageProcessor::instance->login_user(email, password, sender, id);
+		emit MessageProcessor::instance->login_user(email, password, sender/*, id*/);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

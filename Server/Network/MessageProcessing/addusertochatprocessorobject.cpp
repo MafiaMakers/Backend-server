@@ -17,7 +17,7 @@ void AddUserToChatProcessorObject::process()
 	try {
 		GET_FROM_JSON(Database::UserIdType, userId, data);
 		GET_FROM_JSON(Database::ChatIdType, chatId, data);
-		GET_FROM_JSON(Database::ChatCapability, newUsersCapability, data);
+		GET_FROM_JSON_T(Database::ChatCapability, newUsersCapability, int, data);
 
 		emit MessageProcessor::instance->add_user_to_chat(chatId, userId, sender, newUsersCapability);
 	} catch (Exceptions::Exception* ex) {

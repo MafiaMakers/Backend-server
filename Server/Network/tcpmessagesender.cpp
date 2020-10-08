@@ -14,6 +14,7 @@ TCPMessageSender::TCPMessageSender(int port)
 		return;
 	}
 	connect(mainSocket, &QTcpServer::newConnection, this, &TCPMessageSender::add_user);
+	std::cout << "Server initialized on port " << port << std::endl;
 }
 
 void TCPMessageSender::send(char* data, int size, Client client)

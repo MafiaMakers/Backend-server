@@ -1,6 +1,7 @@
 #ifndef GAME_S_H
 #define GAME_S_H
 #include "Database/user.h"
+#include "QJsonObject"
 //#include "Database/databasehelper.h"
 
 namespace Mafia {
@@ -26,6 +27,10 @@ namespace Mafia {
             void show();
 
 			bool operator == (const Game &a) const;
+
+			Game(QJsonObject src);
+
+			Game();
         };
 
         /*!

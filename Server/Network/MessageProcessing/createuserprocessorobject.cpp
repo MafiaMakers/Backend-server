@@ -20,7 +20,7 @@ void CreateUserProcessorObject::process()
 		GET_FROM_JSON(QString, email, data);
 		GET_FROM_JSON(QString, password, data);
 
-		emit MessageProcessor::instance->create_user(nickname, email, password, sender, id);
+		emit MessageProcessor::instance->create_user(nickname, email, password, sender/*, id*/);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

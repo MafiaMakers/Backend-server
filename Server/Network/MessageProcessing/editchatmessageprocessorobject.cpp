@@ -27,7 +27,7 @@ void EditChatMessageProcessorObject::process()
 		GET_FROM_JSON(Database::UserIdType, from, data);
 		GET_FROM_JSON(Database::ChatIdType, toChat, data);
 		GET_FROM_JSON(MafiaList<Database::MessageIdType>, answerFor, data);
-		GET_FROM_JSON(Database::ChatFeature, feature, data);
+		GET_FROM_JSON_T(Database::ChatFeature, feature, int, data);
 
 		chatMessage.id = messageId;
 		chatMessage.data = messageData;

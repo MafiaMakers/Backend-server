@@ -80,7 +80,7 @@ namespace Mafia {
          * \param client Клиент, который отправил запрос на регистрацию
          * \param requestId id запроса, который отправил клиент (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void create_user(QString nickname, QString email, QString password, Network::Client client, Network::MessageIdType requestId);
+		void create_user(QString nickname, QString email, QString password, Network::Client client/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция отправки сообщения в чат
@@ -99,7 +99,7 @@ namespace Mafia {
          * \param client Клиент, который отправил этот запрос
          * \param requestId id запроса, который отправил клиент (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void login_user(QString email, QString password, Network::Client client, Network::MessageIdType requestId);
+		void login_user(QString email, QString password, Network::Client client/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция создания нового чата
@@ -107,7 +107,7 @@ namespace Mafia {
          * \param creator Клиент, который хочет создать чат
          * \param requestId id запроса, который отправил клиент (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void create_chat(Network::Client creator, Network::MessageIdType requestId);
+		void create_chat(Network::Client creator/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция получения последних сообщений чата.
@@ -118,7 +118,7 @@ namespace Mafia {
          * \param messagesCount Количество сообщений, которые следует загрузить (если не задавать, то будет использовано стандартное значение,
          * указанное в классе для работы с БД \ref Mafia::Database::ChatsDatabaseManager::MESSAGES_TO_UPLOAD_DEFAULT)
          */
-        void get_last_messages(Network::Client client, Database::ChatIdType chat, Network::MessageIdType requestId, int messagesCount = -1);
+		void get_last_messages(Network::Client client, Database::ChatIdType chat/*, Network::MessageIdType requestId*/, int messagesCount = -1);
 
         /*!
          * \brief Функция получения всех чатов данного пользователя
@@ -130,7 +130,7 @@ namespace Mafia {
          * (если у пользователя меньше чатов, чем указанно, то будет отправлен меньший список)
          * (если оставить пустым, то будет использовано стандартное значение \ref Mafia::MainServerManager::CHATS_UPLOAD_COUNT)
          */
-        void get_users_chats(Network::Client client, Network::MessageIdType requestId, int chatsCount = CHATS_UPLOAD_COUNT);
+		void get_users_chats(Network::Client client/*, Network::MessageIdType requestId*/, int chatsCount = CHATS_UPLOAD_COUNT);
 
         /*!
          * \brief Функция добавления пользователя в чат
@@ -177,7 +177,7 @@ namespace Mafia {
          * \param requestId id запроса, который отправил клиент
          * (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void get_statistics(Database::UserIdType user, Network::Client asker, Network::MessageIdType requestId);
+		void get_statistics(Database::UserIdType user, Network::Client asker/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция добавления в БД с играми только что завершившейся игры
@@ -192,7 +192,7 @@ namespace Mafia {
          * \param requestId id запроса, который отправил клиент
          * (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void confirm_email(Network::Client client, QString confirmationKey, Network::MessageIdType requestId);
+		void confirm_email(Network::Client client, QString confirmationKey/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция выхода пользователя из системы
@@ -230,7 +230,7 @@ namespace Mafia {
          * \param newEmail Новый email
          * \param requestId id запроса, который отправил клиент (id сообщения - для ответа на запрос (см. \ref Mafia::Requests::NetworkRequest))
          */
-        void change_email(Network::Client client, QString newEmail, Network::MessageIdType requestId);
+		void change_email(Network::Client client, QString newEmail/*, Network::MessageIdType requestId*/);
 
         /*!
          * \brief Функция изменения достижения (нашивки) пользователя
@@ -281,7 +281,7 @@ namespace Mafia {
          * \brief Получает данные от уже инициализированного сетевого запроса
          * \param req Указатель на запрос
          */
-        void _get_data_from_request(Requests::NetworkRequest* req);
+		//void _get_data_from_request(Requests::NetworkRequest* req);
 
         /*!
          * \brief Функция, которая сопоставляет id пользователя, клиента, который сейчас зарегистрирован под этим id
@@ -378,7 +378,7 @@ namespace Mafia {
         Subservers::BackupSubserverObject* backupSubserver;
 
         //! \brief Указатель на объект сетевого класса
-        Network::MainServerNetworker* networker;
+		Network::Networker* networker;
 
         //! \brief Объект для работы с общей БД
         Database::DatabaseWorker* dbWorker;

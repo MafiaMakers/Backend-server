@@ -8,7 +8,7 @@ using namespace Subservers;
 
 SubserverObject::SubserverObject(QObject *parent) : QObject(parent){}
 
-SubserverObject::SubserverObject(Network::MainServerNetworker* networker, int port, const System::String _path, const System::String _processName,
+SubserverObject::SubserverObject(Network::Networker* networker, int port, const System::String _path, const System::String _processName,
                                  int checkInterval, int maxNotAnswering, const System::String specialCommands)
     : path(_path), processName(_processName), checkRespondInterval(checkInterval), maxNotAnsweringsCount(maxNotAnswering)
 {
@@ -20,11 +20,11 @@ SubserverObject::SubserverObject(Network::MainServerNetworker* networker, int po
 
     this->pid = -1;
 
-    this->currentRequests = MafiaList<RequestWithId>();
+	//this->currentRequests = MafiaList<RequestWithId>();
 
     connect(this, &SubserverObject::on_crash, this, &SubserverObject::crash_processing);
 
-    connect(networker, &Network::MainServerNetworker::on_subserver_api_message_received, this, &SubserverObject::message_from_server);
+	connect(networker, &Network::Networker::subserver_message_received, this, &SubserverObject::message_from_server);
 
     std::thread runThread(&SubserverObject::run_me, this, specialCommands);
     runThread.detach();
@@ -35,7 +35,7 @@ SubserverObject::~SubserverObject()
 {
 
 }
-
+/*
 int SubserverObject::send_request(Network::MessageType type, Network::SymbolType *data, int size)
 {
 	//Создаем новый запрос
@@ -100,7 +100,7 @@ int SubserverObject::send_message_to_subserver(Network::MessageType type, Networ
         }
     }
 
-}
+}*/
 
 Network::Client SubserverObject::get_my_address()
 {
@@ -112,7 +112,7 @@ void SubserverObject::finish_work()
     System::kill(this->pid);
     System::PortsManager::free_port(myAddress.port);
 }
-
+/*
 void SubserverObject::request_answered(Requests::Request *request)
 {
     for(int i = 0; i < this->currentRequests.length(); i++){
@@ -136,7 +136,7 @@ T SubserverObject::get_request_result(RequestIdType requestId)
     }
 	throw Exceptions::Exception::generate(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
 }
-
+*/
 void SubserverObject::crash_processing()
 {
 	//Просто перезапуск
@@ -157,12 +157,7 @@ void SubserverObject::_check_subserver_respond()
 		//Отправляем субсерверу сообщение с запросом на подтверждение того, что у него все ок
         try {
 
-			networker->send_message(Network::Message(
-										Network::MessageType_CheckConnection,
-										(Network::SymbolType*)(char*)"check",
-										6 / sizeof(Network::SymbolType),
-										myAddress)
-									);
+			networker->send_message(Network::MessageType_CheckConnection, QJsonObject(), myAddress);
 
         } catch (Exceptions::Exception* exception) {
             switch (exception->get_id()) {
@@ -197,12 +192,12 @@ void SubserverObject::run_me(const System::String specialCommands)
 	}
 }
 
-void SubserverObject::message_from_server(Network::Message message)
+void SubserverObject::message_from_server(Network::Message_t message)
 {
 	//Этот метод будет переопределяться в наследниках.
 	//Ну пока просто отмечаем, если субсервер ответил на проверку отклика
-    if(message.client == this->myAddress){
-        switch (message.type) {
+	if(message.sender == this->myAddress){
+		switch (message.id) {
         case Network::MessageType_CheckConnection:{
             notAnsweringsCount = 0;
             break;

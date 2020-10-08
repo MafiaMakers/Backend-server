@@ -1,6 +1,9 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 #include "messageTypes.h"
+#include "Exceptions/messageparsingexception.h"
+#include "QJsonObject"
+
 #ifdef DONT_USE_QT
 #include "structparser.h"
 #else
@@ -32,6 +35,21 @@ namespace Mafia {
                 ip = 0;
                 port = 0;
             }
+
+			Client(QJsonObject src){
+				QJsonValue valueIp = src.value("ip");
+				QJsonValue valuePort = src.value("port");
+
+				if(valueIp == QJsonValue::Undefined || valuePort == QJsonValue::Undefined){
+					port = -1;
+					ip = -1;
+					Exceptions::Exception::process_uncatchable_exception(System::String("No ip or port in client message"),
+																		 Exceptions::MessageParsingExceptionId_NoSuchID);
+					return;
+				}
+				ip = valueIp.toInt();
+				port = valuePort.toInt();
+			}
             /*!
              * \brief Конструктор, задающий все значения
              * \param ip ip
@@ -51,6 +69,20 @@ namespace Mafia {
                 return(a.ip == this->ip && a.port == this->port);
             }
 
+			bool operator < (const Client &a) const{
+				if(a.ip > ip){
+					return true;
+				}
+				if(a.ip < ip){
+					return false;
+				}
+				return a.port > port;
+			}
+
+			bool operator > (const Client &a) const {
+				return !(*this == a) && !(*this < a);
+			}
+
 			bool operator == (const Client &a) const{
 				return(a.ip == this->ip && a.port == this->port);
 			}
@@ -67,6 +99,13 @@ namespace Mafia {
             bool operator != (Client a){
                 return !(*this == a);
             }
+
+			QJsonObject to_json(){
+				QJsonObject result = QJsonObject();
+				result.insert("ip", ip);
+				result.insert("port", port);
+				return result;
+			}
 
             //! \brief ip отправителя сообщения
             int ip;

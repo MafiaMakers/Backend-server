@@ -18,7 +18,7 @@ void GetStatisticsRequestProcessorObject::process()
 	try {
 		GET_FROM_JSON(Database::UserIdType, userId, data);
 
-		emit MessageProcessor::instance->get_statistics(userId, sender, id);
+		emit MessageProcessor::instance->get_statistics(userId, sender/*, id*/);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

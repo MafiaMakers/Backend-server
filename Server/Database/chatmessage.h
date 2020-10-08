@@ -2,6 +2,7 @@
 #define CHATMESSAGE_H
 
 #include "user.h"
+#include "QJsonObject"
 
 namespace Mafia {
     namespace Database {
@@ -40,6 +41,10 @@ namespace Mafia {
             void show();
 
 			bool operator == (const ChatMessage &a) const;
+
+			QJsonObject to_json();
+
+			ChatMessage();
         };
     }
 }

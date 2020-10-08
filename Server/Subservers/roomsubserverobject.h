@@ -29,7 +29,7 @@ namespace Mafia {
              * после которого будет считаться, что субсервер упал и он будет перезапущен (если не задать, то будет равно 5)
              * \param specialCommands Дополнительные команды, которые следует передать при запуске программы
              */
-            RoomSubserverObject(Network::MainServerNetworker* networker, int port, int checkInterval = 2000, int maxNotAnswering = 5,
+			RoomSubserverObject(Network::Networker* networker, int port, int checkInterval = 2000, int maxNotAnswering = 5,
                                 const System::String specialCommands = System::String(""));
 
             //! \brief Деструктор (пока пустой)
@@ -80,7 +80,7 @@ namespace Mafia {
               * \brief Функция обработки пришедшего сообщения от субсервера
               * \param message Все данные сообщения
               */
-             void message_from_server(Network::Message message) override;
+			 void message_from_server(Network::Message_t message) override;
 
              /*!
               * \brief Список клиентов и данных о них, которые в данный момент подключены к этому субсерверу

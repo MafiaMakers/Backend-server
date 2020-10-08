@@ -2,6 +2,7 @@
 #define USERSTATISTICS_H
 #include "System/functions.h"
 #include "Database/user.h"
+#include "QJsonObject"
 namespace Mafia {
     /*!
      * \brief Структура, используемая для отправки пользователям статистики об игроке
@@ -18,9 +19,13 @@ namespace Mafia {
          */
         UserStatistics(Database::User user);
 
+		UserStatistics(QJsonObject src);
+
 		~UserStatistics();
 
 		bool operator == (const UserStatistics &a) const;
+
+		QJsonObject to_json();
 
         //! \brief см. \ref Mafia::Database::User::victoriesByRoles
         MafiaList<int> victoriesByRoles;

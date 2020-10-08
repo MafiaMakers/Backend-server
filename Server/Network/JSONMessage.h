@@ -8,7 +8,7 @@
 namespace Mafia {
 	namespace Network {
 		struct JSONMessage{
-			MessageIdType id;
+			MessageType id;
 			Client sender;
 			QJsonObject data;
 		};

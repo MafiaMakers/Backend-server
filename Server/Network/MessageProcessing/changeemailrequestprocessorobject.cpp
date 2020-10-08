@@ -17,7 +17,7 @@ void ChangeEmailRequestProcessorObject::process()
 	try {
 		GET_FROM_JSON(QString, newEmail, data);
 
-		emit MessageProcessor::instance->change_email(sender, newEmail, id);
+		emit MessageProcessor::instance->change_email(sender, newEmail/*, id*/);
 	} catch (Exceptions::Exception* ex) {
 		ex->close();
 	}

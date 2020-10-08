@@ -134,12 +134,23 @@ namespace Mafia {
             //! \brief Сообщение, которое приходит всем онлайн пользователям, состоящим в каком-либо чате,
             //! когда кто-либо прочитывает какое-либо сообщение этого чата
             MessageType_OnReadChatMessage = 44,
-
+			//! \brief Сообщение об ошибке
 			MessageType_Error = 45,
             //! \brief Верхняя граница типов сообщений
 			MessageType_Last = 46
         };
 
+		enum ActionType{
+			ActionType_First = 0,
+			ActionType_ChatAccess = 0,
+			ActionType_ChatEditing = 1,
+			ActionType_Login = 2,
+			ActionType_LoginNeededAction = 3,
+			ActionType_IncorrectAction = 4,
+			ActionType_JoiningGame = 5,
+			ActionType_Last = 6
+
+		};
 
     }
 }

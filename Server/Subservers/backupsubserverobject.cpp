@@ -5,7 +5,7 @@ using namespace Subservers;
 const System::String BackupSubserverObject::exePath = System::String("");
 const System::String BackupSubserverObject::exeProcessName = System::String("");
 
-Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::MainServerNetworker *networker,
+Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::Networker *networker,
 																int port,
 																int checkInterval,
 																int maxNotAnswering,
@@ -18,13 +18,13 @@ Mafia::Subservers::BackupSubserverObject::BackupSubserverObject(Network::MainSer
 void BackupSubserverObject::check_connection()
 {
     try {
-        Network::Message message = Network::Message();
+		/*Network::Message message = Network::Message();
         message.type = Network::MessageType_CheckConnection;
         message.client = myAddress;
         message.data = (Network::SymbolType*)"c";
-        message.size = 2;
+		message.size = 2;*/
 
-        networker->send_message(message);
+		networker->send_message(Network::MessageType_CheckConnection, KeyValuePairSet(), myAddress);
     } catch (Exceptions::Exception* exception) {
         switch(exception->get_id()){
         default:{
@@ -34,10 +34,10 @@ void BackupSubserverObject::check_connection()
     }
 }
 
-void BackupSubserverObject::message_from_server(Network::Message message)
+void BackupSubserverObject::message_from_server(Network::Message_t message)
 {
-    if(message.client == this->myAddress){
-        switch (message.type) {
+	if(message.sender == this->myAddress){
+		switch (message.id) {
         case Network::MessageType_CheckConnection:{
             notAnsweringsCount = 0;
             break;

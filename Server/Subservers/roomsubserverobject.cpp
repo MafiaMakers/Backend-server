@@ -11,7 +11,7 @@ const System::String RoomSubserverObject::exeProcessName = System::String("");
 
 RoomSubserverObject::RoomSubserverObject(QObject *parent) : SubserverObject(parent){}
 
-RoomSubserverObject::RoomSubserverObject(Network::MainServerNetworker *networker,
+RoomSubserverObject::RoomSubserverObject(Network::Networker *networker,
 										 int port,
 										 int checkInterval,
 										 int maxNotAnswering,
@@ -32,17 +32,14 @@ void RoomSubserverObject::pass_client(Network::Client client, UserStatistics inf
 {
     try {
 		//Передаем все данные о клиенте субсерверу
-        ClientInfo allInfo = ClientInfo();
+		ClientInfo allInfo;
         allInfo.client = client;
         allInfo.statistics = info;
-        std::string data = System::Serializer::serialize<ClientInfo>(allInfo);
+		//std::string data = System::Serializer::serialize<ClientInfo>(allInfo);
 
-		networker->send_message(Network::Message(
-									Network::MessageType_PassClientRequest,
-									(Network::SymbolType*)data.c_str(),
-									data.length(),
-									myAddress)
-								);
+		networker->send_message(Network::MessageType_PassClientRequest,
+									allInfo.to_json(),
+									myAddress);
 
         myClients.append(allInfo);
     } catch (Exceptions::Exception* exception) {
@@ -69,18 +66,19 @@ QString RoomSubserverObject::get_key()
     return connection_key;
 }
 
-void RoomSubserverObject::message_from_server(Network::Message message)
+void RoomSubserverObject::message_from_server(Network::Message_t message)
 {
-    if(message.client == this->myAddress){
-        switch (message.type) {
+	if(message.sender == this->myAddress){
+		switch (message.id) {
         case Network::MessageType_CheckConnection:{
             notAnsweringsCount = 0;
             break;
         }
         case Network::MessageType_PlayerLeaveGame:{
 			//Узнаем, какой именно клиент покинул игру
-            System::String messageData = System::String(message.data, message.size);
-            ClientInfo data = System::Serializer::deserialize<ClientInfo>(messageData);
+			//System::String messageData = System::String(message.data, message.size);
+			//ClientInfo data = System::Serializer::deserialize<ClientInfo>(messageData);
+			ClientInfo data = ClientInfo(message.data);
 
 			//Если такой действительно был, то удаляем его и сообщаем менеджеру
             if(myClients.contains(data)){
@@ -91,8 +89,10 @@ void RoomSubserverObject::message_from_server(Network::Message message)
         }
         case Network::MessageType_GameResults:{
 			//Декодируем результаты и передаем их менеджеру
-            System::String messageData = System::String(message.data, message.size);
-            Gameplay::Game gameData = System::Serializer::deserialize<Gameplay::Game>(messageData);
+			//System::String messageData = System::String(message.data, message.size);
+			//Gameplay::Game gameData = System::Serializer::deserialize<Gameplay::Game>(messageData);
+			Gameplay::Game gameData = Gameplay::Game(message.data);
+
             emit game_ended(gameData, this);
             break;
         }
