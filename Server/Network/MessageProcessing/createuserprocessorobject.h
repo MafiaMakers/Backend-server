@@ -8,8 +8,14 @@ namespace Mafia {
             class CreateUserProcessorObject : public ProcessorObject
             {
             public:
-                CreateUserProcessorObject(Message message);
+				CreateUserProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * nickname (String) : никнейм
+				 * email (String) : email
+				 * password (String) : пароль
+				 */
                 void process() override;
             };
 

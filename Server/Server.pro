@@ -68,6 +68,8 @@ SOURCES += \
         Network/crypto.cpp \
         Network/messageprocessor.cpp \
         Network/messagesender.cpp \
+        Network/networker.cpp \
+        Network/tcpmessagesender.cpp \
         Subservers/backupsubserverobject.cpp \
         Subservers/roomsubserverobject.cpp \
         System/SHA_256.cpp \
@@ -116,6 +118,7 @@ HEADERS += \
     Exceptions/systemexception.h \
     Gameplay/game_s.h \
     Gameplay/gameitems.h \
+    Network/JSONMessage.h \
     Network/MessageProcessing/addusertochatprocessorobject.h \
     Network/MessageProcessing/changeemailrequestprocessorobject.h \
     Network/MessageProcessing/changenicknameprocessorobject.h \
@@ -140,6 +143,8 @@ HEADERS += \
     Network/crypto.h \
     Network/messageprocessor.h \
     Network/messagesender.h \
+    Network/networker.h \
+    Network/tcpmessagesender.h \
     Subservers/backupsubserverobject.h \
     Subservers/roomsubserverobject.h \
     System/SHA_256.h \

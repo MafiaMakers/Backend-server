@@ -8,8 +8,13 @@ namespace Mafia {
             class RemoveUserFromChatProcessorObject : public ProcessorObject
             {
             public:
-                RemoveUserFromChatProcessorObject(Message message);
+				RemoveUserFromChatProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * userId (int) : id пользователя, которого удаляем
+				 * chatId (int) : id чата, в котором это происходит
+				 */
                 void process() override;
             };
         }

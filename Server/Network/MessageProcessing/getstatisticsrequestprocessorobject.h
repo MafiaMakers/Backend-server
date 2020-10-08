@@ -8,8 +8,12 @@ namespace Mafia {
             class GetStatisticsRequestProcessorObject : public ProcessorObject
             {
             public:
-                GetStatisticsRequestProcessorObject(Message message);
+				GetStatisticsRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * userId (int) : id пользователя, статистику которого мы хотим посмотреть
+				 */
                 void process() override;
             };
         }

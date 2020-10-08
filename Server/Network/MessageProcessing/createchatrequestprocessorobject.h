@@ -8,8 +8,12 @@ namespace Mafia {
             class CreateChatRequestProcessorObject : public ProcessorObject
             {
             public:
-                CreateChatRequestProcessorObject(Message message);
+				CreateChatRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * (ничего)
+				 */
                 void process() override;
             };
         }

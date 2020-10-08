@@ -9,8 +9,12 @@ namespace Mafia{
             class DeleteChatMessageProcessorObject : public ProcessorObject
             {
             public:
-                DeleteChatMessageProcessorObject(Message message);
+				DeleteChatMessageProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * messageId (int) : id сообщения, которое удаляем
+				 */
                 void process() override;
             };
         }

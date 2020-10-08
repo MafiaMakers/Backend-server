@@ -9,8 +9,13 @@ namespace Mafia {
             class GetChatMessagesProcessorObject : public ProcessorObject
             {
             public:
-                GetChatMessagesProcessorObject(Message message);
+				GetChatMessagesProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * messagesCount (int) : количество сообщений, которое стоит загрузить (если указать -1, то загрузится стандартное количество)
+				 * chatId (int) : id чата, из которого загружать
+				 */
                 void process() override;
             };
         }

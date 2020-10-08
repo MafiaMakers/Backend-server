@@ -8,8 +8,12 @@ namespace Mafia {
             class LogoutProcessorObject : public ProcessorObject
             {
             public:
-                LogoutProcessorObject(Message message);
+				LogoutProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * (ничего)
+				 */
                 void process() override;
             };
         }

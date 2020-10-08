@@ -111,6 +111,13 @@ Exception* Exception::generate(System::String data, ExceptionIdType id)
 	return exception;
 }
 
+void Exception::process_uncatchable_exception(System::String data, ExceptionIdType id)
+{
+	Exception* ex = generate(data, id);
+	//При генерации исключения оно автоматически запишется в лог. Больше ничего пока не делаем
+	ex->close();
+}
+
 void Exception::close()
 {
 	SAFE_DELETE(this);

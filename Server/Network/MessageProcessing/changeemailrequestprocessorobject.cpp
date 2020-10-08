@@ -5,13 +5,20 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-ChangeEmailRequestProcessorObject::ChangeEmailRequestProcessorObject(Message message) : ProcessorObject(message){}
+ChangeEmailRequestProcessorObject::ChangeEmailRequestProcessorObject(Message_t message) : ProcessorObject(message){}
 
 void ChangeEmailRequestProcessorObject::process()
 {
-    System::String dataCopy;
+	/*System::String dataCopy;
 
     QString newEmail = System::Serializer::deserialize<QString>(dataCopy);
 
-    emit MessageProcessor::instance->change_email(sender, newEmail, id);
+	emit MessageProcessor::instance->change_email(sender, newEmail, id);*/
+	try {
+		GET_FROM_JSON(QString, newEmail, data);
+
+		emit MessageProcessor::instance->change_email(sender, newEmail, id);
+	} catch (Exceptions::Exception* ex) {
+		ex->close();
+	}
 }

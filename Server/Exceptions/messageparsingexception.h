@@ -38,8 +38,14 @@ namespace Mafia {
             MessageParsingExceptionId_ControlSumMismatch = 104,
             //! \brief Исключение, вызываемое при попытке дешифрования сообщения дешифратором с незаданным ключом
             MessageParsingExceptionId_NoneKey = 105,
+			//! \brief Если не удалось распарсить json
+			MessageParsingExceptionId_JSONError = 106,
+			//! \brief Если в json не было ожидаемого id
+			MessageParsingExceptionId_NoSuchID = 107,
+			//! \brief Если нет соединения с клиентом
+			MessageParsingExceptionId_NoClientConnection = 108,
             //! \brief Верхняя граница типов исключений парсинга сообщений (см. \ref Mafia::Database::Status_First)
-            MessageParsingExceptionId_Last = 106
+			MessageParsingExceptionId_Last = 109
         };
     }
 }

@@ -5,7 +5,7 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-LogoutProcessorObject::LogoutProcessorObject(Message message) : ProcessorObject(message){}
+LogoutProcessorObject::LogoutProcessorObject(Message_t message) : ProcessorObject(message){}
 
 void LogoutProcessorObject::process()
 {

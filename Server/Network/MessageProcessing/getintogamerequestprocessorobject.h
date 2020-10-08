@@ -8,8 +8,12 @@ namespace Mafia {
             class GetIntoGameRequestProcessorObject : public ProcessorObject
             {
             public:
-                GetIntoGameRequestProcessorObject(Message message);
+				GetIntoGameRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * gameKey (String) : ключ игры
+				 */
                 void process() override;
             };
         }

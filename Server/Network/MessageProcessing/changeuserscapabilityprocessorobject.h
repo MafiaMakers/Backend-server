@@ -8,8 +8,14 @@ namespace Mafia {
             class ChangeUsersCapabilityProcessorObject : public ProcessorObject
             {
             public:
-                ChangeUsersCapabilityProcessorObject(Message message);
+				ChangeUsersCapabilityProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * userId (int) : id пользователя, с которым работаем
+				 * chatId (int) : id чата, с которым работаем
+				 * newCapability (int) : новая должность пользователя
+				 */
                 void process() override;
             };
         }

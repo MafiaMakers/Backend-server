@@ -18,7 +18,7 @@ MessageProcessor::MessageProcessor(Network::MainServerNetworker *networker)
     connect(this, &MessageProcessor::message_received, networker, &Network::MainServerNetworker::message_received);
 }
 
-void MessageProcessor::message_received(Network::Message message)
+void MessageProcessor::message_received(Message_t message)
 {
 	MessageProcessing::ProcessorObject* processor =
 		MessageProcessing::ProcessorObject::generate(message);

@@ -9,8 +9,12 @@ namespace Mafia{
             class ReadChatMessageProcessorObject : public ProcessorObject
             {
             public:
-                ReadChatMessageProcessorObject(Message message);
+				ReadChatMessageProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * messageId (int) : id сообщения, которое прочитали
+				 */
                 void process() override;
             };
         }

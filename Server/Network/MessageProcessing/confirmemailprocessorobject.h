@@ -8,8 +8,12 @@ namespace Mafia {
             class ConfirmEmailProcessorObject : public ProcessorObject
             {
             public:
-                ConfirmEmailProcessorObject(Message message);
+				ConfirmEmailProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * confirmationKey (String) : ключ
+				 */
                 void process() override;
             };
         }

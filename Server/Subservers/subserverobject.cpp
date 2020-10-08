@@ -82,7 +82,7 @@ bool SubserverObject::is_request_ready(RequestIdType requestId)
             return currentRequests[i].request->is_finished();
         }
     }
-	throw Exceptions::Exception::generate(System::String("request doesn't in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
+	throw Exceptions::Exception::generate(System::String("request is not in requests list"), Exceptions::SubserverExceptionId_NoSuchRequest);
     return false;
 }
 

@@ -5,13 +5,18 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-ReadChatMessageProcessorObject::ReadChatMessageProcessorObject(Message message) : ProcessorObject(message){}
+ReadChatMessageProcessorObject::ReadChatMessageProcessorObject(Message_t message) : ProcessorObject(message){}
 
 void ReadChatMessageProcessorObject::process()
 {
-    System::String dataCopy = data;
+	/*System::String dataCopy = data;
 
-    Database::MessageIdType messageId = System::Serializer::deserialize<Database::MessageIdType>(dataCopy);
+	Database::MessageIdType messageId = System::Serializer::deserialize<Database::MessageIdType>(dataCopy);*/
 
-    emit MessageProcessor::instance->read_message(sender, messageId);
+	try {
+		GET_FROM_JSON(Database::MessageIdType, messageId, data);
+		emit MessageProcessor::instance->read_message(sender, messageId);
+	} catch (Exceptions::Exception* ex) {
+		ex->close();
+	}
 }

@@ -8,8 +8,12 @@ namespace Mafia {
             class LogsDataProcessorObject : public ProcessorObject
             {
             public:
-                LogsDataProcessorObject(Message message);
+				LogsDataProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * logsData (String) : данные логов
+				 */
                 void process() override;
             };
         }

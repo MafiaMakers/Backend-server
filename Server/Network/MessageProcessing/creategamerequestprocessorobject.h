@@ -8,8 +8,12 @@ namespace Mafia {
             class CreateGameRequestProcessorObject : public ProcessorObject
             {
             public:
-                CreateGameRequestProcessorObject(Message message);
+				CreateGameRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * (ничего)
+				 */
                 void process() override;
             };
         }

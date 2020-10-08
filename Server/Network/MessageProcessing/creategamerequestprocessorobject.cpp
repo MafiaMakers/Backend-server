@@ -5,7 +5,7 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-CreateGameRequestProcessorObject::CreateGameRequestProcessorObject(Message message) : ProcessorObject(message){}
+CreateGameRequestProcessorObject::CreateGameRequestProcessorObject(Message_t message) : ProcessorObject(message){}
 
 void CreateGameRequestProcessorObject::process()
 {

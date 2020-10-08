@@ -8,8 +8,12 @@ namespace Mafia {
             class ChangeEmailRequestProcessorObject : public ProcessorObject
             {
             public:
-                ChangeEmailRequestProcessorObject(Message message);
+				ChangeEmailRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * newEmail (String) : новый email
+				 */
                 void process() override;
             };
         }

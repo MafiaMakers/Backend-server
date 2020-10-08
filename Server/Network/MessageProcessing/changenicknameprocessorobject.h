@@ -8,8 +8,12 @@ namespace Mafia {
             class ChangeNicknameProcessorObject : public ProcessorObject
             {
             public:
-                ChangeNicknameProcessorObject(Message message);
+				ChangeNicknameProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * newNickname (String) : новый никнейм
+				 */
                 void process() override;
             };
         }

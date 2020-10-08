@@ -80,7 +80,7 @@ namespace Mafia {
              * \brief Слот, соединяемый с событием networker'a, получения необработанного сообщения
              * \param message Полученное сообщение, которое следует обработать
              */
-			void message_received(Message_t message);
+            void message_received(Network::Message message);
 
         private:
             //! \brief Указатель на объект networker'a

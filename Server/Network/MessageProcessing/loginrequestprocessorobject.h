@@ -8,8 +8,13 @@ namespace Mafia {
             class LoginRequestProcessorObject : public ProcessorObject
             {
             public:
-                LoginRequestProcessorObject(Message message);
+				LoginRequestProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * email (String) : email
+				 * password (String) : пароль
+				 */
                 void process() override;
             };
         }

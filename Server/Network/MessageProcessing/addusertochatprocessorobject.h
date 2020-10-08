@@ -8,8 +8,14 @@ namespace Mafia{
             class AddUserToChatProcessorObject : public ProcessorObject
             {
             public:
-                AddUserToChatProcessorObject(Message message);
+				AddUserToChatProcessorObject(Message_t message);
 
+				/*!
+				 * \brief id, которые используются:
+				 * userId (int) : id пользователя, с которым работаем
+				 * chatId (int) : id чата, с которым работаем
+				 * newUsersCapability (int) : новая должность пользователя
+				 */
                 void process() override;
             };
         }

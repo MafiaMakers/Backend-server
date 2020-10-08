@@ -26,10 +26,10 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-ProcessorObject *ProcessorObject::generate(Message message)
+ProcessorObject *ProcessorObject::generate(Message_t message)
 {
 	ProcessorObject* result;
-    switch (message.type) {
+	switch (message.id) {
     case MessageType_CreateUser:{
 		SAFE_NEW(result, CreateUserProcessorObject(message));
 		break;
@@ -125,9 +125,51 @@ ProcessorObject::~ProcessorObject()
 
 }
 
-ProcessorObject::ProcessorObject(Message message)
+template<>
+int ProcessorObject::get_from_json(QJsonObject obj, QString key){
+
+	return get_json_value(obj, key).toInt();
+}
+
+template<>
+QString ProcessorObject::get_from_json(QJsonObject obj, QString key){
+	return get_json_value(obj, key).toString();
+}
+
+template<>
+std::string ProcessorObject::get_from_json(QJsonObject obj, QString key){
+	return get_json_value(obj, key).toString().toStdString();
+}
+
+template<>
+System::String ProcessorObject::get_from_json(QJsonObject obj, QString key){
+	return System::String(get_json_value(obj, key).toString().toStdString());
+}
+
+template<>
+MafiaList<int> ProcessorObject::get_from_json(QJsonObject obj, QString key){
+	QJsonArray arr = get_json_value(obj, key).toArray();
+	auto result = MafiaList<int>();
+	for(int i = 0; i < arr.size(); i++){
+		result.append(arr.at(i).toInt());
+	}
+	return result;
+}
+
+ProcessorObject::ProcessorObject(Message_t message)
 {
     this->id = message.id;
-    this->data = System::String((char*)message.data, sizeof(SymbolType) * message.size);
-    this->sender = message.client;
+	this->data = message.data;
+	this->sender = message.sender;
+}
+
+QJsonValue ProcessorObject::get_json_value(QJsonObject obj, QString key)
+{
+	QJsonValue val = obj.value(key);
+
+	if(val == QJsonValue::Undefined){
+		throw Exceptions::Exception::generate(System::String("No " + key.toStdString() + " in json!!!"),
+											  Exceptions::MessageParsingExceptionId_NoSuchID);
+	}
+	return val;
 }

@@ -5,7 +5,7 @@ using namespace Mafia;
 using namespace Network;
 using namespace MessageProcessing;
 
-CreateChatRequestProcessorObject::CreateChatRequestProcessorObject(Message message) : ProcessorObject(message){}
+CreateChatRequestProcessorObject::CreateChatRequestProcessorObject(Message_t message) : ProcessorObject(message){}
 
 void CreateChatRequestProcessorObject::process()
 {
