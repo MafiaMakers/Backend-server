@@ -1,72 +1,49 @@
 import Mafia.Network.*;
 
+/*! \mainpage Это документация к проекту субсервера-комнаты для онлайн игры в мафию.
+ * Приблизительная архитектура: Все хранится в пакете \ref Mafia.
+ * В пакете \ref Mafia.Events хранится система событий и основные классы. Все дальнейшие классы событий хранятся в тех пакетах,
+ * к которым они относятся по смыслу. В пакете \ref Mafia.Exceptions хранятся все исключения.
+ * В пакете \ref Mafia.Gameplay хранится все, что касается правил игры, игрового процесса и прочего (пока этот пакет почти пустой)
+ * В пакете \ref Mafia.Gameplay.Roles хранятся все необходимые классы для описания ролей и их поведения.
+ * Там же описана важная концепция рутин, на которой во многом будет строиться логика игры. (см. \ref Mafia.Gameplay.Roles.IRoutine)
+ * В пакете \ref Mafia.Network находятся классы для работы с сетью. Причем часть классов может быть использована и в
+ * кдиентской работе.
+ * Пакет \ref Mafia.Network.General содержит как раз классы, необходимые и серверу и клиенту. Остальная часть пакета
+ * \ref Mafia.Network содержит классы, которые нужны лишь серверу.\
+ * В папке Old находятся старые файлы (UDP и прочее), которые я решил пока не удалять, потому что "а вдруг пригодится"...
+ * Тем не менее, в папку Old заглядывать не стоит ))
+ * Папка test будет содержать тесты для всех этих классов, но пока их очень мало.
+ * Для работы клиента необходимы модули: \ref Mafia.Exceptions \ref Mafia.Events \ref Mafia.Network.General
+ */
+
 /*!\brief Класс, из которого выполняется запуск программы. По сути только для этого и нужен
  */
 public class Main {
-    /*static {
-        System.load(Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replaceAll("/", "\\\\") + "CPP_LIB\\Main.so");
-    }*/
 
     /*!\brief Основной метод
      *!\param args Аргументы, переданные при вызове (там будет порт и, возможно, что-то еще)
      */
     public static void main(String[] args) {
-        //SubserverNetworker networker = new SubserverNetworker(7373, 5000);
+        try {
+            SubserverNetworker networker = new SubserverNetworker(10000);
 
-        //ClientNetworker c_networker = new ClientNetworker(5001, 7373);
-        byte[] data = "This is test!!!".getBytes();
+            /*TCPSender client = new TCPSender(10000);
 
-        //byte[] data1 = "AnotherTest!!!".getBytes();
-        int data1 = 179;
+            System.out.println("Connected");
 
-        byte[] serialized = Serializer.serialize(data);
+            MessageTCP message = new MessageTCP();
+            message.id = MessageType.from_int(2);
+            ObjectMapper mapper = new ObjectMapper();
+            String data = "{\"SomeData\": \"Test\"}";
+            message.data = mapper.readTree(data);
+            client.send_message(message);*/
+            //networker.send_message(message);
 
-        byte[] serialized1 = Serializer.serialize(data1);
-
-        byte[] sum = new byte[serialized.length + serialized1.length];
-
-        for (int i = 0; i < serialized.length; i++){
-            //System.out.print((char) serialized[i]);
-            sum[i] = serialized[i];
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
 
-
-        for (int i = 0; i < serialized1.length; i++){
-            sum[i + serialized.length] = serialized1[i];
-            //System.out.print((char) serialized1[i]);
-        }
-
-        //System.out.println();
-
-        for(int i = 0; i < sum.length; i++){
-            //System.out.print((char)sum[i]);
-        }
-
-        //System.out.println();
-        byte[] result = Serializer.deserialize(sum);
-
-        for (int i = 0; i < result.length; i++){
-            System.out.print((char) result[i]);
-        }
-        System.out.println();
-        for (int i = 0; i < sum.length; i++){
-            if(sum[i] == 0){
-                break;
-            }
-            //System.out.print((char) sum[i]);
-        }
-
-        int result1 = Serializer.deserialize_int(sum);
-
-        System.out.println(result1);
-        //System.out.println();
-
-        for (int i = 0; i < sum.length; i++){
-            if(sum[i] == 0){
-                break;
-            }
-            //System.out.print((char) sum[i]);
-        }
     }
 
 }

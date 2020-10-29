@@ -4,92 +4,78 @@ import Mafia.Events.MafiaEvent;
 import Mafia.Events.MafiaEventListener;
 import Mafia.Exceptions.ExceptionId;
 import Mafia.Exceptions.MafiaException;
-import Mafia.Gameplay.GameEvent;
+import Mafia.Network.General.*;
 
-import java.awt.event.ActionListener;
 import java.net.ServerSocket;
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.awt.event.ActionEvent;
 
 //!\brief Основной класс, отвечающий за работу с сетью
 public class SubserverNetworker extends MafiaEventListener {
+    //! \brief Список всех объектов-отправителей (1 объект на 1 клиента)
     private Set<TCPSender> tcpSenders;
+
+    //! \brief Объект, подключающий новых клиентов
+    private ClientConnecter connecter;
+
+    //! \brief Основной серверный сокет
     ServerSocket tcpSocket;
-    private UDPSender sender;
+    //! \brief Порт, на котором инициализирован сервер
     private int TCPPort;
 
-    public SubserverNetworker(int TCPPort, int UDPPort){
+    //! \brief Основной конструктор
+    //! \param TCPPort порт, на котором создается сервер
+    public SubserverNetworker(int TCPPort){
 
         this.TCPPort = TCPPort;
         tcpSenders = new HashSet<TCPSender>();
         try {
-            sender = new UDPSender(UDPPort);
+            //sender = new UDPSender(UDPPort);
             tcpSocket = new ServerSocket(TCPPort);
             tcpSocket.setReuseAddress(true);
-            tcpSenders.add(new TCPSender(tcpSocket));
+
+            connecter = new ClientConnecter(tcpSocket);
+            //tcpSenders.add(new TCPSender(tcpSocket));
         } catch (Exception ex){
             System.out.println(ex.getMessage());
         }
     }
 
-    public void send_message(MessageJ message){
+    //! \brief Основная функция отправки сообщения
+    //! \param message Сообщение, которое отправляем
+    public void send_message(MessageTCP message){
         try {
-            if (NetworkConfigs.udpOrTcpMessage(MessageType.from_int(message.Gettype()))) {
-                sender.send_message(message);
-            } else{
-                ClientJ receiver = message.Getclient();
-                boolean found = false;
-                for (TCPSender sndr : tcpSenders){
-                    if(sndr.client_matches(receiver)){
-                        sndr.send_message(message);
-                        found = true;
-                        break;
-                    }
-                }
 
-                if(!found){
-                    throw MafiaException.generate(ExceptionId.ClientMismatchException, "Client not found!!!");
+            Client receiver = message.sender;
+            boolean found = false;
+            for (TCPSender sndr : tcpSenders){
+                if(sndr.client_matches(receiver)){
+                    sndr.send_message(message);
+                    found = true;
+                    break;
                 }
             }
+
+            if(!found){
+                throw MafiaException.generate(ExceptionId.ClientMismatchException, "Client not found!!!");
+            }
+
         } catch(MafiaException ex){
             System.out.println(ex.getMessage());
         }
     }
 
-    /*static {
-        //Загрузка .so файла с определением нативных функций
-        System.load(MessageJ.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(1).replaceAll("/","\\\\") +
-                "Mafia\\Network\\CPP_LIB\\SubserverNetworker.so");
-    }*/
-    //!\brief Указатель на объект Mafia::Network::MainServerNetworker, который будет работать
-    //private static long networkerPointer = 0;
-    //!\brief Функция инициализации
-    //!\param port Порт, на котором следует инициализировать субсервер
-    //public static native void init(int port);
-    //!\brief Функция отправки сообщения
-    //!\param messageJ сообщение, которое следует отправить
-    //public native static int sendMessage(MessageJ messageJ);
-    /*!\brief Функция обработки полученных данных (просто сообщения из инета)
-     *!\param data Данные, полученные из сети
-     *!\param size Размер полученного сообщения
-     *!\param ip IP, с которого было получено сообщение
-     *!\param port Порт, с которого было отправлено сообщение
-    */
-    //public static native void processReceivedBytes(byte[] data, int size, int ip, int port);
-
+    //! \brief Функция обработки приходящих событий (подключение, отключение клиентов и получение сообщений)
     public void on_event(MafiaEvent event){
         //System.out.println("on_event in networker");
         if(event instanceof NetworkEvent){
             if(event instanceof ClientConnected){
                 try {
                     System.out.print("Client connected: ");
-                    System.out.print(((ClientConnected) event).client.Getip());
+                    System.out.print(((ClientConnected) event).client.ip);
                     System.out.print(" ");
-                    System.out.println(((ClientConnected) event).client.Getport());
-                    tcpSenders.add(new TCPSender(tcpSocket));
+                    System.out.println(((ClientConnected) event).client.port);
+                    tcpSenders.add(new TCPSender(((ClientConnected) event).socket));
                 } catch (Exception ex){
                     System.out.println(ex.getMessage());
                 }
@@ -111,15 +97,19 @@ public class SubserverNetworker extends MafiaEventListener {
     }
 
     //!\brief Функция обработки готового хорошего декодированного сообщения
-    //!\param messageJ Сообщение, которое собрал MainServerNetworker
-    private static void process_message(MessageJ messageJ){
-        //System.out.println("MESSAGE RECEIVED!!! PROCESSING!!!");
-        System.out.println(messageJ);
-        //System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
-        System.out.println("Received message from: " + messageJ.Getclient().Getip() + ":" +
-                String.valueOf(messageJ.Getclient().Getport()));
-        System.out.println("Message type: " + messageJ.Gettype());
-        System.out.println("ID: " + messageJ.Getid());
-        System.out.println("Data: " + String.valueOf(messageJ.Getdata()));
+    //!\param message Сообщение, которое собрал MainServerNetworker
+    private void process_message(MessageTCP message){
+        if(message.id == MessageType.TestText) {
+            //System.out.println("MESSAGE RECEIVED!!! PROCESSING!!!");
+            System.out.println(message);
+            //System.out.println("\n\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
+            System.out.println("Received message from: " + message.sender.ip.toString() + ":" +
+                    String.valueOf(message.sender.port));
+            System.out.println("Message type: " + message.id);
+            //System.out.println("ID: " + messageJ.Getid());
+            System.out.println("Data: " + String.valueOf(message.data.toString()));
+            send_message(message);
+        }
     }
+
 }

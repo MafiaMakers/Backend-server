@@ -1,52 +1,46 @@
 package Mafia.Gameplay;
 
+import Mafia.Events.MafiaEvent;
+import Mafia.Events.MafiaEventListener;
 import Mafia.Exceptions.ExceptionId;
 import Mafia.Exceptions.MafiaException;
 import Mafia.Gameplay.Roles.IRoutine;
 import java.lang.Boolean;
 
 //!\brief Базовый класс отложенных игровых событий
-public class LateEvent{
-    //!\brief Рутина, которая должна запускаться при событии
-    protected IRoutine onActionRoutine;
-    //!\brief Рутина, которая должна запускаться для проверки истинности события (произошло ли оно).
-    //!Такая рутина должна возвращать java.lang.Boolean
-    protected IRoutine conditionRoutine;
+public abstract class LateEvent extends MafiaEventListener {
+    //! \brief Рутина, которая должна отработать по происшествии необходимого события
+    IRoutine routine;
 
-    //!\brief Основной конструктор. Имена параметров совпадают с полями класса
-    public LateEvent(IRoutine onActionRoutine, IRoutine conditionRoutine){
-        this.onActionRoutine = onActionRoutine;
-        this.conditionRoutine = conditionRoutine;
+    //!\brief Основной конструктор
+    //! \param routine Рутина, которую стоит вызвать при событии
+    public LateEvent(IRoutine routine){
+        setRoutine(routine);
     }
 
-    //!\brief Конструктор, который задает нулевую проверку (возвращающую только false)
-    public LateEvent(IRoutine onActionRoutine){
-        this(onActionRoutine, null);
+    //! \brief Функция, задающая рутину, которая будет вызываться событием
+    //! \param routine Рутина
+    public void setRoutine(IRoutine routine){
+        this.routine = routine;
     }
 
     //!\brief Переменная, отвечающая за то, произошло ли уже событие
     protected boolean finished = false;
 
-    //!\brief Проверка на то, произошло ли событие
-    public boolean check_condition() throws MafiaException{
-        if(conditionRoutine != null){
-            Object result = conditionRoutine.run();
-            if(result.getClass().isInstance(Boolean.class)){
-                return ((Boolean)result).booleanValue();
-            } else {
-                throw MafiaException.generate(ExceptionId.RoutineException, "INVALID CONDITION ROUTINE!!!");
-            }
-        } else{
-            return false;
-        }
-    }
+    //! \brief Абстрактный метод, который проверяет, то ли произошло событие или не то
+    abstract protected boolean check_needed_event(GameEvent event);
 
-    //!\brief Метод, который вызывается при событии
-    public Object on_action(){
-        if(onActionRoutine != null){
-            return onActionRoutine.run();
-        } else{
-            return null;
+
+    /*! \brief Наследованный от слушателя метод, который принимает событие и проверяет его на то, нужное ли событие
+    произошло (вызывать ли рутину) - использует метод \ref check_needed_event. Если это то событие, то запускает рутину
+        \param event Событие, которое произошло
+     */
+    @Override
+    public void on_event(MafiaEvent event) {
+        if(event instanceof GameEvent){
+            if(check_needed_event((GameEvent)event)){
+                routine.run();
+            }
         }
     }
 }

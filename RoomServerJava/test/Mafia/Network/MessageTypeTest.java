@@ -1,15 +1,16 @@
 package Mafia.Network;
 
 import Mafia.Exceptions.MafiaException;
+import Mafia.Network.General.MessageType;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MessageTypeTest {
     @Test
     public void MainTest(){
-        MessageType mt = MessageType.TestTCPMessage;
+        MessageType mt = MessageType.Text;
         Assert.assertEquals(2, mt.getType());
-        mt = MessageType.TestUDPMessage;
+        mt = MessageType.TestText;
         Assert.assertEquals(1, mt.getType());
     }
 

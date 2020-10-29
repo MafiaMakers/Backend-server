@@ -28,6 +28,8 @@ void Networker::send_message(int id, KeyValuePairSet data, Client receiver)
 
 void Networker::on_message_received(char* message, int size, Client client)
 {
+	//std::cout << std::string(message, size) << "\n" << client.ip << " " << client.port << std::endl;
+
 	QByteArray data = QByteArray::fromStdString(std::string(message, size));
 	QJsonDocument doc = QJsonDocument::fromJson(data);
 	if(doc.isNull()){
@@ -37,10 +39,24 @@ void Networker::on_message_received(char* message, int size, Client client)
 	}
 	QJsonObject json = doc.object();
 
+	QJsonValue idVal = json.value("id");
+	QJsonValue dataVal = json.value("data");
+
+	if(idVal == QJsonValue::Undefined){
+		Exceptions::Exception::process_uncatchable_exception(System::String("Message has not field ID"),
+															 Exceptions::MessageParsingExceptionId_NoSuchID);
+	}
+	if(dataVal == QJsonValue::Undefined){
+		Exceptions::Exception::process_uncatchable_exception(System::String("Message has not field DATA"),
+															 Exceptions::MessageParsingExceptionId_NoSuchID);
+	}
+
 	JSONMessage mes = JSONMessage();
-	mes.id = (MessageType)json.value("id").toInt();
+	mes.id = (MessageType)idVal.toInt();
+	mes.data = dataVal.toObject();
+
 	mes.sender = client;
-	mes.data = json.value("data").toObject();
+
 
 	process_message(mes);
 }
@@ -52,6 +68,11 @@ void Networker::on_client_disconnected(Client client)
 
 void Networker::process_message(JSONMessage message)
 {
+	if(message.id == MessageType_Text){
+		send_message(MessageType_Text, message.data, message.sender);
+		return;
+	}
+
 	emit message_received(message);
 	if((unsigned)message.sender.ip == QHostAddress("127.0.0.1").toIPv4Address()){
 		emit subserver_message_received(message);

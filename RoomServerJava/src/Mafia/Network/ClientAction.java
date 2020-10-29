@@ -1,18 +1,23 @@
 package Mafia.Network;
 
-public class ClientAction extends NetworkEvent{
-    protected ClientJ client;
+import Mafia.Network.General.NetworkEvent;
+import Mafia.Network.General.Client;
 
-    ClientAction(ClientJ client){
+//! \brief Событие, связанное с действием клиента. От него наследуются \ref ClientLeave и \ref ClientConnected
+public class ClientAction extends NetworkEvent {
+    //! \brief Клиент, который подключился
+    protected Client client;
+
+    ClientAction(Client client){
         this.client = client;
     }
 
-    ClientAction(ClientJ client, Object sender){
-        super(sender, "", -1);
+    ClientAction(Client client, Object sender){
+        super(sender);
         this.client = client;
     }
 
-    public ClientJ get_client(){
+    public Client get_client(){
         return client;
     }
 }

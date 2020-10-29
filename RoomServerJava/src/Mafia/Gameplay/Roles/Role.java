@@ -1,11 +1,12 @@
 package Mafia.Gameplay.Roles;
-import Mafia.Network.ClientInfo;
+import Mafia.Events.MafiaEvent;
+import Mafia.Events.MafiaEventListener;
+import Mafia.Network.General.ClientInfo;
 
 import java.util.ArrayList;
-import java.awt.event.ActionListener;
 
 //!\brief Базовый класс роли, отвечающий за все общие процессы для всех ролей.
-public class Role implements ActionListener{
+public class Role extends MafiaEventListener {
     //!\brief Список рутин, которые выполняются на каждой стадии игры (например, рутина, которая выполняется ночью, днем и т.п.)
     //!Но это список рутин, стандартных для этой роли.
     private IRoutine[] defaultRoutines;
@@ -24,8 +25,11 @@ public class Role implements ActionListener{
         return roleType;
     }
 
+    /*! \brief Метод обработки событий, приходящих пользователю. Пока не доделан.
+        \param event Событие, которое пришло
+     */
     @Override
-    public void actionPerformed(java.awt.event.ActionEvent actionEvent){
+    public void on_event(MafiaEvent event){
 
     }
     /*!\brief Функция жесткой смены рутины (используется событиями, возвращающими или изменяющими рутины

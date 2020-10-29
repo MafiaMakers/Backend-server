@@ -1,11 +1,12 @@
 #include "tcpmessagesender.h"
 #include "Exceptions/messageparsingexception.h"
+
 using namespace Mafia;
 using namespace Network;
 
 TCPMessageSender::TCPMessageSender(QObject *parent) : QObject(parent){}
 
-TCPMessageSender::TCPMessageSender(int port)
+TCPMessageSender::TCPMessageSender(int port) : QObject(nullptr)
 {
 	mainSocket = new QTcpServer(this);
 	bool success = mainSocket->listen(QHostAddress::Any, port);
@@ -32,6 +33,7 @@ void TCPMessageSender::send(char* data, int size, Client client)
 
 void TCPMessageSender::add_user()
 {
+	//qDebug() << "adding new client\n";
 	QTcpSocket* clientSocket = mainSocket->nextPendingConnection();
 	//int userSocketDescription=clientSocket->socketDescriptor();
 	Client c = Client(clientSocket->peerAddress().toIPv4Address(), clientSocket->peerPort());
@@ -42,6 +44,7 @@ void TCPMessageSender::add_user()
 
 void TCPMessageSender::receive_message()
 {
+	//std::cout << "Message received!\n";
 	QTcpSocket* clientSocket = ( QTcpSocket* )sender();
 
 	QByteArray data = clientSocket->readAll();

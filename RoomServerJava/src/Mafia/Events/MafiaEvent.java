@@ -1,39 +1,31 @@
 package Mafia.Events;
 
-import Mafia.Network.MessageReceived;
-
+//! \brief Основной класс события, от которого должны наследоваться все события
 public class MafiaEvent {
+    //! \brief Источник события. Предполагается, что класс, который создает событие, будет передавать туда  this.
     private Object source;
-    private String data;
-    private int id;
 
+    //! \brief Пустой конструктор, который задает пустой источник события
     public MafiaEvent(){
         source = null;
-        data = "";
-        id = -1;
     }
 
-    public MafiaEvent(Object source, String data, int id){
+    //! \brief Конструктор, который задает источник события
+    public MafiaEvent(Object source){
         this.source = source;
-        this.data = data;
-        this.id = id;
     }
 
+    /*! \brief Недостаточно просто создать событие. Необходимо еще его вызвать. Раньше я хотел сделать, чтобы событие автоматически вызывало себя в конструкторе,
+    но есть некоторая проблема с тем, что когда завершается конструктор родительского класса, конструктор наследника только начинается. И если в этот момент событие будет происходить,
+    то его поля, которые есть в наследнике, все будут null. Поэтому я передаю управление моментом вызова события тем, кто использует это событие. К тому же это дает большую гибкость.
+     */
     public void occur(){
         EventsManager.register_event(this);
     }
 
+    //! \brief Возвращает источник события
     public Object get_source(){
         return source;
     }
-
-    public String get_data(){
-        return data;
-    }
-
-    public int get_id(){
-        return id;
-    }
-
 
 }

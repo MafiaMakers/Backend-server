@@ -11,8 +11,8 @@ public class ChangeRoundGameEvent extends GameEvent{
      *!\param command Строка, которая характеризует это событие
      *!\param stage Стадия игры, которая наступила
      */
-    public ChangeRoundGameEvent(Object source, int id, String command, GameStage stage){
-        super(source, id, command);
+    public ChangeRoundGameEvent(Object source, GameStage stage){
+        super(source);
         this.stage = stage;
     }
 

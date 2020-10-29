@@ -3,6 +3,7 @@
 /RoomServerJava/out/production/RoomServerJava/META-INF
 build-*
 *.iml
+*.so
 *.log
 *.class
 *.jar

@@ -4,8 +4,8 @@ QT += sql network
 
 INCLUDEPATH += "../Server"
 
-CONFIG += qt console warn_on depend_includepath testcase
-CONFIG -= app_bundle
+CONFIG += qt console warn_on depend_includepath #testcase
+#CONFIG -= app_bundle
 
 TEMPLATE = app
 
@@ -56,6 +56,8 @@ SOURCES +=  \
     ../Server/Network/mainservernetworker.cpp \
     ../Server/Network/messageprocessor.cpp \
     ../Server/Network/messagesender.cpp \
+    ../Server/Network/networker.cpp \
+    ../Server/Network/tcpmessagesender.cpp \
     ../Server/Requests/networkrequest.cpp \
     ../Server/Requests/request.cpp \
     ../Server/Subservers/backupsubserverobject.cpp \
@@ -82,6 +84,8 @@ SOURCES +=  \
     Database/tst_userdatabasemanager.cpp \
     Network/tst_crypto.cpp \
     Network/tst_mainservernetworker.cpp \
+    Network/tst_networker.cpp \
+    Network/tst_tcpmessagesender.cpp \
     System/tst_SHA_256.cpp \
     System/tst_Tuple.cpp \
     System/tst_functions.cpp \
@@ -114,6 +118,7 @@ HEADERS += \
     ../Server/Exceptions/systemexception.h \
     ../Server/Gameplay/game_s.h \
     ../Server/Gameplay/gameitems.h \
+    ../Server/Network/JSONMessage.h \
     ../Server/Network/MessageProcessing/addusertochatprocessorobject.h \
     ../Server/Network/MessageProcessing/changeemailrequestprocessorobject.h \
     ../Server/Network/MessageProcessing/changenicknameprocessorobject.h \
@@ -141,6 +146,8 @@ HEADERS += \
     ../Server/Network/messageTypes.h \
     ../Server/Network/messageprocessor.h \
     ../Server/Network/messagesender.h \
+    ../Server/Network/networker.h \
+    ../Server/Network/tcpmessagesender.h \
     ../Server/Requests/networkrequest.h \
     ../Server/Requests/request.h \
     ../Server/Subservers/backupsubserverobject.h \
@@ -168,6 +175,8 @@ HEADERS += \
     Database/tst_userdatabasemanager.h \
     Network/tst_crypto.h \
     Network/tst_mainservernetworker.h \
+    Network/tst_networker.h \
+    Network/tst_tcpmessagesender.h \
     System/tst_SHA_256.h \
     System/tst_Tuple.h \
     System/tst_functions.h \
