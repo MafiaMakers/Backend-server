@@ -1,9 +1,9 @@
 package Mafia.Gameplay;
 
-import Mafia.Events.MafiaEvent;
-import Mafia.Events.MafiaEventListener;
-import Mafia.Exceptions.ExceptionId;
-import Mafia.Exceptions.MafiaException;
+import Mafia.General.Events.MafiaEvent;
+import Mafia.General.Events.MafiaEventListener;
+import Mafia.General.Exceptions.ExceptionId;
+import Mafia.General.Exceptions.MafiaException;
 import Mafia.Gameplay.Roles.IRoutine;
 import java.lang.Boolean;
 

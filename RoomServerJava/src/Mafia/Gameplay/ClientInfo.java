@@ -1,5 +1,5 @@
-package Mafia.Network.General;
-
+package Mafia.Gameplay;
+import Mafia.General.Network.Client;
 import Mafia.Gameplay.AccountType;
 
 //! \brief Структура информации о пользователе. Подробнее можно смотреть на основном сервере

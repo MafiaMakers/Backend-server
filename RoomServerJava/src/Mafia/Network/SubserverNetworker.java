@@ -1,10 +1,10 @@
 package Mafia.Network;
 
-import Mafia.Events.MafiaEvent;
-import Mafia.Events.MafiaEventListener;
-import Mafia.Exceptions.ExceptionId;
-import Mafia.Exceptions.MafiaException;
-import Mafia.Network.General.*;
+import Mafia.General.Events.MafiaEvent;
+import Mafia.General.Events.MafiaEventListener;
+import Mafia.General.Exceptions.ExceptionId;
+import Mafia.General.Exceptions.MafiaException;
+import Mafia.General.Network.*;
 
 import java.net.ServerSocket;
 import java.util.Set;

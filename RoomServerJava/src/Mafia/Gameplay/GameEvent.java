@@ -1,5 +1,5 @@
 package Mafia.Gameplay;
-import Mafia.Events.MafiaEvent;
+import Mafia.General.Events.MafiaEvent;
 
 
 //!\brief Основной класс игровых событий

@@ -1,6 +1,6 @@
 package Mafia.Gameplay.Roles;
-import Mafia.Events.MafiaEvent;
-import Mafia.Events.MafiaEventListener;
+import Mafia.General.Events.MafiaEvent;
+import Mafia.General.Events.MafiaEventListener;
 import Mafia.Gameplay.ChangeRoundGameEvent;
 import Mafia.Gameplay.GameEvent;
 import Mafia.Gameplay.GameStage;

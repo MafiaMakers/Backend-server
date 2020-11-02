@@ -1,0 +1,3 @@
+[submodule "RoomServerJava/src/Mafia/General"]
+	path = RoomServerJava/src/Mafia/General
+	url = https://github.com/MafiaMakers/General

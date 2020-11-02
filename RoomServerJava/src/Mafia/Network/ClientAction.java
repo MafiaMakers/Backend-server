@@ -1,7 +1,7 @@
 package Mafia.Network;
 
-import Mafia.Network.General.NetworkEvent;
-import Mafia.Network.General.Client;
+import Mafia.General.Network.NetworkEvent;
+import Mafia.General.Network.Client;
 
 //! \brief Событие, связанное с действием клиента. От него наследуются \ref ClientLeave и \ref ClientConnected
 public class ClientAction extends NetworkEvent {

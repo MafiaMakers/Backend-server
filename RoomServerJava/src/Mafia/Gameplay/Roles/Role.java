@@ -1,7 +1,7 @@
 package Mafia.Gameplay.Roles;
-import Mafia.Events.MafiaEvent;
-import Mafia.Events.MafiaEventListener;
-import Mafia.Network.General.ClientInfo;
+import Mafia.General.Events.MafiaEvent;
+import Mafia.General.Events.MafiaEventListener;
+import Mafia.Gameplay.ClientInfo;
 
 import java.util.ArrayList;
 

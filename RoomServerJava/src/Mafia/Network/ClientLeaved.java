@@ -1,6 +1,6 @@
 package Mafia.Network;
 
-import Mafia.Network.General.Client;
+import Mafia.General.Network.Client;
 
 //! \brief Событие, вызываемое при покидании сервера клиентом
 public class ClientLeaved extends ClientAction {

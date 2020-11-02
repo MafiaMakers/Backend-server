@@ -1,6 +1,6 @@
 package Mafia.Network;
 
-import Mafia.Network.General.Client;
+import Mafia.General.Network.Client;
 
 import java.io.IOException;
 import java.net.InetAddress;

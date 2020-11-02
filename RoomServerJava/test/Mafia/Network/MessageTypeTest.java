@@ -1,7 +1,7 @@
 package Mafia.Network;
 
-import Mafia.Exceptions.MafiaException;
-import Mafia.Network.General.MessageType;
+import Mafia.General.Exceptions.MafiaException;
+import Mafia.General.Network.MessageType;
 import org.junit.Assert;
 import org.junit.Test;
 

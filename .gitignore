@@ -14,3 +14,4 @@ RoomServer
 check_err.bat
 check_nerr.bat
 *.dll
+DeployServer.bat
